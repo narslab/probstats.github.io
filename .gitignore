@@ -7,3 +7,42 @@ Gemfile.lock
 _site/
 node_modules/
 vendor/
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.lof
+*.lot
+*.out
+*.toc
+*.idx
+*.ind
+*.ilg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.vrb
+*.glg
+*.glo
+*.gls
+*.ist
+*.acn
+*.acr
+*.alg
+*.maf
+*.mtc
+*.mtc1
+
+# PDF output
+#*.pdf
+
+# PostScript output
+*.ps
+
+# Editor backup files
+*~
