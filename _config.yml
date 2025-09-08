@@ -13,10 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Just the Class
+title: CEE 260/MIE 273
 tagline: A Jekyll template for course websites
 description: A modern, highly customizable, responsive Jekyll template for course websites
-author: Kevin Lin
+author: Jimi Oke
 baseurl: '/fa25' # the subpath of your site, e.g. /blog
 url: 'https://probstats.narslab.org' # the base hostname & protocol for your site, e.g. http://example.com
 exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
@@ -28,8 +28,8 @@ search_enabled: true
 heading_anchors: true
 permalink: pretty
 aux_links:
-  Kevin Lin:
-    - 'https://kevinl.info'
+  Jimi Oke:
+    - 'https://people.umass.edu/jimi'
   Just the Class on GitHub:
     - 'https://github.com/kevinlin1/just-the-class'
 footer_content:
@@ -38,7 +38,7 @@ footer_content:
 collections:
   staffers:
   modules:
-  schedules:
+  # calendars:
   announcements:
 # Default layouts for each collection type
 defaults:
@@ -55,11 +55,11 @@ defaults:
       type: modules
     values:
       layout: module
-  - scope:
-      path: ''
-      type: schedules
-    values:
-      layout: schedule
+  # - scope:
+  #     path: ''
+  #     type: calendars
+  #   values:
+  #     layout: calendar
   - scope:
       path: ''
       type: announcements

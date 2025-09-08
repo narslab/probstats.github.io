@@ -1,11 +1,16 @@
 ---
 layout: page
+order: 1
 title: Schedule
-description: The weekly event schedule.
+description: Listing of course modules and topics.
 ---
 
-# Weekly Schedule
+# CEE 260/MIE273\: Probability and Statistics in Engineering
 
-{% for schedule in site.schedules %}
-{{ schedule }}
+## UMass Amherst, Fall 2025
+
+### Schedule
+
+{% for module in site.modules %}
+{{ module }}
 {% endfor %}
