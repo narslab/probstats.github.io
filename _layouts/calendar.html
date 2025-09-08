@@ -1,0 +1,83 @@
+<!-- {% assign start_time = page.timeline | first %}
+{% capture offset %}{% include minutes.liquid time=start_time %}{% endcapture %}
+<div class="calendar">
+  <ul class="calendar-timeline" style="min-width: {{ page.calendar | size | times: 120 }}px">
+    {% for time in page.timeline %}
+    <li class="calendar-time">{{ time }} </li>
+    {% endfor %}
+  </ul>
+  <ul class="calendar-group">
+    {% for day in page.calendar %}
+    <li class="calendar-day">
+      <h2 class="calendar-header no_anchor">{{ day.name }}</h2>
+      {% if day.events %}
+      <ul class="calendar-events" style="height: {{ page.timeline | size | times: 40 }}px">
+      {% for event in day.events %}
+        {% capture start %}{% include minutes.liquid time=event.start %}{% endcapture %}
+        {% capture end %}{% include minutes.liquid time=event.end %}{% endcapture %}
+        {% assign top = start | minus: offset | times: 40 | divided_by: 30 %}
+        {% assign height = end | minus: start | times: 40 | divided_by: 30 %}
+        <li class="calendar-event {% if event.class %}{{ event.class }}{% else %}{{ event.name | slugify }}{% endif %}"
+            style="top: {{ top }}px; height: {{ height }}px;">
+          <div class="name">{{ event.name }}</div>
+          <div class="time">{{ event.start }}–{{ event.end }}</div>
+          {% if event.location %}
+          <div class="location">{{ event.location }}</div>
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div> -->
+<!-- {% comment %}
+  Ensure _includes/minutes.liquid exists and returns a number of minutes for a given time string.
+{% endcomment %}
+{% if page.timeline and page.timeline.size > 0 %}
+  {% assign start_time = page.timeline | first %}
+  {% capture offset %}{% include minutes.liquid time=start_time %}{% endcapture %}
+  <div class="calendar">
+    <ul class="calendar-timeline" style="min-width: {{ page.calendar | size | times: 120 | default: 600 }}px">
+      {% for time in page.timeline %}
+      <li class="calendar-time">{{ time }} </li>
+      {% endfor %}
+    </ul>
+    {% if page.calendar and page.calendar.size > 0 %}
+    <ul class="calendar-group">
+      {% for day in page.calendar %}
+      <li class="calendar-day">
+        <h2 class="calendar-header no_anchor">{{ day.name }}</h2>
+        {% if day.events and day.events.size > 0 %}
+        <ul class="calendar-events" style="height: {{ page.timeline | size | times: 40 | default: 400 }}px">
+        {% for event in day.events %}
+          {% capture start %}{% include minutes.liquid time=event.start %}{% endcapture %}
+          {% capture end %}{% include minutes.liquid time=event.end %}{% endcapture %}
+          {% assign start_num = start | plus: 0 %}
+          {% assign end_num = end | plus: 0 %}
+          {% assign offset_num = offset | plus: 0 %}
+          {% assign duration = end_num | minus: start_num %}
+          {% assign top = start_num | minus: offset_num | times: 40 | divided_by: 30 %}
+          {% assign height = duration | times: 40 | divided_by: 30 %}
+          {% if height > 0 %}
+          <li class="calendar-event {% if event.class %}{{ event.class }}{% elsif event.name %}{{ event.name | slugify }}{% else %}event{% endif %}"
+              style="top: {{ top }}px; height: {{ height }}px;">
+            <div class="name">{{ event.name }}</div>
+            <div class="time">{{ event.start }}–{{ event.end }}</div>
+            {% if event.location %}
+            <div class="location">{{ event.location }}</div>
+            {% endif %}
+          </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No timeline data available.</p>
+{% endif %} -->
