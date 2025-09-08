@@ -3,13 +3,13 @@ title: M2 Probability
 ---
 
 Sep 11
-: **Lecture**{: .label .label-blue }[2a: Events and Set Operations](#)
-  : [1.1](#)
+: **Lecture**{: .label .label-blue }[*(FORTHCOMING)* 2a: Events and Set Operations](#)
+  :  
 
 Sep 16
-: **Lecture**{: .label .label-blue }[2b: Theory of Probability](#)
-  : [Solution](#)
+: **Lecture**{: .label .label-blue }[*(FORTHCOMING)* 2b: Theory of Probability](#)
+  :  
 
 Sep 18
-: **Lecture**{: .label .label-blue }[2c: Conditional Probability and Bayes' Theorem](#)
-  : [1.2](#), [2.1](#)
+: **Lecture**{: .label .label-blue }[*(FORTHCOMING)* 2c: Conditional Probability and Bayes' Theorem](#)
+  :  

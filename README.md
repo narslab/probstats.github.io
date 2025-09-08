@@ -1,11 +1,11 @@
 ---
-layout: home
-title: Just the Class
+layout: page
+title: CEE 260/MIE 273 Probability and Statistics in Engineering
 nav_exclude: true
 permalink: /:path/
 seo:
   type: Course
-  name: Just the Class
+  name: Probs and Stats
 ---
 
 # Just the Class

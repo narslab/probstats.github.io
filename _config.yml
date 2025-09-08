@@ -30,8 +30,8 @@ permalink: pretty
 aux_links:
   Jimi Oke:
     - 'https://people.umass.edu/jimi'
-  Just the Class on GitHub:
-    - 'https://github.com/kevinlin1/just-the-class'
+  NARS Lab:
+    - 'https://narslab.org'
 footer_content:
 
 # Collections for website data
@@ -77,3 +77,15 @@ compress_html:
 liquid:
   error_mode: strict
   strict_filters: true
+
+navigation:
+  - title: Schedule
+    url: /
+  - title: Calendar
+    url: /calendar/
+  - title: Resources
+    url: /resources/
+  - title: Announcements
+    url: /announcements/
+  - title: Staff
+    url: /staff/

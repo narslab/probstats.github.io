@@ -13,6 +13,27 @@
     }
   }
 
+  .label-blue {
+  background-color: #197cdf; // new blue
+  color: #fff;
+}
+
+.label-red {
+  background-color: #e31313; // new red
+  color: #fff;
+}
+
+.label-purple {
+  background-color: #9c14c1; // new purple
+  color: #fff;
+}
+
+.label-orange {
+  background-color: #ed500d; // new orange
+  color: #fff;
+}
+
+
   >dl {
     border-bottom: $border $border-color;
     border-top: $border $border-color;
@@ -96,3 +117,4 @@
     }
   }
 }
+
