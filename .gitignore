@@ -37,6 +37,12 @@ vendor/
 *.maf
 *.mtc
 *.mtc1
+auto/
+bib/
+svg-inkscape/
+
+m1-images/
+m2-images/
 
 # PDF output
 #*.pdf

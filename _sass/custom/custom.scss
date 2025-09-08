@@ -18,6 +18,10 @@ iframe {
   max-width: 100%;
 }
 
+.side-bar {
+  width: 180px !important; // default is 260px, decrease as needed
+}
+
 details {
   @extend .mb-4;
 }
@@ -32,6 +36,8 @@ summary {
   dl {
     display: block;
     grid-template-columns: none;
+    //margin-left: 180px !important; // match sidebar width
+    //max-width: calc(100% - 180px) !important;    
   }
 
   dt {
@@ -48,4 +54,19 @@ summary {
       margin-top: 1em;
     }
   }
+}
+
+.label-blue {
+  background-color: #197cdf; // new blue
+  color: #fff;
+}
+
+.label-red {
+  background-color: #e31313; // new red
+  color: #fff;
+}
+
+.label-purple {
+  background-color: #9c14c1; // new purple
+  color: #fff;
 }
