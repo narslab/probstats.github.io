@@ -13,7 +13,7 @@ Sep 4
 : **Activity**{: .label .label-green}[Blind Stork Test](https://docs.google.com/spreadsheets/d/1WpLkO4iG7PC95OW6eJYPtO_7THV4XmRSHL_FJpJd_Sg/edit?usp=sharing)
 
 Sep 9
-: **Lecture**{: .label .label-blue }[*(FORTHCOMING)* 1c: Case Studies and Experiments](#)
+: **Lecture**{: .label .label-blue }[1c: Case Studies and Experiments](/assets/lectures/M1-Introduction/M1c-Case-Studies-and-Experiments.pdf)
   :  
 <!-- : **Lab**{: .label .label-purple } [Intro to Java](#) -->
 : **Due**{: .label .label-red } Problem Set 1

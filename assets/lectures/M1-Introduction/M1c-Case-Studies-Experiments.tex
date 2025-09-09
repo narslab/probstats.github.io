@@ -271,7 +271,7 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 M1b: Summarizing Data]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+\title[CEE 260/MIE 273 M1c: Case Studies]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
 M1c: Case studies and experiments}\date[\today]{\footnotesize \today}
 \author{{\bf Prof.\ Oke}}
 \institute[UMass Amherst]{
@@ -351,14 +351,14 @@ M1c: Case studies and experiments}\date[\today]{\footnotesize \today}
 % \end{frame}
 
 \begin{frame}
-  \frametitle{Your expectations (Fall 2024)}
-  \includegraphics[width=\textwidth]{wordcloud2024}
+  \frametitle{Your expectations (Fall 2025)}
+  \includegraphics[width=\textwidth]{wordcloud2025}
 \end{frame}
 
 
 
 
-\section{Quantiles and boxplots}
+\section{Recap: Quantiles and boxplots}
 \begin{frame}
   \frametitle{Quantiles}
   \pause
@@ -459,15 +459,15 @@ M1c: Case studies and experiments}\date[\today]{\footnotesize \today}
 
 
 
-\section{MATLAB Examples}
+\section{Colab Examples}
 \begin{frame}
-  \frametitle{MATLAB}
+  \frametitle{Google Colaboratory}
 
   \pause
 
   \bigskip
   
-  We will begin our introduction to MATLAB via basic statistical analyses.
+  We will begin our introduction to Python via basic statistical analyses using the Google Colab platform (\url{https://colab.google/}).
   \pause
 
   \bigskip
@@ -477,7 +477,22 @@ M1c: Case studies and experiments}\date[\today]{\footnotesize \today}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Summarizing data}\pause
+  \frametitle{Notebooks}
+  \pause
+
+  Today, we will use the following Notebooks:
+
+  \pause
+
+  \begin{itemize}
+  \item \texttt{m1-blind-stork.ipynb} \url{https://colab.research.google.com/drive/1G2_UPPli1rdfWv_9wRJvT-m2kLwg3GFu?usp=sharing}
+    
+  \item \texttt{m1-usa-housing.ipynb} \url{https://colab.research.google.com/drive/1onpllyTzNuoO9op89WDR4ft7o_U-eJVL?usp=sharing}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bonus Example}\pause
   \begin{exampleblock}{Example 1: Walking cadence}\pause
     In the article ``Can We Really Walk Straight?'' ({\it Amer. J. of Physical
       Anthropology}, 1992: 19--27) reported on an experiment in which each of 20
@@ -523,7 +538,7 @@ M1c: Case studies and experiments}\date[\today]{\footnotesize \today}
 % \end{frame}
 
 \begin{frame}
-  \frametitle{Example 2: Iris dataset}
+  \frametitle{To be assigned: Iris dataset}
   We will explore the properties and applications of boxplots using the following datasets:\pause
   \bigskip
   
@@ -553,67 +568,64 @@ M1c: Case studies and experiments}\date[\today]{\footnotesize \today}
   \end{figure}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Example 2: Iris flower measurements}
-  \pause
+% \begin{frame}
+%   \frametitle{Example 2: Iris flower measurements}
+%   \pause
 
-  \begin{figure}[h!]
-    \centering
-    \includegraphics[width=.3\textwidth]{iris-measurements}
-    \caption{\textit{Iris versicolor} sepal and petal measurements {\tiny (Source: \url{https://yculz33w9skgdkhey8rajqm6-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/versicolor.jpg) }}}
-  \end{figure}
+%   \begin{figure}[h!]
+%     \centering
+%     \includegraphics[width=.3\textwidth]{iris-measurements}
+%     \caption{\textit{Iris versicolor} sepal and petal measurements {\tiny (Source: \url{https://yculz33w9skgdkhey8rajqm6-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/versicolor.jpg) }}}
+%   \end{figure}
 
-  \pause
+%   \pause
   
-  Are there significant differences in the petal/sepal width/length in each species?
-\end{frame}
+%   Are there significant differences in the petal/sepal width/length in each species?
+% \end{frame}
 
 
-\begin{frame}
-  \frametitle{Example 3: ``Daphne and Santa Cruz.''}
+% \begin{frame}
+%   \frametitle{Example 3: ``Daphne and Santa Cruz.''}
   
+%   \begin{itemize}[<+->]
+%   \item The data set consists of measurements of beak sizes in mm of one species
+%     of Darwin's ground finch (Geospiza fortis) taken at Daphne Island and at
+%     Santa Cruz Island in the Galapagos by Peter and Rosemary Grant.
+
+%     \item Data was extracted from 
+%       \url{http://wps.prenhall.com/esm_freeman_evol_3/0,8018,8412374-,00.html}.
+
+%       \item The
+%       original data is summarized in the article: ``The classical case of
+%       character release: Darwin's finches (Geospiza) on Isla Daphne Major,
+%       Galapagos'' by P. T. Boag and P. R. Grant that appeared in Biological
+%       Journal of the Linnean Society 22:243-287 (1984).
+%   \end{itemize}
+% \end{frame}
+
+
+\section{Outlook}
+\begin{frame}
+  \frametitle{Recap}
   \begin{itemize}[<+->]
-  \item The data set consists of measurements of beak sizes in mm of one species
-    of Darwin's ground finch (Geospiza fortis) taken at Daphne Island and at
-    Santa Cruz Island in the Galapagos by Peter and Rosemary Grant.
-
-    \item Data was extracted from 
-      \url{http://wps.prenhall.com/esm_freeman_evol_3/0,8018,8412374-,00.html}.
-
-      \item The
-      original data is summarized in the article: ``The classical case of
-      character release: Darwin's finches (Geospiza) on Isla Daphne Major,
-      Galapagos'' by P. T. Boag and P. R. Grant that appeared in Biological
-      Journal of the Linnean Society 22:243-287 (1984).
+  \item Pre-survey review
+  \item Python/Colab Introduction:
+    \begin{itemize}
+    \item Summarizing data
+    \item Visualizing data: histograms, boxplots
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Problem Sets}
+  \pause
 
-% \section{Outlook}
-% \begin{frame}
-%   \frametitle{Recap}
-%   \begin{itemize}[<+->]
-%   \item Pre-survey review
-%   \item Python Introduction:
-%     \begin{itemize}
-%     \item Visualizing data
-%     \item Histograms
-%     %\item  Stem-and-leaf plots
-%     \item Boxplots
-%     \end{itemize}
-%   \end{itemize}
-% \end{frame}
-
-% \begin{frame}
-%   \frametitle{Problem Set 1}
-%   \pause
-
-%   \begin{itemize}[<+->]
-%   \item Assigned Thursday, August 27, 2020
-%   \item Due Thursday, September 3, 2020 (at 11:59 PM)
-%   \item Upload a scanned/photographed document as PDF
-%   \end{itemize}
-% \end{frame}
+  \begin{itemize}[<+->]
+  \item PS1 due at 1pm today
+  \item PS2 will be assigned this afternoon
+  \end{itemize}
+\end{frame}
 
 
 
