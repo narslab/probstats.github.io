@@ -8,7 +8,7 @@ Sep 11
 :   **Assigned**{: .label .label-orange}[Problem Set 2 Lab](https://colab.research.google.com/drive/171txI3o7PO3EVesVW7PI7vSWEHr5WprT?usp=sharing)
 
 Sep 16
-: **Lecture**{: .label .label-blue }[*(FORTHCOMING)* 2b: Theory of Probability](#)
+: **Lecture**{: .label .label-blue }[2b: Theory of Probability](/assets/lectures/M2-Probability/M2b-Theory-Of-Probability-Handout.pdf)
   :  
 : **Due**{: .label .label-red } Problem Set 2 and Lab
 

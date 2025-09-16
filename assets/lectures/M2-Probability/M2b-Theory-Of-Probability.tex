@@ -117,7 +117,7 @@ eprint=false]{biblatex}
 \makeatother
 
 %=== GRAPHICS PATH ===========
-\graphicspath{{./images/}}
+\graphicspath{{./m2-images/}}
 % Marginpar width
 %Marginpar width
 %\setlength{\marginparsep}{.02in}
@@ -1018,7 +1018,37 @@ Lecture 2b: Theory of Probability}
       
     \end{enumerate}
   \end{frame}
+
+\begin{frame}
+  \frametitle{Permutations with repetition}
+  \pause
+
+  Without repetition, the number of permutations of $n$ objecst is $n!$.
+
+  \bigskip
+
+  However, if there are $n_{1}$ identical (or repeated) items of type 1, $n_{2}$ identical items of type 2, \dots,
+  and $n_{k}$ identical items of type $k$, then the number of permutations is given by
+
+  \begin{equation}
+    \fr{n!}{n_{1}!n_{2}!\times \cdots \times n_{k}!}
+  \end{equation}
+
   
+  \begin{exampleblock}{How many ways can the letters in the word ``MASS'' be arranged?}
+    
+
+    The letter ``S'' is repeated. Thus, the number of permutations are:
+
+    \begin{equation*}
+      \fr{4!}{2!} = 4 \times 3 = 12
+    \end{equation*}
+
+    %You may verify this in MATLAB using the \texttt{perms} function.
+  \end{exampleblock}
+    
+\end{frame}
+
 \begin{frame}
   \frametitle{Combinations}
   \pause
@@ -1151,35 +1181,7 @@ With combinations, the order is not important (in constrast to permutations).
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Permutations with repetition}
-  \pause
 
-  Without repetition, the number of permutations of $n$ objecst is $n!$.
-
-  \bigskip
-
-  However, if there are $n_{1}$ identical (or repeated) items of type 1, $n_{2}$ identical items of type 2, \dots,
-  and $n_{k}$ identical items of type $k$, then the number of permutations is given by
-
-  \begin{equation}
-    \fr{n!}{n_{1}!n_{2}!\times \cdots \times n_{k}!}
-  \end{equation}
-
-  
-  \begin{exampleblock}{How many ways can the letters in the word ``MASS'' be arranged?}
-    
-
-    The letter ``S'' is repeated. Thus, the number of permutations are:
-
-    \begin{equation*}
-      \fr{4!}{2!} = 4 \times 3 = 12
-    \end{equation*}
-
-    You may verify this in MATLAB using the \texttt{perms} function.
-  \end{exampleblock}
-    
-\end{frame}
 %\backupend
 
 %\begin{frame}[allowframebreaks]
