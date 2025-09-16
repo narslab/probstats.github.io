@@ -32,12 +32,17 @@ summary {
   width: 100%;
 }
 
+.main-content-wrap {
+  max-width: $content-width;
+  margin: auto;
+}
+
 .main-content {
   dl {
     display: block;
     grid-template-columns: none;
     //margin-left: 180px !important; // match sidebar width
-    max-width: calc(100% - 180px) !important;    
+    //max-width: calc(100% - 180px) !important;    
   }
 
   dt {
@@ -56,3 +61,22 @@ summary {
   }
 }
 
+.btn-canvas {
+  @include btn-color($white, #FF8C00);
+}
+
+.btn-echo360 {
+  @include btn-color($white, #9400D3);
+}
+
+.btn-gradescope {
+  @include btn-color($white, #FF0000);
+}
+
+.btn-overleaf {
+    @include btn-color($white, #228B22);
+}
+
+.btn-datahub {
+  @include btn-color($white, #2f14ff);
+}
