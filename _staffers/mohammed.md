@@ -6,5 +6,6 @@ website: https://mabdalazeem.com/
 photo: mohammed.jpg
 meta:
     Tutorial Sessions: Fri, 9:00--10:00AM, Marston 211
+    Office Hours: Mon, 3:00--4:00PM, Marston 214
 ---
 
