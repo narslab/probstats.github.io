@@ -10,7 +10,9 @@ Sep 11
 Sep 16
 : **LECTURE 2b**{: .label .label-blue }[Theory of Probability](/assets/lectures/M2-Probability/M2b-Theory-Of-Probability-Handout.pdf)
   :  
-
+: **PROBLEM SET 3**{: .label .label-red}[PDF](/assets/problem-sets/PS3.pdf), [LaTeX](/assets/problem-sets/PS3.tex)  **(Due 9/23)** 
+: **LAB 3**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 9/23)** 
+  
 Sep 18
 : **LECTURE 2c**{: .label .label-blue }[*(FORTHCOMING)* Conditional Probability and Bayes' Theorem](#)
   :  

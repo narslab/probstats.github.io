@@ -21,4 +21,3 @@ Sep 9
 : **PROBLEM SET 2**{: .label .label-red}[Overleaf](https://www.overleaf.com/read/trwqyfddzssz#3b9273) (Due 9/16)
   :
 : **LAB 2**{: .label .label-orange}[Data Summarization and Visualization; Colab Notebook](https://colab.research.google.com/drive/171txI3o7PO3EVesVW7PI7vSWEHr5WprT?usp=sharing) (Due 9/16) 
-  :
