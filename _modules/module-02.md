@@ -9,10 +9,10 @@ Sep 11
 
 Sep 16
 : **LECTURE 2b**{: .label .label-blue }[Theory of Probability](/assets/lectures/M2-Probability/M2b-Theory-Of-Probability-Handout.pdf)
-  :  
+  :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-09-16T13:00:00.000_2025-09-16T14:15:00.000/classroom)
 : **PROBLEM SET 3**{: .label .label-red}[PDF](/assets/problem-sets/PS3.pdf), [LaTeX](/assets/problem-sets/PS3.tex)  **(Due 9/23)** 
-: **LAB 3**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 9/23)** 
   
 Sep 18
-: **LECTURE 2c**{: .label .label-blue }[*(FORTHCOMING)* Conditional Probability and Bayes' Theorem](#)
+: **LECTURE 2c**{: .label .label-blue }[Conditional Probability and Bayes' Theorem](/assets/lectures/M2-Probability/M2c-Conditional-Probability-Handout.pdf)
   :  
+: **LAB 3**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 9/23)** 

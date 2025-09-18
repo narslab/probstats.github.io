@@ -1,17 +1,17 @@
-% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 fo% r handout without notes
-% \if 0\bmode
+\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 fo% r handout without notes
+\if 0\bmode
 \documentclass[usenames,dvipsnames,smaller, hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
-% \else \if 1\bmode
-% \immediate\write18{pdflatex -jobname=\jobname-Handout-Notes\space\jobname}
-% \documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
-% \usepackage{handoutWithNotes}
-% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
-% \else \if 2\bmode
-% \immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
-% \documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
-% \fi
-% \fi
-% \fi
+\else \if 1\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Handout-Notes\space\jobname}
+\documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+\else \if 2\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
+\documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
+\fi
+\fi
+\fi
 
 % \documentclass[smaller,handout
 % ]{beamer}
@@ -47,41 +47,11 @@ eprint=false]{biblatex}
 % \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
 % \setmonofont{Fira Mono}
 
-%\usepackage{fira}
-%\setsansfont{Fira}
-%\setmonofont{Fira Mono}
-% To give a presentation with the Skim reader (http://skim-app.sourceforge.net) on OSX so
-% that you see the notes on your laptop and the slides on the projector, do the following:
-% 
-% 1. Generate just the presentation (hide notes) and save to slides.pdf
-% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
-% 3. With Skim open both slides.pdf and notes.pdf
-% 4. Click on slides.pdf to bring it to front.
-% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
-%    select notes.pdf.
-% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
-% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
-%    and slides.pdf is in presentation mode on the projector.
-
-% Give a slight yellow tint to the notes page
-%\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
-
-
 %\usetheme{metropolis}
 %\usecolortheme{beaver}
 %\usepackage{xcolor}
 \definecolor{darkcandyapplered}{HTML}{A40000}
 \definecolor{lightcandyapplered}{HTML}{e74c3c}
-
-%\setbeamercolor{title}{fg=darkcandyapplered}
-%\setbeamercolor{frametitle}{bg=darkcandyapplered!80!black!90!white}
-%\setbeamertemplate{frametitle}{\bf\insertframetitle}
-%\setbeamercolor{footnote mark}{fg=darkcandyapplered}
-%\setbeamercolor{footnote}{fg=darkcandyapplered!70}
-%\Raggedbottom
-%\setbeamerfont{page number in head/foot}{size=\tiny}
-%\usepackage[tracking]{microtype}
-
 
 \setbeamertemplate{frametitle}{%
     \nointerlineskip%
@@ -95,13 +65,6 @@ eprint=false]{biblatex}
 \setbeamerfont{caption}{size=\footnotesize}
 \setbeamercolor{caption name}{fg=darkcandyapplered}
 
-
-%\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
-%\linespread{1.025}              % Palatino leads a little more leading
-
-% Euler for math and numbers
-%\usepackage[euler-digits,small]{eulervm}
-%\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
 \usepackage{graphicx,multirow,paralist,booktabs}
 
 
@@ -117,21 +80,8 @@ eprint=false]{biblatex}
 \makeatother
 
 %=== GRAPHICS PATH ===========
-\graphicspath{{./images/}}
-% Marginpar width
-%Marginpar width
-%\setlength{\marginparsep}{.02in}
+\graphicspath{{./m2-images/}}
 
-
-%% Captions
-% \usepackage{caption}
-% \captionsetup{
-%   labelsep=quad,
-%   justification=raggedright,
-%   labelfont=sc
-% }
-
-%AMS-TeX packages
 
 \usepackage{amssymb,amsmath,amsthm} 
 \usepackage{bm}
@@ -273,10 +223,10 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 2c: Conditional Probability]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+\title[CEE 260/MIE 273 2c: Conditional Probability \& Bayes]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
 Lecture M2c: Conditional Probability and Bayes' Theorem}
 \date[\today]{\footnotesize \today}
-\author{{\bf Prof.\ Oke}}
+\author{{\bf Prof.\ Jimi Oke}}
 \institute[UMass Amherst]{
   \begin{tikzpicture}[baseline=(current bounding box.center)]
     \node[anchor=base] at (-7,0) (its) {\includegraphics[scale=.3]{UMassEngineering_vert}} ;
@@ -368,7 +318,6 @@ Lecture M2c: Conditional Probability and Bayes' Theorem}
     The probability of an event $E_1$ is  conditional upon another event $E_2$ if the occurrence of $E_1$ is dependent on the occurrence of $E_2$: \pause
 
     \begin{eqnarray*}
-      \label{eq:20}
       P(E_1|E_2) &=& \text{the conditional probability of $E_1$ given $E_2$} \\ \pause
                  && \text{\quad (OR the probability of $E_1$ conditioned on $E_2$)}\\ \pause
       P(E_2|E_1) &=& \pause  \text{the conditional probability of $E_2$ given $E_1$} \\
@@ -561,8 +510,8 @@ This means that the event to the right is what goes in the denominator.
   Conditioning  equally applies to probabilities of events on the same subsample space. \pause
   \begin{eqnarray}
     \label{eq:17b}
-        P(E_1 \cup E_2) &=& P(E_1) + P(E_2) - P(E_1E_2) \\[2mm] \pause
-    P(E_1 \cup E_2|A) &=& P(E_1|A) + P(E_2|A) - P(E_1E_2|A)
+        P(A \cup B) &=& P(A) + P(B) - P(AB) \\[2mm] \pause
+    P(A \cup B|E) &=& P(A|E) + P(B|E) - P(AB|E)
   \end{eqnarray}
 \end{frame}
 
@@ -660,16 +609,16 @@ This means that the event to the right is what goes in the denominator.
   \pause
   \begin{equation}
     \label{eq:14}
-    P(E_1E_2) = P(E_2|E_1)P(E_1)
+    P(AB) = P(B|A)P(A)
   \end{equation}
 
   \pause
 
   \begin{alertblock}{Statistically independent events}
-    IF $E_1$ and $E_2$ are statistically independent, the multiplication rule becomes: \pause
+    IF $A$ and $B$ are statistically independent, the multiplication rule becomes: \pause
     \begin{equation}
       \label{eq:15}
-      P(E_1E_2) = P(E_1)P(E_2)
+      P(AB) = P(A)P(B)
     \end{equation}
     \pause
     That is, the \alert{joint probability} of two statistically independent events is the \alert{product} of their individual probabilities.
@@ -685,16 +634,15 @@ This means that the event to the right is what goes in the denominator.
 
   \begin{align}
     \label{eq:16}
-    \notag P(E_1E_2E_3) &= P(E_1|E_2E_3)P(E_2E_3)\\
-                 &=  P(E_1|E_2E_3)P(E_2|E_3)P(E_3)
+    \notag P(ABC) &= P(A|BC)P(BC)\\
+                 &=  P(A|BC)P(B|C)P(C)
   \end{align}
 
   \pause
   \begin{alertblock}{Statistically independent events}
     If the three events are statistically independent, then: \pause
     \begin{equation}
-      \label{eq:16}
-      P(E_1E_2E_3) = \pause P(E_1)P(E_2)P(E_3)
+      P(ABC) = \pause P(A)P(B)P(C)
     \end{equation}
   \end{alertblock}
   
@@ -706,15 +654,15 @@ This means that the event to the right is what goes in the denominator.
   Equally applies to probabilities of events conditioned on the same subsample space. \pause
   \begin{equation}
     \label{eq:17}
-    P(E_1E_2|A) = P(E_1|E_2|A)P(E_2|A)
+    P(A {\rd B|E}) = P(A| {\rd B|E})P({\rd B|E})
   \end{equation}
 
   \pause
   \begin{alertblock}{Statistically independent events}
-    If $E_1$ and $E_2$ are statistically independent, the multiplication rule for two events conditioned on the same space becomes: \pause
+    If $A$ and $B$ are statistically independent, the multiplication rule for two events conditioned on the same space becomes: \pause
     \begin{equation}
       \label{eq:18}
-      P(E_1E_2|A) = P(E_1|A)P(E_2|A)
+      P(AB|E) = P(A|E)P(B|E)
     \end{equation}
   \end{alertblock}
 \end{frame}
@@ -908,7 +856,7 @@ This means that the event to the right is what goes in the denominator.
 \begin{frame}
   \frametitle{Bayes' theorem}\pause
 
-  Bayes' Theorem allows for the computation of an inverse probability, e.g. given $P(A|B)$, can we find $P(B|A)$?
+  Bayes' Theorem allows for the computation of an inverse probability, e.g. given $P(E|A)$, can we find $P(A|E)$?
   
   \pause
   \begin{block}{}
@@ -916,15 +864,16 @@ This means that the event to the right is what goes in the denominator.
        
   \begin{equation}
     \label{eq:25}
-    {\pl P(E_i|A)} =\fr{P(A|E_i)P(E_i)}{\sum_{j=1}^{n}P(A|E_j)P(E_j)} = \pause \fr{{\rd P(A|E_i)}{\bl P(E_{i})}}{\gr P(A)}
+    {\pl P(A_i|E)} =\fr{{\rd P(E|A_i)}{\bl P(A_i)}}{\gr \sum_{j=1}^{n}P(E|A_j)P(A_j)} 
+        = \pause \fr{{\rd P(E|A_i)}{\bl P(A_{i})}}{\gr P(E)}
   \end{equation}
   \vspace{-3ex}
   \pause
   \begin{itemize}[<+->]
-  \item {\bf posterior probability: $\pl P(E_i|A)$}
-  \item {\bf likelihood: $\rd P(A|E_{i}$}
-  \item {\bf prior: $\bl P(E_{i})$}
-  \item {\bf evidence (total probability): $\gr P(A)$}
+  \item {\bf posterior probability: $\pl P(A_i|E)$}
+  \item {\bf likelihood: $\rd P(E|A_{i})$}
+  \item {\bf prior: $\bl P(A_{i})$}
+  \item {\bf evidence (total probability): $\gr P(E)$}
   \end{itemize}   
     \end{minipage}\quad
     \begin{minipage}{.2\linewidth}
@@ -938,11 +887,11 @@ This means that the event to the right is what goes in the denominator.
 
 \pause
 
-If the event $A$ can be conditioned on only two events $E_{1}$ and $E_{2}$, then: \pause
+If the event $E$ can be conditioned on only two events $A$ and $B$, then: \pause
 
 \begin{eqnarray}
-  P(E_{1}|A) &=& \pause \fr{P(A|E_{1})P(E_{1})}{P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) } \\[2mm] \pause
-  P(E_{2}|A) &=& \pause \fr{P(A|E_{2})P(E_{2})}{P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) } 
+  {\pl P(A|E)} &=& \pause \fr{{\rd P(E|A)}{\bl P(A)}}{\gr P(E|A)P(A) + P(E|B) P(B)} \\[2mm] \pause
+  {\pl P(B|E)} &=& \pause \fr{{\rd P(E|B)}{\bl P(B)}}{\gr P(E|A)P(A) + P(E|B) P(B)}  
 \end{eqnarray}
 \end{frame}
 
@@ -1176,12 +1125,12 @@ If the event $A$ can be conditioned on only two events $E_{1}$ and $E_{2}$, then
   \begin{itemize}[<+->]
   \item Total probability:
     \begin{equation}
-      P(A) = P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) + \cdots + P(A|E_{n})P(E_{n})
+      P(E) = P(E|A_{1})P(A_{1}) + P(E|A_{2})P(A_{2}) + \cdots + P(E|A_{n})P(A_{n})
     \end{equation}
 
   \item Bayes' Theorem:
     \begin{equation}
-      P(E_{1}|A) = \fr{P(A|E_{1})P(E_{1})}{ P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) + \cdots + P(A|E_{n})P(E_{n})}
+      P(A_{1}|E) = \fr{P(E|A_{1})P(A_{1})}{ P(E|A_{1})P(A_{1}) + P(E|A_{2})P(A_{2}) + \cdots + P(E|A_{n})P(A_{n})}
     \end{equation}
 
   \end{itemize}
