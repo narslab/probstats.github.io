@@ -15,4 +15,4 @@ Sep 16
 Sep 18
 : **LECTURE 2c**{: .label .label-blue }[Conditional Probability and Bayes' Theorem](/assets/lectures/M2-Probability/M2c-Conditional-Probability-Handout.pdf)
   :  
-: **LAB 3**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 9/23)** 
+: **LAB 3**{: .label .label-orange}[Data, Probability and Counting](https://drive.google.com/file/d/1T5Wf0JZ9TseRKBC83Zb6QooacZDf8aKD/view?usp=sharing) **(Due 9/23)** 
