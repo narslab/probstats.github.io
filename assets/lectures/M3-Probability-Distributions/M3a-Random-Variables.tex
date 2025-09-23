@@ -1,4 +1,4 @@
-\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 fo% r handout without notes
+\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 fo% r handout without notes
 \if 0\bmode
 \documentclass[usenames,dvipsnames,smaller, hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
 \else \if 1\bmode
@@ -336,16 +336,114 @@ Lecture 3a: Introduction: Random variables}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Module 3: Probability Distributions}
+  \frametitle{Overview of Module 3}
   \pause
-
+  Overview
   \begin{itemize}
-  \item M3a:  Introduction: Random Variables \pause
-  \item M3b: Normal Distribution \pause
-  \item M3c: Lognormal and Exponential Distributions \pause
-  \item M3d: Binomial Distribution \pause
-  \item M3e: Poisson Distribution \pause
-  \item M3f: Joint Distributions and further topics
+  \item Lecture 3a:  Introduction: Random Variables \pause
+  \item Lecture 3b: Normal Distribution \pause 
+  \begin{tikzpicture}[
+    scale=.2]
+    \begin{axis}[
+        width=10cm, height=6cm,
+        xlabel=$x$,
+        ylabel=$f(x)$,
+        title={Normal Distribution},
+        samples=100,
+        domain=-4:4
+    ]
+    % Standard Normal (μ=0, σ=1)
+    \addplot[blue,ultra  thick] {exp(-(x^2)/2)/sqrt(2*pi)};
+    \end{axis}
+\end{tikzpicture}
+  \item Lecture 3c: Lognormal  \pause
+  % Lognormal Distribution
+\begin{tikzpicture}[scale=.2]
+    \begin{axis}[
+        width=10cm, height=6cm,
+        xlabel=$x$,
+        ylabel=$f(x)$,
+        title={Lognormal Distribution},
+        samples=100,
+        domain=0:5,
+        xmin=0
+    ]
+    % μ=0, σ=1
+    \addplot[red, thick] {exp(-(ln(x))^2/2)/(x*sqrt(2*pi))};
+    \end{axis}
+\end{tikzpicture} \pause and Exponential Distributions \pause
+  % Exponential Distribution
+\begin{tikzpicture}[scale=.2]
+    \begin{axis}[
+        width=10cm, height=6cm,
+        xlabel=$x$,
+        ylabel=$f(x)$,
+        title={Exponential Distribution},
+        samples=100,
+        domain=0:5,
+        xmin=0
+    ]
+    % λ=1
+    \addplot[green!60!black, thick] {exp(-x)};
+    \end{axis}
+\end{tikzpicture}
+  \item Lecture 3d: Binomial Distribution \pause 
+\begin{tikzpicture}[scale=.2]
+    \begin{axis}[
+        width=10cm, height=6cm,
+        xlabel=$k$,
+        ylabel=$P(X=k)$,
+        title={Binomial Distribution},
+        ybar,
+        xtick=data,
+        symbolic x coords={0,1,2,3,4,5,6,7,8,9,10},
+        enlarge x limits=0.2
+    ]
+    % n=10, p=0.5
+    \addplot[blue, fill] coordinates {
+        (0,0.001)
+        (1,0.010)
+        (2,0.044)
+        (3,0.117)
+        (4,0.205)
+        (5,0.246)
+        (6,0.205)
+        (7,0.117)
+        (8,0.044)
+        (9,0.010)
+        (10,0.001)
+    };
+    \end{axis}
+\end{tikzpicture}
+  \item Lecture 3e: Poisson Distribution \pause
+                                                                              \begin{tikzpicture}[scale=.2]
+    \begin{axis}[
+        width=10cm, height=6cm,
+        xlabel=$k$,
+        ylabel=$P(X=k)$,
+        title={Poisson Distribution},
+        ybar,
+        xtick=data,
+        nodes near coords=false,
+        bar width=6pt,
+        symbolic x coords={0,1,2,3,4,5,6,7,8},
+        enlarge x limits=0.2
+    ]
+    % λ=3
+    \addplot[red, fill] coordinates {
+        (0,0.050)
+        (1,0.149)
+        (2,0.224)
+        (3,0.224)
+        (4,0.168)
+        (5,0.101)
+        (6,0.050)
+        (7,0.022)
+        (8,0.008)
+    };
+    \end{axis}
+\end{tikzpicture}
+  \item Lecture 3f: Joint Distributions and further topics
   \end{itemize}
 \end{frame}
 
@@ -445,7 +543,7 @@ Lecture 3a: Introduction: Random variables}
 \end{frame}
 
 \begin{frame}{Cumulative distribution function (CDF)}
-  The CDF of a random variable $X$ is given by\pause
+  The CDF ($F_X$) of a random variable $X$ is given by\pause
 
   \begin{equation}
     \label{eq:11}
@@ -458,13 +556,13 @@ Lecture 3a: Introduction: Random variables}
   \begin{enumerate}[<+->]
   \item      $F_X(-\infty) = 0$ and    $ F_X(\infty) = 1 $
 
-  \item $F_X(x) \ge 0 \quad \forall x$ and is nondecreasing with $x$.
+  \item $F_X(x) \ge 0 \quad \forall x$ and is nondecreasing with $x$.\footnote{  Note that the symbol $\forall$ means ``for all''
+}
 
   \item $F_X(x)$ is continuous to the right with $x$.
   \end{enumerate}
   \pause
 
-  Note that the symbol $\forall$ means ``for all''
 \end{frame}
 
 \begin{frame}
@@ -576,7 +674,7 @@ Lecture 3a: Introduction: Random variables}
     \begin{itemize}[<+->]
     \item Let the outcomes be $O$ (operational) and $N$ (nonoperational)
     \item There are $2\times 2 \times 2 = 8$ possibilities:
-      \begin{itemize}[<+->]
+      \begin{enumerate}[<+->]
       \item $\pl OON$
       \item $\bl OOO$
       \item $\pl ONO$
@@ -585,7 +683,7 @@ Lecture 3a: Introduction: Random variables}
       \item $\gr NON$
       \item $\gr NNO$
       \item $\rd NNN$
-      \end{itemize}
+      \end{enumerate}
       
     \end{itemize}
     
