@@ -1,19 +1,20 @@
-\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 fo% r handout without notes
-\if 0\bmode
-\documentclass[usenames,dvipsnames,smaller, hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
-\else \if 1\bmode
-\immediate\write18{pdflatex -jobname=\jobname-Handout-Notes\space\jobname}
-\documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
-\usepackage{handoutWithNotes}
-\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
-\else \if 2\bmode
-\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
-\documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
-\fi
-\fi
-\fi
+% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 fo% r handout without notes
+% \if 0\bmode
+% \documentclass[usenames,dvipsnames,smaller, hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
+% \else \if 1\bmode
+% \immediate\write18{pdflatex -jobname=\jobname-Handout-Notes\space\jobname}
+% \documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
+% \usepackage{handoutWithNotes}
+% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+% \else \if 2\bmode
+% \immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
+% \documentclass[usenames,dvipsnames,smaller,handout,hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
+% \fi
+% \fi
+% \fi
 
-
+\documentclass[usenames,dvipsnames,smaller,
+ hyperref={colorlinks=true,urlcolor=magenta,citecolor=cyan,linkcolor=orange}]{beamer}
 % \documentclass[smaller,handout
 % ]{beamer}
 %\usepackage{etex}
@@ -313,27 +314,27 @@ Lecture 3a: Introduction: Random variables}
 
 
 
-\begin{frame}
-  \frametitle{M2c Recap: Conditional Probability and Bayes' Theorem}
-   \begin{itemize}[<+->]
-  \item Total probability:
-    \begin{equation}
-      P(A) = P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) + \cdots + P(A|E_{n})P(E_{n})
-    \end{equation}
+% \begin{frame}
+%   \frametitle{M2c Recap: Conditional Probability and Bayes' Theorem}
+%    \begin{itemize}[<+->]
+%   \item Total probability:
+%     \begin{equation}
+%       P(A) = P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) + \cdots + P(A|E_{n})P(E_{n})
+%     \end{equation}
 
-  \item Bayes' Theorem for two events: \pause
-    \begin{equation}
-      P(B|A) = \fr{P(A|B)P(B)}{P(A)}
-    \end{equation}
-    \pause
-    For multiple events: \pause 
-    \begin{eqnarray}
-      P(E_{1}|A) &=& \fr{P(A|E_{1})P(E_{1})}{\bl  P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) + \cdots + P(A|E_{n})P(E_{n})}\\[2mm] \pause
-      &=&  \fr{P(A|E_{1})P(E_{1})}{\bl  P(A)}
-    \end{eqnarray}
+%   \item Bayes' Theorem for two events: \pause
+%     \begin{equation}
+%       P(B|A) = \fr{P(A|B)P(B)}{P(A)}
+%     \end{equation}
+%     \pause
+%     For multiple events: \pause 
+%     \begin{eqnarray}
+%       P(E_{1}|A) &=& \fr{P(A|E_{1})P(E_{1})}{\bl  P(A|E_{1})P(E_{1}) + P(A|E_{2})P(E_{2}) + \cdots + P(A|E_{n})P(E_{n})}\\[2mm] \pause
+%       &=&  \fr{P(A|E_{1})P(E_{1})}{\bl  P(A)}
+%     \end{eqnarray}
 
-  \end{itemize}
-\end{frame}
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Overview of Module 3}
@@ -341,8 +342,8 @@ Lecture 3a: Introduction: Random variables}
   Overview
   \begin{itemize}
   \item Lecture 3a:  Introduction: Random Variables \pause
-  \item Lecture 3b: Normal Distribution \pause 
-  \begin{tikzpicture}[
+  \item Lecture 3b: \textbf{Normal Distribution} \pause 
+  \begin{tikzpicture}[baseline={(current bounding box.center)}, 
     scale=.2]
     \begin{axis}[
         width=10cm, height=6cm,
@@ -356,7 +357,8 @@ Lecture 3a: Introduction: Random variables}
     \addplot[blue,ultra  thick] {exp(-(x^2)/2)/sqrt(2*pi)};
     \end{axis}
 \end{tikzpicture}
-  \item Lecture 3c: Lognormal  \pause
+\item Lecture 3c: \textbf{Lognormal  and Exponential Distributions} \pause
+  
   % Lognormal Distribution
 \begin{tikzpicture}[scale=.2]
     \begin{axis}[
@@ -371,8 +373,7 @@ Lecture 3a: Introduction: Random variables}
     % μ=0, σ=1
     \addplot[red, thick] {exp(-(ln(x))^2/2)/(x*sqrt(2*pi))};
     \end{axis}
-\end{tikzpicture} \pause and Exponential Distributions \pause
-  % Exponential Distribution
+\end{tikzpicture}  \pause
 \begin{tikzpicture}[scale=.2]
     \begin{axis}[
         width=10cm, height=6cm,
@@ -387,12 +388,12 @@ Lecture 3a: Introduction: Random variables}
     \addplot[green!60!black, thick] {exp(-x)};
     \end{axis}
 \end{tikzpicture}
-  \item Lecture 3d: Binomial Distribution \pause 
-\begin{tikzpicture}[scale=.2]
+  \item Lecture 3d: \textbf{Binomial Distribution} \pause 
+\begin{tikzpicture}[baseline={(current bounding box.center)}, scale=.2]
     \begin{axis}[
         width=10cm, height=6cm,
-        xlabel=$k$,
-        ylabel=$P(X=k)$,
+        xlabel={$k$},
+        ylabel={$P(X=k)$},
         title={Binomial Distribution},
         ybar,
         xtick=data,
@@ -415,12 +416,12 @@ Lecture 3a: Introduction: Random variables}
     };
     \end{axis}
 \end{tikzpicture}
-  \item Lecture 3e: Poisson Distribution \pause
-                                                                              \begin{tikzpicture}[scale=.2]
+\item Lecture 3e: \textbf{Poisson Distribution} \pause
+  \begin{tikzpicture}[baseline={(current bounding box.center)}, scale=.2]
     \begin{axis}[
         width=10cm, height=6cm,
-        xlabel=$k$,
-        ylabel=$P(X=k)$,
+        xlabel={$k$},
+        ylabel={$P(X=k)$},
         title={Poisson Distribution},
         ybar,
         xtick=data,
@@ -449,7 +450,7 @@ Lecture 3a: Introduction: Random variables}
 
 
 \begin{frame}
-  \frametitle{Objectives and outline}
+  \frametitle{Objectives and outline of today's lecture}
   \pause
 
   \begin{itemize}[<+->]
@@ -542,28 +543,6 @@ Lecture 3a: Introduction: Random variables}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Cumulative distribution function (CDF)}
-  The CDF ($F_X$) of a random variable $X$ is given by\pause
-
-  \begin{equation}
-    \label{eq:11}
-    F_X \pause \equiv \pause P(X\le x) \pause \quad \text{for all } x
-  \end{equation}
-  \pause
-
-  The CDF satisfies the basic axioms of probability:\pause
-
-  \begin{enumerate}[<+->]
-  \item      $F_X(-\infty) = 0$ and    $ F_X(\infty) = 1 $
-
-  \item $F_X(x) \ge 0 \quad \forall x$ and is nondecreasing with $x$.\footnote{  Note that the symbol $\forall$ means ``for all''
-}
-
-  \item $F_X(x)$ is continuous to the right with $x$.
-  \end{enumerate}
-  \pause
-
-\end{frame}
 
 \begin{frame}
   \frametitle{Probability mass function (PMF)}\pause
@@ -597,9 +576,8 @@ Lecture 3a: Introduction: Random variables}
 
 \begin{frame}
   \frametitle{Probability density function (PDF)}\pause
-
+\begin{minipage}{.45\linewidth}
   The PDF is denoted $f_X(x)$ such that the probability of $X$ in the interval $(a,b]$ is: \pause
-
   \begin{equation}
     \label{eq:10}
     P(a< X \le b) = \int_a^b f_X(x)dx
@@ -618,49 +596,44 @@ Lecture 3a: Introduction: Random variables}
 
     \pause
 
-    It follows that the PDF is the derivative of the CDF:
+    Thus:
 
     \begin{equation}
       \label{eq:15}
       f_X(x) = \fr{dF_X(x)}{dx}
     \end{equation}
-  
-\end{frame}
-
-\begin{frame}
-  \frametitle{PDF (cont.)}
-  \includegraphics[width=.6\textwidth, trim={0 2cm 0 0}, clip]{03_02b}
+  \end{minipage}\qquad\pause
+  \begin{minipage}{.45\linewidth}
+  \includegraphics[width=\textwidth, trim={0 2cm 0 0}, clip]{03_02b}
   \pause
   
   The total area under a PDF is 1.
+  \end{minipage}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Further derivations}
+  \frametitle{Cumulative distribution function (CDF)}
+  The CDF ($F_X$) of a random variable $X$ is given by\pause
+
+  \begin{equation}
+    \label{eq:11}
+    F_X \pause \equiv \pause P(X\le x) \pause \quad \text{for all } x
+  \end{equation}
+  \pause
+
+  The CDF satisfies the basic axioms of probability:\pause
 
   \begin{enumerate}[<+->]
-  \item Continuous case:
-    \begin{equation}
-      \label{eq:21}
-      P(a < X \le b) = \int_{-\infty}^b f_X(x)dx  - \int_{-\infty}^a f_X(x)dx
-    \end{equation}
+  \item      $F_X(-\infty) = 0$ and    $ F_X(\infty) = 1 $
 
-  \item Discrete case:
+  \item $F_X(x) \ge 0 \quad \forall x$ and 
+  is nondecreasing with $x$.\footnote{Note that the symbol $\forall$ means ``for all''
+}
 
-    \begin{equation}
-      \label{eq:22}
-      P(a < X \le b) = \sum_{x_i \le b} p_X (x_i) - \sum_{x_i \le a} p_X (x_i)
-    \end{equation}
-
-  \item For all random variables:
-
-    \begin{equation}
-      \label{eq:23}\rd
-      P(a < X \le b) = F_X(b) - F_X(a)
-    \end{equation}
+  \item $F_X(x)$ is continuous to the right with $x$.
   \end{enumerate}
-\end{frame}
 
+\end{frame}
 
 \begin{frame}
   \frametitle{Example 1: Operating condition of bulldozers}
@@ -705,6 +678,34 @@ Lecture 3a: Introduction: Random variables}
 
 
 
+\begin{frame}
+  \frametitle{Further derivations}
+
+  \begin{enumerate}[<+->]
+  \item Continuous case:
+    \begin{equation}
+      \label{eq:21}
+      P(a < X \le b) = \int_{-\infty}^b f_X(x)dx  - \int_{-\infty}^a f_X(x)dx
+    \end{equation}
+
+  \item Discrete case:
+
+    \begin{equation}
+      \label{eq:22}
+      P(a < X \le b) = \sum_{x_i \le b} p_X (x_i) - \sum_{x_i \le a} p_X (x_i)
+    \end{equation}
+
+  \item For all random variables:
+
+    \begin{equation}
+      \label{eq:23}\rd
+      P(a < X \le b) = F_X(b) - F_X(a)
+    \end{equation}
+  \end{enumerate}
+\end{frame}
+
+
+
 
 \section{Discrete r.v.'s}
 
@@ -714,7 +715,7 @@ Lecture 3a: Introduction: Random variables}
   \begin{block}{Mean}
      Weighted average or expected value \pause
     \begin{eqnarray}
-      E(X) &=&\sum_i x_i p_X(x_i) \quad \text{\og discrete case} \pause
+      \mathbb{E}(X) &=&\sum_i x_i p_X(x_i) \quad \text{\og discrete case} \pause
     \end{eqnarray}
   \end{block}
    
@@ -722,7 +723,7 @@ Lecture 3a: Introduction: Random variables}
     In the discrete case: \pause
     \begin{equation}
       \label{eq:var}
-      Var(X) = \sum_i(x_i - \mu_X)^2p_X(x_i)
+      \mathbb{V}(X) = \sum_i(x_i - \mu_X)^2p_X(x_i)
     \end{equation}
     \pause
 
@@ -730,7 +731,7 @@ Lecture 3a: Introduction: Random variables}
     
     \begin{equation}
       \label{eq:3}\rd
-      Var(X) = E(X^2) - \mu_X^2
+      \mathbb{V}(X) = \mathbb{E}(X^2) - \mu_X^2
     \end{equation}
   \end{block}
 \end{frame}
@@ -748,7 +749,7 @@ Lecture 3a: Introduction: Random variables}
 
     \begin{equation}
       \label{eq:4}
-      \sigma_X = \pause \sqrt{Var(X)}
+      \sigma_X = \pause \sqrt{\mathbb{V}(X)}
     \end{equation}
   \end{block}
   
@@ -796,10 +797,10 @@ Lecture 3a: Introduction: Random variables}
   \pause
     
     \begin{enumerate}[(a)]
-      \item $\mu_X  = E(X) = 0\lt(\fr18\rt) +  1\lt(\fr38\rt) +  2\lt(\fr38\rt) +  3\lt(\fr18\rt) = 1.5$. \pause
-      \item $Var(X) = [0^2\lt(\fr18\rt) +  1^2\lt(\fr38\rt) +  2^2\lt(\fr38\rt) +  3^2\lt(\fr18\rt)]  - (1.5)^2 = 0.75$ \pause
-      \item $\sigma_X = \sqrt{0.75} = 0.866$ \pause
-      \item $\delta_X = \fr{0.866}{1.50} = 0.577$
+      \item Mean: $\mu_X  = \mathbb{E}(X) = 0\lt(\fr18\rt) +  1\lt(\fr38\rt) +  2\lt(\fr38\rt) +  3\lt(\fr18\rt) = 1.5$. \pause
+      \item Variance: $\mathbb{V}(X) = [0^2\lt(\fr18\rt) +  1^2\lt(\fr38\rt) +  2^2\lt(\fr38\rt) +  3^2\lt(\fr18\rt)]  - (1.5)^2 = 0.75$ \pause
+      \item Standard deviation: $\sigma_X = \sqrt{0.75} = 0.866$ \pause
+      \item Coefficient of variation: $\delta_X = \fr{0.866}{1.50} = 0.577$
 \end{enumerate}
 
 \end{frame}
@@ -812,7 +813,7 @@ Lecture 3a: Introduction: Random variables}
   \begin{itemize}[<+->]
   \item Mean: weighted average or expected value \pause
     \begin{eqnarray}
-      E(X) &=&\int_{-\infty}^{\infty}xf_X(x)dx \quad \text{\og continuous case}
+      \mathbb{E}(X) &=&\int_{-\infty}^{\infty}xf_X(x)dx \quad \text{\og continuous case}
     \end{eqnarray}
   \end{itemize}
 
@@ -820,7 +821,7 @@ Lecture 3a: Introduction: Random variables}
     In the continuous case:\pause
     \begin{equation}
       \label{eq:2}
-      Var(X) = \int_{-\infty}^{\infty}(x - \mu_X)^2 f_X(x)dx
+      \mathbb{V}(X) = \int_{-\infty}^{\infty}(x - \mu_X)^2 f_X(x)dx
     \end{equation}
     \pause
 
@@ -828,7 +829,7 @@ Lecture 3a: Introduction: Random variables}
     
     \begin{equation}
       \label{eq:3}\rd
-      Var(X) = E(X^2) - \mu_X^2
+      \mathbb{V}(X) = \mathbb{E}(X^2) - \mu_X^2
     \end{equation}
   \end{block}
 \end{frame}
@@ -925,7 +926,7 @@ Lecture 3a: Introduction: Random variables}
     \end{eqnarray*}
     \pause
     \begin{enumerate}[(a)]
-    \item The mean is given by $\mu_T = E(T) = \int_0^\infty t\lambda e^{-\la t}dt$.\pause We use integration by parts: $\int u dv = uv - \int v du$.\pause
+    \item The mean is given by $\mu_T = \mathbb{E}(T) = \int_0^\infty t\lambda e^{-\la t}dt$.\pause We use integration by parts: $\int u dv = uv - \int v du$.\pause
       \begin{eqnarray*}
         \mu_T &=& \int_0^\infty t\lambda e^{-\la t}dt \\ \pause
               &=& \la \int_0^\infty {\bl \lambda} {\rd  e^{-\la t}dt } \\ \pause
@@ -973,14 +974,14 @@ Lecture 3a: Introduction: Random variables}
   In the discrete case: \pause
     \begin{equation}
       \label{eq:var}
-      E(X - \mu_X)^3 = \sum_i(x_i - \mu_X)^3p_X(x_i)
+      \mathbb{E}(X - \mu_X)^3 = \sum_i(x_i - \mu_X)^3p_X(x_i)
     \end{equation}
     \pause
 
     In the continuous case:\pause
     \begin{equation}
       \label{eq:6}
-      E(X - \mu_X)^3 = \int_{-\infty}^{\infty}(x - \mu_X)^3 f_X(x)dx
+      \mathbb{E}(X - \mu_X)^3 = \int_{-\infty}^{\infty}(x - \mu_X)^3 f_X(x)dx
     \end{equation}
 
     \pause
@@ -989,7 +990,7 @@ Lecture 3a: Introduction: Random variables}
 
     \begin{equation}
       \label{eq:7}
-      \theta = \fr{E(X - \mu_X)^3}{\sigma^3}
+      \theta = \fr{\mathbb{E}(X - \mu_X)^3}{\sigma^3}
     \end{equation}
     
 \end{frame}
@@ -1017,14 +1018,14 @@ Lecture 3a: Introduction: Random variables}
   In the discrete case: \pause
     \begin{equation}
       \label{eq:8}
-      E(X - \mu_X)^4 = \sum_i(x_i - \mu_X)^4p_X(x_i)
+      \mathbb{E}(X - \mu_X)^4 = \sum_i(x_i - \mu_X)^4p_X(x_i)
     \end{equation}
     \pause
 
     In the continuous case:\pause
     \begin{equation}
       \label{eq:6}
-      E(X - \mu_X)^4 = \int_{-\infty}^{\infty}(x - \mu_X)^4 f_X(x)dx
+      \mathbb{E}(X - \mu_X)^4 = \int_{-\infty}^{\infty}(x - \mu_X)^4 f_X(x)dx
     \end{equation}
 
 
