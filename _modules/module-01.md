@@ -20,5 +20,5 @@ Sep 9
 <!-- : **Lab**{: .label .label-purple } [Intro to Java](#) -->
 : **PROBLEM SET 2**{: .label .label-red}[Overleaf](https://www.overleaf.com/read/trwqyfddzssz#3b9273) (Due 9/16)
   :
-: **LAB 2**{: .label .label-orange}[Data Summarization and Visualization; Colab Notebook](https://colab.research.google.com/drive/171txI3o7PO3EVesVW7PI7vSWEHr5WprT?usp=sharing) (Due 9/16);
-[**Solution**{: .label .label-green}](https://colab.research.google.com/drive/1WGAjT8c-pdGT306egALbrZi53ggBcW87?authuser=1#scrollTo=bfawv_hX8G9C)
+: **LAB 2**{: .label .label-orange}[Data Summarization and Visualization](https://colab.research.google.com/drive/171txI3o7PO3EVesVW7PI7vSWEHr5WprT?usp=sharing) (Due 9/16);
+[**Solution**{: .text-purple}](https://colab.research.google.com/drive/1WGAjT8c-pdGT306egALbrZi53ggBcW87?authuser=1#scrollTo=bfawv_hX8G9C)
