@@ -1,5 +1,5 @@
 ---
-title: M1 Introduction
+title: Module 1 Introduction
 ---
 
 Sep 2
