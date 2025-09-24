@@ -368,26 +368,27 @@ Further specifics on class policies and values are as follows.
 
 \subsection{Overview of Assessments}
 You will be evaluated based on your in-class activities, problem sets, a midterm and a project.
-See \autoref{tab:comp} for a breakdown of the grades.
+See \autoref{tab:comp} for a breakdown of the grades.Students are assessed individually, and there is no pre-determined grade spread in any subject.
+Consistent with this, after drop date, students who remain in this class are not in jeopardy of seeing their grades change due to the change in class composition.
+There will be no grading on a curve. 
+Individual grades will be based on the scale shown in \autoref{tab:scale}.
 
 \begin{table}[h!]
   \centering
   \caption{Course components and grade breakdown}
   \label{tab:comp}  
-  \begin{tabular}{l c  r}\toprule
-    \bf Assessment & \bf Number & \bf \% \\ \midrule
-    In-Class Activities  & 23 & 23 \\
-    Problem Sets [PS]    & 9  & 45 \\
-    Midterm Exam         & 1 &   12 \\
-    Regression Project   & 1 &   20 \\ \bottomrule
+  \begin{tabular}{l c c c l}\toprule
+    \bf Assessment & \bf Number & \bf Unit \% & \bf Total \%  & \bf Explanation\\ \midrule
+    In-Class Activities  & 24 & 1 & 20 & 4 absences excused \\
+    % Problem Sets [PS]    & 9  & 45 \\
+    Problem Sets [PS] & 9 & 4 & 36 &\\
+    Labs & 8 & 2 & 14 & lowest one dropped \\
+    Midterm Exam         & 1 & 12 & 10 &\\
+    Regression Project   & 1 & 20 & 20 & \\ \midrule
+    TOTAL & & & \bf 100 & \\
+    \bottomrule
   \end{tabular}
 \end{table}
-
-
-Students are assessed individually, and there is no pre-determined grade spread in any subject.
-Consistent with this, after drop date, students who remain in this class are not in jeopardy of seeing their grades change due to the change in class composition.
-There will be no grading on a curve. 
-Individual grades will be based on the scale shown in \autoref{tab:scale}.
 
 \begin{table}[h!]
    \centering
@@ -409,25 +410,26 @@ Individual grades will be based on the scale shown in \autoref{tab:scale}.
 \end{table}
 
 \subsection{In-class activities}
-During each lecture, there will be an activity to be completed either individually or in a group. Activities will include short readings, interactive quizzes/polls and/or worksheets.
+During each lecture (there are 24 this semester), there will be an activity to be completed either individually or in a group. Activities will include surveys, short readings, interactive quizzes/polls and/or worksheets.
 In order to participate fully, \textbf{please bring your laptop to all lectures}.
 
 
-\subsection{Problem sets}
+\subsection{Problem sets and LABs}
 Problem sets (PS) will be assigned weekly and due on Tuesdays at 12:59pm submitted via Canvas.
 Solutions will be posted after the due date.
-Each PS will also include a guided Python problem (provided as a Jupyter Notebook/Colab) with clearly stated objectives.  
+In addition you will typically be assigned a LAB which includes a guided Python problem (
+   provided as a Google Colab Notebook) with clearly stated objectives.  
 In each case, the steps will be laid out as clearly as possible.  You should
 be able to complete these without further external guidance.  
 These assignments will enable you master some key probabilistic and statistical functions in Python, along with practice in visualization. 
 You will also practice applying a concept you learned in class while completing these assignments.
-
-In each assignment, you will be required to submit a %\texttt{.m} (MATLAB), \texttt{.py} (Python) or 
-\texttt{.ipynb} (Jupyter Notebook/Colab) with your responses.
+In each LAB, you will be required to submit a %\texttt{.m} (MATLAB), \texttt{.py} (Python) or 
+\texttt{.ipynb} (Google Colab Notebook) with your responses.
 Instructions will be clearly laid out on each assignment, so please follow them to a T.  This will ensure that your work
 can be efficiently and fairly evaluated.
 
-NOTE: {\rd \bf Late problem sets} \textbf{will not be graded}, excepting emergencies or illness (of which adequate proof must be provided) or {\bf  prior permission} for exigencies. 
+NOTE: {\rd \bf Late problem sets} \textbf{will not be graded}, excepting emergencies or illness (of which adequate proof must be provided) or {\bf  prior permission} for exigencies (with requests made 
+{\it no later than the Sunday before the due date}). 
 
 
 \subsection{Exam}
@@ -454,7 +456,7 @@ Deliverables will include a proposal, a report and a presentation.
 \section{Schedule}
 The table below summarizes the schedule of topics, reading and assignments for this course.
 Please study carefully.
-Be sure you have an accessible and working installation of MATLAB or Python by the end of the first week of class.
+%Be sure you have an accessible and working installation of MATLAB or Python by the end of the first week of class.
 Let me or the TA know promptly if you have any questions.
 %Chapter 10 (Ang \& Tang) and the OpenIntro (DCB) chapters will be provided on Moodle.
 
@@ -463,47 +465,46 @@ Let me or the TA know promptly if you have any questions.
 	\begin{tabular}{p{1.8cm} p{1.2cm} p{7cm}  p{1.5cm} p{3cm}}\toprule
 		\bf Date & \bf Module & \bf Topic &  \bf Reading & \bf Assignments \\\midrule
 		\rowcolor{gray!30}    \multicolumn{5}{l}{\bf M1 Introduction} \\\midrule
-		Tu, Sep 2 & 1a  & Data and Sampling   & 1 &  \\
-		Th, Sep 4 & 1b  & Summarizing Data       & 2          & \\
-		Tu, Sep 9  & 1c & Case Studies and Experiments      & 2  & PS1 due\\    
+		Tu, Sep 2 & 1A  & Data and Sampling   & 1 &  \\
+		Th, Sep 4 & 1B  & Summarizing Data       & 2          & \\
+		Tu, Sep 9  & 1C & Case Studies and Experiments      & 2  & PS 1 due\\    
 		\midrule
 		\rowcolor{gray!30}    \multicolumn{5}{l}{\bf M2 Probability} \\\midrule
-		Th, Sep 11  & 2a & Events \& Set Operations          & 3.1    &  \\ 
-		Tu, Sep 16 &  2b & Theory of Probability           & 3.2         &   PS2 due  \\  
-		Th, Sep 18 & 2d &Conditional Probability \& Bayes' Theorem                 &   3.3-4          &  \\ 
+		Th, Sep 11  & 2A & Events \& Set Operations          & 3.1    &  \\ 
+		Tu, Sep 16 &  2B & Theory of Probability           & 3.2         &   PS 2 \& LAB 2 due  \\  
+		Th, Sep 18 & 2C &Conditional Probability \& Bayes' Theorem                 &   3.3-4          &  \\ 
 		\midrule
-		\rowcolor{gray!30}    \multicolumn{5}{l}{\bf M3 Probability Distributions} \\\midrule
-		Tu, Sep 23 & 3a & Introduction           & 3.5   &  PS3 due  \\   
-		Th, Sep 25 & 3b & Normal Distribution    & 4.1  &   \\ 
-		Tu, Sep 30 & 3c & Lognormal and Exponential Distributions   & TBD   & PS4 due \\ 
-		Th, Oct 2 & 3d & Binomial Distribution & 4.3 &  \\ 
-		Tu, Oct 7 & 3e & Poisson Distribution         &    4.5        & PS5 due \\ 
-		Th, Oct 9 & 3f & Review/Applications         &          & \\ 
-		\midrule
-		Tu, Oct 14 &   & MIDTERM EXAM (Take Home: 2hrs)                &            &  \\
-		\midrule
-		\rowcolor{gray!30}    \multicolumn{5}{l}{\bf M4 Inference Foundations} \\\midrule
-		Th, Oct 16 &  4a & Point Estimates and Sampling Variability                  &      5.1      &  \\
-		Tu, Oct 21  & 4b & Confidence Intervals for a Proportion             & 5.2         & \\
-		Th, Oct 23  & 4c & Hypothesis Testing for a Proportion      & 5.3          & {PS6 due}  \\ 
-		\midrule
-		\rowcolor{gray!30}    \multicolumn{5}{l}{\bf M5 Inference for Categorical Data} \\\midrule
-		Tu, Oct 28  & 5a & Inference for Single Proportion                  & 6.1            &  \\  
-		Th, Oct 30 & 5b & Difference of Two Proportions       & 6.2        & {PS7 due}   \\ 
-		\rowcolor{gray!30}  Tu, Nov 4 & & NO CLASS (Election Day) && \\
-          Th, Nov 6  & 5c & Goodness of Fit Testing (Chi-square)    & 6.3-4      &  \\ \midrule
-          	\rowcolor{gray!30}   Tu, Nov 11    & & NO CLASS (Veteran's Day) & & \\\midrule
-		\rowcolor{gray!30}    \multicolumn{5}{l}{\bf M6 Inference for Numerical Data} \\\midrule           
-		Th, Nov 13    & 6a & One-sample means   & 6.1--6.4   &  {PS7 due} \\
-		Tu, Nov 18    & 6b & Inference with Two Samples       & 7.2-3   &  \\ 
-		\midrule
-		\rowcolor{gray!30} \multicolumn{5}{l}{\bf M7 Linear Regression} \\\midrule
-		Th, Nov 20  & 6c & Power and ANOVA      & 7.4-5 &  {PS8 due} \\ 
-		Tu, Nov 25  & 7a & Correlation and Least Squares              & 8.1-2       &   \\
-		\rowcolor{gray!30} Th, Nov 27 &  & THANKSGIVING RECESS & &\\
-		Tu, Dec 2  & 7b &  Inference for Regression 		             & 8.4       &  {PS9 due} \\ 
-		Th, Dec 4  & 7c &  Multiple Regression    & 9.1-4  &   \\
-		\rowcolor{gray!30}Tu, Dec 9  &  & NO CLASS     &   &  \\		
+      \rowcolor{gray!30}    \multicolumn{5}{l}{\bf M3 Probability Distributions} \\\midrule
+            Tu, Sep 23 & 3A & Introduction           & 3.5   &  PS 3 \& LAB 3 due  \\
+            Th, Sep 25 & 3B & Normal Distribution    & 4.1  &   \\ 
+            Tu, Sep 30 & 3C & Lognormal and Exponential Distributions   & TBD   & PS 4 \& LAB 4 due \\ 
+            Th, Oct 2 & 3D & Binomial Distribution & 4.3 &  \\ 
+            Tu, Oct 7 & 3E & Poisson Distribution         &    4.5        & PS 5 \& LAB 5 due \\ 
+            Th, Oct 9 & 3F & Review/Applications         &          & \\    
+      \midrule
+      Tu, Oct 14 &   & MIDTERM EXAM (Take Home: 2hrs)                &            &  \\
+      \midrule
+      \rowcolor{gray!30}    \multicolumn{5}{l}{\bf M4 Inference Foundations} \\\midrule
+      Th, Oct 16 &  4A & Point Estimates and Sampling Variability                  &      5.1      &  \\
+      Tu, Oct 21  & 4B & Confidence Intervals for a Proportion             & 5.2         & \\
+      Th, Oct 23  & 4C & Hypothesis Testing for a Proportion      & 5.3          &   \\ 
+      \midrule
+      \rowcolor{gray!30}    \multicolumn{5}{l}{\bf M5 Inference for Categorical Data} \\\midrule
+      Tu, Oct 28  & 5A & Inference for Single Proportion                  & 6.1    & {PS 6 \& LAB 6 due} \\  
+      Th, Oct 30 & 5B & Difference of Two Proportions       & 6.2        &     \\ 
+      \rowcolor{gray!30}  Tu, Nov 4 & & NO CLASS (Election Day) && \\
+        Th, Nov 6  & 5C & Goodness of Fit Testing (Chi-square)    & 6.3-4      &  \\ \midrule
+         \rowcolor{gray!30}   Tu, Nov 11    & & NO CLASS (Veteran's Day) & & \\\midrule
+      \rowcolor{gray!30}    \multicolumn{5}{l}{\bf M6 Inference for Numerical Data} \\\midrule           
+      Th, Nov 13    & 6A & One-sample means   & 6.1--6.4   &  \\
+      Tu, Nov 18    & 6B & Inference with Two Samples       & 7.2-3   &  {PS 7 \& LAB 7 due} \\ 
+      Th, Nov 20  & 6C & Power and ANOVA      & 7.4-5 &   \\ \midrule
+            \rowcolor{gray!30} \multicolumn{5}{l}{\bf M7 Linear Regression} \\\midrule
+      Tu, Nov 25  & 7A & Correlation and Least Squares              & 8.1-2       &  {PS 8 \& LAB 8 due} \\
+      \rowcolor{gray!30} Th, Nov 27 &  & THANKSGIVING RECESS & &\\
+      Tu, Dec 2  & 7B &  Inference for Regression 		             & 8.4       &  \\ 
+      Th, Dec 4  & 7C &  Multiple Regression    & 9.1-4  &   \\
+		\rowcolor{gray!30}Tu, Dec 9  &  & NO CLASS     &   &  {PS 9 \& LAB 9 due} \\		
 		\midrule
 		Th, Dec 11  &       & PROJECT PRESENTATIONS && \\  \bottomrule
 	\end{tabular}
