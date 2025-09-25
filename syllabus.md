@@ -57,14 +57,17 @@ The goal is to introduce you to the fundamentals of probability and statistics w
 
 ### Overview of Assessments
 
-You will be evaluated based on in-class activities, problem sets, a midterm, and a project. The breakdown is as follows:
+You will be evaluated based on in-class activities, problem sets, labs, a midterm, and a project. The breakdown is as follows:
 
-| Assessment            | Number | %   |
-|-----------------------|--------|-----|
-| In-Class Activities   | 23     | 23  |
-| Problem Sets (PS)     | 9      | 45  |
-| Midterm Exam          | 1      | 12  |
-| Regression Project    | 1      | 20  |
+| Assessment            | Number | Unit % | Total % | Explanation           |
+|-----------------------|--------|--------|---------|-----------------------|
+| In-Class Activities   | 24     | 1      | 20      | 4 absences excused    |
+| Problem Sets (PS)     | 9      | 4      | 36      |                       |
+| Labs                  | 8      | 2      | 14      | lowest one dropped    |
+| Midterm Exam          | 1      | 12     | 10      |                       |
+| Regression Project    | 1      | 20     | 20      |                       |
+| **TOTAL**             |        |        | **100** |                       |
+
 
 Grades are assigned individually, with no predetermined grade spread or curve. After the drop date, grades will not change due to class composition. The grading scale is:
 
