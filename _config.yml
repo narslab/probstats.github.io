@@ -19,7 +19,18 @@ description: A modern, highly customizable, responsive Jekyll template for cours
 author: Jimi Oke
 baseurl: '' # the subpath of your site, e.g. /blog
 url: 'https://probstats.narslab.org' # the base hostname & protocol for your site, e.g. http://example.com
-exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
+exclude: 
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "LICENSE"
+  - "vendor/"
+  - "node_modules/"
+  - ".bundle/"
+  - ".sass-cache/"
+  - "_site/"
+  - "*.gem"
+  - "*.gemspec"
+  - "README.md"
 
 # Theme settings
 remote_theme: just-the-docs/just-the-docs@v0.8.2
