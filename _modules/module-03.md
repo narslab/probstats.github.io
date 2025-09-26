@@ -10,7 +10,9 @@ Tue, Sep 23
 
 Thu, Sep 25
 : **LECTURE 3B**{: .label .label-blue }[Normal Distribution](/assets/lectures/M3-Probability-Distributions/M3b-Normal-Distribution-Handout.pdf)
-  :  [Echo360 Video](#)
+  :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-09-25T13:00:00.000_2025-09-25T14:15:00.000/classroom)
+: **ACTIVITY 3B**{: .label .label-activity}[Empirical Rule](https://umamherst.instructure.com/courses/31233/external_tools/326)
+: **NOTEBOOK 3B**{: .label .label-notebook}[Computing Normal Probabilities](https://colab.research.google.com/drive/1q6dtsA78AEVC3ujC3RjxmcmNC6HgYAkP?authuser=1#scrollTo=sLsHqFhtBb8S)  
 
 Tue, Sep 30
 : **LECTURE 3C**{: .label .label-blue }[Lognormal and Exponential Distributions](#)
