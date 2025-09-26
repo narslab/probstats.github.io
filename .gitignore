@@ -37,6 +37,11 @@ vendor/
 *.maf
 *.mtc
 *.mtc1
+*.mtc0
+*run.xml
+*.bcf
+*.pdfsync
+*.xdv
 auto/
 bib/
 svg-inkscape/
