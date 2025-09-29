@@ -206,37 +206,37 @@ eprint=false]{biblatex}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
 
-%\usepackage{listings}
+\usepackage{listings}
 
 % Python style for highlighting
-% \newcommand\pythonstyle{\lstset{
-% language=Python,
-% basicstyle=\footnotesize\ttm,
-% otherkeywords={self},             % Add keywords here
-% keywordstyle=\footnotesize\ttb\color{deepblue},
-% emph={MyClass,__init__},          % Custom highlighting
-% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
-% stringstyle=\color{deepgreen},
-% frame=tb,                         % Any extra options here
-    % showstringspaces=false            % 
-% }}
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\footnotesize\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\footnotesize\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+    showstringspaces=false            % 
+}}
 
-% % Python environment
-% \lstnewenvironment{python}[1][]
-% {
-% \pythonstyle
-% \lstset{#1}
-% }
-% {}
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
 
-% % Python for external files
+% Python for external files
 % \newcommand\pythonexternal[2][]{{
 % \pythonstyle
 % \lstinputlisting[#1]{#2}}}
 
-% Python for inline
-% 
-% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+%Python for inline
+
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 
 
 \newcommand{\osn}{\oldstylenums}
@@ -379,12 +379,11 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \pause
 
   \begin{itemize}
-  \item The {\gr PDF} of the normal distribution (parameters $\mu$ and $\sigma^{2}$) is given by \pause
+  \item The {\gr PDF} of the normal distribution (parameters: mean $\mu$ and variance $\sigma^{2}$) is given by \pause
     \begin{equation}\gr
       f_{X}(x) = \fr{1}{\sigma\sqrt{2\pi}}\exp\lt[\fr{1}{2}\lt(\fr{x - \mu}{\sigma}\rt)^{2}\rt]
     \end{equation}
 
-  \item  The parameters of a normal distribution $N(\mu,\sigma^{2})$ correspond to its mean and variance, respectively.
     \pause
     
   \item There is no closed-form solution to the integral of the normal CDF
@@ -401,8 +400,8 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \item The symbol {\og $\Phi$ (``phi'')} is used to represent the CDF of the {\og \textit{standard} normal distribution}, whose
     values can be looked up in a table.
     \pause
-    
-  \item In MATLAB, the \texttt{\rd normcdf(x, mu, sigma)} and \texttt{\rd norminv(p, mu, sigma)} can be used to compute
+
+  \item In Python, the \texttt{\rd norm.cdf(x, mu, sigma)} and \texttt{\rd norm.ppf(p, mu, sigma)} can be used to compute
     probabilities and inverse CDFs of the normal distribution, respectively.
   \end{itemize}
 \end{frame}
@@ -474,7 +473,7 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \frametitle{Using the standard normal CDF probability table}
   \pause
 
-  \begin{itemize}
+  \begin{itemize}\Large
   \item First convert the random variable to its $Z$-score\pause
   \item Find the corresponding value in the table
   \end{itemize}
@@ -587,17 +586,18 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \frametitle{Lognormal distribution}
 
   \begin{block}{PDF}\pause
-    A random variable $X$ that is lognormally distributed with the parameters $\mu$ and $\sigma^{2}$ (denoted $X\sim \mathcal{LN}(\mu,\sigma^{2}$)
+    A random variable $X$ that is lognormally distributed with the parameters $\mu$ and $\sigma$ (denoted $X\sim \mathcal{LN}(\mu,\sigma$))
     has the PDF: \pause
 
     \begin{equation}
       \label{eq:1}
-      f_X(x) = \fr{1}{(\sigma x)\sqrt{2\pi}}e^{-\fr{1}{2}\lt(\fr{\ln(x)-\mu}{\sigma}\rt)^2} \quad x \ge 0
+      f_X(x) = \fr{1}{(\sigma x)\sqrt{2\pi}}\exp\lt[-\fr{1}{2}\lt(\fr{\ln(x)-\mu}{\sigma}\rt)^2\rt] \quad x \ge 0
     \end{equation}
   \end{block}
   \pause
+  \medskip
   \begin{center}
-    \begin{tikzpicture}[ declare function = { lognormal(\x,\mu,\sigma)=
+    \begin{tikzpicture}[scale=.8, declare function = { lognormal(\x,\mu,\sigma)=
         exp(-(ln(x)-\mu)^2/(2*\sigma^2))/(x*\sigma*(2*3.1415)^(0.5)); }]
 
       \def\parA{\mu} \def\parB{\sigma} \def\va{x}
@@ -629,40 +629,39 @@ Lecture M3c: Lognormal and Exponential Distributions}
 
 \begin{frame}
   \frametitle{Mean, median and variance of a lognormal distribution}\pause
-  Let $X\sim \mathcal{LN}(\mu,\sigma^{2})$\pause
+  Let $X$ be a lognormally distributed random variable with parameters $\mu$ and $\sigma$: $X\sim \mathcal{LN}(\mu,\sigma^{2})$\pause
   
-  \begin{block}{Mean}\pause
-    The mean of $X$ is given by
+  \begin{itemize}
+    \item     The \textbf{mean} of $X$ is given by
     \pause
-    
   \begin{equation}
     \label{eq:15}
-    \mathbb{E}(X) = e^{\lt(\mu + \fr12 \sigma^2\rt)}
+    \mathbb{E}(X) = \exp\lt[\mu + \fr12 \sigma^2\rt]
   \end{equation}
-\end{block}
-
-
-  \pause
-
-  \begin{block}{Median}\pause
-  The median of $X$ is:\pause
-
+    \pause
+\item    The \textbf{median} of $X$ is:\pause
   \begin{equation}
     \label{eq:17}
-    Median(X) = e^\mu
-  \end{equation}
-\end{block}
-
-\begin{block}{Variance}\pause
-  The variance of $X$ is given by:
+    \text{Median}(X) = \exp(\mu)
+  \end{equation} 
 
   \pause
-  
+
+  \item   The \textbf{variance} of $X$ is given by:
+  \pause
   \begin{equation}
     \label{eq:16}
-    \mathbb{V}(X) = \pause   (e^{\sigma^2} - 1)e^{(2\mu + \sigma^{2})}
+    \mathbb{V}(X) = \pause   (\exp\lt[\sigma^2\rt] - 1)\exp\lt[2\mu + \sigma^{2}\rt]
   \end{equation}
-\end{block}
+  \pause 
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Notes}
+    \begin{itemize}
+      \item     $\mu$ and $\sigma$ are the mean and standard deviation of the associated normal distribution of $\ln(X)$.\pause
+\item   Thus, if $X\sim \mathcal{LN}(\mu,\sigma)$, then $\ln(X) \sim \mathcal{N}(\mu,\sigma)$
+    \end{itemize}
+  \end{alertblock}
 \end{frame}
 
 
@@ -677,10 +676,10 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \begin{exampleblock}{Solution}\pause
     First, we find the parameter $\mu$: \pause
     \begin{eqnarray*}
-      Median(X) &=& e^{\mu} \\\pause
+      \text{Median}(X) &=& e^{\mu} \\\pause
       5 &=& e^{\mu} \\\pause
       \implies \ln(5) &=& \pause \mu \\\pause
-      \therefore \text{The mean is given by } \pause \mathbb{E}(X) &=& e^{\mu + \fr12\sigma^{2}} \pause = e^{\ln(5) + 0.21}\\\pause
+      \therefore \text{The mean is given by } \pause \mathbb{E}(X) &=& e^{\mu + \fr12\sigma^{2}} \pause = e^{\ln(5) + 0.21} \pause = e^{\ln(5)}\times e^{0.21} \\\pause
                 &=& 5(e^{0.21}) \pause = \boxed{6.17 \text{ days}}
     \end{eqnarray*}
   \end{exampleblock}
@@ -700,6 +699,7 @@ Lecture M3c: Lognormal and Exponential Distributions}
     \end{eqnarray*}
   \end{exampleblock}
 \end{frame}
+
 
 \begin{frame}
   \frametitle{Relationship between normal and lognormal distributions}\pause
@@ -722,9 +722,9 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \item If $X\sim \mathcal{N}(\mu, \sigma^{2})$, then $\mu = \mathbb{E}(X)$ and $\sigma^{2} = \mathbb{V}(X)$ \pause
 
     \bigskip
-    
-  \item However, $X\sim \mathcal{LN}(\mu, \sigma^{2})$, then $\mu = E(\ln(X))$ and $\sigma^{2} = \mathbb{V}(\ln(X))$\pause
-    
+
+  \item However, $X\sim \mathcal{LN}(\mu, \sigma^{2})$, then $\mu = \mathbb{E}(\ln(X))$ and $\sigma^{2} = \mathbb{V}(\ln(X))$\pause
+
   \end{itemize}
 
 \end{frame}
@@ -873,17 +873,80 @@ Lecture M3c: Lognormal and Exponential Distributions}
 
   \begin{equation}
     \label{eq:12}
-    P(a < X \le b) = \pause \fr{1}{\sigma x\sqrt{2\pi}} \pause \int_a^b e^{-\fr12\lt(\fr{\ln(x)-\mu}{\sigma}\rt)^2}dx
+    P(a < X \le b) = \pause \fr{1}{\sigma x\sqrt{2\pi}} \pause \int_a^b \exp\lt[-\fr12\lt(\fr{\ln(x)-\mu}{\sigma}\rt)^2\rt]dx
   \end{equation}
 
   \pause
 
-  \bigskip
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.8]
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={$x$},
+    ylabel={$f(x)$},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=0, xmax=8,
+    ymin=0, ymax=0.75,
+    xtick={0,1,3,5,6,7},
+    extra x ticks={2,4},
+    extra x tick labels={$a$,$b$},
+    extra x tick style={tick label style={font=\large, red}},
+    %ytick={0,0.1,0.2,0.3,0.4,0.5,0.6},
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=200,
+    smooth,
+    thick,
+    domain=0.1:8
+]
+
+% Shade area between x = 2 and x = 4
+\addplot[fill=blue!20, opacity=0.5, domain=2:4] {1/(x*1*sqrt(2*pi)) * exp(-0.5*((ln(x)-0)/1)^2)} \closedcycle;
+
+% Plot the lognormal distribution with μ=0, σ=1
+% f(x) = (1/(x*σ*√(2π))) * exp(-0.5*((ln(x)-μ)/σ)²)
+\addplot[blue, thick, domain=0.01:8, samples=200] {1/(x*1*sqrt(2*pi)) * exp(-0.5*((ln(x)-0)/1)^2)};
+
+% Mark x = 2 (a)
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(2, {1/(2*1*sqrt(2*pi)) * exp(-0.5*((ln(2)-0)/1)^2)})};
+
+% Mark x = 4 (b)
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(4, {1/(4*1*sqrt(2*pi)) * exp(-0.5*((ln(4)-0)/1)^2)})};
+
+% Draw vertical lines at x = 2 and x = 4
+\draw[red, thick, dashed] (axis cs:2,0) -- (axis cs:2,{1/(2*1*sqrt(2*pi)) * exp(-0.5*((ln(2)-0)/1)^2)});
+\draw[red, thick, dashed] (axis cs:4,0) -- (axis cs:4,{1/(4*1*sqrt(2*pi)) * exp(-0.5*((ln(4)-0)/1)^2)});
+
+% Label the shaded area
+\node[blue, font=\small] at (axis cs:3,0.15) {$P(a < X < b)$};
+%\node[blue, font=\small] at (axis cs:3,0.12) {$= P(2 < X < 4)$};
+
+% Add distribution parameters
+\node[above] at (axis cs:4,0.65) {Lognormal distribution: $\mu = 0, \sigma = 1$};
+
+% Mark the mode and median for reference
+%\draw[gray, thin, dotted] (axis cs:1,0) -- (axis cs:1,{1/(1*1*sqrt(2*pi)) * exp(-0.5*((ln(1)-0)/1)^2)});
+%\node[gray, below] at (axis cs:1,-0.02) {median};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Lognormal distribution with $\mu = 0$, $\sigma = 1$, showing $P(a < X < b)$ where $a = 2$ and $b = 4$}
+\label{fig:lognormal_mu0_sigma1_ab}
+\end{figure}  
   
-  Substituting $z = \fr{\ln(x)-\mu}{\sigma}\pause \implies\pause dx = \sigma xdz$, we obtain: \pause
+\end{frame}
+
+\begin{frame}
+  \frametitle{Probability of a lognormal random variate (cont.)}\pause
+Substituting $z = \fr{\ln(x)-\mu}{\sigma}\pause \implies\pause dx = \sigma xdz$, we obtain: \pause
 
   \begin{equation}
-     P(a < X \le b) \pause = \fr{1}{\sqrt{2\pi}}\int_{(\ln(a)-\mu)/\sigma}^{(\ln(b)-\mu)/\sigma} \pause e^{-\fr12z^2}dz    
+     P(a < X \le b) \pause = \fr{1}{\sqrt{2\pi}}\int_{(\ln(a)-\mu)/\sigma}^{(\ln(b)-\mu)/\sigma} \pause 
+     \exp\lt[-\fr12z^2\rt]dz    
   \end{equation}
   \medskip
   
@@ -895,8 +958,70 @@ Lecture M3c: Lognormal and Exponential Distributions}
     \rd
     P(a < X \le b) \pause  =  \Phi\lt(\fr{\ln b-\mu}{\sigma}\rt) \pause -\pause  \Phi\lt(\fr{\ln a-\mu}{\sigma}\rt)
   \end{equation}
-\end{frame}
+  
+\pause
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.6]
+\begin{axis}[
+    width=15cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={$z$},
+    ylabel={$f(z)$},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=-3.7, xmax=3.7,
+    ymin=0, ymax=0.45,
+    xtick={-3,-2,-1,0,1,2,3},
+    extra x ticks={0.693, 1.386},
+    extra x tick labels={$\ln(2)$,$\ln(4)$},
+    extra x tick style={tick label style={font=\small, red}},
+    ytick={0,0.1,0.2,0.3,0.4},
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=100,
+    smooth,
+    thick
+]
 
+% Shade area between z = ln(2) and z = ln(4)
+\addplot[fill=blue!20, opacity=0.5, domain=0.693:1.386] {1/sqrt(2*pi) * exp(-0.5*x^2)} \closedcycle;
+
+% Plot the standard normal distribution
+\addplot[blue, thick, domain=-3.5:3.5] {1/sqrt(2*pi) * exp(-0.5*x^2)};
+
+% Mark z = ln(2) ≈ 0.693
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(0.693, {1/sqrt(2*pi) * exp(-0.5*(0.693)^2)})};
+
+% Mark z = ln(4) ≈ 1.386
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(1.386, {1/sqrt(2*pi) * exp(-0.5*(1.386)^2)})};
+
+% Draw vertical lines at z = ln(2) and z = ln(4)
+\draw[red, thick, dashed] (axis cs:0.693,0) -- (axis cs:0.693,{1/sqrt(2*pi) * exp(-0.5*(0.693)^2)});
+\draw[red, thick, dashed] (axis cs:1.386,0) -- (axis cs:1.386,{1/sqrt(2*pi) * exp(-0.5*(1.386)^2)});
+
+% Label the points with their exact values
+\node[red, above right] at (axis cs:0.693,{1/sqrt(2*pi) * exp(-0.5*(0.693)^2) + 0.02}) {$\ln(2) \approx 0.693$};
+\node[red, above right] at (axis cs:1.386,{1/sqrt(2*pi) * exp(-0.5*(1.386)^2) + 0.02}) {$\ln(4) \approx 1.386$};
+
+% Label the shaded area
+\node[blue, font=\small] at (axis cs:1.04,0.25) {$P(\ln(2) < Z < \ln(4))$};
+\node[blue, font=\small] at (axis cs:1.04,0.22) {$\approx 0.158$};
+
+% Add distribution parameters
+\node[above] at (axis cs:-2,0.35) {\textbf{Standard Normal Distribution}};
+
+% Mark the mean at z = 0
+\draw[black, thick, dotted] (axis cs:0,0) -- (axis cs:0,{1/sqrt(2*pi)});
+%\node[black, above] at (axis cs:0,{1/sqrt(2*pi) + 0.01}) {$\mu = 0$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Standard normal distribution showing $P(\ln(2) < Z < \ln(4))$}
+\label{fig:standard_normal_ln2_ln4}
+\end{figure}
+\end{frame}
 % \begin{frame}
 %   \frametitle{Further relationships between lognormal parameters}\pause
   
@@ -916,36 +1041,348 @@ Lecture M3c: Lognormal and Exponential Distributions}
 \begin{frame}
   \frametitle{Example 2: Equipment breakdown}\pause
   The lifetime $X$ of a major oil platform equipment is lognormally distributed with a
-  $Median(X) =6$ months and $\sigma = 0.30$.  To ensure 95\% reliability, determine the desired interval $x_{0}$ for
+  $\text{Median}(X) =6$ months and $\sigma = 0.30$.  To ensure 95\% reliability, determine the desired interval $x_{0}$ for
   maintenance.\\ \pause
 
     \bigskip
     
-    \begin{exampleblock}{Solution}\pause
-      Given: $\mu = \ln 6 = 1.792$ and $\sigma = 0.30$, we want to find $x_0$ such that: \pause
-      \begin{equation*}
-        P(X > x_0) = 1 - P(X\le x_0) = \pause 0.95
-      \end{equation*}
-      \pause
 
-      Thus:
+  
+Given: $\mu = \ln 6 = 1.792$ and $\sigma = 0.30$, we want to find $x_0$ such that: \pause
+\begin{equation*}
+P(X > x_0) = 1 - P(X\le x_0) = \pause 0.95
+\end{equation*}
+\pause
+      
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.6]
+\begin{axis}[
+    width=15cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={$z$},
+    ylabel={$f(z)$},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=-3.7, xmax=3.7,
+    ymin=0, ymax=0.45,
+    xtick={-3,-2,-1,0,1,2,3},
+    extra x ticks={0.693, 1.386},
+    extra x tick labels={$\ln(2)$,$\ln(4)$},
+    extra x tick style={tick label style={font=\small, red}},
+    ytick={0,0.1,0.2,0.3,0.4},
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=100,
+    smooth,
+    thick
+]
+
+% Shade area between z = ln(2) and z = ln(4)
+\addplot[fill=blue!20, opacity=0.5, domain=0.693:1.386] {1/sqrt(2*pi) * exp(-0.5*x^2)} \closedcycle;
+
+% Plot the standard normal distribution
+\addplot[blue, thick, domain=-3.5:3.5] {1/sqrt(2*pi) * exp(-0.5*x^2)};
+
+% Mark z = ln(2) ≈ 0.693
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(0.693, {1/sqrt(2*pi) * exp(-0.5*(0.693)^2)})};
+
+% Mark z = ln(4) ≈ 1.386
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(1.386, {1/sqrt(2*pi) * exp(-0.5*(1.386)^2)})};
+
+% Draw vertical lines at z = ln(2) and z = ln(4)
+\draw[red, thick, dashed] (axis cs:0.693,0) -- (axis cs:0.693,{1/sqrt(2*pi) * exp(-0.5*(0.693)^2)});
+\draw[red, thick, dashed] (axis cs:1.386,0) -- (axis cs:1.386,{1/sqrt(2*pi) * exp(-0.5*(1.386)^2)});
+
+% Label the points with their exact values
+\node[red, above right] at (axis cs:0.693,{1/sqrt(2*pi) * exp(-0.5*(0.693)^2) + 0.02}) {$\ln(2) \approx 0.693$};
+\node[red, above right] at (axis cs:1.386,{1/sqrt(2*pi) * exp(-0.5*(1.386)^2) + 0.02}) {$\ln(4) \approx 1.386$};
+
+% Label the shaded area
+\node[blue, font=\small] at (axis cs:1.04,0.25) {$P(\ln(2) < Z < \ln(4))$};
+\node[blue, font=\small] at (axis cs:1.04,0.22) {$\approx 0.158$};
+
+% Add distribution parameters
+\node[above] at (axis cs:-2,0.35) {\textbf{Standard Normal Distribution}};
+
+% Mark the mean at z = 0
+\draw[black, thick, dotted] (axis cs:0,0) -- (axis cs:0,{1/sqrt(2*pi)});
+%\node[black, above] at (axis cs:0,{1/sqrt(2*pi) + 0.01}) {$\mu = 0$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Standard normal distribution showing $P(\ln(2) < Z < \ln(4))$}
+\label{fig:standard_normal_ln2_ln4}
+\end{figure}
+\end{frame}
+% \begin{frame}
+%   \frametitle{Further relationships between lognormal parameters}\pause
+  
+%   Refer to pages 102-103 in your text for these derivations. \pause
+%   \begin{align}
+%     \zeta^2 &= \ln(1 + \delta_X^2) \\ \pause
+%     \implies \zeta &\approx \delta_X
+%   \end{align}
+
+%   \begin{align}
+%     \mu_X &= x_m\sqrt{1 + \delta_X^2} \\ \pause
+%     \implies \mu_X & > x_m
+%   \end{align}
+% \end{frame}
+
+\begin{frame}
+  \frametitle{Example 2: Probability of incubation period}\pause
+  The incubation period of the COVID-19 infection is assumed to be lognormally distributed with a median of about 5
+  days and $\sigma^{2} = 0.42$. What is the probability that a randomly selected person will show symptoms within 7 days of exposure (i.e., $P(X \leq 7)$)?
+  
+  \pause
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.8]
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={$x$},
+    ylabel={$f(x)$},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=0, xmax=20,
+    ymin=0, ymax=0.17,
+    xtick={2,4,6,8,10,12,14,16,18},
+    extra x ticks={7},
+    extra x tick labels={7},
+    extra x tick style={tick label style={font=\small, red}},
+    ytick={0,0.05,0.10,0.15,0.20},
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=200,
+    smooth,
+    thick,
+    domain=0.1:20
+]
+
+% Shade area for x < 7
+\addplot[fill=blue!20, opacity=0.5, domain=0.1:7] {1/(x*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(x)-ln(5))^2)/0.42)} \closedcycle;
+
+% Plot the lognormal distribution with μ=ln(5), σ²=0.42 (σ≈0.648)
+% f(x) = (1/(x*σ*√(2π))) * exp(-0.5*((ln(x)-μ)/σ)²)
+\addplot[blue, thick, domain=0.1:20] {1/(x*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(x)-ln(5))^2)/0.42)};
+
+% Mark x = 7
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(7, {1/(7*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(7)-ln(5))^2)/0.42)})};
+
+% Draw vertical line at x = 7
+\draw[red, thick, dashed] (axis cs:7,0) -- (axis cs:7,{1/(7*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(7)-ln(5))^2)/0.42)});
+
+% Label the point
+\node[red, above] at (axis cs:7,{1/(7*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(7)-ln(5))^2)/0.42) + 0.01}) {$x = 7$};
+
+% Mark the median (exp(μ) = exp(ln(5)) = 5)
+\draw[black, thick, dotted] (axis cs:5,0) -- (axis cs:5,{1/(5*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(5)-ln(5))^2)/0.42)});
+\node[black, above] at (axis cs:5,{1/(5*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(5)-ln(5))^2)/0.42) + 0.01}) {median = 5};
+
+% Label the shaded area
+\node[blue, font=\small] at (axis cs:3,0.12) {$P(X < 7)$};
+\node[blue, font=\small] at (axis cs:3,0.10) {$\approx 0.691$};
+
+% Add distribution parameters
+%\node[above] at (axis cs:10,0.21) {Lognormal: $\mu = \ln(5), \sigma^2 = 0.42$};
+
+% Mark the mode for reference
+% Mode = exp(μ - σ²) = exp(ln(5) - 0.42) = 5*exp(-0.42) ≈ 3.27
+\draw[gray, thin, dotted] (axis cs:3.27,0) -- (axis cs:3.27,{1/(3.27*sqrt(0.42)*sqrt(2*pi)) * exp(-0.5*((ln(3.27)-ln(5))^2)/0.42)});
+\node[gray, below] at (axis cs:3.27,-0.01) {mode};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Lognormal distribution with $\mu = \ln(5)$, $\sigma^2 = 0.42$, showing $P(X \le 7)$}
+\label{fig:lognormal_mu_ln5_var042_x7}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example 2: (cont.)}
+
+  \begin{exampleblock}{Solution (using Python)}\pause
+    We want to find: $P(X \le 7) = F(7)$; thus we use the \texttt{scipy.stats.lognorm.cdf} 
+    function:
+    \pause
+    \begin{python}
+      from scipy import stats
+      import numpy as np
+      p = stats.lognorm.cdf(7, s=0.648, scale=5)
+    \end{python}
+    \pause
+    where:
+    \begin{itemize}
+    \item \texttt{s} $= \sigma = 0.648 = \sqrt{0.42}$ (shape parameter/standard deviation of underlying normal)
+    \item \texttt{scale} $= \exp(\mu) = \exp(\ln(5)) = 5$ (scale parameter/median)
+   % \item \texttt{7} is the value at which we want to evaluate the CDF
+    \end{itemize}
+
+    The result is: \texttt{p = 0.691}, i.e., about 69.1\% of the people will show symptoms within 7 days of exposure.
+
+    
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 2: (cont.)}\pause
+
+  \begin{exampleblock}{Solution (using tables)}
+    \pause 
+    We want to find: $P(X \le 7) = F(7)$; thus we use the relationship:
+    \pause
+    \begin{equation*}
+      P(X \le x) = \Phi\lt(\fr{\ln x - \mu}{\sigma}\rt)
+    \end{equation*}
+    \pause
+    where $\mu = \ln(5) = 1.609$ and $\sigma = \sqrt{0.42} = 0.648$. Thus:
+    \pause
+    \begin{align*}
+      P(X \le 7) &= \Phi\lt(\fr{\ln 7 - 1.609}{0.648}\rt) \\
+      &= \Phi(0.539) \\
+      &\approx 0.7054 \text{ (from standard normal table)}
+    \end{align*}
+    \pause
+    The result is: $P(X \le 7) \approx 0.7054$, i.e., 
+    about 70.54\% of the people will show symptoms within 7 days of exposure. 
+  \end{exampleblock}
+
+  
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 3: Equipment breakdown}\pause
+  The lifetime $X$ of a major oil platform equipment is lognormally distributed with a
+  $\text{Median}(X) =6$ months and $\sigma = 0.30$.  To ensure 95\% reliability, determine the desired interval $x_{0}$ for
+  maintenance.\\ \pause
+
+  Given: $\mu = \ln 6 = 1.792$ and $\sigma = 0.30$, we want to find $x_0$ such that: \pause
+\begin{equation*}
+P(X > x_0) = 1 - P(X\le x_0) = \pause 0.95 \pause \implies P(X\le x_0) = 0.05
+\end{equation*}
+\pause
+      
+    
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.7]
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={$x$},
+    ylabel={$F(x)$},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=0, xmax=12,
+    ymin=0, ymax=1.2,
+    xtick={2,4,6,8,10},
+    extra x ticks={3.66},
+    extra x tick labels={$x_0$},
+    extra x tick style={tick label style={font=\small, red}},
+    ytick={0,0.2,0.4,0.6,0.8,1.0},
+    extra y ticks={0.05},
+    extra y tick labels={0.05},
+    extra y tick style={tick label style={font=\small, red}},
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=200,
+    smooth,
+    thick
+]
+
+% Plot the lognormal CDF with μ=1.792, σ=0.3
+% For lognormal CDF: F(x) = Φ((ln(x) - μ)/σ) where Φ is standard normal CDF
+% Using sigmoid approximation for Φ: Φ(z) ≈ 1/(1 + exp(-1.7*z))
+\addplot[blue, thick, domain=0.5:12] {1/(1 + exp(-1.7*((ln(x)-1.792)/0.3)))};
+
+% Draw horizontal line at y = 0.05
+\draw[red, thick, dashed] (axis cs:0,0.05) -- (axis cs:3.66,0.05);
+
+% Draw vertical line at x = 3.66
+\draw[red, thick, dashed] (axis cs:3.66,0) -- (axis cs:3.66,0.05);
+
+% Mark the intersection point
+\addplot[red, thick, mark=*, mark size=4pt] coordinates {(3.66, 0.05)};
+
+% Label the intersection point
+\node[red, above right] at (axis cs:3.66,0.05) {}; %$(x_0, 0.05)$};
+
+% Labels on axes
+%\node[red, left] at (axis cs:0.5,0.05) {$F(3.66) = 0.05$};
+%\node[red, below] at (axis cs:3.66,-0.05) {$x_{0.05} = 3.66$};
+
+% Mark the median (where F(median) = 0.5)
+% For lognormal: median = exp(μ) = exp(1.792) ≈ 6.0
+\draw[gray, thick, dotted] (axis cs:6.0,0) -- (axis cs:6.0,1.1);
+\node[gray, right] at (axis cs:6.0, .2) {median};
+\addplot[gray, mark=*, mark size=2pt] coordinates {(6.0, 0.5)};
+
+% Add distribution parameters and interpretation
+\node[above] at (axis cs:6,1.05) {Lognormal CDF: $\mu = 1.792, \sigma = 0.3$};
+%\node[red, font=\small] at (axis cs:8,0.2) {5th percentile};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Lognormal CDF showing the 5th percentile at $x = x_0= 3.66$}
+\label{fig:lognormal_cdf_5th_percentile}
+\end{figure}
+
+
+      
+
+ \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example 3: Equipment breakdown (cont.)}
+    \pause
+
+       \begin{exampleblock}{Solution (using Python)}\pause
+        P(X $\le x_0$) = 0.05 \pause implies:
+\begin{equation*}
+  x_0 = F^{-1}(0.05)
+\end{equation*}
+        \pause
+        Code:
+        \begin{python}
+          from scipy import stats
+          import numpy as np
+          x0 = stats.lognorm.ppf(q=0.05, s=0.30, scale=6)
+        \end{python}
+\pause
+Note the following about the {\it arguments}\texttt{stats.lognorm.ppf} function:
+\begin{itemize}
+\item The first, \texttt{q}, is the cumulative probability or quantile (0.05)
+\item The second, \texttt{s}, is the shape parameter $\sigma$ (0.30)
+\item The third, \texttt{scale}, is $e^{\mu}$ (median) (6)
+\end{itemize}
+        This returns $x_0 = 3.66$ months.
+      \end{exampleblock}
+
+ \end{frame}
+
+\begin{frame}
+  \frametitle{Example 3: Equipment breakdown (cont.)}
+    \pause
+
+       \begin{exampleblock}{Solution (using tables)}\pause
+              Thus:
       \begin{equation*}
         \Phi\lt(\fr{\ln(x_0) - 1.792}{0.30}\rt) = \pause 0.05
       \end{equation*}
-    \end{exampleblock}
- \end{frame}
-
-
-\begin{frame}
-  \frametitle{Example 2: Equipment breakdown (cont.)}
-    \pause
-
-       \begin{exampleblock}{Solution}\pause
         \begin{eqnarray*}
           \fr{\ln x_0 - 1.792}{0.30} &=& \Phi^{-1}(0.05) \\ \pause
           \ln x_0 - 1.792 &=&  \pause 0.30[- \Phi^{-1}(0.95)] \\ \pause
           \ln x_0       &=& 1.792 +  0.30(-1.65) \\\pause
-                                     &=& 1.792 -0.495 = \pause 1.297
+                                 \ln x_0    &=& 1.792 -0.495 = \pause 1.297
         \end{eqnarray*}
         \pause
 
@@ -1124,7 +1561,7 @@ Note that $\bl P(X\le x) = 1 - e^{-\la x}$, \pause while $\rd P(X > x) = 1 - (1 
     \begin{enumerate}[\bf (a)]\setcounter{enumi}{0}
     \item The mean delay is given by \pause
       \begin{eqnarray*}
-        E(T) &=&\pause \fr{1}{\la} \pause = \fr{1}{2} \pause =  \boxed{\gr 0.5 \text{hr}}
+        \mathbb{E}(T) &=&\pause \fr{1}{\la} \pause = \fr{1}{2} \pause =  \boxed{\gr 0.5 \text{hr}}
       \end{eqnarray*}
       \pause
 
@@ -1142,14 +1579,105 @@ Note that $\bl P(X\le x) = 1 - e^{-\la x}$, \pause while $\rd P(X > x) = 1 - (1 
 
   \begin{exampleblock}{Solution}
     \begin{enumerate}[\bf (a)]\setcounter{enumi}{2}
-    \item The probability the flight will be delayed by no more than 10 minutes ( $\fr16$ hr) is given by: \pause
+    \item The probability the flight will be delayed by no more than 10 minutes ($\fr16$ hr) is given by: \pause
       \begin{eqnarray*}
-        P\lt(T \le \fr16\rt) &=& 1 - e^{-\la \cdot\fr16} \pause = 1 - e^{-2\lt(\fr16\rt)} \\\pause
-                       &=& 1 - e^{-\fr13} \pause = \boxed{0.283}
+        P\lt(T \le \fr16\rt) &=& 1 - \exp\lt[-\la \cdot\fr16\rt] \pause = 1 - 
+        \exp\lt[-2\lt(\fr16\rt)\rt] = \pause 1 - \exp\lt[-\fr13\rt] \\\pause 
+                        &=& \boxed{0.283}
       \end{eqnarray*}
     \end{enumerate}
+    \pause
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.7]
+\begin{axis}[
+    width=15cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={Time (hours)},
+    ylabel={$f(t)$},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=0, xmax=3,
+    ymin=0, ymax=2.4,
+    xtick={0.5,1,1.5,2,2.5},
+    extra x ticks={0.167},
+    extra x tick labels={$\frac{1}{6}$},
+    extra x tick style={tick label style={font=\small, red}},
+    ytick={0,0.5,1,1.5,2},
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=100,
+    smooth,
+    thick,
+    domain=0:3
+]
+
+% Shade area for t < 1/6
+\addplot[fill=red!20, opacity=0.5, domain=0:0.167] {2 * exp(-2*x)} \closedcycle;
+
+% Plot the exponential distribution with λ=2
+% f(t) = λ * exp(-λt) = 2 * exp(-2t)
+\addplot[blue, thick, domain=0:3] {2 * exp(-2*x)};
+
+% Mark t = 1/6 ≈ 0.167
+\addplot[red, thick, mark=*, mark size=3pt] coordinates {(0.167, {2 * exp(-2*0.167)})};
+
+% Draw vertical line at t = 1/6
+\draw[red, thick, dashed] (axis cs:0.167,0) -- (axis cs:0.167,{2 * exp(-2*0.167)});
+
+% Label the point
+\node[red, above] at (axis cs:0.267,{2 * exp(-2*0.167) + 0.08}) {$t = \frac{1}{6}$ hr};
+
+% Label the shaded area
+\node[red, font=\small] at (axis cs:0.2,1.2) {$P(T < \frac{1}{6})$};
+\node[red, font=\small] at (axis cs:0.2,1.05) {$\approx 0.283$};
+
+% Add distribution parameters and mean
+\node[above] at (axis cs:1.5,2.1) {Exponential: $\lambda = 2$ hr$^{-1}$};
+\node[blue, font=\small] at (axis cs:1.5,0.4) {Mean = $\frac{1}{\lambda} = 0.5$ hours};
+
+% Mark the mean (1/λ = 0.5 hours)
+\draw[gray, thick, dotted] (axis cs:0.5,0) -- (axis cs:0.5,{2 * exp(-2*0.5)});
+\node[gray, below] at (axis cs:0.5,-0.05) {mean = 0.5 hr};
+
+% Show y-intercept (λ = 2)
+\addplot[blue, mark=*, mark size=2pt] coordinates {(0, 2)};
+\node[blue, right] at (axis cs:0.1,2) {$f(0) = \lambda = 2$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Exponential distribution with $\lambda = 2$ hr$^{-1}$, showing $P(T < \frac{1}{6})$}
+\label{fig:exponential_lambda2_onesixth}
+\end{figure}
   \end{exampleblock}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example 3: Waiting for a flight (cont.)}
+\begin{exampleblock}{Solution}
+    \begin{enumerate}[\bf (a)]\setcounter{enumi}{2}
+    \item In python, we can use the \texttt{scipy.stats.expon.cdf} function to find $P(T \le 1/6)$:
+     \pause
+      \begin{python}
+        from scipy import stats
+        import numpy as np
+        p = stats.expon.cdf(1/6, scale=1/2)
+      \end{python}
+      where:
+      \begin{itemize}
+      \item \texttt{1/6} is the value at which we want to evaluate the CDF
+      \item \texttt{scale} $= 1/\la = 1/2$ (scale parameter/mean)
+      \end{itemize}
+      This returns \texttt{p = 0.283}, i.e., about 28.3\% probability that the flight will be delayed by no more than 10 minutes.
+    \end{enumerate}
+    \pause
+  
+\end{exampleblock}
+
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Example 3: Waiting for a flight (cont.)}
@@ -1167,6 +1695,8 @@ Note that $\bl P(X\le x) = 1 - e^{-\la x}$, \pause while $\rd P(X > x) = 1 - (1 
                                   &=& e^{-2(0.5)} \quad (=P(T > 0.5)) \\\pause
                                   &=& e^{-1} \pause = \boxed{\gr 0.37}
       \end{eqnarray*}
+      \pause
+      In Python: \pythoninline{p = 1 - stats.expon.pdf(.5, scale=1/2)} also returns \texttt{p = 0.37}.
     \end{enumerate}
   \end{exampleblock}
 \end{frame}
@@ -1229,60 +1759,60 @@ Note that $\bl P(X\le x) = 1 - e^{-\la x}$, \pause while $\rd P(X > x) = 1 - (1 
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{MATLAB Homework}
-  \pause
+% \begin{frame}
+%   \frametitle{MATLAB Homework}
+%   \pause
 
-  \begin{itemize}
-  \item Ensure your submission is strictly a script saved with the \texttt{\rd .m} extension
-    \pause
-    \medskip
+%   \begin{itemize}
+%   \item Ensure your submission is strictly a script saved with the \texttt{\rd .m} extension
+%     \pause
+%     \medskip
     
-  % \item Subsequent templates will include \texttt{clc} and \texttt{clear all} at the beginning of the script to facilitate grading by the TA
-  %   \pause
-  %   \medskip
+%   % \item Subsequent templates will include \texttt{clc} and \texttt{clear all} at the beginning of the script to facilitate grading by the TA
+%   %   \pause
+%   %   \medskip
     
-  \item MATLAB can only execute a script if it is in the \textit{\rd current folder}. \pause Otherwise you may get a message like the one below:
-    \pause 
-    \begin{center}
-      \includegraphics[width=.4\textwidth]{matlab}
-    \end{center}
-    \pause
-    If so, simply click on \texttt{Change Folder} or move the file to the current folder you are in. Finally, always make sure the path of a file being read by a script is valid from its location, otherwise you will have to deal with ``File not found'' errors.
-  \end{itemize}
-\end{frame}
+%   \item MATLAB can only execute a script if it is in the \textit{\rd current folder}. \pause Otherwise you may get a message like the one below:
+%     \pause 
+%     \begin{center}
+%       \includegraphics[width=.4\textwidth]{matlab}
+%     \end{center}
+%     \pause
+%     If so, simply click on \texttt{Change Folder} or move the file to the current folder you are in. Finally, always make sure the path of a file being read by a script is valid from its location, otherwise you will have to deal with ``File not found'' errors.
+%   \end{itemize}
+% \end{frame}
 
 
-\begin{frame}
-  \frametitle{Midterm Exam}
-  \pause
+% \begin{frame}
+%   \frametitle{Midterm Exam}
+%   \pause
 
-  \begin{itemize}
-  \item 24-hour open-resource examination
-    \pause
+%   \begin{itemize}
+%   \item 24-hour open-resource examination
+%     \pause
 
-    \medskip
+%     \medskip
     
-  \item Available for download via Canvas on Wednesday, October 16th at \textbf{10:00 AM}\pause
-    \medskip
+%   \item Available for download via Canvas on Wednesday, October 16th at \textbf{10:00 AM}\pause
+%     \medskip
 
-  \item Due by \textbf{October 21st} at \textbf{11:59 PM}\pause
-    \medskip
+%   \item Due by \textbf{October 21st} at \textbf{11:59 PM}\pause
+%     \medskip
 
-  \item Exam length will be similar to previous midterms or the practice exam(s) available on Canvas.
-    \pause
-    \medskip
+%   \item Exam length will be similar to previous midterms or the practice exam(s) available on Canvas.
+%     \pause
+%     \medskip
     
-  \item Exam is designed to be completed in 2-3 hours or less. \pause The 24-hr window gives you flexibility and time to
-    plan, organize and check your work before submission.
-    \pause
-    \medskip
+%   \item Exam is designed to be completed in 2-3 hours or less. \pause The 24-hr window gives you flexibility and time to
+%     plan, organize and check your work before submission.
+%     \pause
+%     \medskip
 
-  \item You can use your calculator/computer (Matlab/Python) to compute probabilities (as long as you indicate how you obtained your answer).
+%   \item You can use your calculator/computer (Matlab/Python) to compute probabilities (as long as you indicate how you obtained your answer).
 
-%  \item \bl Next lecture (Tuesday, October 6th) will be a \textbf{Midterm Review Session}
-  \end{itemize}
-\end{frame}
+% %  \item \bl Next lecture (Tuesday, October 6th) will be a \textbf{Midterm Review Session}
+%   \end{itemize}
+% \end{frame}
 
 % \section{Joint distributions}
 
