@@ -1,0 +1,780 @@
+\documentclass[11pt,twoside]{article}
+\usepackage{etex}
+
+\raggedbottom
+
+%geometry (sets margin) and other useful packages
+\usepackage{geometry}
+\geometry{top=1in, left=1in,right=1in,bottom=1in}
+ \usepackage{graphicx,booktabs,calc}
+ 
+\usepackage{listings}
+
+
+% Marginpar width
+%Marginpar width
+\newcommand{\pts}[1]{\marginpar{ \small\hspace{0pt} \textit{[#1]} } } 
+\setlength{\marginparwidth}{.5in}
+%\reversemarginpar
+%\setlength{\marginparsep}{.02in}
+
+ 
+%\usepackage{cmbright}lstinputlisting
+%\usepackage[T1]{pbsi}
+
+
+\usepackage{chngcntr,mathtools}
+\counterwithin{figure}{section}
+\numberwithin{equation}{section}
+
+%\usepackage{listings}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{colortbl}
+\usepackage{color}
+
+
+\usepackage{subfigure,hyperref,enumerate,polynom,polynomial}
+\usepackage{multirow,minitoc,fancybox,array,multicol}
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%%TIKZ
+\usepackage{tikz}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\tikzstyle arrowstyle=[black,scale=2]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\tikzstyle dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrow[arrowstyle]{latex}}}}]
+\tikzstyle rev dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrowreversed[arrowstyle]{latex};}}}]
+
+\usepackage{ctable}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{exercise}{\@startsection 
+	{section}
+	{1}
+	{-.2em}
+	{-3.5ex plus -1ex minus -.2ex}
+    	{1.3ex plus .2ex}
+    	{\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+	\large\bf\noindent{Exercise 1.\hspace{-1.5ex} }
+	}
+	}
+	%{\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+	%\begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\fancyheadoffset{30pt}
+%\fancyfootoffset{30pt}
+\fancyhead[LO,RE]{\small Oke}
+\fancyhead[RO,LE]{\small Page \thepage} 
+\fancyfoot[RO,LE]{\small PS 5  } 
+\fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{0.1pt} 
+\renewcommand{\footrulewidth}{0.1pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+
+\usepackage{paralist}
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\n}{\\[2mm]}
+%% GREEK LETTERS
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\sig}{\sigma}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\mr}{\mathbb{R}}
+\newcommand{\xs}{x^{*}}
+\newenvironment{solution}
+{\medskip\par\quad\quad\begin{minipage}[c]{.8\textwidth}\gr}{\medskip\end{minipage}}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\pgfmathdeclarefunction{binom}{2}{%
+  \pgfmathparse{(#1!)/(x!*(#1-x)!) * (#2^x) * ((1-#2)^(#1-x))}%
+}
+
+\pgfmathdeclarefunction{lognormal}{2}{%
+  \pgfmathparse{1/(x*#2*sqrt(2*pi))*exp(-((ln(x)-#1)^2)/(2*#2^2))}%
+}
+
+\usetikzlibrary{math}
+
+% https://tex.stackexchange.com/questions/461758/asymmetric-distribution-gauss-curve
+\tikzmath{%
+  function h1(\x, \lx) { return (9*\lx + 3*((\lx)^2) + ((\lx)^3)/3 + 9); };
+  function h2(\x, \lx) { return (3*\lx - ((\lx)^3)/3 + 4); };
+  function h3(\x, \lx) { return (9*\lx - 3*((\lx)^2) + ((\lx)^3)/3 + 7); };
+  function skewnorm(\x, \l) {
+    \x = (\l < 0) ? -\x : \x;
+    \l = abs(\l);
+    \e = exp(-(\x^2)/2);
+    return (\l == 0) ? 1 / sqrt(2 * pi) * \e: (
+      (\x < -3/\l) ? 0 : (
+      (\x < -1/\l) ? \e / (8 * sqrt(2 * pi)) * h1(\x, \x*\l) : (
+      (\x <  1/\l) ? \e / (4 * sqrt(2 * pi)) * h2(\x, \x*\l) : (
+      (\x <  3/\l) ? \e / (8 * sqrt(2 * pi)) * h3(\x, \x*\l) : (
+      sqrt(2/pi) * \e)))));
+  };
+}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+% to be used: \cdf(x)(mean)(variance)
+
+\DeclareMathOperator{\CDF}{cdf}
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\lstset{language=C++,
+                basicstyle=\tiny\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{gray}\ttfamily,
+                morecomment=[l][\color{gray}]{\#}
+}
+
+
+\thispagestyle{empty}
+
+
+\nin{\LARGE Problem Set 5 {\gr  }}\hfill{\bf Prof. Oke}
+
+\medskip\hrule\medskip
+
+\nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
+\hfill\textit{ 9.29.2025}}
+
+\bigskip
+
+\nin{\it \textbf{Due Tuesday, October 7, 2025 at 1:5900 PM as PDF uploaded on Canvas.}
+  Use this document as your template.
+    \textbf{Show as much work as possible in order to get FULL credit.}
+    There are 4 problems with a total of 15 points available.
+    \textbf{Important:} If you use Python for any probability computations, briefly write/include the statements you
+    used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
+}\\
+
+
+\section*{Problem 1 \textit{(4 points)}}
+
+Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statements. Use the boxes provided. Each response is worth 1 point.
+
+\begin{enumerate}[\bf (i)]
+
+% \item \hfill
+%   \begin{minipage}{.1\linewidth}
+%     \framebox(40,40){\gr  }
+%   \end{minipage}\quad
+%   \begin{minipage}{.85\linewidth}
+%     The household income of the full population of a certain country follows the lognormal distribution. The mean
+%     household income from a large random sample ($n = 10,000$) will also be lognormally distributed.
+%    \end{minipage}
+
+%   \smallskip
+
+\item \hfill
+  \begin{minipage}{.1\linewidth}
+    \framebox(40,40){\gr }
+  \end{minipage}\quad
+  \begin{minipage}{.85\linewidth}
+    If the natural logarithm of a random variable is normally distributed with parameters $\mu$ and $\sigma$, then the
+    variable is lognormally distributed with the same parameters.
+   \end{minipage}
+  
+  \smallskip
+
+  \item \hfill
+    \begin{minipage}{.1\linewidth}
+      \framebox(40,40){\gr  }
+    \end{minipage}\quad
+    \begin{minipage}{.85\linewidth}
+      The mean of a lognormal distribution is equal to or greater than its median.
+    \end{minipage}
+
+    \smallskip
+
+  \item \hfill
+  \begin{minipage}{.1\linewidth}
+    \framebox(40,40){\gr  }
+  \end{minipage}\quad
+  \begin{minipage}{.85\linewidth}
+    The mean of a exponentially-distributed random variable is equal to the inverse of its variance.
+   \end{minipage}
+
+  \smallskip
+  
+\item \hfill
+  \begin{minipage}{.1\linewidth}
+    \framebox(40,40){\gr  }
+  \end{minipage}\quad
+  \begin{minipage}{.85\linewidth}
+    A binomial distribution with sufficiently large $n$ can be approximated by a normal distribution with $\mu = np$.
+  \end{minipage}
+
+% \item \hfill
+%   \begin{minipage}{.1\linewidth}
+%     \framebox(40,40){\gr  }
+%   \end{minipage}\quad
+%   \begin{minipage}{.85\linewidth}
+%     The result that a binomial distribution with $n$ large enough (and $p$ reasonably less than 1 or greater than 0) can
+%     be approximated by a normal distribution with parameters $\mu = np$ and $\sigma^{2} = np(1-p) = npq$ can be derived
+%     via the Central Limit Theorem.  
+%   \end{minipage}
+
+%   \smallskip
+
+% \item \hfill
+%   \begin{minipage}{.1\linewidth}
+%     \framebox(40,40){ \gr }
+%   \end{minipage}\quad
+%   \begin{minipage}{.85\linewidth}
+%     The mean of a Poisson-distributed random variable is equal to its variance.
+%    \end{minipage}
+  
+%   \smallskip
+  
+
+% \item \hfill
+%   \begin{minipage}{.1\linewidth}
+%     \framebox(40,40){\gr  }
+%   \end{minipage}\quad
+%   \begin{minipage}{.85\linewidth}
+%     The standard error of the mean decreases as the sample size increases.
+%    \end{minipage}
+
+\end{enumerate}
+
+
+
+ \eject  
+
+ \section*{Problem 2: Normal and Lognormal Distributions \textit{(4 points)}}
+{\it Choose the option that best fills in the blank.}
+   \begin{enumerate}[\bf(a)]
+%    \item If an estimator is unbiased, then \underline{\hspace{60ex}}.\pts{1}
+
+%      \begin{enumerate}[\bf(i)]
+%      \item the estimator is equal to the true value.
+%      \item the estimator is usually close to the true value.
+%      \item the mean of the estimator is equal to the true value.
+%      \item the mean of the estimator is usually close to the true value.
+%      \end{enumerate}
+
+%    \item The property \pts{1} of an estimator associated with the bias converging to 0 as the sample size increases (or tends to infinity) is called \underline{\hspace{20ex}}.
+%      \begin{enumerate}[\bf(i)]
+%      \item consistency
+%      \item unbiasedness
+%      \item efficiency
+%      \item sufficiency
+%      \end{enumerate}
+
+   \item The figure below depicts the PDF of a standard normal distribution. What is the value of $z^{*}$ in the figure? \pts{1}
+
+ 
+        \begin{minipage}{.7\linewidth}
+                  \begin{tikzpicture}
+      \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$z$, ylabel=$f_X(x)$,,
+      height=3cm, width=10cm,
+      xtick={-1.96,0,1.96},
+      xticklabels={$-z^{*}$,$0$,$z^{*}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-5:5] {gauss(0,1)};
+      \addplot [gray, fill=gray!50, domain=-1.96:1.96] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=1.96:5] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-5:-1.96] {gauss(0,1)} \closedcycle;
+      \node (d) at (axis cs: 0,.15) {Area: $0.95$};
+      %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 3.15,.1) {\og Area: $0.025$};
+      \draw[thick,->] (c) -- (axis cs: 2.2, 0.005);
+      \node (e) at (axis cs: -3.15,.1) {\og Area: $0.025$};
+      \draw[thick,->] (e) -- (axis cs: -2.2, 0.005);
+      %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+      %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+
+        \end{minipage}
+        \begin{minipage}{.25\linewidth}
+               \begin{enumerate}[\bf(i)]
+     \item 0
+     \item 1.65
+     \item 1.96
+     \item 2.58
+     \end{enumerate}
+
+
+        \end{minipage} 
+      \item The figure below depicts the PDF of a standard normal distribution. What is the value of $z_{\alpha/2}$ in the figure? \pts{1}
+        
+        \begin{minipage}{.7\linewidth}
+                  \begin{tikzpicture}
+      \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$z$, ylabel=$f_X(x)$,,
+      height=3cm, width=10cm,
+      xtick={-1.44,0,1.44},
+      xticklabels={$z_{\alpha/2}$,$0$,$z_{(1-\alpha/2)}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-5:5] {gauss(0,1)};
+      \addplot [gray, fill=gray!50, domain=-1.44:1.44] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=1.44:5] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-5:-1.44] {gauss(0,1)} \closedcycle;
+      \node (d) at (axis cs: 0,.15) {Area: $0.85$};
+      %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 3.15,.1) {\og Area: $0.075$};
+      \draw[thick,->] (c) -- (axis cs: 1.8, 0.03);
+      \node (e) at (axis cs: -3.15,.1) {\og Area: $0.075$};
+      \draw[thick,->] (e) -- (axis cs: -1.8, 0.03);
+      %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+      %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+        \end{minipage}
+        \begin{minipage}{.25\linewidth}
+          
+          \begin{enumerate}[\bf(i)]
+            \item 0
+     \item $-1.04$
+     \item $-1.28$
+     \item $-1.44$
+     \end{enumerate} 
+        \end{minipage}        
+        
+  \bigskip
+
+\item  Find the area of the shaded portion in the figure below. \pts{2}
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[no marks,
+      samples = 200,
+      axis x line=center,
+      axis y line=center,
+      xtick={0,1,2,...,16},
+      ytick={0,0.02,0.04,0.06,0.08,0.10,0.12,0.14},
+      domain = 0.1:16.5,
+      xlabel={$x$},
+      ylabel={$f(x)$},
+      xlabel style={right},
+      ylabel style={above},
+      ymax=0.13,
+      xmax=16.5,
+      x post scale=1.5, 
+      enlargelimits=false,
+      grid=both,
+      yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/fixed zerofill,
+        /pgf/number format/precision=2
+      }
+      ]
+      \addplot+[draw=blue, ultra thick, opacity=1] {lognormal(2,1)};
+      \addplot+[draw=blue, thick, pattern=north east lines, opacity=0.7, domain=0.1:3] {lognormal(2,1)} \closedcycle;
+      \node at (axis cs: 6,0.105) {\small\bf Lognormal($\mu=2$, $\sigma=1$)};
+      %\node at (axis cs: 8,0.08) {\small Shaded: $P(X \le 3)$};
+    \end{axis}
+  \end{tikzpicture}
+  %\caption{Lognormal distribution with $\mu=2$, $\sigma=1$, showing area where $x \le 3$}
+\end{figure}
+
+  \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,40){\phantom{\Huge t}  }     
+  \end{minipage}
+ 
+   \end{enumerate}
+
+
+\eject
+
+\section*{Problem 3: Lognormal Distribution \textit{(5 points)}}
+% The mean, median and variance of lognormal variable $Y$ with parameters $\mu$ and $\sigma^{2}$ are given by:
+% \begin{align}
+%   \mathbb{E}(Y) &= e^{\lt(\mu + \fr{\sigma^{2}}{2}\rt)} \\[2mm]
+%   \text{Median}(Y)&= e^{\mu}\\[2mm]
+%   \mathbb{V}(Y) &= e^{\lt(\sigma^{2}-1\rt)}e^{\lt(2\mu + \sigma^{2}\rt)}
+% \end{align}
+Given that the lifetime in days of an electronic component is lognormally distributed with $\mu = 1.1$ and $\sigma = 0.5$.
+
+\begin{enumerate}[\bf (a)]
+ \item Find the median lifetime of the component. \pts{1}
+ \vspace{20ex}
+  
+\item Find the mean lifetime of the component. \pts{2}
+ \vspace{30ex}
+
+\item Find the probability that a component lasts between 3 and 5 days. \pts{3}
+  
+\end{enumerate}
+
+\eject
+
+
+\section*{Problem 4: Exponential Distribution I \textit{(4 points)}}
+\begin{enumerate}[\bf (a)]
+
+\item The \pts{1} graph below is the PDF of an exponentially distributed random variable $T$, given by $f_T(t) = \lambda
+  e^{-\la t}$. What is the value of the parameter $\la$?
+ 
+  \begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[no marks,
+        samples = 100,
+        axis x line=center,
+        axis y line=center,
+        xtick={0,1,2,...,8},
+        ytick={0,0.25,...,1.75},
+        domain = 0:8,
+        xlabel={$t$},
+        ylabel={$f_T(t)$},
+        xlabel style={right},
+        ylabel style={above },
+        ymax=1.8,
+        xmax=8.2,
+        x post scale=1.7, enlargelimits=false,
+        grid=both,
+        yticklabel style={
+          /pgf/number format/fixed,
+          /pgf/number format/fixed zerofill,
+          /pgf/number format/precision=2
+        }
+        ]
+        \addplot+[draw=black, ultra thick,opacity=1] {expo(1.5,x)}; %\addlegendentry{\large $\bm{f_{T_X}}$}
+        \addplot+[draw=black,thick, pattern=north east lines, opacity=1, domain=0:1] {expo(1.5,x)} \closedcycle; 
+      \end{axis}
+    \end{tikzpicture}
+  \end{figure}
+
+  \vspace{2ex}
+  \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,40){\phantom{\Huge t}  }     
+  \end{minipage}
+
+  \bigskip
+
+  \bigskip
+
+  \item What is the mean of $T$? \pts{1} 
+  
+  \vspace{2ex}
+    \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,40){\phantom{\Huge t}   }     
+  \end{minipage}
+
+  \bigskip
+  \bigskip
+  
+\item What is the probability represented by the shaded area in the figure in part \textbf{(i)}? \pts{2} (A numeric value
+  is expected here, not just a symbolic expression.)
+
+  \vspace{2ex}
+    \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,80){\phantom{\Huge t}   }     
+  \end{minipage}
+
+  
+    \end{enumerate}
+\eject
+
+\section*{Problem 5: Exponential Distribution II \quad {\it  (4 points)}}
+The delay time $T$ of a flight is exponentially distributed with $\la = 4$ (mean rate of occurrence per hour).
+
+
+\begin{enumerate}[(a)]
+\item What is the expectation of $T$? \pts{1}
+  \vspace{10ex}
+  % \begin{quote}
+  %   \gr
+  %   \begin{align*}
+  %     P(T \le 0.25) &= 1 - e^{- 3(0.25)} \\
+  %                   &= \boxed{0.528}
+  %   \end{align*}
+  % \end{quote}
+
+\item What is the standard deviation of $T$? \pts{1}
+  \vspace{10ex}
+
+  
+\item What is the probability that a flight is delayed by at least half an hour? \pts{2}
+  \vspace{25ex}
+  
+% \item Given that a family member has already waited for 1 hour, \pts{3}
+%   what is the probability that a certain flight will be further delayed by over an hour?
+%   \vspace{30ex}
+%   % \begin{quote}
+%   %   \gr
+%   %   Use the memoryless property:
+%   %   \begin{align*}
+%   %     P(T > 1|T>0.5) &= P(T>0.5) \\
+%   %                    &= e^{-3(0.5)} \\
+%   %                    &\approx \boxed{0.777}
+%   %   \end{align*}
+%   % \end{quote}
+\end{enumerate}
+
+\eject
+\section*{Problem 6: Binomial Distribution I \textit{(6 points)}}
+
+\textit{Show brief amount of work for partial credit if answer is wrong. Not required however for full credit. }
+
+\medskip
+
+ The PMF of a random variable $X$ is given in the figure below.
+  
+  \begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+      %\pgfplotsset{minor grid style = {line width = 0.1pt}}
+      %\pgfplotsset{major grid style = {line width = 0.4pt}}
+      \begin{axis}[
+        axis x line=center,
+        axis y line=center,
+        xtick={0,2,...,20},
+        ytick={0.02,0.04,...,.2},
+        domain = 0:20,
+        samples = 21,
+        xlabel={$x$},
+        ylabel={$P(X=x)$},
+        xlabel style={right},
+        ylabel style={above},
+        ymax=0.2,
+        xmax=20,
+        x post scale=1.4,
+        grid=both,
+        grid style={line width=.1pt, draw=gray!50!black},
+        yticklabel style={
+            /pgf/number format/fixed,
+            /pgf/number format/fixed zerofill,
+            /pgf/number format/precision=2
+          }
+       % minor tick num =2
+        ]
+        \addplot+[ycomb,black,ultra thick,opacity=.5,mark options={fill=black,scale=1.5,opacity=.8}] {binom(20,.4)}; %\addlegendentry{$\lambda = 1$}}
+      \end{axis}
+    \end{tikzpicture}
+  \end{figure}
+
+  \begin{enumerate}[\bf (a)]
+
+      \item   Use the figure to estimate the probability $P(X = 8)$. \pts{1}
+
+      \vspace{2ex}
+  \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,40){\phantom{\Huge t}  }     
+  \end{minipage}
+
+  \bigskip
+  
+  \item   Use the figure to estimate the probability $P(X = 8 \cup X = 10)$.\pts{2}  % Answer: 0.15
+
+      \vspace{2ex}
+  \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,40){\phantom{\Huge t}   }     
+  \end{minipage}
+
+  \bigskip
+
+    \item   Use the figure to estimate the probability $P(5 < X \le 8)$.\pts{2} 
+
+      \vspace{2ex}
+  \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,40){\phantom{\Huge t} }     
+  \end{minipage}
+
+  \bigskip
+
+\item If the PMF in the figure above is that of a Binomial distribution with $p=0.4$, what is $\mathbb{E}(X)$? \pts{1}
+
+  \vspace{2ex}
+  \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(390,40){\phantom{\Huge t}   }     
+  \end{minipage}
+
+  
+  
+  \end{enumerate}
+
+ 
+ \eject
+
+ \section*{Problem 7: Binomial Distribution II \textit{(8 points)}}
+75\% of all vehicles examined at an emissions inspection station pass.
+Successive vehicles pass or fail independently of one another. Let $X$ be the number of vehicles that pass the inspection out of the next $n=6$  vehicles inspected.
+
+\begin{enumerate}[\bf (a)]
+  \item What is the expectation of $X$, i.e. $\mathbb{E}[X]$? \pts{1}
+ \vspace{10ex}
+
+\item What is the standard deviation of $X$? \pts{1}
+ 
+  \vspace{10ex}
+
+\item Find the probability that all of the next six vehicles inspected pass, i.e. $P(X=6)$.\pts{1}
+
+  \vspace{20ex}
+
+  
+\item Find the probability that only two of the next six vehicles inspected pass, i.e. $P(X=2)$.\pts{2}
+ \vspace{25ex}
+  
+\item Find the probability that at least four of the next six vehicles inspected pass.\pts{3}
+  \vspace{35ex}
+
+  
+
+  
+\end{enumerate}
+
+\eject
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
