@@ -328,7 +328,7 @@ frame=tb,                         % Any extra options here
 
 \title[CEE 260/MIE 273 M3c: Lognormal \& Exponential]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
 Lecture M3c: Lognormal and Exponential Distributions}
-\date[\today]{\footnotesize \today}
+\date[September 30,2025]{\footnotesize September 30, 2025}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
   \begin{tikzpicture}[baseline=(current bounding box.center)]
@@ -581,11 +581,11 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \end{itemize}
 \end{frame}
 
-\section{The lognormal distribution}
+\section{Lognormal distribution}
 \begin{frame}
-  \frametitle{Lognormal distribution}
+  \frametitle{PDF of the lognormal distribution}
 
-  \begin{block}{PDF}\pause
+  \begin{block}{Definition}\pause
     A random variable $X$ that is lognormally distributed with the parameters $\mu$ and $\sigma$ (denoted $X\sim \mathcal{LN}(\mu,\sigma$))
     has the PDF: \pause
 
@@ -705,26 +705,27 @@ Lecture M3c: Lognormal and Exponential Distributions}
   \frametitle{Relationship between normal and lognormal distributions}\pause
   
   \begin{itemize}
-  \item A random variable $\rd X$ is {\rd lognormally} distributed with the \textbf{parameters} $\mu$ and $\sigma^{2}$ if $\bl \ln(X)$
-    is {\bl normally} distributed with the same parameters. \pause
+   \item If random variable $\bl X$ is {\bl normally} distributed with the parameters $\mu$ and $\sigma^{2}$, then:
+   \begin{itemize}
+    \item      $\mu = \mathbb{E}(X)$ and $\sigma^2 = \mathbb{V}(X)$ \pause
+\item     $\rd e^{X}$ is {\rd lognormally} distributed with the same parameters:\pause
     \begin{equation}
-    {\rd  X \sim \mathcal{LN}(\mu,\sigma^{2}) } \pause \implies {\bl \ln(X) \sim \mathcal{N}(\mu,\sigma^{2})}
+     {\bl  X \sim \mathcal{N}(\mu,\sigma)} \pause \implies \pause {\rd  e^{X} \sim \mathcal{LN}(\mu,\sigma)}
     \end{equation}
     \pause
-    
-  \item Conversely, a random variable $\bl X$ is {\bl normally} distributed with the parameters $\mu$ and $\sigma^{2}$ then
-    $\rd e^{X}$ is {\rd lognormally} distributed with the same parameters.\pause
-    \begin{equation}
-     {\bl  X \sim \mathcal{N}(\mu,\sigma^{2})} \pause \implies \pause {\rd  e^{X} \sim \mathcal{LN}(\mu,\sigma^{2})}
-    \end{equation}
+   \end{itemize}
+
+
     \pause
-    
-  \item If $X\sim \mathcal{N}(\mu, \sigma^{2})$, then $\mu = \mathbb{E}(X)$ and $\sigma^{2} = \mathbb{V}(X)$ \pause
 
-    \bigskip
-
-  \item However, $X\sim \mathcal{LN}(\mu, \sigma^{2})$, then $\mu = \mathbb{E}(\ln(X))$ and $\sigma^{2} = \mathbb{V}(\ln(X))$\pause
-
+  \item Conversely, if a random variable $\rd X$ is {\rd lognormally} distributed with the \textbf{parameters} $\mu$ and $\sigma$, then:
+  \begin{itemize}
+    \item     $\mu = \mathbb{E}(\ln(X))$ and $\sigma^{2} = \mathbb{V}(\ln(X))$\pause
+    \item $\bl \ln(X)$ is {\bl normally} distributed with the same parameters. \pause
+    \begin{equation}
+    {\rd  X \sim \mathcal{LN}(\mu,\sigma) } \pause \implies {\bl \ln(X) \sim \mathcal{N}(\mu,\sigma)}
+    \end{equation}
+  \end{itemize}    
   \end{itemize}
 
 \end{frame}
@@ -780,7 +781,7 @@ Lecture M3c: Lognormal and Exponential Distributions}
         \addplot[name path=TR2,Llognorm,opacity=0.5]    {L(x,{\Nmu +0.3},\Nsig)} ;
         \addplot[name path=TR3,Llognorm,opacity=0.25]   {L(x,{\Nmu +0.5},\Nsig)} ;
         \addlegendentry{$X \sim \mathcal{LN}(0,\Nsig^{2})$}
-        \node[circle,draw, green, thick] (c1) at (axis cs:{exp(\FZero)},{L({exp(\FZero)},\Nmu,\Nsig)}) {};
+        \node[circle,draw, red, thick] (c1) at (axis cs:{exp(\FZero)},{L({exp(\FZero)},\Nmu,\Nsig)}) {};
         \node at (3.7,0) {$x$};
      %  }
         % bottom left
@@ -791,7 +792,7 @@ Lecture M3c: Lognormal and Exponential Distributions}
         \addplot[name path=BL2,Lnorm,opacity=0.5]   ({N(x,{\Nmu+0.5},\Nsig)},{x}) ;
         \addplot[name path=BL3,Lnorm,opacity=0.25]  ({N(x,{\Nmu+1},\Nsig)},{x}) ;
         \addlegendentry{$Y \sim \mathcal{N}(0,\Nsig^{2})$}
-        \node[circle,draw,green,thick] (a1) at (axis cs:{N(\FZero,\Nmu,\Nsig)},\FZero) {};
+        \node[circle,draw,red,thick] (a1) at (axis cs:{N(\FZero,\Nmu,\Nsig)},\FZero) {};
         \node at (0.01,-1.3) {$y$};
      % }
      %bottom right
@@ -799,9 +800,9 @@ Lecture M3c: Lognormal and Exponential Distributions}
         xmin=0,
                     y coord trafo/.code={\pgfmathparse{-####1}},
                     y coord inv trafo/.code={\pgfmathparse{-####1}}]
-        \addplot[name path=BR1,Lexp] ({exp(x)},{x}) node[right,pos=0.5] {$x=e^{y}$};
+        \addplot[name path=BR1,Lexp] ({exp(x)},{x}) node[right,pos=0.5] {$x=e^{y}\implies y=\ln(x)$};
         \addlegendentry{$x=e^y$}
-        \node[circle,draw, green, thick] (b1) at (axis cs:{exp(\FZero)},\FZero) {};
+        \node[circle,draw, red, thick] (b1) at (axis cs:{exp(\FZero)},\FZero) {};
     \end{groupplot}
   
   
@@ -1205,7 +1206,7 @@ P(X > x_0) = 1 - P(X\le x_0) = \pause 0.95
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Example 2: (cont.)}
+  \frametitle{Example 2: Probability of incubation period (cont.)}\pause
 
   \begin{exampleblock}{Solution (using Python)}\pause
     We want to find: $P(X \le 7) = F(7)$; thus we use the \texttt{scipy.stats.lognorm.cdf} 
@@ -1232,7 +1233,7 @@ P(X > x_0) = 1 - P(X\le x_0) = \pause 0.95
 \end{frame}
 
 \begin{frame}
-  \frametitle{Example 2: (cont.)}\pause
+  \frametitle{Example 2: Probability of incubation period (cont.)}\pause
 
   \begin{exampleblock}{Solution (using tables)}
     \pause 
@@ -1425,7 +1426,7 @@ Note the following about the {\it arguments}\texttt{stats.lognorm.ppf} function:
 
 \end{frame}
 \begin{frame}
-  \frametitle{Exponential distribution}
+  \frametitle{PDF of exponential distribution}
   \pause
 
   \begin{block}{Definition}\pause
