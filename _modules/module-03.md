@@ -15,7 +15,7 @@ Thu, Sep 25
 : **NOTEBOOK 3B**{: .label .label-notebook}[Computing Normal Probabilities](https://colab.research.google.com/drive/1q6dtsA78AEVC3ujC3RjxmcmNC6HgYAkP?authuser=1#scrollTo=sLsHqFhtBb8S)  
 
 Tue, Sep 30
-: **LECTURE 3C**{: .label .label-blue }[Lognormal and Exponential Distributions](#)
+: **LECTURE 3C**{: .label .label-blue }[Lognormal and Exponential Distributions](/assets/lectures/M3-Probability-Distributions/M3c-Lognormal-Exponential-Distributions-Handout.pdf)
   :  [Echo360 Video](#)
 : **PROBLEM SET 5**{: .label .label-red}[PDF](/assets/problem-sets/PS5.pdf), [LaTeX](/assets/problem-sets/PS5.tex)  **(Due 10/7)** 
 : **LAB 5**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 10/7)**
