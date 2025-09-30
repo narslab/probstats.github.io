@@ -19,6 +19,7 @@ Tue, Sep 30
   :  [Echo360 Video](#)
 : **PROBLEM SET 5**{: .label .label-red}[PDF](/assets/problem-sets/PS5.pdf), [LaTeX](/assets/problem-sets/PS5.tex)  **(Due 10/7)** 
 : **LAB 5**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 10/7)**
+: **ACTIVITY 3C**{: .label .label-activity}[Student Arrival Intervals](#), [Sentence Word Lengths](#)
 
 Thu, Oct 2
 : **LECTURE 3D**{: .label .label-blue }[Binomial Distribution](#)
