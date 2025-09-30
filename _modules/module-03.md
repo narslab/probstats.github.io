@@ -19,7 +19,7 @@ Tue, Sep 30
   :  [Echo360 Video](#)
 : **PROBLEM SET 5**{: .label .label-red}[PDF](/assets/problem-sets/PS5.pdf), [LaTeX](/assets/problem-sets/PS5.tex)  **(Due 10/7)** 
 : **LAB 5**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 10/7)**
-: **ACTIVITY 3C**{: .label .label-activity}[Student Arrival Intervals](https://colab.research.google.com/drive/1qAR-O-jzhGqhWsheHCweYirYtyoVaSb6#scrollTo=Bsm8PvoOMNiZ), [Sentence Word Lengths](https://colab.research.google.com/drive/1zMYw05o2TYaS5JZ9mu-h-jSQvnEPH-ce#scrollTo=IvchcEhkOcYG)
+: **ACTIVITY 3C**{: .label .label-activity}[Student Arrival Intervals](https://colab.research.google.com/drive/1qAR-O-jzhGqhWsheHCweYirYtyoVaSb6?usp=sharing), [Sentence Word Lengths](https://colab.research.google.com/drive/1zMYw05o2TYaS5JZ9mu-h-jSQvnEPH-ce?usp=sharing)
 
 
 Thu, Oct 2
