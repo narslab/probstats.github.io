@@ -18,7 +18,7 @@ Tue, Sep 30
 : **LECTURE 3C**{: .label .label-blue }[Lognormal and Exponential Distributions](/assets/lectures/M3-Probability-Distributions/M3c-Lognormal-Exponential-Distributions-Handout.pdf)
   :  [Echo360 Video](#)
 : **PROBLEM SET 5**{: .label .label-red}[PDF](/assets/problem-sets/PS5.pdf), [LaTeX](/assets/problem-sets/PS5.tex)  **(Due 10/7)** 
-: **LAB 5**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 10/7)**
+: **LAB 5**{: .label .label-orange}[Lognormal and Exponential Distributions](https://colab.research.google.com/drive/1727IqavDdQUcwwVdrBBS1jgLWVCR69pc?usp=sharing) **(Due 10/9)**
 : **ACTIVITY 3C**{: .label .label-activity}[Student Arrival Intervals](https://colab.research.google.com/drive/1qAR-O-jzhGqhWsheHCweYirYtyoVaSb6?usp=sharing), [Sentence Word Lengths](https://colab.research.google.com/drive/1zMYw05o2TYaS5JZ9mu-h-jSQvnEPH-ce?usp=sharing)
 
 
