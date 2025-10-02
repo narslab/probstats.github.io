@@ -23,7 +23,7 @@ Tue, Sep 30
 
 
 Thu, Oct 2
-: **LECTURE 3D**{: .label .label-blue }[Binomial Distribution](#)
+: **LECTURE 3D**{: .label .label-blue }[Binomial Distribution](/assets/lectures/M3-Probability-Distributions/M3d-Binomial-Distribution-Handout.pdf)
   :  [Echo360 Video](#)
 
 

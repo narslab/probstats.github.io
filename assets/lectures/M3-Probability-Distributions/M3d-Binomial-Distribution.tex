@@ -121,7 +121,7 @@ eprint=false]{biblatex}
 \makeatother
 
 %=== GRAPHICS PATH ===========
-\graphicspath{{./images/}}
+\graphicspath{{./m3-images/}}
 % Marginpar width
 %Marginpar width
 %\setlength{\marginparsep}{.02in}
@@ -203,37 +203,37 @@ eprint=false]{biblatex}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
 
-%\usepackage{listings}
+\usepackage{listings}
 
 % Python style for highlighting
-% \newcommand\pythonstyle{\lstset{
-% language=Python,
-% basicstyle=\footnotesize\ttm,
-% otherkeywords={self},             % Add keywords here
-% keywordstyle=\footnotesize\ttb\color{deepblue},
-% emph={MyClass,__init__},          % Custom highlighting
-% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
-% stringstyle=\color{deepgreen},
-% frame=tb,                         % Any extra options here
-    % showstringspaces=false            % 
-% }}
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\footnotesize\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\footnotesize\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+    showstringspaces=false            % 
+}}
 
 % % Python environment
-% \lstnewenvironment{python}[1][]
-% {
-% \pythonstyle
-% \lstset{#1}
-% }
-% {}
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
 
 % % Python for external files
-% \newcommand\pythonexternal[2][]{{
-% \pythonstyle
-% \lstinputlisting[#1]{#2}}}
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
 
 % Python for inline
 % 
-% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 
 
 \newcommand{\osn}{\oldstylenums}
@@ -315,8 +315,8 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 M3d: Binomial Dist.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
-Lecture M3d: The  Binomial Distribution}
+\title[CEE 260/MIE 273 Lecture 3D: Binomial Dist.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture 3D: The  Binomial Distribution}
 \date[\today]{\footnotesize \today}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
@@ -395,7 +395,9 @@ Lecture M3d: The  Binomial Distribution}
   \frametitle{Example 1: Engineering majors}
   \pause
 
-  40\% of the students in a university are engineering majors. If four students (A, B, C, D) are chosen at random, what is the probability that exactly one student will be an engineering major?
+  40\% of the students in a university are MIE majors. 
+  If four students (A, B, C, D) are chosen at random, 
+  what is the probability that exactly one student will be an MIE major?
 
 
   \pause
@@ -403,11 +405,11 @@ Lecture M3d: The  Binomial Distribution}
   \begin{exampleblock}{Solution}
     \pause
 
-    In one scenario, student $A$ is an engineering major, while the other 3 are not.
+    In one scenario, student $A$ is an MIE major, while the other 3 are not.
     \begin{eqnarray*}
-     && P(A = \text{engineering}, B= \text{not}, C=\text{not}, D=\text{not}) 
+     && P(A = \text{MIE}, B= \text{not}, C=\text{not}, D=\text{not}) 
       \\ \pause
-&=&     P(A = \text{engineering}) \times P( B= \text{not}) \times P(C=\text{not}) \times P(D=\text{not})   \\ \pause
+&=&     P(A = \text{MIE}) \times P( B= \text{not}) \times P(C=\text{not}) \times P(D=\text{not})   \\ \pause
                                                                            &=& 0.4 (0.6) (0.6) (0.6)  \pause
                                                                            = 0.4 (0.6^{3}) \\ \pause
                                                                            &=& \boxed{0.0864}
@@ -418,7 +420,7 @@ Lecture M3d: The  Binomial Distribution}
 
     \medskip
 
-    {\rd \bf No.} There are 3 others: each of the students $B$, $C$ or $D$ could also be the engineering major. Thus, the total required probability is \pause     $ 4 \times (0.4)(0.6^{3}) = \pause 0.346$
+    {\rd \bf No.} There are 3 others: each of the students $B$, $C$ or $D$ could also be the MIE major. Thus, the total required probability is \pause     $ 4 \times (0.4)(0.6^{3}) = \pause 0.346$
   \end{exampleblock}
 \end{frame}
 
@@ -426,8 +428,8 @@ Lecture M3d: The  Binomial Distribution}
   \frametitle{Example 1: Engineering majors (cont.)}
   \pause
 
-  40\% of the students in a university are engineering majors. If four students (A, B, C, D) are chosen at random, now find
-  the probability that exactly two students will be an engineering major?
+  40\% of the students in a university are MIE majors. If four students (A, B, C, D) are chosen at random, now find
+  the probability that exactly two students will be an MIE major?
 
 
   \pause
@@ -453,8 +455,8 @@ Lecture M3d: The  Binomial Distribution}
     Each scenario has the same \textbf{\rd probability}: $(0.4)(0.4)(0.6)(0.6) = \pause 0.058$
 
     \pause
-    
-    The probability of having 2 eng. majors in a random group of 4 students is: \pause
+
+    The probability of having 2 MIE majors in a random group of 4 students is: \pause
     \vspace{-2ex}
     \begin{equation*}
       {\bl {4\choose 2}} {\rd  (0.4)^{2} (0.6)^{2}} = \pause {\bl 6} \times {\rd (0.058)} = \pause \boxed{0.346}
@@ -511,7 +513,7 @@ Lecture M3d: The  Binomial Distribution}
 
   \begin{itemize}[<+->]
   \item The symbol ``$\sim$'' is shorthand for ``distributed as''
-  \item $B()$ is the typical notation for a binomial distribution
+  \item $\text{Bin}(n,p)$ is the typical notation for a binomial distribution
   \end{itemize}
   \end{block}
   \end{frame}
@@ -551,8 +553,8 @@ Lecture M3d: The  Binomial Distribution}
 \begin{frame}
   \frametitle{Example 2: Road graders}\pause
   \begin{minipage}{.5\linewidth}
-  Five road graders are used in the construction of a highway project.\pause
-  The probability that a grader will malfunction within 900 hrs is 0.0594.\pause
+  Five road graders are used in the construction of a highway project. \pause
+  The probability that a grader will malfunction within 900 hrs is 0.0594. \pause
   Assuming statistical independence among the
     conditions of the machines, \pause evaluate the probability that two of the five machines
     will malfunction in less than 900 hr of operation.
@@ -597,81 +599,83 @@ Lecture M3d: The  Binomial Distribution}
 \end{frame}
 
 \begin{frame}
+  \frametitle{CDF of a binomial distribution (visualization)}
+  \pause
+  
+  \begin{tikzpicture}[
+    declare function={binom(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);}
+    ]
+    \begin{axis}[
+      xlabel=$x$,
+      ylabel=$F_X(x)$,
+      xlabel style={right},
+      ylabel style={above left},
+      xtick={0,2,4,6,8,10},
+      ytick={0,0.2,0.4,0.6,0.8,1.0},
+      axis x line=center,
+      axis y line=center,
+      xmax = 11,
+      ymax = 1.1,
+      ymin = -0.05,
+      x post scale=1.2,
+      legend style={at={(1.25, 1)},anchor=north east},
+      yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/fixed zerofill,
+        /pgf/number format/precision=1
+      }
+      ]
+      
+      % Calculate cumulative probabilities manually for n=10, p=0.3
+      \only<2->{\addplot+[jump mark left, very thick, blue] coordinates {
+        (0, 0.028) (1, 0.149) (2, 0.383) (3, 0.650) (4, 0.850) 
+        (5, 0.953) (6, 0.989) (7, 0.998) (8, 1.000) (9, 1.000) (10, 1.000)
+      }; \addlegendentry{$B(n=10,p=0.3)$}}
+      
+      \only<3->{\addplot+[jump mark left, very thick, red] coordinates {
+        (0, 0.001) (1, 0.011) (2, 0.055) (3, 0.172) (4, 0.377) 
+        (5, 0.623) (6, 0.828) (7, 0.945) (8, 0.989) (9, 0.999) (10, 1.000)
+      }; \addlegendentry{$B(n=10,p=0.5)$}}
+      
+      \only<4->{\addplot+[jump mark left, very thick, green!60!black] coordinates {
+        (0, 0.000) (1, 0.000) (2, 0.002) (3, 0.011) (4, 0.047) 
+        (5, 0.150) (6, 0.350) (7, 0.617) (8, 0.851) (9, 0.972) (10, 1.000)
+      }; \addlegendentry{$B(n=10,p=0.7)$}}
+    \end{axis}
+  \end{tikzpicture}
+  
+\end{frame}
+
+\begin{frame}
   \frametitle{Example 3: Road graders revisited}
   \pause
 
     \begin{minipage}{.5\linewidth}
-  Five road graders are used in the construction of a highway project.
-  The probability that a grader will malfunction within 900 hrs is 0.0594.
+  5 road graders are used in the construction of a highway project.
+  The probability that a grader will malfunction within 900hrs is 0.0594.
   Assuming statistical independence among the
-    conditions of the machines, evaluate the probability \textbf{no more than two} of the five machines
-    will malfunction in less than 900 hr of operation.
+    conditions of the machines, evaluate the prob.\ \textbf{no more than two} of the 5 machines
+    will malfunction within 900hrs of operation.
   \end{minipage}\pause
   \begin{minipage}{.45\linewidth}
   \begin{center}
     \includegraphics[width=.9\textwidth]{grader}
   \end{center}
 \end{minipage}
-  \medskip
       \pause
-
-    Parameters: $n = 5, x = 2, p = 0.0594$. \pause
-  
     \begin{eqnarray*}
-      P(X \le x) &=& F_{X}(2) = \pause \sum_{k=0}^{2}{n \choose k}p^k (1-p)^{n-k}  \\\pause
+      P(X \le x) &=& F_{X}(2) = \pause \sum_{k=0}^{2}{n \choose k}p^k (1-p)^{n-k},  \quad \pause
+      n = 5, x = 2, p = 0.0594 \\\pause
       P(X\le 2) &=&  {5\choose 0}0.0594^0(0.9406)^{5} \pause + {5\choose 1}0.0594^1(0.9406)^{4} \pause
-                    + {5\choose 2}0.0594^2(0.9406)^{3} \\ \pause
+                    \\\pause
+                    & & \quad + {5\choose 2}0.0594^2(0.9406)^{3} \\ \pause
                &=& (1)(1)(0.9406)^{5} + (5)(0.0594)(0.9406)^{5} + (10)(0.0594)^{2}(0.9406)^{3} \\ \pause
                &=& \boxed{\bf \gr 0.998}
     \end{eqnarray*}
     
 \end{frame}
-% \begin{frame}
-%   \frametitle{CDF of binomial distribution (cont.)}
-%   \pause
-
-%  { \centering
-%   \begin{tikzpicture}[    declare function={binom(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);}]
-% \begin{axis}[
-%     clip=false,
-%     jump mark left,
-%     ymin=0,ymax=1,
-%     xmin=0, xmax=5,
-%     every axis plot/.style={very thick},
-%     discontinuous,
-%     table/create on use/cumulative distribution/.style={
-%         create col/expr={\pgfmathaccuma + \thisrow{f(x)}}   
-%     }
-% ]
-% \addplot [red] table [y=cumulative distribution]{
-% x f(x)
-% 1 {binom(x,1,0.2)}
-% 2 {binom(x,2,0.2)}
-% 3 {binom(x,3,0.2)}
-% 4 {binom(x,4,0.2)}
-% 5 {binom(x,5,0.2)}
-% 6 {binom(x,6,0.2)}
-% 7 {binom(x,7,0.2)}
-% 8 {binom(x,8,0.2)}
-% 9 {binom(x,9,0.2)}
-% 10 {binom(x,10,0.2)}
-% 11 {binom(x,11,0.2)}
-% 12 {binom(x,12,0.2)}
-% 13 {binom(x,13,0.2)}
-% 14 {binom(x,14,0.2)}
-% 15 {binom(x,15,0.2)}
-% 16 {binom(x,16,0.2)}
-% 17 {binom(x,17,0.2)}
-% 18 {binom(x,18,0.2)}
-% 19 {binom(x,19,0.2)}
-% 20 {binom(x,20,0.2)}
-% };
-% \end{axis}
-% \end{tikzpicture}
-% \par}
 
 
-% \end{frame}
 
 \section{Mean and variance}
 
@@ -684,12 +688,12 @@ Lecture M3d: The  Binomial Distribution}
   
   \begin{equation}
     \label{eq:30}
-    \mu_X = E(X) = np
+    \mu_X = \mathbb{E}(X) = np
   \end{equation}
   \pause
 
   \begin{proof}
-    Let $X_i = 1$ if an event occurs on the $i$-th trial in a Bernoulli. \pause
+    Let $X_i = 1$ if an event occurs on the $i$-th trial in a Bernoulli sequence. \pause
     Then the number $X$ of occurrences is:      $X = \sum_{i=1}^n X_i$.
     
     \pause
@@ -697,13 +701,13 @@ Lecture M3d: The  Binomial Distribution}
     The expectation is linear in $X$, thus:
     \begin{equation}
       \label{eq:32}
-      E(X) = E\lt(\sum_{i=1}^n X_i\rt) = \sum_{i=1}^n E(X_i)
+      \mathbb{E}(X) = \mathbb{E}\lt(\sum_{i=1}^n X_i\rt) = \sum_{i=1}^n \mathbb{E}(X_i)
     \end{equation}
-
-    Since $E(X_i) = p$, then:
+  \pause
+    Since $\mathbb{E}(X_i) = p$, then:
     \begin{equation}
       \label{eq:33}
-      E(X) = np
+      \mathbb{E}(X) = \sum_{i=1}^n \mathbb{E}(X_i) = \sum_{i=1}^n p = np
     \end{equation}
   \end{proof}
 
@@ -719,15 +723,15 @@ Lecture M3d: The  Binomial Distribution}
 
   \begin{equation}
     \label{eq:34}
-    Var(X) = np(1-p) = npq
+    \mathbb{V}(X) = np(1-p) = npq
   \end{equation}
 
   where $q = 1-p$.
   
   \pause
   \begin{block}{Sketch of proof}
-    You can show that variance of a single trial $Var(X_i) = E(X_i^2) - E(X_i)^2 = p - p^2 = p(1-p) = pq$. \pause
-    And $Var(X)$ follows.
+    You can show that variance of a single trial $\mathbb{V}(X_i) = \mathbb{E}(X_i^2) - \mathbb{E}(X_i)^2 = p - p^2 = p(1-p) = pq$. \pause
+    And $\mathbb{V}(X)$ follows.
   \end{block}
   
 \end{frame}
@@ -747,7 +751,7 @@ Lecture M3d: The  Binomial Distribution}
   \end{enumerate}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Example 1: Revisited (cont.)}
 
   \pause
@@ -767,31 +771,57 @@ Lecture M3d: The  Binomial Distribution}
              &=& 6(0.16)(0.36) \\\pause
              &=&\boxed{0.346}
     \end{eqnarray*}
+
   \end{enumerate}
+      \pause
+    In Python:
+    \begin{python}
+from scipy.stats import binom
+n = 4   
+p = 0.4 
+x = 2
+prob = binom.pmf(x, n, p)
+print(prob)
+    \end{python}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Example 1: Revisited (cont.)}
 
   \pause
 
   \begin{enumerate}[(a)]\setcounter{enumi}{3}
   \item Find the probability that at least 3 randomly selected students will be engineering majors.\vfill
-  \end{enumerate}
-  \vfill
   
+\end{enumerate}
+  \pause
+  We want to find $P(X\ge3) = 1 - P(X \le 2) = 1 - F_X(2)$ \pause
+  In Python:
+  \begin{python}
+from scipy.stats import binom
+n = 4   
+p = 0.4
+x = 3
+prob = 1 - binom.cdf(x-1, n, p)  # P(X >= 3)
+print(prob)
+  \end{python}
+  
+
 \end{frame}
 \begin{frame}
-  \frametitle{Relationship between binomial and normal distributions (cont.)} \pause
+  \frametitle{Relationship between binomial and normal distributions} \pause
   Consider the distribution $B(n=20,p=0.6)$. \pause
 
-  We see that it can be approximated by $\mathcal{N}(\mu = np, \sigma^2 = npq)$. \pause
+  We see that it can be approximated by $\mathcal{N}(\mu = np, \sigma = \sqrt{npq})$, where $q = 1-p$. 
+  \pause
+
+  \bigskip
+
 
   \begin{tikzpicture}[
     declare function={binom(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);}
     ]
-    \begin{axis}[
-      samples at={0,...,20},
+    \begin{axis}[      
       xlabel=$x$,
       ylabel=$P(x)$,
       xlabel style={right},
@@ -811,9 +841,10 @@ Lecture M3d: The  Binomial Distribution}
         /pgf/number format/precision=2
       }
       ]
-      \only<4->{\addplot+[ycomb,opacity=.5] {binom(x,20,0.6)}; \addlegendentry{$B(n=20,p=0.6)$}}
-      \only<5->{\addplot+[thick,samples=100,opacity=.5,no markers] {gauss(12,2.19))};}
-      \only<6->{\addlegendentry{$N(\mu =12, \sigma^2=4.8)$};}
+      \only<4->{\addplot+[samples at={0,...,20},ycomb,opacity=1] {binom(x,20,0.6)}; 
+          \addlegendentry{$\text{Bin}(n=20,p=0.6)$}}
+      \only<5->{\addplot+[thick,samples=200,domain=0:22,opacity=.8,no markers] {gauss(12,2.19)};}
+      \only<6->{\addlegendentry{$\mathcal{N}(\mu =12, \sigma=2.19)$};}
     \end{axis}
   \end{tikzpicture}
 
@@ -821,16 +852,33 @@ Lecture M3d: The  Binomial Distribution}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Relationship between binomial and normal distributions}
-  If a binomial PMF is not too skewed, then $X\sim \text{Bin}(n,p)$ is approximately normally distributed with $\mu = np$ and $\sigma^2 = npq$.
+  \frametitle{Relationship between binomial and normal (cont.)}
+  If a binomial PMF is not too skewed, then $X\sim \text{Bin}(n,p)$ is approximately normally distributed with $\mu = np$ and $\sigma = \sqrt{npq}$.
 
   \pause
+
+  To check for normality, we can use the following rules of thumb:
+
+  \begin{eqnarray}
+    np &\ge& 10\\
+    nq &\ge& 10
+  \end{eqnarray}
 
   Thus:
   \begin{equation}
     \label{eq:36}
-    P(X\le x) \approx \Phi\lt( \fr{x + 0.5 -np}{\sqrt{np(1-p)}}\rt) \quad np \ge 10; n(1-p) \ge 10
+    P(X\le x) \approx \Phi\lt( \fr{x + 0.5 -np}{\sqrt{npq}}\rt) \quad np \ge 10; nq \ge 10
   \end{equation}
+  \pause
+  and
+  \begin{equation}
+    \label{eq:37}
+    P(X\ge x) \approx 1 - \Phi\lt( \fr{x - 0.5 -np}{\sqrt{npq}}\rt) \quad np \ge 10; nq \ge 10
+  \end{equation}
+  \pause
+  where $\Phi(z)$ is the CDF of the standard normal distribution \pause and $\pm 0.5$ is the 
+  \textbf{continuity correction}.
+
 \end{frame}
 
 % \section{Poisson distribution}
