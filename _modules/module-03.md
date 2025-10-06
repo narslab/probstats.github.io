@@ -25,7 +25,7 @@ Tue, Sep 30
 Thu, Oct 2
 : **LECTURE 3D**{: .label .label-blue }[Binomial Distribution](/assets/lectures/M3-Probability-Distributions/M3d-Binomial-Distribution-Handout.pdf)
   :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-10-02T13:00:00.000_2025-10-02T14:15:00.000/classroom)
-
+: **ACTIVITY 3D**{: .label .label-activity}[Prob. of 1 MIE student](https://docs.google.com/forms/d/e/1FAIpQLSed-fvO6JDD4wTrJZgJR_fZxKWXiOn7uBzykFTqSLIsBnMCOg/viewform?usp=dialog)
 
 Tue, Oct 7
 : **LECTURE 3E**{: .label .label-blue }[Poisson Distribution](/assets/lectures/M3-Probability-Distributions/M3e-Poisson-Distribution-Handout.pdf)
