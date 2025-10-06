@@ -31,7 +31,3 @@ Tue, Oct 7
 : **LECTURE 3E**{: .label .label-blue }[Poisson Distribution](/assets/lectures/M3-Probability-Distributions/M3e-Poisson-Distribution-Handout.pdf)
   :  [Echo360 Video](#)
 : **ACTIVITY 3E**{: .label .label-activity}[Lightning Strikes](https://claude.ai/public/artifacts/9fb8b17d-d00e-4b5c-9076-2a4231835f1c?fullscreen=true)
-
-Thu, Oct 9
-: **LECTURE 3F**{: .label .label-blue }[Review/Applications](#)
-  :  [Echo360 Video](#)
