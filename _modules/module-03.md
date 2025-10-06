@@ -16,7 +16,7 @@ Thu, Sep 25
 
 Tue, Sep 30
 : **LECTURE 3C**{: .label .label-blue }[Lognormal and Exponential Distributions](/assets/lectures/M3-Probability-Distributions/M3c-Lognormal-Exponential-Distributions-Handout.pdf)
-  :  [Echo360 Video](#)
+  :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-09-30T13:00:00.000_2025-09-30T14:15:00.000/classroom)
 : **PROBLEM SET 5**{: .label .label-red}[PDF](/assets/problem-sets/PS5.pdf), [LaTeX](/assets/problem-sets/PS5.tex)  **(Due 10/7)** 
 : **LAB 5**{: .label .label-orange}[Lognormal and Exponential Distributions](https://colab.research.google.com/drive/1727IqavDdQUcwwVdrBBS1jgLWVCR69pc?usp=sharing) **(Due 10/9)**
 : **ACTIVITY 3C**{: .label .label-activity}[Student Arrival Intervals](https://colab.research.google.com/drive/1qAR-O-jzhGqhWsheHCweYirYtyoVaSb6?usp=sharing), [Sentence Word Lengths](https://colab.research.google.com/drive/1zMYw05o2TYaS5JZ9mu-h-jSQvnEPH-ce?usp=sharing)
@@ -24,12 +24,13 @@ Tue, Sep 30
 
 Thu, Oct 2
 : **LECTURE 3D**{: .label .label-blue }[Binomial Distribution](/assets/lectures/M3-Probability-Distributions/M3d-Binomial-Distribution-Handout.pdf)
-  :  [Echo360 Video](#)
+  :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-10-02T13:00:00.000_2025-10-02T14:15:00.000/classroom)
 
 
 Tue, Oct 7
-: **LECTURE 3E**{: .label .label-blue }[Poisson Distribution](#)
+: **LECTURE 3E**{: .label .label-blue }[Poisson Distribution](/assets/lectures/M3-Probability-Distributions/M3e-Poisson-Distribution-Handout.pdf)
   :  [Echo360 Video](#)
+: **ACTIVITY 3E**{: .label .label-activity}[Lightning Strikes](https://claude.ai/public/artifacts/9fb8b17d-d00e-4b5c-9076-2a4231835f1c?fullscreen=true)
 
 Thu, Oct 9
 : **LECTURE 3F**{: .label .label-blue }[Review/Applications](#)

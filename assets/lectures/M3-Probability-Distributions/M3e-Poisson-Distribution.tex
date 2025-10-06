@@ -122,7 +122,7 @@ eprint=false]{biblatex}
 \makeatother
 
 %=== GRAPHICS PATH ===========
-\graphicspath{{./images/}}
+\graphicspath{{./m3-images/}}
 % Marginpar width
 %Marginpar width
 %\setlength{\marginparsep}{.02in}
@@ -196,45 +196,46 @@ eprint=false]{biblatex}
 %%% FORMAT PYTHON CODE
 %\usepackage{listings}
 % Default fixed font does not support bold face
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
 
 % Custom colors
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
 
-%\usepackage{listings}
+\usepackage{listings}
 
-% Python style for highlighting
-% \newcommand\pythonstyle{\lstset{
-% language=Python,
-% basicstyle=\footnotesize\ttm,
-% otherkeywords={self},             % Add keywords here
-% keywordstyle=\footnotesize\ttb\color{deepblue},
-% emph={MyClass,__init__},          % Custom highlighting
-% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
-% stringstyle=\color{deepgreen},
-% frame=tb,                         % Any extra options here
-    % showstringspaces=false            % 
-% }}
+% % Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\normalsize\ttm\color{blue},       % Changed from \footnotesize to \normalsize
+otherkeywords={self},             % Add keywords here
+keywordstyle=\normalsize\ttb\color{purple},  % Changed from \footnotesize
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\normalsize\ttb\color{deepred},      % Changed from \footnotesize
+stringstyle=\color{deepgreen},
+commentstyle=\color{deepgreen},   % Make comments green
+frame=tb,                         % Any extra options here
+backgroundcolor=\color{gray!20},  % Added gray background
+showstringspaces=false            % 
+}}
 
-% % Python environment
-% \lstnewenvironment{python}[1][]
-% {
-% \pythonstyle
-% \lstset{#1}
-% }
-% {}
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
 
 % % Python for external files
-% \newcommand\pythonexternal[2][]{{
-% \pythonstyle
-% \lstinputlisting[#1]{#2}}}
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
 
-% Python for inline
-% 
-% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+% % Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 
 
 \newcommand{\osn}{\oldstylenums}
@@ -318,9 +319,9 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 3e: Poisson Dist.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
-Lecture M3e: The Poisson Distribution}
-\date[\today]{\footnotesize \today}
+\title[CEE 260/MIE 273 3E: Poisson Dist.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture 3E: The Poisson Distribution}
+\date[October 7, 2025]{\footnotesize October 7, 2025}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
   \begin{tikzpicture}[baseline=(current bounding box.center)]
@@ -443,7 +444,7 @@ Lecture M3e: The Poisson Distribution}
 
     \end{itemize}
 
-  \item Binomial distribution $X\sim B(n,p)$:
+  \item Binomial distribution $X\sim \text{Bin}(n,p)$:
     \medskip
     
     \begin{itemize}[<+->]
@@ -582,27 +583,54 @@ Lecture M3e: The Poisson Distribution}
 \end{center}
 \end{frame}
 
-% \begin{frame}
-%   \frametitle{PMF and CDF}
-%   \pause
 
-%   \begin{center}
-%     \begin{tikzpicture}
-%     \begin{axis}[
-%         width=0.98\textwidth,
-%         legend pos=north west, 
-%         grid=major,
-%       ]
-%       \addplot[blue, ycomb, mark=*] table [x=k, y=pdf, col sep=comma]{poisson_distribution_data.csv};
-%       \addplot[red, jump mark left, mark=*] table [x=k, y=cdf, col sep=comma]{poisson_distribution_data.csv};
-%       \legend{
-%         Poisson PDF with \(\lambda = 4\)\\
-%         Poisson CDF \\
-%       }
-%     \end{axis}
-%   \end{tikzpicture}
-%   \end{center}
-% \end{frame}
+\begin{frame}
+  \frametitle{Poisson distribution: CDF}
+  \pause
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+        axis x line=center,
+        axis y line=center,
+        xtick={0,2,...,19},
+        ytick={0.2,0.4,...,1.0},
+        domain = 0:18,
+        samples = 19,
+        xlabel={$x$},
+        ylabel={$P(X\leq x)$},
+        xlabel style={right},
+        ylabel style={above left},
+        ymax=1.05,
+        xmax=20,
+        grid=major,
+        x post scale=1.4,
+        legend style={at={(0.98,0.3)},anchor=north east}
+        ]
+        \addplot+[thick,blue,mark=*] coordinates {
+          (0,0.3679) (1,0.7358) (2,0.9197) (3,0.9810) (4,0.9963) 
+          (5,0.9994) (6,0.9999) (7,1.0000) (8,1.0000) (9,1.0000)
+          (10,1.0000) (11,1.0000) (12,1.0000) (13,1.0000) (14,1.0000)
+          (15,1.0000) (16,1.0000) (17,1.0000) (18,1.0000)
+        };
+        \addlegendentry{$\lambda = 1$}
+        \addplot+[thick,red,mark=*] coordinates {
+          (0,0.0067) (1,0.0404) (2,0.1247) (3,0.2650) (4,0.4405) 
+          (5,0.6160) (6,0.7622) (7,0.8666) (8,0.9319) (9,0.9682)
+          (10,0.9863) (11,0.9945) (12,0.9980) (13,0.9993) (14,0.9998)
+          (15,0.9999) (16,1.0000) (17,1.0000) (18,1.0000)
+        };
+        \addlegendentry{$\lambda = 5$}
+        \addplot+[thick,brown,mark=*] coordinates {
+          (0,0.0001) (1,0.0012) (2,0.0062) (3,0.0212) (4,0.0550) 
+          (5,0.1157) (6,0.2068) (7,0.3239) (8,0.4557) (9,0.5874)
+          (10,0.7060) (11,0.8030) (12,0.8758) (13,0.9261) (14,0.9585)
+          (15,0.9780) (16,0.9889) (17,0.9947) (18,0.9976)
+        };
+        \addlegendentry{$\lambda = 9$}
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
 
 \begin{frame}
   \frametitle{Mean and variance}
@@ -622,33 +650,43 @@ Lecture M3e: The Poisson Distribution}
     {\rd The standard deviation is \pause $\sigma(X) = \sqrt{\mathbb{V}(X)} = \sqrt{\la}$}
   \end{frame}
   
-\begin{frame}
-  \frametitle{Computing Poisson probabilities in Matlab/Python}
+\begin{frame}[fragile]
+  \frametitle{Computing Poisson probabilities in Python}
   
-\begin{alertblock}{Matlab}
-  \begin{itemize}[<+->]
-  \item In MATLAB, you compute the PMF $P(X=x)$ using \texttt{poisspdf(x, lambda)}
+% \begin{alertblock}{Matlab}
+%   \begin{itemize}[<+->]
+%   \item In MATLAB, you compute the PMF $P(X=x)$ using \texttt{poisspdf(x, lambda)}
      
-  \item Similarly, you can find the CDF  $P(X\le x)$ as \texttt{poisscdf(x, lambda)}
+%   \item Similarly, you can find the CDF  $P(X\le x)$ as \texttt{poisscdf(x, lambda)}
     
-  \item Note that $P(X > x)$ is obtained by \\\pause
-    \texttt{poisscdf(x, lambda, `upper')} $\equiv 1 -$  \texttt{poisscdf(x, lambda)}
- \end{itemize}
-\end{alertblock}
+%   \item Note that $P(X > x)$ is obtained by \\\pause
+%     \texttt{poisscdf(x, lambda, `upper')} $\equiv 1 -$  \texttt{poisscdf(x, lambda)}
+%  \end{itemize}
+% \end{alertblock}
 
 \pause
 
-\begin{alertblock}{Python}
+%\begin{alertblock}{Python}
   \begin{itemize}[<+->]
-  \item Load \texttt{from scipy.stats import poisson}
-  \item Compute the PMF $P(X=x)$ using \texttt{poisson.pmf(x, lambda)}
-     
-  \item Similarly, you can find the CDF  $P(X\le x)$ as \texttt{poisson.cdf(x, lambda)}
+  \item Load: 
+  \pythoninline{from scipy.stats import poisson}
+  
+  \item Compute the PMF $P(X=x)$ using \pythoninline{poisson.pmf(x, lambda)}
+
+  \item Similarly, you can find the CDF  $P(X\le x)$ as \pythoninline{poisson.cdf(x, lambda)}
     
   \item Note that $P(X > x)$ (survival function) is obtained by \\\pause
-    \texttt{sf(x, lambda)} $\equiv 1 -$  \texttt{poisson.cdf(x, lambda)}
+  \pythoninline{
+    1 -  poisson.cdf(x, lambda)}
+    \\ \pause
+
+    or
+    \pause
+
+    \pythoninline{
+    poisson.sf(x, lambda) # sf = survival function = 1 - cdf}
  \end{itemize}
-\end{alertblock}
+%\end{alertblock}
 \end{frame}
 
 
@@ -675,13 +713,13 @@ Lecture M3e: The Poisson Distribution}
     \item  \pause
       The desired probability is given by:\pause
       \begin{equation*}
-        P(X = 40) = \fr{30^{40}}{40!}e^{-30} \pause = \mathtt{poisspdf(40,30)} \pause = \boxed{\gr 0.0139}
+        P(X = 40) = \fr{30^{40}}{40!}e^{-30} \pause = \pythoninline{poisson.pmf(40,30)} \pause = \boxed{\gr 0.0139}
       \end{equation*}
       \pause
     \item The desired probability is given by: \pause
       \begin{equation*}
         P(X\le 40) =\pause \sum_{k=0}^{40}\fr{30^{k}}{k!}e^{-30}  \pause
-                   = \mathtt{poisscdf(40,30)} \pause = \boxed{\gr 0.9677}
+                   = \pythoninline{poisson.cdf(40,30)} \pause = \boxed{\gr 0.9677}
       \end{equation*}
     \end{enumerate}
   \end{exampleblock}
@@ -719,20 +757,33 @@ Lecture M3e: The Poisson Distribution}
 
 \begin{frame}
   \frametitle{Example 2: Aircraft arrivals at airport (cont.)} \pause
-    Given $\la = 8$:
+    %Given $\la = 8$:
 
     \begin{enumerate}[(a)]
     \item What is the probability that exactly 6 small aircraft arrive during a 1-hr period?\pause
-      \begin{eqnarray*}
-        P(X_{1hr} = 6) &=& \fr{\la^x e^{-\la}}{x!} = \pause \fr{8^6e^{-8}}{6!} = \boxed{0.1221}
+      
+    \begin{exampleblock}{Solution}
+      
+    \begin{eqnarray*}
+        P(X_{1hr} = 6) &=& \fr{\la^x e^{-\la}}{x!} = \pause \fr{8^6e^{-8}}{6!} = \pause
+        \pythoninline{poisson.pmf(6,8)} \pause = \boxed{0.1221}
       \end{eqnarray*}
+    \end{exampleblock}
+
+
       \pause
     \item What is the probability that at least 10 small aircraft arrive during a 1-hr period? \pause
-      \begin{eqnarray*}
+    \begin{exampleblock}{Solution}
+      
+     % 1-hr period implies $X_{1hr} \sim \text{Poisson}(\la=8)$.\pause
+
+      The desired probability is given by:\pause 
+    \begin{eqnarray*}
         P(X_{1hr} > 9) &=& 1 - P(X_{1hr}  \le 9) \\ \pause
-                       &=& 1 - \sum_{x =0}^9\fr{\la^x e^{-\la}}{x!} = \pause 1 - {\rd \mathtt{poisscdf(9,8)}} \\ \pause
+                       &=& 1 - \sum_{x =0}^9\fr{\la^x e^{-\la}}{x!} = \pause \pythoninline{1 - poisson.cdf(9,8)} \\ \pause
                        &=& 1 - 0.7166 = \pause \boxed{0.2834}
       \end{eqnarray*}
+    \end{exampleblock}
     \end{enumerate}
     
  
@@ -775,9 +826,10 @@ Lecture M3e: The Poisson Distribution}
     \begin{enumerate}[(a)]\setcounter{enumi}{2}
     \item How many aircraft do you expect to arrive during a 90-minute period? 
       \pause
-
+      \begin{exampleblock}{Solution}
+      \pause
       Expected arrivals within 90 minutes = 8/hr $\times$ 1.5 hrs = \pause 12.
-      
+      \end{exampleblock}
     \end{enumerate}
     
  
@@ -803,9 +855,12 @@ Lecture M3e: The Poisson Distribution}
     \end{equation*}
     \pause
       The desired probability is thus given by:\pause
-      \begin{equation*}
-        P(X_{2 hr} > 65) = \pause 1- P(X_{2 hr}\le 65) \pause = 1 - \mathtt{poisscdf(65,60)} \pause = \boxed{\gr 0.2355}
-      \end{equation*}
+      \begin{eqnarray*}
+        P(X_{2 hr} > 65) &=& \pause 1- P(X_{2 hr}\le 65) \pause = 
+        \pythoninline{1 - poisson.cdf(65,60)} \\\pause 
+        &\equiv& 
+        \pythoninline{poisson.sf(65,60)} \pause = \boxed{0.2355}
+      \end{eqnarray*}
 
     \end{exampleblock}
   \end{frame}
@@ -826,7 +881,7 @@ Lecture M3e: The Poisson Distribution}
       \begin{itemize}[<+->]\item 
         The student receives 18 texts in the first 2 hrs and then $70-18=52$ texts in the next 5 hrs (5:00 PM).
 
-      \item The events $X_{2}=18$ and $X_{5}=52$ are independent within the specified time intervals.
+      \item The events $X_{12}=18$ and $X_{5}=52$ are independent within the specified time intervals.
 
     \end{itemize}
 
@@ -834,9 +889,9 @@ Lecture M3e: The Poisson Distribution}
 
     Thus:
     \begin{eqnarray*}
-      P(X_{2}=18 \cap X_{5}=52) &=& \pause P(X_{2}=18) \times P(X_{5}=52) \\\pause
+      P(X_{12}=18 \cap X_{5}=52) &=& \pause P(X_{12}=18) \times P(X_{5}=52) \\\pause
                                 &=& \fr{(10(2))^{18}}{18!}e^{-10(2)} \times \fr{(10(5))^{52}}{52!}e^{-10(5)} \\\pause
-                                &=& \mathtt{poisspdf(18,20)}\times\mathtt{poisspdf(52,50)} \\\pause
+                                &=& \pythoninline{poisson.pmf(18,20) * poisson.pmf(52,50)} \\\pause
                                 &=& \boxed{\gr 0.0045}
     \end{eqnarray*}
 
@@ -846,48 +901,56 @@ Lecture M3e: The Poisson Distribution}
 \section{Outlook}
 
  \begin{frame}
-  \frametitle{Relationship between binomial and Poisson distributions} \pause
+  \frametitle{Poisson distribution as limit of binomial distribution} \pause
 
-  \begin{alertblock}{Poisson distribution as limit}
-    For a binomially distributed r.v.\ $X$ with $n$ trials, \pause
-    as $n\to \infty$ and $p\to 0$, then \pause
-    \begin{equation}
-      \label{eq:43}
-      X\sim \text{Bin}(n,p) \to X \sim \text{Poisson}(\la)
-    \end{equation} \pause
-    where $\la = np$. 
-  \end{alertblock}
-  \pause
+      For a binomially distributed r.v.\ $X$ with $n$ trials, \pause
+      as $n\to \infty$ and $p\to 0$, then \pause
+      \begin{equation}
+        \label{eq:43}
+        X\sim \text{Bin}(n,p) \to X \sim \text{Poisson}(\la)
+      \end{equation} \pause
+      where $\la = np$. 
 
-   \begin{tikzpicture}[
-    declare function={binom(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);}
-    ]
-    \begin{axis}[
-      samples at={0,...,100},
-      xlabel=$x$,
-      ylabel=$P(x)$,
-      xlabel style={right},
-      ylabel style={above left},
-      xtick={0,20,...,100},
-      ytick={0.05,0.1,0.15},
-      axis x line=center,
-      axis y line=center,
-      xmax = 105,
-      ymax =.15,
-      y post scale = .7,
-      x post scale=1.2,
-      legend style={at={(1.25, 1)},anchor=north east},
-      yticklabel style={
-        /pgf/number format/fixed,
-        /pgf/number format/fixed zerofill,
-        /pgf/number format/precision=2
-      }
+      \pause
+
+     \begin{tikzpicture}[
+      declare function={binom(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);}
       ]
-      \only<7->{\addplot+[ycomb,opacity=.5] {binom(x,100,0.2)}; \addlegendentry{Bin$(100,0.20)$}}
-      \only<8->{\addplot+[ycomb,opacity=.5] {poiss(20))};}
-      \only<9->{\addlegendentry{Poisson$(20)$};}
-    \end{axis}
-  \end{tikzpicture}
+      \begin{axis}[
+        height=9cm,
+        width=10cm,
+        samples at={0,...,100},
+        xlabel=$x$,
+        ylabel=$P(x)$,
+        xlabel style={right},
+        ylabel style={above left},
+        xtick={0,20,...,100},
+        ytick={0.05,0.1,0.15},
+        axis x line=center,
+        axis y line=center,
+        xmax = 105,
+        ymax =.15,
+        y post scale = .7,
+        x post scale=1.2,
+        legend style={at={(1, 1)},anchor=north east},
+        yticklabel style={
+          /pgf/number format/fixed,
+          /pgf/number format/fixed zerofill,
+          /pgf/number format/precision=2
+        }
+        ]
+        \only<7->{\addplot+[ycomb,opacity=.5] {binom(x,100,0.2)}; \addlegendentry{Bin$(100,0.20)$}}
+        \only<8->{\addplot+[ycomb,opacity=.5] {poiss(20))};}
+        \only<9->{\addlegendentry{Poisson$(20)$};}
+        \only<10->{\addplot+[very thick,samples=100,opacity=.5,no markers] {gauss(20,4)};}
+        \only<11->{\addlegendentry{$\mathcal{N}(\mu =20, \sigma=4)$};}     
+        \only<12->{\addplot+[ycomb,opacity=.5] {binom(x,100,0.4)}; \addlegendentry{Bin$(100,0.40)$}}
+        \only<13->{\addplot+[ycomb,opacity=.5] {poiss(40))};}
+        \only<14->{\addlegendentry{Poisson$(40)$};}
+        \only<15->{\addplot+[very thick,samples=100,opacity=.5,no markers] {gauss(40,4.899)};}
+        \only<16->{\addlegendentry{$\mathcal{N}(\mu =40, \sigma=4.9)$};}
+      \end{axis}
+    \end{tikzpicture}
 \end{frame}
 
 
