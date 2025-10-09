@@ -1,4 +1,4 @@
-\def\bmode{0} % Mode 0 for presentation, mode 1 (or not 0) for a handout with notes, mode 2 for handout without notes
+\def\bmode{2} % Mode 0 for presentation, mode 1 (or not 0) for a handout with notes, mode 2 for handout without notes
 \if 0\bmode
 \documentclass[smaller]{beamer}
 \else \if 1\bmode
@@ -7,7 +7,7 @@
 \usepackage{handoutWithNotes}
 \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
 \else \if 2\bmode
-\immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
 \documentclass[smaller,handout]{beamer}
 \fi
 \fi
@@ -118,7 +118,7 @@ eprint=false]{biblatex}
 \makeatother
 
 %=== GRAPHICS PATH ===========
-\graphicspath{{./images/}}
+\graphicspath{{./m3-images/}}
 % Marginpar width
 %Marginpar width
 %\setlength{\marginparsep}{.02in}
