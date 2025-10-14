@@ -15,7 +15,7 @@ description: Listing of course modules and topics.
 [Gradescope](https://www.gradescope.com/courses/1113538){:target="_blank" .btn .btn-gradescope .mr-1 }
 [Overleaf/LaTeX](https://www.overleaf.com/read/trwqyfddzssz#3b9273){:target="_blank" .btn .btn-overleaf .mr-1 }
 [Datahub](https://drive.google.com/drive/u/3/folders/17sJr7sBNNpVGtcNXe6GJvJOkzU5hlLeU){:target="_blank" .btn .btn-datahub .mr-1 }
-[LAB Solutions](https://drive.google.com/drive/u/1/folders/1yd4ovyY9GLaxqVKA_ZC4RsyXq1XDAl09){:target="_blank" .btn .btn-labsolution .mr-1 }}
+[LAB Solutions](https://drive.google.com/drive/u/1/folders/1yd4ovyY9GLaxqVKA_ZC4RsyXq1XDAl09){:target="_blank" .btn .btn-labsolution .mr-1 }
 
 <div>
 {% assign instructors = site.staffers | where: 'role', 'Instructor' | sort: 'order' %}
