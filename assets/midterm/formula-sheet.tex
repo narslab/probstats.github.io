@@ -188,7 +188,7 @@
 \medskip\hrule\medskip
 
 \nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
-\hfill\textit{ 10.10.2025}}
+\hfill\textit{ 10.14.2025}}
 
 \section{Set theory}
 Properties:
@@ -234,147 +234,99 @@ Bayes' theorem:
   P(E_i|A) = \fr{P(A|E_i)P(E_i)}{\sum_{j=1}^nP(A|E_j)P(E_j)}
 \end{equation}
 
+\section{Counting}
+Number of ways to arrange $n$ objects:
+\begin{equation}
+  n! = n(n-1)(n-2)\cdots 3\times 2\times 1
+\end{equation}
+Permutations (arrangements) of $n$ objects taken $k$ at a time:
+\begin{equation}
+  _nP_k = \fr{n!}{(n-k)!}
+\end{equation}
+Combinations of $n$ objects taken $k$ at a time:
+\begin{equation}
+  _nC_k = {n \choose k} = \fr{n!}{k!(n-k)!}
+\end{equation}    
 
 
 \section{Probability distributions}
-Basic definitions:
-\begin{align}
-  \text{Mean: } E(X) = \mu_X &=
-         \begin{cases}
-           \sum_{i}x_ip_X(x_i) & \text{(discrete)}\\[2mm]
-           \int_{-\infty}^\infty xf_X(x)dx & \text{(continuous)}
-         \end{cases} \\
-  \text{Variance: } Var(X) &=
-             \begin{cases}
-           \sum_{i}(x_i - E(X))^2p_X(x_i) & \text{(discrete)}\\[2mm]
-           \int_{-\infty}^\infty (x -E(X))^2f_X(x)dx & \text{(continuous)}
-         \end{cases} \\
-                     &= E(X^2) - E(X)^2 \\
-  \text{Coefficient of variation: } \delta_X &= \fr{\sigma_X}{\mu_X}
-\end{align}
-$X \sim \text{Uniform}(a,b)$:
-\begin{align}
-  P(a < X \le b) &= \fr{x-a}{b-a} \\
-  \mu_X &= \fr{a+b}{2}\\
-  Var(X) &= \fr{(b-a)^2}{12}
-\end{align}
- $X \sim \mathcal{N}(\mu,\sigma)$:
- \begin{align}
-   \text{(CDF)} \quad    P(X \le b) &= \nmfr{b}{\mu}{\sigma}\\
-   P(a < X \le b) &= \nmfr{b}{\mu}{\sigma} - \nmfr{a}{\mu}{\sigma}
-\end{align}
-$X \sim$ Lognormal$(\la,\zeta)$:
-\begin{align}
-  P(a < X \le b) &= \nmfr{\ln b}{\la}{\zeta} - \nmfr{\ln a}{\la}{\zeta}\\
-  \la &= \ln x_m\\
-  \zeta &= \sqrt{\ln(1 + \delta_X^2)} \approx \delta_X \\
-  \mu_X &= e^{\lt(\la + \fr12 \zeta^2\rt)}\\
-  Var(X) &= \mu_X^2(e^{\zeta^2} - 1)
-\end{align}
-$X \sim \text{Binomial} (n,p)$:
-\begin{align}
- \text{(PDF)} \quad  P(X = x) &= {n \choose x}p^x (1-p)^{n-x}\\
-  \text{(CDF)} \quad   P(X\le x) &=  \sum_{k=0}^x{n \choose k}p^k (1-p)^{n-k} \\
-  & = {n \choose 0}p^0 (1-p)^{n-0} + {n \choose 1}p^1 (1-p)^{n-1} + \cdots + {n \choose x}p^x (1-p)^{n-x} \\
-  \mu_X &= np \\
-  Var(X) &= np(1-p)
-\end{align}
-$X \sim \text{Poisson} (\la)$, where $\la = vt$:
-\begin{align}
-   \text{(PDF)} \quad P(X = x) &= \fr{\la^x e^{-\la}}{x!} \\
-  \text{(CDF)} \quad  P(X\le x) &= \sum_{k=0}^x\fr{\la^k e^{-\la}}{k!}
-  = \fr{\la^0 e^{-\la}}{0!} +  \fr{\la^1 e^{-\la}}{1!} + \cdots + \fr{\la^x e^{-\la}}{x!}\\
-  \mu_X &= Var(X) = \la
-\end{align}
-%\eject
-$X \sim \text{Exponential}(v)$:
-\begin{align}
-  \text{(CDF)} \quad  P(T\le t) &= 1 - e^{-vt} \\
-  \mu_T &= \fr{1}{v}\\
-  Var(T) &= \fr{1}{v^2} \\
-\text{Memorylessness: }  P(T> t+t_0|T > t_0) &= P(T> t)
-\end{align}
-$X \sim \text{Weibull}(k,\eta,\varepsilon)$, where $\eta = w_1 - \varepsilon$:
-\begin{align}
-    F_{Y}(y) &= 1  - e^{-\lt(\fr{y-\varepsilon}{w_1 - \varepsilon}\rt)^k}; y\ge\varepsilon \\
-    \mu_Y &= \varepsilon + (w_1 - \varepsilon)\Gamma\lt(1 + \fr1k\rt) \\
-    \sigma_Y^2 &= (w_1 - \varepsilon)^2\lt[ \Gamma\lt(1 + \fr2k\rt) - \Gamma^2\lt(1 + \fr1k\rt)\rt]
-\end{align}
+~
+\begin{table}[ht!]\small
+  \begin{tabular}{l l l l l} \toprule
+    \bf Distribution & \bf Mean &\bf Variance & \bf Median & $P(X \leq x)$\\ \toprule
+    Uniform($a,b$) & $\fr{a+b}2$ & $\fr{(b-a)^2}{12}$ & $\fr{a+b}2$ & $\texttt{uniform.cdf(x, a, b)}$ \\[2mm]
+    $\mathcal{N}(\mu,\sigma)$ & $\mu$ & $\sigma^2$ & $\mu$ & \texttt{norm.cdf(x, mu, sigma)} \\[2mm]
+    $\text{Lognormal}(\mu,\sigma)$ & $\lt[\exp\lt(\mu + \fr12 \sigma^2\rt)\rt]\exp(2\mu + \sigma^2)$ & $\exp\lt(\sigma^2\rt) - 1$ & $\exp\lt(\mu\rt)$ & \texttt{lognorm.cdf(x, sigma, np.exp(mu))} \\[2mm]
+    $\text{Binomial}(n,p)$ & $np$ & $np(1-p)$ & $\lfloor (n+1)p \rfloor$ & \texttt{binom.cdf(x, n, p)} \\[2mm]
+    $\text{Poisson}(\lambda)$ & $\lambda$ & $\lambda$ & $\lfloor \lambda \rfloor$ & \texttt{poisson.cdf(x, lambda)} \\[2mm]
+    $\text{Exponential}(\lambda)$ & $\fr1{\lambda}$ & $\fr1{\lambda^2}$ & $\fr{\ln 2}{\lambda}$ & \texttt{expon.cdf(x, 1/lambda)} \\\bottomrule
+  \end{tabular}
+  \caption{Common probability distributions.}
+  \label{tab:distributions}
+\end{table}
 
-% \begin{tabular}{l l l l l} \toprule
-%   \bf Name & \bf PDF/PMF  & \bf Parameters & \bf Mean & \bf Variance \\ \midrule
-%   Normal   & $\fr{1}{\sigma\sqrt{2\pi}}e^{-\fr{1}{2}\lt(\fr{x-\mu}{\sigma}\rt)^2}$ & $\mu, \sigma$ & $\mu$ & $\sigma^2$ \\[2mm]
-%   Lognormal & $\fr{1}{(\zeta x)\sqrt{2\pi}}e^{-\fr{1}{2}\lt(\fr{\ln x-\la}{\zeta}\rt)^2}$ & $\la$, $\zeta $
-%                           & $e^{\lt(\la + \fr12 \zeta^2\rt)}$  &  $\mu_X^2(e^{\zeta^2} - 1)$ \\[2mm]
-%   Binomial & ${n \choose x}p^x (1-p)^{n-x}$ & $n, p$, $q = 1-p$ & $np$ & $npq$ \\[2mm]
-%   Poisson  & $\fr{\la^x e^{-\la}}{x!}$ & $\la = vt$ & $\la$ & $\la$ \\[2mm]
-%   Exponential & \\
-%   Gamma & $\begin{cases}
-%           \fr{v(vx)^{k-1}}{\Gamma(k)}e^{-vx} & x \ge 0 \\
-%           0 & x < 0
-%           \end{cases}$ & $k,v$ & $\fr{k}{v}$ & $\fr{k}{v^2}$ \\[2mm] \bottomrule
-% \end{tabular}
+Note: the $\lfloor \cdot \rfloor$ symbol means to round down to the nearest integer.
 
 %\eject
-\section{Joint distributions}
-For two \textbf{discrete} r.v.'s $X$ and $Y$:
-\begin{align}
-  p_{X,Y}(x_i,y_j)   &=  p_{X|Y}(x_i|y_j) p_Y(y_j)  =   p_{Y|X}(y_j|y_i)p_X(x_i) \\
-  p_X(x_i) &= \sum_{y_j}p_{X,Y}(x_i,y_j)  \\
-  p_Y(y_j) &= \sum_{x_i}p_{X,Y}(x_i,y_j)  
-\end{align}
-If $X$ and $Y$ are statistically independent:
-\begin{equation}
-  \label{eq:50a}
-   p_{X,Y}(x_i,y_j)  = p_X(x_i)p_Y(y_j)
-\end{equation}
-For two \textbf{continuous} r.v.'s $X$ and $Y$:
-\begin{align}
-  f_{X,Y}(x,y) &= f_{X|Y}(x|y)f_Y(y) = f_{Y|X}(y|x)f_X(x)\\
-     f_X(x) &= \int_{-\infty}^\infty f_{X,Y}(x,y)dy \\ 
-  f_Y(y) &=  \int_{-\infty}^\infty f_{X,Y}(x,y)dx
-\end{align}
-If $X$ and $Y$ are statistically independent:
-\begin{equation}
-  \label{eq:50}
-  f_{X,Y}(x,y) = f_X(x) f_Y(y)
-\end{equation}
-Covariance and correlation:
-\begin{align}
-  Cov(X,Y) &= E(XY) - E(X)E(Y) = \rho_{XY}\sigma_X\sigma_Y\\
-  \rho_{XY} &= \fr{Cov(X,Y)}{\sigma_X\sigma_Y}
-\end{align}
-
-\eject
-\section{Functions of random variables}
-If $Z = aX \pm bY$, where $X$ and $Y$ are normal r.v.'s:
-\begin{align}
-  E(Z) &= aE(X) \pm bE(Y) \\
-  Var(Z) &= a^2Var(X) + b^2Var(Y) \pm 2ab\,Cov(X,Y)
-\end{align}
-% Where $X_i$ are any number of statistically independent random variables, and $Z = \sum_{i=1}^n a_iX_i$, then:
+% \section{Joint distributions}
+% For two \textbf{discrete} r.v.'s $X$ and $Y$:
 % \begin{align}
-%   E(Z) &= \sum_{i=1}^n a_iE(X_i) \\
-%   Var(Z) &=\sum_{i=1}^n a_i^2Var(X_i) 
-             %   \end{align}
-For \textbf{statistically independent} random variables:\\
+%   p_{X,Y}(x_i,y_j)   &=  p_{X|Y}(x_i|y_j) p_Y(y_j)  =   p_{Y|X}(y_j|y_i)p_X(x_i) \\
+%   p_X(x_i) &= \sum_{y_j}p_{X,Y}(x_i,y_j)  \\
+%   p_Y(y_j) &= \sum_{x_i}p_{X,Y}(x_i,y_j)  
+% \end{align}
+% If $X$ and $Y$ are statistically independent:
+% \begin{equation}
+%   \label{eq:50a}
+%    p_{X,Y}(x_i,y_j)  = p_X(x_i)p_Y(y_j)
+% \end{equation}
+% For two \textbf{continuous} r.v.'s $X$ and $Y$:
+% \begin{align}
+%   f_{X,Y}(x,y) &= f_{X|Y}(x|y)f_Y(y) = f_{Y|X}(y|x)f_X(x)\\
+%      f_X(x) &= \int_{-\infty}^\infty f_{X,Y}(x,y)dy \\ 
+%   f_Y(y) &=  \int_{-\infty}^\infty f_{X,Y}(x,y)dx
+% \end{align}
+% If $X$ and $Y$ are statistically independent:
+% \begin{equation}
+%   \label{eq:50}
+%   f_{X,Y}(x,y) = f_X(x) f_Y(y)
+% \end{equation}
+% Covariance and correlation:
+% \begin{align}
+%   Cov(X,Y) &= E(XY) - E(X)E(Y) = \rho_{XY}\sigma_X\sigma_Y\\
+%   \rho_{XY} &= \fr{Cov(X,Y)}{\sigma_X\sigma_Y}
+% \end{align}
 
-If $Z = \sum_{i=1}^n X_i$, where $X_i\sim \text{Poisson}(v_i)$, then:
-\begin{equation}
-  \label{eq:21}
-  v_Z= \sum_{i=1}^n v_i
-\end{equation}
+% \eject
+% \section{Functions of random variables}
+% If $Z = aX \pm bY$, where $X$ and $Y$ are normal r.v.'s:
+% \begin{align}
+%   E(Z) &= aE(X) \pm bE(Y) \\
+%   Var(Z) &= a^2Var(X) + b^2Var(Y) \pm 2ab\,Cov(X,Y)
+% \end{align}
+% % Where $X_i$ are any number of statistically independent random variables, and $Z = \sum_{i=1}^n a_iX_i$, then:
+% % \begin{align}
+% %   E(Z) &= \sum_{i=1}^n a_iE(X_i) \\
+% %   Var(Z) &=\sum_{i=1}^n a_i^2Var(X_i) 
+%              %   \end{align}
+% For \textbf{statistically independent} random variables:\\
 
-If $Z  = \sum_{i=1}^n a_i X_i$, where $X_i \sim \mathcal{N}(\mu_{X_i},\sigma_{X_i})$, then:
-\begin{equation}
-  \label{eq:14}
-\mu_Z = \sum_{i=1}^na_i\mu_{X_i} \quad  \sigma_Z^2 = \sum_{i=1}^n a_i^2\sigma_{X_i}^2
-\end{equation}
+% If $Z = \sum_{i=1}^n X_i$, where $X_i\sim \text{Poisson}(v_i)$, then:
+% \begin{equation}
+%   \label{eq:21}
+%   v_Z= \sum_{i=1}^n v_i
+% \end{equation}
 
-If $Z = \prod_{i=1}^nX_i$, where $X_i \sim \text{Lognormal}(\la_{X_i},\zeta_{X_i})$, then:
-\begin{equation}
-  \label{eq:22}
-  \la_Z = \sum_{i=1}^n\la_{X_i} \quad \zeta_Z^2 = \sum_{i=1}^n\zeta_{X_i}^2
-\end{equation}
+% If $Z  = \sum_{i=1}^n a_i X_i$, where $X_i \sim \mathcal{N}(\mu_{X_i},\sigma_{X_i})$, then:
+% \begin{equation}
+%   \label{eq:14}
+% \mu_Z = \sum_{i=1}^na_i\mu_{X_i} \quad  \sigma_Z^2 = \sum_{i=1}^n a_i^2\sigma_{X_i}^2
+% \end{equation}
+
+% If $Z = \prod_{i=1}^nX_i$, where $X_i \sim \text{Lognormal}(\la_{X_i},\zeta_{X_i})$, then:
+% \begin{equation}
+%   \label{eq:22}
+%   \la_Z = \sum_{i=1}^n\la_{X_i} \quad \zeta_Z^2 = \sum_{i=1}^n\zeta_{X_i}^2
+% \end{equation}
 
 \end{document}

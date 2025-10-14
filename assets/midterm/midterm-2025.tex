@@ -21,7 +21,7 @@
 %\usepackage{cmbright}lstinputlisting
 %\usepackage[T1]{pbsi}
 
-\renewcommand{\baselinestretch}{1.5}
+%\renewcommand{\baselinestretch}{1.5}
 
 \usepackage{chngcntr,mathtools}
 %\counterwithin{figure}{section}
@@ -109,7 +109,7 @@
 %\fancyfootoffset{30pt}
 \fancyhead[LO,RE]{\small Prof. Oke}
 \fancyhead[RO,LE]{\small Page \thepage} 
-\fancyfoot[RO,LE]{\small E1: Midterm} 
+\fancyfoot[RO,LE]{\small Midterm} 
 \fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
 \cfoot{} 
 \renewcommand{\headrulewidth}{0.1pt} 
@@ -266,30 +266,29 @@
 %
 \clearpage
 \maketitle
-\noindent\rule[1ex]{\textwidth}{.1pt}
-\subsection*{Name}
-Please print your name clearly in the box below.\\
-\begin{center}
-  \framebox(300,40){\Huge\phantom{t}} \\
-  \vspace{2ex}
-\end{center}
+% \noindent\rule[1ex]{\textwidth}{.1pt}
+% \subsection*{Name}
+% Please print your name clearly in the box below.\\
+% \begin{center}
+%   \framebox(300,40){\Huge\phantom{t}} \\
+%   \vspace{2ex}
+% \end{center}
 
-\vspace{40ex}
-{\it Turn to the next page to read the instructions.}
-\thispagestyle{empty}
+% \vspace{40ex}
+% {\it Turn to the next page to read the instructions.}
+% \thispagestyle{empty}
 
 
-\eject
 \subsection*{Instructions}
-This exam contains\textbf{ 22 pages} (including the front and back pages) and \textbf{10 problems, 106 points} (with 5 points extra credit). You have {\bf 2 hours} to complete it.  You may print out the PDF, complete it and upload as a
-PDF on Moodle, or \textit{neatly} answer the questions on blank pages of paper, scan and upload.
+This exam contains\textbf{ 10 pages} (including the front and back pages) and \textbf{9 problems, 64 points}. 
+You have {\bf 2 hours} to complete it.  Either print out the PDF and complete by hand and upload, or complete it digitally 
+and upload as a PDF on Canvas.
 % Check to see if any pages are missing.
 % Make sure you have written your name on the front page.
 % If for any reason you have any loose pages, put your initials on the
 % top of these pages.\\
-
 \noindent This is an \textbf{open resource examination}. You are expected to complete the exam individually. Asking
-anyone (colleague, friend, tutor, etc) questions about the exam is \textit{not allowed}. If any questions arise during the exam, direct them to me (via email).
+anyone (colleague, friend, tutor, etc) questions about the exam is \textit{\rd \bf not allowed}. If any questions arise during the exam, direct them to me (via email).
 \\
  
 
@@ -302,20 +301,16 @@ anyone (colleague, friend, tutor, etc) questions about the exam is \textit{not a
 %why the theorem may be applied.
 
 \item \textbf{Organize your work}, in a reasonably neat and coherent way.% , in
-% the space provided
- Work scattered all over the page without a clear ordering will
-receive very little credit.
 
 \item \textbf{Show ALL your work where appropriate}.
   The work you show will be evaluated as well as your final answer.
   Thus, provide ample justification for each step you take.
-  Indicate when you have used a probability table or MATLAB/Python to obtain a result.
-  In the case of MATLAB/Python, briefly include the function or statement you used to arrive at your result.
+  Indicate when you have used Python to obtain a result and show the function or statement you used to arrive at your result.
   In the long response questions, simply putting down an answer without showing your steps  will not merit full credit.
   {\bf EXCEPTION:} For short response or ``True/False'' questions, \textit{no explanations are required}.
-  However, the more work you show, the greater your chance of receiving partial credit if your final answer is incorrect.
+  However, the more work you show, the greater your chance of receiving partial credit.
 
-\item If you need more space, use the blank pages at the end, and clearly indicate when and where you have done this.
+\item As much as possible, put your answers in the alloted space in order to facilitate grading.
 
 \item Questions are roughly in order of the lectures, so later questions may not necessarily be harder.
   If you are stuck on a problem, it may be better to skip it and get to it later.
@@ -389,35 +384,21 @@ receive very little credit.
 %   \end{table*}
 % \newpage
 
-\section*{Problem 1 \quad {\it True/False questions (15 points)}}
+\section*{Problem 1 \quad {\it True/False questions (10 points)}}
 Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statements.
 Use the boxes provided. Each response is worth 1 point.
 Note that a statement can only be regarded as true in this framework if it always holds in all circumstances.
 If a statement does not hold under a given condition not already explicitly excluded, then it should be regarded as false.
 
 \begin{enumerate}[\bf (i)]
-\item \hfill
-  \begin{minipage}{.1\linewidth}
-    \framebox(40,40){ \gr } %F
-  \end{minipage}\quad
-  \begin{minipage}{.85\linewidth}
-    The probability of the union of mutually exclusive events is 1.
-  \end{minipage}
-  \smallskip  
-\item \hfill
-  \begin{minipage}{.1\linewidth}
-    \framebox(40,40){ \gr } % T
-  \end{minipage}\quad
-  \begin{minipage}{.85\linewidth}
-   If two events $A$ and $B$ are collectively exhaustive, then $P(A) - P(B) = 1$.%F
-  \end{minipage}
-  \smallskip
+
+
 \item \hfill
   \begin{minipage}{.1\linewidth}
     \framebox(40,40){ \gr }% F
   \end{minipage}\quad
   \begin{minipage}{.85\linewidth}
-    For a given online account, your password must have seven small or capital letters. Assuming you are the first user to create an account, the number of possibilities for your password is $52^{7}$.
+    For a given online account, your password must have 10 alphanumeric characters (no caps). Assuming you are the first user to create an account, the number of possibilities for your password is $26^{10}$.
   \end{minipage}
   \smallskip
 \item \hfill
@@ -425,15 +406,7 @@ If a statement does not hold under a given condition not already explicitly excl
     \framebox(40,40){ \gr } %T
   \end{minipage}\quad
   \begin{minipage}{.85\linewidth}
-    The area under the curve of a PDF can be less than 1.
-  \end{minipage}  
-  \smallskip
-\item \hfill
-  \begin{minipage}{.1\linewidth}
-    \framebox(40,40){ \gr } %F
-  \end{minipage}\quad
-  \begin{minipage}{.85\linewidth}
-    You begin your turn in a board game by rolling a six-sided die. If all outcomes are equally likely, then the probability of rolling a ``2'' is $\fr26$.
+    The area under the curve of a PDF is given by the integral of the PDF.
   \end{minipage}  
   \smallskip
 \item \hfill
@@ -441,7 +414,7 @@ If a statement does not hold under a given condition not already explicitly excl
     \framebox(40,40){\gr  } %T
   \end{minipage}\quad
   \begin{minipage}{.85\linewidth}
-    In a right-skewed distribution, the mean is not equal to the median.
+    In a right-skewed distribution, the mean is less than the median.
   \end{minipage}
   \smallskip
 \item \hfill
@@ -449,7 +422,7 @@ If a statement does not hold under a given condition not already explicitly excl
     \framebox(40,40){\gr } %F
   \end{minipage}\quad
   \begin{minipage}{.85\linewidth}
-    $P(A\cup B) = P(A) + P(B)$ for two events $A$ and $B$ that are mutually exclusive.
+    $P(A\cup B) = P(A) - P(B)$ for two events $A$ and $B$ that are mutually exclusive.
   \end{minipage}
   \smallskip  
 \item \hfill
@@ -457,23 +430,15 @@ If a statement does not hold under a given condition not already explicitly excl
     \framebox(40,40){\gr } %F
   \end{minipage}\quad
   \begin{minipage}{.85\linewidth}
-    If $A$ and $B$ are statistically independent events, then $P(AB)$ is always equal to $P(A)P(B)$.
+    If $A$ and $B$ are statistically independent events, then $P(A|B) = P(A)$.
   \end{minipage}
   \smallskip
-\item \hfill
-  \begin{minipage}{.1\linewidth}
-    \framebox(40,40){\gr } %T
-  \end{minipage}\quad
-  \begin{minipage}{.85\linewidth}
-   The complement of the union of collectively exhaustive events yields an empty set.
-  \end{minipage}  
-  \smallskip  
   \item \hfill
     \begin{minipage}{.1\linewidth}
       \framebox(40,40){\gr  } %F
     \end{minipage}\quad
     \begin{minipage}{.85\linewidth}
-      The maximum value of any cumulative distribution function is $1$.
+      The minimum value of any cumulative distribution function is $0$.
      \end{minipage}  
   \smallskip  
 \item \hfill
@@ -482,24 +447,16 @@ If a statement does not hold under a given condition not already explicitly excl
   \end{minipage}\quad
   \begin{minipage}{.85\linewidth}
     Under certain conditions, a binomial distribution with parameters $(n,p)$ can be approximated by a normal
-    distribution with $\sigma = np(1-p)$.
+    distribution with $\sigma = \sqrt{n(1-p)p}$.
   \end{minipage}  
   \smallskip
-\item \hfill
-  \begin{minipage}{.1\linewidth}
-    \framebox(40,40){ \gr }% F
-  \end{minipage}\quad
-  \begin{minipage}{.85\linewidth}
-    The probability of the number of tails that occur in 100 tosses of a coin (which can yield either a head or a tail)
-    can be appropriately modeled by a binomial distribution.
-  \end{minipage}
-  \smallskip
+
   \item \hfill
   \begin{minipage}{.1\linewidth}
     \framebox(40,40){\gr  } %T
   \end{minipage}\quad
   \begin{minipage}{.85\linewidth}
-    Given a normal distribution with parameters $\mu$ and $\sigma$, the median of the distribution is $\mu^{2}$.
+    Given a normal distribution with parameters $\mu$ and $\sigma$, the variance of the distribution is $\mu^{2}$.
   \end{minipage}
   \smallskip   
   \item \hfill
@@ -507,30 +464,24 @@ If a statement does not hold under a given condition not already explicitly excl
       \framebox(40,40){\gr } %F
     \end{minipage}\quad
     \begin{minipage}{.85\linewidth}
-      The standard normal variate $Z$ has a variance of 1.
+      The standard normal variate $Z$ has a standard deviation of 1.
     \end{minipage}
   \smallskip
-  \item \hfill
+
+    % \smallskip    
+    \item \hfill
     \begin{minipage}{.1\linewidth}
-      \framebox(40,40){\gr } %F
+      \framebox(40,40){\gr } %T
     \end{minipage}\quad
     \begin{minipage}{.85\linewidth}
-      The probability of the elapsed time between events that constitute a Poisson process can be modeled using an exponential distribution.
+      If a variable $X$ is lognormally distributed with parameters $\mu$ and $\sigma$, then the median of $X$ is given by $\exp(\mu)$.
     \end{minipage}
-    % \smallskip    
-    % \item \hfill
-    % \begin{minipage}{.1\linewidth}
-    %   \framebox(40,40){\gr } %T
-    % \end{minipage}\quad
-    % \begin{minipage}{.85\linewidth}
-    %   If a variable $X$ is lognormally distributed with parameters $\mu$ and $\sigma$, then the median of $X$ is given by $\exp(\mu)$.
-    % \end{minipage}
 
     
   \end{enumerate}
   \eject
 
-\section*{Problem 2 \quad {\it Venn diagrams (4 points)}}
+\section*{Problem 2 \quad {\it Venn diagrams (6 points)}}
 Write the combination of events (using set notation)  depicted in each of the figures below.
   \begin{enumerate}[\bf (a)]
 \begin{minipage}{.47\linewidth}
@@ -565,6 +516,86 @@ Write the combination of events (using set notation)  depicted in each of the fi
   \vspace{2ex}
      \framebox(200,30){\Huge\phantom{t}}     
 
+\item ~
+  \begin{center}
+      \begin{tikzpicture}[baseline={($(current bounding box.north)-(0,1.6ex)$)},scale=.5]
+    % Draw the main rectangle
+    \draw[thick, black] (0,0) rectangle (9,6) node[above left] {$\bm S$};
+
+    % Partition the rectangle into 3 regions
+    % Vertical partitions creating 3 equal regions
+    \draw[thick] (3,0) -- (3,6);
+    \draw[thick] (6,0) -- (6,6);
+
+    % Shade region A
+    \fill[pattern=north west lines, pattern color=black, opacity=0.6] (0,0) rectangle (3,6);
+
+    % Label the regions
+    \node  at (1.5,.5) {$\bm{A}$};
+    \node  at (4.5,.5) {$\bm{B}$};
+    \node at (7.5,.5) {$\bm{C}$};
+
+    % Draw the ellipse E (centered, spanning multiple regions)
+    \draw[thick, blue, line width=1.5pt] (4.5,3) ellipse (3 and 2);
+
+    % Label the ellipse
+    \node[blue] at (2,5) {$\bm E$};
+
+    % Redraw boundaries for clarity
+    \draw[thick] (3,0) -- (3,6);
+    \draw[thick] (6,0) -- (6,6);
+    \draw[thick, black] (0,0) rectangle (9,6);
+    \draw[thick, blue, line width=1.5pt] (4.5,3) ellipse (3 and 2);
+
+    \end{tikzpicture}
+\end{center}
+  \vspace{2ex}
+     \framebox(200,30){\Huge\phantom{t}}    
+      
+ \end{minipage}\hfill
+\begin{minipage}
+  {.47\linewidth}
+    \item ~ 
+  \begin{center}
+      \begin{tikzpicture}[baseline={($(current bounding box.north)-(0,1.6ex)$)},scale=.5]
+        % Draw the main rectangle
+        \draw[thick, black] (0,0) rectangle (9,6) node[above left] {$\bm S$};
+
+        % Partition the rectangle into 3 regions
+        % Vertical partitions creating 3 equal regions
+        \draw[thick] (3,0) -- (3,6);
+        \draw[thick] (6,0) -- (6,6);
+
+        % Label the regions
+        \node  at (1.5,.5) {$\bm{A}$};
+        \node  at (4.5,.5) {$\bm{B}$};
+        \node at (7.5,.5) {$\bm{C}$};
+
+        % Draw the ellipse E (centered, spanning multiple regions)
+        \draw[thick, blue, line width=1.5pt] (4.5,3) ellipse (3 and 2);
+
+        % Label the ellipse
+        \node[blue] at (2,5) {$\bm E$};
+
+        % Shade the entire rectangle
+        \fill[pattern=north east lines, pattern color=black, opacity=0.6] (0,0) rectangle (9,6);
+
+        % Remove shading from the ellipse E (make it white)
+        \fill[white] (4.5,3) ellipse (3 and 2);
+
+        % Redraw boundaries for clarity
+        \draw[thick] (3,0) -- (3,6);
+        \draw[thick] (6,0) -- (6,6);
+        \draw[thick, black] (0,0) rectangle (9,6);
+        \draw[thick, blue, line width=1.5pt] (4.5,3) ellipse (3 and 2);
+
+        \end{tikzpicture}
+ \end{center}
+  \vspace{1ex}
+
+     \framebox(200,30){\Huge\phantom{t}}
+
+  
 \item ~
   \begin{center}
       \begin{tikzpicture}[baseline={($(current bounding box.north)-(0,1.6ex)$)},scale=.5]
@@ -607,12 +638,9 @@ Write the combination of events (using set notation)  depicted in each of the fi
 
 \end{tikzpicture}
 \end{center}
-  \vspace{2ex}
+  \vspace{1ex}
      \framebox(200,30){\Huge\phantom{t}}    
-      
- \end{minipage}\hfill
-\begin{minipage}
-  {.47\linewidth}
+        
 \item ~
   \begin{center}
       \begin{tikzpicture}[baseline={($(current bounding box.north)-(0,1.6ex)$)},scale=.5]
@@ -656,59 +684,18 @@ Write the combination of events (using set notation)  depicted in each of the fi
     \end{tikzpicture}
  \end{center}
    
-  \vspace{2ex}
+  \vspace{1ex}
      \framebox(200,30){\Huge\phantom{t}}     
  
-  \bigskip
  
-  \item 
-  \begin{center}
-    \begin{tikzpicture}[scale=.8]
-    \filldraw[thick, pattern=north west lines]  (-4,-5.5) rectangle (7,3)  node[above left] {$\bm S$};
-    % \draw[thick] (0,0) circle (2 cm);% node[left] {$\bm{A}$};
-    % \draw[thick] (3,0) circle (2 cm);% node[right] {$\bm{B}$};
-    % \draw[thick] (1.5,-2.6) circle (2 cm);% node[] {$\bm{C}$};
-    \filldraw[thick,fill=white] (0,0) circle (2 cm) node[left] {$\bm{A}$};
-    \draw[thick] (3,0) circle (2 cm) node[right] {$\bm{B}$};
-    \draw[thick] (1.5,-2.6) circle (2 cm) node[] {$\bm{C}$};
 
-    %    \begin{scope}
-    %   \clip (0,0) circle (2 cm);
-    %   \clip (1.5,-2.6) circle (2 cm);
-    %   \clip (3,0) circle (2 cm);      
-    %  % \fill[white]  (3,0) circle (2 cm);
-    % \end{scope}
-    
-    % \begin{scope}
-    %   \clip (0,0) circle (2 cm);
-    %   \fill[pattern=north west lines, ]  (1.5,-2.6) circle (2 cm);      
-    % \end{scope}
-
-    % \begin{scope}
-    %   \clip (1.5,-2.6) circle (2 cm);
-    %    \clip (3,0) circle (2 cm);
-    %    \fill[pattern=north west lines,]  (1.5,-2.6) circle (2 cm);      
-    %  \end{scope}
-    % \begin{scope}
-    %   \clip (0,0) circle (2 cm);
-    %   \fill[pattern=north west lines, ]  (3,0) circle (2 cm);      
-    % \end{scope}
-
-   \end{tikzpicture}
- \end{center}
-  \vspace{2ex}
-
-     \framebox(300,40){\Huge\phantom{t}}
-
-  
 \end{minipage}
 \end{enumerate} 
 
 \eject
-\section*{Problem 3 \quad {\it Short answer questions (22 points)}}
+\section*{Problem 3 \quad {\it Discrete distribution (4 points)}}
 
-\begin{enumerate}[\bf (a)]
-\item The PMF of a random variable $X$ is given in the figure below. 
+ The PMF of a random variable $X$ is given in the figure below. 
   Use the figure to answer the following questions.
     
   \begin{figure}[h!]
@@ -720,14 +707,14 @@ Write the combination of events (using set notation)  depicted in each of the fi
         axis x line=center,
         axis y line=center,
         xtick={0,2,...,19},
-        ytick={0.02,0.04,...,0.16},
+        ytick={0.02,0.04,...,0.18},
         domain = 0:18,
         samples = 19,
         xlabel={$x$},
         ylabel={$P(X=x)$},
         xlabel style={right},
         ylabel style={above},
-        ymax=0.15,
+        ymax=0.19,
         xmax=20,
         x post scale=1.4,
         grid=both,
@@ -739,14 +726,13 @@ Write the combination of events (using set notation)  depicted in each of the fi
           }
        % minor tick num =2
         ]
-        \addplot+[ycomb,black,ultra thick,opacity=.5,mark options={scale=1.5,opacity=.8}] {poiss(8))}; %\addlegendentry{$\lambda = 1$}}
+        \addplot+[ycomb,black,ultra thick,opacity=.5,mark options={scale=1.5,opacity=.8}] {poiss(6))}; %\addlegendentry{$\lambda = 1$}}
       \end{axis}
     \end{tikzpicture}
   \end{figure}
-  \vspace{2ex}
 
-  \begin{enumerate}[\bf (i)]
-    \item Estimate the probability $P(X = 4)$. \pts{1} % Answer: 0.24
+  \begin{enumerate}[\bf (a)]
+    \item Estimate the probability $P(X = 6)$. \pts{1} % Answer: 0.24
 
     \begin{minipage}[]{.8\linewidth}
       \framebox(300,40){\Huge\phantom{t}}     
@@ -755,11 +741,11 @@ Write the combination of events (using set notation)  depicted in each of the fi
     \bigskip
     \bigskip
 
-  \item Estimate the probability $P(6 < X \le 8)$. \pts{2}  
+  \item Estimate the probability $P(4 < X \le 7)$. \pts{2}  
   
-  \begin{minipage}[]{.1\linewidth}
-    {\bf Answer:}
-  \end{minipage}\qquad
+  % \begin{minipage}[]{.1\linewidth}
+  %   {\bf Answer:}
+  % \end{minipage}\qquad
   \begin{minipage}[]{.8\linewidth}
     \framebox(300,60){\Huge\phantom{t}}     
   \end{minipage}
@@ -767,177 +753,87 @@ Write the combination of events (using set notation)  depicted in each of the fi
   \bigskip
   \bigskip
 
-  \item If the distribution shown has a single parameter $\lambda$, which of the following would be your best guess for $\lambda$? (Circle or underline the correct answer.)\pts{1}
- \begin{enumerate}[A.]
-  \item 2
-  \item 8
-  \item 10
-  \item 12
- \end{enumerate} 
+  \item If the distribution shown has a single parameter $\lambda$, what distribution is it? \pts{1}
+  
+      \begin{minipage}[]{.8\linewidth}
+      \framebox(300,40){\Huge\phantom{t}}     
+    \end{minipage}
+  
+  \item Which of the following would be your best guess for $\lambda$? (Circle or underline the correct answer.)\pts{1}
+    \begin{center}
+    ~ \hfill {\bf i.} 4 \hfill {\bf ii.} 6 \hfill {\bf iii.} 8 \hfill {\bf iv.} 10 \hfill~
+    \end{center}
   \end{enumerate}
+   \eject
+% \item Shade the area under the curve that represents the probability $P( X > 8)$. \marginpar{\it[1]}
 
-  \eject
-\item Shade the area under the curve that represents the probability $P( X > 8)$. \marginpar{\it[1]}
+%   \medskip
 
-  \medskip
+%   \begin{figure}[h!]
+%     \centering
+%       \begin{tikzpicture}
+%     \begin{axis}[no markers, domain=0:10, samples=100,
+%       axis lines*=left, xlabel=$x$, ylabel=$f_X(x)$,,
+%       height=6cm, width=10cm,
+%       %xtick={-3, -2, -1, 0, 1, 2, 3},
+%       %ytick=\empty,
+%       enlargelimits=false, clip=false, axis on top,
+%       grid style={line width=.1pt, draw=gray},
+%       yticklabel style={
+%             /pgf/number format/fixed,
+%             /pgf/number format/fixed zerofill,
+%             /pgf/number format/precision=2
+%           },        
+%       grid = major]
+%       \addplot [ultra thick, domain=-2:12] {gauss(5,2)};
 
-  \begin{figure}[h!]
-    \centering
-      \begin{tikzpicture}
-    \begin{axis}[no markers, domain=0:10, samples=100,
-      axis lines*=left, xlabel=$x$, ylabel=$f_X(x)$,,
-      height=6cm, width=10cm,
-      %xtick={-3, -2, -1, 0, 1, 2, 3},
-      %ytick=\empty,
-      enlargelimits=false, clip=false, axis on top,
-      grid style={line width=.1pt, draw=gray},
-      yticklabel style={
-            /pgf/number format/fixed,
-            /pgf/number format/fixed zerofill,
-            /pgf/number format/precision=2
-          },        
-      grid = major]
-      \addplot [ultra thick, domain=-2:12] {gauss(5,2)};
+%     \end{axis}
+%   \end{tikzpicture}
 
-    \end{axis}
-  \end{tikzpicture}
-
-\end{figure}
+% \end{figure}
   
 
-\item Shade the area under the curve that represents the probability $P( 4 \le X < 6)$. \marginpar{\it[1]}
+% \item Shade the area under the curve that represents the probability $P( 4 \le X < 6)$. \marginpar{\it[1]}
 
-  \medskip
+%   \medskip
 
-  \begin{figure}[h!]
-    \centering
-      \begin{tikzpicture}
-    \begin{axis}[no markers, domain=0:10, samples=100,
-      axis lines*=left, xlabel=$x$, ylabel=$f_X(x)$,,
-      height=6cm, width=10cm,
-      %xtick={-3, -2, -1, 0, 1, 2, 3},
-      %ytick=\empty,
-      enlargelimits=false, clip=false, axis on top,
-      grid style={line width=.1pt, draw=gray},
-      yticklabel style={
-            /pgf/number format/fixed,
-            /pgf/number format/fixed zerofill,
-            /pgf/number format/precision=2
-          },        
-      grid = major]
-      \addplot [ultra thick, domain=-2:12] {gauss(5,2)};
+%   \begin{figure}[h!]
+%     \centering
+%       \begin{tikzpicture}
+%     \begin{axis}[no markers, domain=0:10, samples=100,
+%       axis lines*=left, xlabel=$x$, ylabel=$f_X(x)$,,
+%       height=6cm, width=10cm,
+%       %xtick={-3, -2, -1, 0, 1, 2, 3},
+%       %ytick=\empty,
+%       enlargelimits=false, clip=false, axis on top,
+%       grid style={line width=.1pt, draw=gray},
+%       yticklabel style={
+%             /pgf/number format/fixed,
+%             /pgf/number format/fixed zerofill,
+%             /pgf/number format/precision=2
+%           },        
+%       grid = major]
+%       \addplot [ultra thick, domain=-2:12] {gauss(5,2)};
 
-    \end{axis}
-  \end{tikzpicture}
+%     \end{axis}
+%   \end{tikzpicture}
 
-\end{figure}
-
-
-\item If the curve in part {\bf (c)} is the PDF of a normal distribution, what is its mean value? \pts{1}
-
-\begin{minipage}[]{.1\linewidth}
-  {\bf Answer:}
-\end{minipage}\qquad
-\begin{minipage}[]{.8\linewidth}
-  \framebox(300,40){\Huge\phantom{t}}     
-\end{minipage}
-
-\eject
-
-\item Shade the area under the curve that gives you the probability $P( X \le 1 \cap X > 2)$. \marginpar{\it[2]}
-    \begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[no marks,
-        samples = 100,
-        axis x line=center,
-        axis y line=center,
-        xtick={0,1,...,12},
-        ytick={0.2,0.4,...,1},
-        domain = 0:12,
-        xlabel={$t$},
-        ylabel={$f(t)$},
-        xlabel style={right},
-        ylabel style={above },
-        ymax=1.2,
-        xmax=12,
-        x post scale=1.4,
-        grid style={line width=.1pt, draw=gray},
-        grid=both,
-        yticklabel style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=1
-        }
-        ]
-        \addplot+[blue, ultra thick,opacity=1] {expo(.75,x)}; % \addlegendentry{\large $\bm{f_{U}}$}
-      \end{axis}
-    \end{tikzpicture}
-  \end{figure}
+% \end{figure}
 
 
-\item The figure shows the graph of the CDF of an exponential random variate.\pts{1}
-  What is the 30th percentile of this distribution? 
-\begin{figure}[h!]
-  \centering
-    \begin{tikzpicture}[
-    declare function={expcdf(\t,\l)= 1 - exp(-\l*\t);}
-    ]
-    \begin{axis}[
-      samples at={0,.01,...,2},
-      xlabel=$t$,
-      ylabel=$F_{T}(t)$,
-      xlabel style={right},
-      ylabel style={above right},
-  %    xtick={0,20,...,100},
-      ytick={0.0,0.1,...,1},
-      %axis x line=center,
-      %axis y line=center,
-      ymin=0,
-      xmin= 0,
-      xmax = 2,
-      ymax =1,
-      grid=both,
-      minor tick num=5,
-      major grid style={line width=1pt,draw=gray},
-      grid style={line width=.2pt, draw=gray!50},
-      %y post scale = .7,
-      x post scale=1.8
-      %legend style={at={(1.25, 1)},anchor=north east},
-      % yticklabel style={
-      %   /pgf/number format/fixed,
-      %   /pgf/number format/fixed zerofill,
-      %   /pgf/number format/precision=2
-      % }
-      ]
-      \addplot+[ultra thick,samples=100,no markers] {expcdf(x,5))};
-      %\addlegendentry{$N(\mu =12, \sigma^2=4.8)$};}
-    \end{axis}
-  \end{tikzpicture}
 
-  \caption{CDF of an exponential random variate}
-  \label{fig:cdf}
-\end{figure}
+ 
 
-  \vspace{2ex}
-  \begin{minipage}[]{.1\linewidth}
-    {\bf Answer:}
-  \end{minipage}\qquad
-  \begin{minipage}[]{.8\linewidth}
-    \framebox(300,40){\Huge\phantom{t}}     
-  \end{minipage}
-
-\eject
-
-\item Below is the CDF of a given normal distribution. Use the figure to answer the following 5 questions (i) -- (v).
+ \section*{Problem 4 \quad {\it CDF (5 points)}}
+   Below is the CDF of a given  distribution. Use the graph to answer the following.
 
   \begin{figure}[h!]
     \centering
-      \begin{tikzpicture}
-    \begin{axis}[no markers, domain=1:7, samples=100,
+      \begin{tikzpicture}[scale=.9]
+    \begin{axis}[no markers, domain=1:11, samples=100,
       axis lines*=left, xlabel=$x$, ylabel=$F_X(x)$,,
       height=8cm, width=16cm,ymax=1,
-      xtick={1, 1.5, ..., 7},
+      xtick={1, 1.5, ..., 11},
       ytick={0,0.125,.25,...,1},
       enlargelimits=false, clip=false, %axis on top,
       grid style={line width=.1pt, draw=gray!40},
@@ -949,7 +845,7 @@ Write the combination of events (using set notation)  depicted in each of the fi
           },        
       grid = both,minor tick num=4]
       % addplot [ultra thick, domain=-4:12] {gauss(4,3)};
-      \addplot+[blue, ultra thick, smooth] {normcdf(x, 4,1)};
+      \addplot+[blue, ultra thick, smooth] {normcdf(x, 6,2)};
      % \addplot [dashed, ultra thick, green!50!black] coordinates {(-1, 0.25) (.65,.25)};
      % \addplot [dashed, ultra thick, green!50!black] coordinates {(.65, 0.25) (.65,0)};
   
@@ -959,9 +855,19 @@ Write the combination of events (using set notation)  depicted in each of the fi
   \end{tikzpicture}
 
 \end{figure}
+\begin{enumerate}[\bf (a)]
 
-\begin{enumerate}[\bf(i)]
-\item What is the mean of this distribution? \pts{1}
+\item Estimate the first quartile (to 1 decimal place). \pts{1}
+
+\begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(300,40){\phantom{\Huge t} }     
+  \end{minipage}
+  \bigskip
+  
+\item What is the second quartile? \pts{1}
   
 \begin{minipage}[]{.1\linewidth}
     {\bf Answer:}
@@ -971,27 +877,7 @@ Write the combination of events (using set notation)  depicted in each of the fi
   \end{minipage}
   \bigskip
   
-\item What is the mode of this distribution? \pts{1}
-  
-\begin{minipage}[]{.1\linewidth}
-    {\bf Answer:}
-  \end{minipage}\qquad
-  \begin{minipage}[]{.8\linewidth}
-    \framebox(300,40){\phantom{\Huge t} }     
-  \end{minipage}
-  \bigskip
-  
-\item Estimate the first quartile. \pts{1}
-  
- \begin{minipage}[]{.1\linewidth}
-    {\bf Answer:}
-  \end{minipage}\qquad
-  \begin{minipage}[]{.8\linewidth}
-    \framebox(300,40){\Huge\phantom{t}}     
-  \end{minipage}
-
-  \bigskip
-\item Estimate the third quartile. \pts{1}
+\item Estimate the third quartile (to 1 decimal place). \pts{1}
   
  \begin{minipage}[]{.1\linewidth}
     {\bf Answer:}
@@ -1002,6 +888,16 @@ Write the combination of events (using set notation)  depicted in each of the fi
 
   \bigskip
 \item Compute the interquartile range (IQR). \pts{1}
+  
+ \begin{minipage}[]{.1\linewidth}
+    {\bf Answer:}
+  \end{minipage}\qquad
+  \begin{minipage}[]{.8\linewidth}
+    \framebox(300,40){\Huge\phantom{t}}     
+  \end{minipage}
+
+  \bigskip
+\item If you are told that the above CDF is that of a normal distribution, what is its mean? \pts{1}
   
  \begin{minipage}[]{.1\linewidth}
     {\bf Answer:}
@@ -1022,292 +918,6 @@ Write the combination of events (using set notation)  depicted in each of the fi
 %   \end{minipage}
 
   
-%   \eject
-  
-\item Consider the  PDFs of the \marginpar{\it[1]} epxonential random variates $T$, $U$, $V$ and $W$ (measured in hours) shown in the figure below. 
-  Which of them  has the greatest  mean? %T_z
-  \begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[no marks,
-        samples = 100,
-        axis x line=center,
-        axis y line=center,
-        xtick={0,1,...,6},
-        ytick={0,0.5,...,2},
-        domain = 0:12,
-        xlabel={$t$},
-        ylabel={$f(t)$},
-        xlabel style={right},
-        ylabel style={above },
-        ymax=2.2,
-        xmax=6,
-        x post scale=1.4,
-        yticklabel style={
-          /pgf/number format/fixed,
-          /pgf/number format/fixed zerofill,
-          /pgf/number format/precision=1
-        }
-        ]
-        \addplot+[draw=black,ultra thick,opacity=1] {expo(.5,x)}; \addlegendentry{\large $\bm{T}$}        
-        \addplot+[draw=orange,ultra thick,opacity=1] {expo(1,x)}; \addlegendentry{\large $\bm{U}$}
-        \addplot+[draw=blue,dashed, ultra thick,opacity=1] {expo(1.5,x)}; \addlegendentry{\large $\bm{V}$}
-        \addplot+[draw=red,dotted, ultra thick,opacity=1] {expo(2,x)}; \addlegendentry{\large $\bm{W}$}
-      \end{axis}
-    \end{tikzpicture}
-  \end{figure}
-
-  \vspace{2ex}
- \begin{minipage}[]{.1\linewidth}
-    {\bf Answer:}
-  \end{minipage}\qquad
-  \begin{minipage}[]{.8\linewidth}
-    \framebox(300,40){\Huge\phantom{t}}     
-  \end{minipage}
-
-  \bigskip
-  \bigskip
-  
-\item In the figure above, which random \pts{1} variable has standard deviation of 2 hours?  
-   
-  \vspace{2ex}
- \begin{minipage}[]{.1\linewidth}
-    {\bf Answer:}
-  \end{minipage}\qquad
-  \begin{minipage}[]{.8\linewidth}
-    \framebox(300,40){\Huge\phantom{t}}     
-  \end{minipage}
-  
-
-   \bigskip
-   \bigskip
-  
-\item In which of the  distributions does the mode appear to be equal to the mean? \pts{1}
-  Circle (a), (b) or (c). \\ %(b)
-  
-  \begin{figure}[h!]
-    \centering
-    \begin{subfigure}{.3\textwidth}
-      \caption{}
-      \begin{tikzpicture}[
-        declare function={gamma(\z)=
-          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)-
-          (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
-        declare function={gammapdf(\x,\k,\theta) = 1/(\theta^\k)*1/(gamma(\k))*\x^(\k-1)*exp(-\x/\theta);}
-        ]
-
-        \begin{axis}[
-          no markers, domain=-5:5, samples=100,
-          axis lines=left, xlabel=$m$, ylabel=$f_M(m)$,
-          %very axis y label/.style={at=(current axis.above origin),anchor=east},
-          %every axis x label/.style={at=(current axis.right of origin),anchor=north},
-          height=4cm, width=6cm,
-          xtick=\empty, ytick=\empty,
-          enlargelimits=false, clip=false, axis on top,
-          %xlabel style={right},
-          %ylabel style={above},
-          grid = major,
-          yticklabel style={
-            /pgf/number format/fixed,
-            /pgf/number format/fixed zerofill,
-            /pgf/number format/precision=2
-          }
-          ]
-          \addplot [very thick, domain=-5:5] {gauss(0,1)};
-        \end{axis}
-      \end{tikzpicture}
-
-    \end{subfigure}
-    \begin{subfigure}{.3\textwidth}
-            \caption{}
-      \begin{tikzpicture}[
-        declare function={gamma(\z)=
-          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)-
-          (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
-        declare function={gammapdf(\x,\k,\theta) = 1/(\theta^\k)*1/(gamma(\k))*\x^(\k-1)*exp(-\x/\theta);}
-        ]
-
-        \begin{axis}[
-          no markers, domain=0:9, samples=100,
-          axis lines=left, xlabel=$n$, ylabel=$f_N(n)$,
-          %every axis y label/.style={at=(current axis.above origin),anchor=east},
-          %every axis x label/.style={at=(current axis.right of origin),anchor=north},
-          height=4cm, width=6cm,
-          xtick=\empty, ytick=\empty,
-          % xticklabels={$n^*$},
-          % xticklabels={$\bar n (\theta_t)$},
-          enlargelimits=false, clip=false, axis on top,
-          %xlabel style={right},
-          %ylabel style={above},
-          grid = major,
-          yticklabel style={
-            /pgf/number format/fixed,
-            /pgf/number format/fixed zerofill,
-            /pgf/number format/precision=2
-          }
-          ]
-          \addplot [very thick,cyan!20!black,domain=0:20] {gammapdf(x,2,2)};
-          %\addplot [fill=cyan!20, draw=none, domain=0:6.0] {gammapdf(x,2,2)} \closedcycle;
-          %\addplot [very thick, fill=white!20!white, draw=none, domain=6.01:20] {gammapdf(x,2,2)} \closedcycle;
-        \end{axis}
-      \end{tikzpicture}
-    \end{subfigure}
-    \begin{subfigure}{.3\textwidth}
-      \caption{}
-      \begin{tikzpicture}
-        
-        \begin{axis}[
-          every axis plot post/.append style={
-            mark=none, domain=-5.5:3.5, samples=200, very thick
-          },
-          axis lines=left, xlabel=$r$, ylabel=$f_R(r)$,
-          height=4cm, width=6cm,
-          xtick=\empty, ytick=\empty,
-          enlargelimits=false, clip=false, axis on top
-          ]
-          \addplot[black]    {skewnorm(x, -5)};
-          % \addplot[green]  {skewnorm(x, -2)};
-          % \addplot[gray]   {skewnorm(x,  0)};
-          % \addplot[blue]   {skewnorm(x,  2)};
-          % \addplot[orange] {skewnorm(x,  4)};
-          % \legend{$\lambda=-4$,$\lambda=-2$,$\lambda=0$,$\lambda=2$,$\lambda=4$}
-        \end{axis}
-
-      \end{tikzpicture}
-    \end{subfigure}
-  \end{figure}
- \eject
-\item Which of the  distributions is right-skewed? \pts{1}
-  Circle (a), (b) or (c). \\ %(b)
-  
-  \begin{figure}[h!]
-    \centering
-    \begin{subfigure}{.3\textwidth}
-      \caption{}
-      \begin{tikzpicture}[
-        declare function={gamma(\z)=
-          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)-
-          (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
-        declare function={gammapdf(\x,\k,\theta) = 1/(\theta^\k)*1/(gamma(\k))*\x^(\k-1)*exp(-\x/\theta);}
-        ]
-
-        \begin{axis}[
-          no markers, domain=-5:5, samples=100,
-          axis lines=left, xlabel=$m$, ylabel=$f_M(m)$,
-          %very axis y label/.style={at=(current axis.above origin),anchor=east},
-          %every axis x label/.style={at=(current axis.right of origin),anchor=north},
-          height=4cm, width=6cm,
-          xtick=\empty, ytick=\empty,
-          enlargelimits=false, clip=false, axis on top,
-          %xlabel style={right},
-          %ylabel style={above},
-          grid = major,
-          yticklabel style={
-            /pgf/number format/fixed,
-            /pgf/number format/fixed zerofill,
-            /pgf/number format/precision=2
-          }
-          ]
-          \addplot [very thick, domain=-5:5] {gauss(0,1)};
-        \end{axis}
-      \end{tikzpicture}
-
-    \end{subfigure}
-    \begin{subfigure}{.3\textwidth}
-            \caption{}
-      \begin{tikzpicture}[
-        declare function={gamma(\z)=
-          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)-
-          (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
-        declare function={gammapdf(\x,\k,\theta) = 1/(\theta^\k)*1/(gamma(\k))*\x^(\k-1)*exp(-\x/\theta);}
-        ]
-
-        \begin{axis}[
-          no markers, domain=0:9, samples=100,
-          axis lines=left, xlabel=$n$, ylabel=$f_N(n)$,
-          %every axis y label/.style={at=(current axis.above origin),anchor=east},
-          %every axis x label/.style={at=(current axis.right of origin),anchor=north},
-          height=4cm, width=6cm,
-          xtick=\empty, ytick=\empty,
-          % xticklabels={$n^*$},
-          % xticklabels={$\bar n (\theta_t)$},
-          enlargelimits=false, clip=false, axis on top,
-          %xlabel style={right},
-          %ylabel style={above},
-          grid = major,
-          yticklabel style={
-            /pgf/number format/fixed,
-            /pgf/number format/fixed zerofill,
-            /pgf/number format/precision=2
-          }
-          ]
-          \addplot [very thick,cyan!20!black,domain=0:20] {gammapdf(x,2,2)};
-          %\addplot [fill=cyan!20, draw=none, domain=0:6.0] {gammapdf(x,2,2)} \closedcycle;
-          %\addplot [very thick, fill=white!20!white, draw=none, domain=6.01:20] {gammapdf(x,2,2)} \closedcycle;
-        \end{axis}
-      \end{tikzpicture}
-    \end{subfigure}
-    \begin{subfigure}{.3\textwidth}
-      \caption{}
-      \begin{tikzpicture}
-        
-        \begin{axis}[
-          every axis plot post/.append style={
-            mark=none, domain=-5.5:3.5, samples=200, very thick
-          },
-          axis lines=left, xlabel=$r$, ylabel=$f_R(r)$,
-          height=4cm, width=6cm,
-          xtick=\empty, ytick=\empty,
-          enlargelimits=false, clip=false, axis on top
-          ]
-          \addplot[black]    {skewnorm(x, -5)};
-          % \addplot[green]  {skewnorm(x, -2)};
-          % \addplot[gray]   {skewnorm(x,  0)};
-          % \addplot[blue]   {skewnorm(x,  2)};
-          % \addplot[orange] {skewnorm(x,  4)};
-          % \legend{$\lambda=-4$,$\lambda=-2$,$\lambda=0$,$\lambda=2$,$\lambda=4$}
-        \end{axis}
-
-      \end{tikzpicture}
-    \end{subfigure}
-  \end{figure}
-
-
-\item %$X \sim \mathcal{N}(\mu=3,\sigma^2=1)$. 
-The figure below shows the PDF of a normal distribution with a variance of 1. \pts{3} Compute the probability indicated by the shaded portion of the PDF below.
-
-    \begin{figure}[h!]
-    \centering
-      \begin{tikzpicture}
-    \begin{axis}[no markers, domain=0:10, samples=100,
-      axis lines*=left, xlabel=$x$, ylabel=$f_X(x)$,,
-      height=6cm, width=10cm,
-      xtick={-2, -1, ...,12 },
-      %ytick=\empty,
-      enlargelimits=false, clip=false, axis on top,
-      grid style={line width=.1pt, draw=gray},
-      yticklabel style={
-            /pgf/number format/fixed,
-            /pgf/number format/fixed zerofill,
-            /pgf/number format/precision=2
-          },        
-      grid = major]
-      \addplot [ultra thick, domain=-2:8] {gauss(3,1)};
-      \addplot [thick,draw=none, pattern=north west lines,  domain=4:7] {gauss(3,1)} \closedcycle;
-      %\addplot [dashed, ultra thick,] coordinates {(7,0) (7,{gauss(3,1)})};
-      \addplot [ultra thick, dashed] coordinates {(4,0) (4,{gauss(3,1)})};      
-    \end{axis}
-  \end{tikzpicture}
-
-\end{figure}
-
-      \vspace{2ex}
-  \begin{minipage}[]{.1\linewidth}
-    {\bf Answer:}
-  \end{minipage}\qquad
-  \begin{minipage}[]{.8\linewidth}
-    \framebox(390,120){\phantom{\Huge t}   }     
-  \end{minipage}
 
 %\item%  The number of ... that ... is binomially distributed. The probability of ... is  ...
   % Use your table to find the probability that at most 3 out of 7 cars will be defective...
@@ -1353,87 +963,127 @@ The figure below shows the PDF of a normal distribution with a variance of 1. \p
 %     \framebox(300,40){\Huge\phantom{t}}     
 %   \end{minipage}
   
-\end{enumerate}
 
 \eject
 
-\section*{Problem 4 \quad {\it Counting (7 points)}}
 
 
+\section*{Problem 5 \quad {\it Probabilities I (6 points)}}
+The  table below summarizes the results of a survey we did in class. 
+Use it to answer the following questions.
+\begin{table}[h!]\small
+\centering
+\begin{tabular}{|l|l|c|c|c|}
+\hline
+&  & \multicolumn{2}{c|}{\textbf{Do you drink coffee?}} &  \\\cline{3-5}
+&  & \textbf{Yes} & \textbf{No} & \textbf{Grand Total} \\
+\hline
+\multirow{2}{*}{\textbf{Where do you typically study?}} & \textbf{Library} & 14 & 22 & 36 \\
+\cline{2-5}
+& \textbf{Elsewhere} & 52 & 67 & 119 \\
+\hline
+\multicolumn{2}{|c|}{\textbf{Grand Total}} &  \textbf{66} & \textbf{89} & \textbf{155} \\
+\hline
+\end{tabular}
+\end{table}
 
 \begin{enumerate}[\bf (a)]
-\item License plates in a certain state consist of \pts{3} 1 digit, followed by 3 letters and then 2 digits. How many different
-license plates can be manufactured?
-\vspace{40ex}
+  \item What is the probability that a randomly selected student studies in the library? \pts{2} \vspace{20ex}
+  \item What is the probability that a randomly selected student does not drink coffee? \pts{2} \vspace{20ex}
+  \item What is the \pts{2} probability that a randomly selected student studies in the library and does not drink coffee?
+  \vspace{20ex}
 
-\item In how many ways can you arrange 6 items? \pts{2}
+\end{enumerate}
+\eject
+
+\section*{Problem 6 \quad {\it Probabilities II (8 points)}}
+The  table below summarizes the results of a survey we did in class. 
+Answer the following questions (drawing on results from the previous problem).
+\begin{table}[h!]\small
+\centering
+\begin{tabular}{|l|l|c|c|c|}
+\hline
+&  & \multicolumn{2}{c|}{\textbf{Do you drink coffee?}} &  \\\cline{3-5}
+&  & \textbf{Yes} & \textbf{No} & \textbf{Grand Total} \\
+\hline
+\multirow{2}{*}{\textbf{Where do you typically study?}} & \textbf{Library} & 14 & 22 & 36 \\
+\cline{2-5}
+& \textbf{Elsewhere} & 52 & 67 & 119 \\
+\hline
+\multicolumn{2}{|c|}{\textbf{Grand Total}} &  \textbf{66} & \textbf{89} & \textbf{155} \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{enumerate}[\bf (a)]
+
+
+\item What \pts{2} is the probability that a randomly selected student studies in the library, given that they do not drink coffee?
+\vspace{25ex}
+
+\item Are the events that a student studies in the library and does not drink coffee independent? Justify your answer. \pts{3}
+\vspace{25ex}
+
+     \item What is the \pts{3} probability that a randomly selected student either studies in the library or does not drink coffee?
 \vspace{20ex}
 
-\item How many distinct groups of 3 can you obtain from a larger group of 5 items? \pts{2}
-\vspace{40ex}
-  
 \end{enumerate}
 
+% \section*{Problem 4 \quad {\it Counting (7 points)}}
 
 
-\eject
-\section*{Problem 5 \quad {\it Bayes' and total probability (9 points)}}
-Given that $P (A) = 0.6$, $P (B) = 0.3$ and $P(C) = 0.1$ represent the production of machines in a
-factory. The conditional probabilities of damaged items are $P(D|A) = 0.02$, $P (D|B) = 0.03$ and
-$P (D|C) = 0.04$.
 
-\begin{enumerate}[\bf (a)]
-\item Find the total probability $P(D)$. \pts{3}
-    \vspace{25ex}
+% \begin{enumerate}[\bf (a)]
+% \item License plates in a certain state consist of \pts{3} 1 digit, followed by 3 letters and then 2 digits. How many different
+% license plates can be manufactured?
+% \vspace{40ex}
 
-  \item Find the \pts{3} probability that an item was produced by machine $B$, given that it is damaged.
-    \vspace{25ex}
+% \item In how many ways can you arrange 6 items? \pts{2}
+% \vspace{20ex}
 
-  \item Draw a Venn \pts{3} diagram depicting the  events $A$, $B$, $C$ and $D$ in sample space $S$.
-    
-
-\end{enumerate}
-
-\eject
-\section*{Problem 6 \quad {\it Binomial distribution (9 points; 5 points EC)}}
-%%% Page 187 deVore #72
-
-80\% of all vehicles inspected  at a certain facility station pass the inspection.
-Assuming that successive vehicles pass or fail independently of one another, find the following:
-\begin{enumerate}[\bf (a)]
-\item The standard deviation \pts{2} of the binomial distribution governing the probability of the next 10 vehicles passing inspection.
-  \vspace{20ex}
+% \item How many distinct groups of 3 can you obtain from a larger group of 5 items? \pts{2}
+% \vspace{40ex}
   
-\item The probability that half of the next 10 vehicles inspected pass. \pts{3}
-  \vspace{30ex}
+% \end{enumerate}
+
+
+
+% \section*{Problem 6 \quad {\it Binomial distribution (9 points; 5 points EC)}}
+% %%% Page 187 deVore #72
+
+% 80\% of all vehicles inspected  at a certain facility station pass the inspection.
+% Assuming that successive vehicles pass or fail independently of one another, find the following:
+% \begin{enumerate}[\bf (a)]
+% \item The standard deviation \pts{2} of the binomial distribution governing the probability of the next 10 vehicles passing inspection.
+%   \vspace{20ex}
   
-\item The probability that at least 4 of the next 10 vehicles inspected fail. \pts{4} %% 1 - none failing
-  \vspace{30ex}
-
-  \eject
-
-\item (Extra Credit) Use the normal distribution \pts{5} to estimate the probability that 95 of the next 100 vehicles inspected will pass inspection. (Show all your work to earn all the extra points.)
-\end{enumerate}
-
-\eject
-
-\section*{Problem 7 \quad {\it Poisson distribution (8 points)}}
-
-Hourly arrivals at a small coffee shop can be model using a Poisson distribution with a variance of 4.
-
-\begin{enumerate}[\bf (a)]
-\item What is the mean of the Poisson distribution?\pts{2}
-  \vspace{20ex}
-
-\item What is the probability that \pts{2} 5 customers will arrive in a given hour?
-  \vspace{30ex}
-
-\item Find the \pts{4} probability that no more than 8 customers will arrive over a duration of 2 consecutive hours.
+% \item The probability that half of the next 10 vehicles inspected pass. \pts{3}
+%   \vspace{30ex}
   
-\end{enumerate}
+% \item The probability that at least 4 of the next 10 vehicles inspected fail. \pts{4} %% 1 - none failing
+%   \vspace{30ex}
+
+% \end{enumerate}
+
+% \eject
+
+% \section*{Problem 7 \quad {\it Poisson distribution (8 points)}}
+
+% Hourly arrivals at a small coffee shop can be model using a Poisson distribution with a variance of 4.
+
+% \begin{enumerate}[\bf (a)]
+% \item What is the mean of the Poisson distribution?\pts{2}
+%   \vspace{20ex}
+
+% \item What is the probability that \pts{2} 5 customers will arrive in a given hour?
+%   \vspace{30ex}
+
+% \item Find the \pts{4} probability that no more than 8 customers will arrive over a duration of 2 consecutive hours.
+  
+% \end{enumerate}
 
  
-\eject
+% \eject
 
 % \begin{quote}
 %   \gr
@@ -1445,21 +1095,25 @@ Hourly arrivals at a small coffee shop can be model using a Poisson distribution
 %   \end{align*}
 % \end{quote}
 
-\section*{Problem 8  \quad {\it Normal distribution (7 points)}}
-The mean daily high temperature in June in LA is 77$^{\circ}$F with a  standard deviation of $5^{\circ}$F.  Suppose
-that the temperatures in June closely follow a normal distribution.
+\section*{Problem 7  \quad {\it Normal distribution (9 points)}}
+The drainage from a community during a storm is a normal random variable
+estimated to have a mean of 1.2 million gallons per day (mgd) and an SD of 0.4
+mgd. If the storm drain system is designed with a maximum drainage capacity of
+1.5 mgd, answer the following questions (and show the code you use where appropriate).
 
 \begin{enumerate}[\bf (a)]
+\item Sketch the normal distribution, showing both the mean and the maximum drainage capacity. \pts{3}
+  \vspace{20ex}
+
+\item  What is the underlying probability of flooding during a storm that is assumed \pts{2}
+in the design of the drainage system? (Note: flooding occurs when the maximum drainage capacity is exceeded.)
+\vspace{20ex}
+
+\item What is the probability that the drainage is less than 1 mgd? \pts{2}
+  \vspace{25ex}
 
 
-\item What is the 50th \pts{1}  percentile of daily high temperatures in June in LA?
-\vspace{10ex}
-
-\item What is the \pts{3} probability that the high temperature on a random day in June in LA is lower than $60^{\circ}$F?
-  \vspace{30ex}
-
-
-  \item What is the \pts{3} probability that the high temperature on a random day in June in LA is between 60$^{\circ}$ and $80^{\circ}$F?
+  \item  Find the 95th-percentile drainage load from the community during a storm. \pts{2}
   \vspace{30ex}
 
 
@@ -1470,60 +1124,39 @@ that the temperatures in June closely follow a normal distribution.
 
 
 \eject
-\section*{Problem 9 \quad {\it Logormal distribution (10 points)}}
+\section*{Problem 8 \quad {\it Logormal distribution (8 points)}}
+The distribution of the number of words (sentence length) from random sentences collected in class 
+fitted a lognormal distribution with parameters $\mu = 2.59, \sigma = 0.65$. 
+Now, use this distribution to answer the following questions.
 
-The lifetime (in years) of a machine is lognormally distributed with 
-$\mu = 2$ and $\sigma = 0.5$.
 \begin{enumerate}[(a)]
-  \item  What is the median lifetime of the machine? \pts{2}
-  \vspace{10ex}
+  \item  What is the median sentence length? \pts{2}
+  \vspace{15ex}
 
-\item Find the mean lifetime.\pts{2}
-  \vspace{25ex}
-  
-\item What is the probability that the lifetime is at least 5 years? \pts{3}
+
+\item What is the probability that the sentence length  is at least 10 words? \pts{3}
   \vspace{30ex}
 
-\item What is the probability that the lifetime is less than 2 years? \pts{3}
+\item Sketch the distribution, indicating the median and shading the portion of 
+the PDF corresponding to the probability in part (b). \pts{3}
   
 \end{enumerate}
 
 \eject
 
-\section*{Problem 10 \quad {\it Exponential distribution (8 points)}}
-The delay time $T$ of a bus is exponentially distributed with $\la = 1$ (mean rate of occurrence per hour).
+\section*{Problem 9 \quad {\it Short answer (8 points)}}
+In each case, show your work/code.
 
+\begin{enumerate}[\bf (a)]
+\item A random variable $X$ is binomially distributed with $n=50$ and $p=0.3$. Find the probability that $X < 10$. \pts{3}
+\vspace{30ex}
 
-\begin{enumerate}[(a)]
-\item What is the mean of $T$? \pts{1}
-  \vspace{10ex}
-  % \begin{quote}
-  %   \gr
-  %   \begin{align*}
-  %     P(T \le 0.25) &= 1 - e^{- 3(0.25)} \\
-  %                   &= \boxed{0.528}
-  %   \end{align*}
-  % \end{quote}
-
-\item What is the variance of $T$? \pts{1}
-  \vspace{10ex}
+\item A random variable $T$ is exponentially distributed with a rate parameter of $\lambda = 20$ occurrences/minute.\pts{2}
+What is the mean of $T$? 
+  \vspace{20ex}
 
   
-\item What is the probability that a train is delayed by no more than 15 minutes? \pts{3}
-  \vspace{25ex}
-  
-\item Given that you have already waited for 30 minutes, \pts{3}
-   what is the probability that a certain bus will be further delayed by more than 15 minutes?
-%   \vspace{30ex}
-%   % \begin{quote}
-%   %   \gr
-%   %   Use the memoryless property:
-%   %   \begin{align*}
-%   %     P(T > 1|T>0.5) &= P(T>0.5) \\
-%   %                    &= e^{-3(0.5)} \\
-%   %                    &\approx \boxed{0.777}
-%   %   \end{align*}
-%   % \end{quote}
+\item In how many ways can you have 3 successes out of 10 trials in which the outcome of each trial is either success or failure? \pts{3}
 \end{enumerate}
 
 % \eject
@@ -1645,7 +1278,7 @@ The delay time $T$ of a bus is exponentially distributed with $\la = 1$ (mean ra
   \includegraphics[width=1in]{umass-seal}
   
   {\sc
-    CEE 260/MIE 273 $|$ Jimi Oke $|$ Fall 2024\\
+    CEE 260/MIE 273 $|$ Jimi Oke $|$ Fall 2025\\
     Department of Civil and Environmental Engineering \\
     University of Massachusetts Amherst
   }
