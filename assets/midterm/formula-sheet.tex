@@ -1,0 +1,380 @@
+\documentclass[10pt,twoside]{article}
+\usepackage{etex}
+
+\raggedbottom
+
+%geometry (sets margin) and other useful packages
+\usepackage{geometry}
+\geometry{top=1in, left=1in,right=1in,bottom=1in}
+ \usepackage{graphicx,booktabs,calc}
+ 
+\usepackage{listings}
+
+
+% Marginpar width
+%Marginpar width
+\newcommand{\pts}[1]{\marginpar{ \small\hspace{0pt} \textit{[#1]} } } 
+\setlength{\marginparwidth}{.5in}
+%\reversemarginpar
+%\setlength{\marginparsep}{.02in}
+
+ 
+%\usepackage{cmbright}lstinputlisting
+%\usepackage[T1]{pbsi}
+
+
+\usepackage{chngcntr,mathtools}
+%\counterwithin{figure}{section}
+%\numberwithin{equation}{section}
+
+%\usepackage{listings}
+\graphicspath{{./images/}}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{colortbl}
+\usepackage{color}
+
+
+\usepackage{subfigure,hyperref,enumerate,polynom,polynomial}
+\usepackage{multirow,minitoc,fancybox,array,multicol}
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%%TIKZ
+\usepackage{tikz}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\tikzstyle arrowstyle=[black,scale=2]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\tikzstyle dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrow[arrowstyle]{latex}}}}]
+\tikzstyle rev dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrowreversed[arrowstyle]{latex};}}}]
+
+\usepackage{ctable}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{exercise}{\@startsection 
+	{section}
+	{1}
+	{-.2em}
+	{-3.5ex plus -1ex minus -.2ex}
+    	{1.3ex plus .2ex}
+    	{\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+	\large\bf\noindent{Exercise 1.\hspace{-1.5ex} }
+	}
+	}
+	%{\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+	%\begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\fancyheadoffset{30pt}
+%\fancyfootoffset{30pt}
+\fancyhead[LO,RE]{\small Oke}
+\fancyhead[RO,LE]{\small Page \thepage} 
+\fancyfoot[RO,LE]{\small E1 Formula Sheet} 
+\fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{0.1pt} 
+\renewcommand{\footrulewidth}{0.1pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+
+\usepackage{paralist}
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\n}{\\[2mm]}
+%% GREEK LETTERS
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\sig}{\sigma}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\mr}{\mathbb{R}}
+\newcommand{\xs}{x^{*}}
+\newenvironment{solution}
+{\medskip\par\quad\quad\begin{minipage}[c]{.8\textwidth}}{\medskip\end{minipage}}
+
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\lstset{language=C++,
+                basicstyle=\tiny\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{gray}\ttfamily,
+                morecomment=[l][\color{gray}]{\#}
+}
+
+
+\thispagestyle{empty}
+
+
+\nin{\LARGE E1 Formula Sheet}\hfill{\bf Prof. Oke}
+
+\medskip\hrule\medskip
+
+\nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
+\hfill\textit{ 10.10.2025}}
+
+\section{Set theory}
+Properties:
+    \begin{align}
+      A \cup B &= B \cup A \\
+      A \cap B &= B \cap A\\
+      (A \cup B) \cup C &= A \cup ( B \cup C) \\
+      (AB)C &= A(BC)\\
+    (A \cup B) \cap C &= (A \cap C) \cup (B \cap C)  \\
+      (AB) \cup C &= (A\cup C) \cap (B \cup C) 
+    \end{align}
+De Morgan's rule:
+\begin{align}
+  \overline{E_1 \cup E_2 \cup \cdots \cup E_n} &= \overline{E_1} \cap \overline{E_2} \cap \cdots \cap \overline{E_n}\\
+  \overline{E_1 \cap E_2 \cap \cdots \cap E_n} &= \overline{E_1} \cup \overline{E_2} \cup \cdots \cup \overline{E_n}
+\end{align}
+\section{Mathematics of probability}
+General rules:
+\begin{align}
+  P(\ol{E}) &= 1- P(E) \\
+  P(A\cup B) &= P(A) + P(B) - P(AB) \\
+  P(A\cap B) &= P(AB) = P(A|B)P(B) \\
+  P(A|B) &= \fr{P(AB)}{P(B)}\\
+  P(A|B) &= 1 - P(\ol{A}|B)
+\end{align}
+Mutually exclusive events:
+\begin{equation}
+    P(A\cup B) = P(A) + P(B) 
+\end{equation}
+Statistically independent events:
+\begin{align}
+  P(AB) &= P(A)P(B) \\
+  P(A|B) &= P(A) \\
+  P(B|A) &= P(B)
+\end{align}
+Total probability theorem:
+\begin{equation}
+  P(A) = P(A|E_1)P(E_1) + P(A|E_2)P(E_2) + \cdots + P(A|E_n)P(E_n) = \sum_{i=1}^n P(A|E_i)P(E_i)
+\end{equation}
+Bayes' theorem:
+\begin{equation}
+  \label{eq:2}
+  P(E_i|A) = \fr{P(A|E_i)P(E_i)}{\sum_{j=1}^nP(A|E_j)P(E_j)}
+\end{equation}
+
+
+
+\section{Probability distributions}
+Basic definitions:
+\begin{align}
+  \text{Mean: } E(X) = \mu_X &=
+         \begin{cases}
+           \sum_{i}x_ip_X(x_i) & \text{(discrete)}\\[2mm]
+           \int_{-\infty}^\infty xf_X(x)dx & \text{(continuous)}
+         \end{cases} \\
+  \text{Variance: } Var(X) &=
+             \begin{cases}
+           \sum_{i}(x_i - E(X))^2p_X(x_i) & \text{(discrete)}\\[2mm]
+           \int_{-\infty}^\infty (x -E(X))^2f_X(x)dx & \text{(continuous)}
+         \end{cases} \\
+                     &= E(X^2) - E(X)^2 \\
+  \text{Coefficient of variation: } \delta_X &= \fr{\sigma_X}{\mu_X}
+\end{align}
+$X \sim \text{Uniform}(a,b)$:
+\begin{align}
+  P(a < X \le b) &= \fr{x-a}{b-a} \\
+  \mu_X &= \fr{a+b}{2}\\
+  Var(X) &= \fr{(b-a)^2}{12}
+\end{align}
+ $X \sim \mathcal{N}(\mu,\sigma)$:
+ \begin{align}
+   \text{(CDF)} \quad    P(X \le b) &= \nmfr{b}{\mu}{\sigma}\\
+   P(a < X \le b) &= \nmfr{b}{\mu}{\sigma} - \nmfr{a}{\mu}{\sigma}
+\end{align}
+$X \sim$ Lognormal$(\la,\zeta)$:
+\begin{align}
+  P(a < X \le b) &= \nmfr{\ln b}{\la}{\zeta} - \nmfr{\ln a}{\la}{\zeta}\\
+  \la &= \ln x_m\\
+  \zeta &= \sqrt{\ln(1 + \delta_X^2)} \approx \delta_X \\
+  \mu_X &= e^{\lt(\la + \fr12 \zeta^2\rt)}\\
+  Var(X) &= \mu_X^2(e^{\zeta^2} - 1)
+\end{align}
+$X \sim \text{Binomial} (n,p)$:
+\begin{align}
+ \text{(PDF)} \quad  P(X = x) &= {n \choose x}p^x (1-p)^{n-x}\\
+  \text{(CDF)} \quad   P(X\le x) &=  \sum_{k=0}^x{n \choose k}p^k (1-p)^{n-k} \\
+  & = {n \choose 0}p^0 (1-p)^{n-0} + {n \choose 1}p^1 (1-p)^{n-1} + \cdots + {n \choose x}p^x (1-p)^{n-x} \\
+  \mu_X &= np \\
+  Var(X) &= np(1-p)
+\end{align}
+$X \sim \text{Poisson} (\la)$, where $\la = vt$:
+\begin{align}
+   \text{(PDF)} \quad P(X = x) &= \fr{\la^x e^{-\la}}{x!} \\
+  \text{(CDF)} \quad  P(X\le x) &= \sum_{k=0}^x\fr{\la^k e^{-\la}}{k!}
+  = \fr{\la^0 e^{-\la}}{0!} +  \fr{\la^1 e^{-\la}}{1!} + \cdots + \fr{\la^x e^{-\la}}{x!}\\
+  \mu_X &= Var(X) = \la
+\end{align}
+%\eject
+$X \sim \text{Exponential}(v)$:
+\begin{align}
+  \text{(CDF)} \quad  P(T\le t) &= 1 - e^{-vt} \\
+  \mu_T &= \fr{1}{v}\\
+  Var(T) &= \fr{1}{v^2} \\
+\text{Memorylessness: }  P(T> t+t_0|T > t_0) &= P(T> t)
+\end{align}
+$X \sim \text{Weibull}(k,\eta,\varepsilon)$, where $\eta = w_1 - \varepsilon$:
+\begin{align}
+    F_{Y}(y) &= 1  - e^{-\lt(\fr{y-\varepsilon}{w_1 - \varepsilon}\rt)^k}; y\ge\varepsilon \\
+    \mu_Y &= \varepsilon + (w_1 - \varepsilon)\Gamma\lt(1 + \fr1k\rt) \\
+    \sigma_Y^2 &= (w_1 - \varepsilon)^2\lt[ \Gamma\lt(1 + \fr2k\rt) - \Gamma^2\lt(1 + \fr1k\rt)\rt]
+\end{align}
+
+% \begin{tabular}{l l l l l} \toprule
+%   \bf Name & \bf PDF/PMF  & \bf Parameters & \bf Mean & \bf Variance \\ \midrule
+%   Normal   & $\fr{1}{\sigma\sqrt{2\pi}}e^{-\fr{1}{2}\lt(\fr{x-\mu}{\sigma}\rt)^2}$ & $\mu, \sigma$ & $\mu$ & $\sigma^2$ \\[2mm]
+%   Lognormal & $\fr{1}{(\zeta x)\sqrt{2\pi}}e^{-\fr{1}{2}\lt(\fr{\ln x-\la}{\zeta}\rt)^2}$ & $\la$, $\zeta $
+%                           & $e^{\lt(\la + \fr12 \zeta^2\rt)}$  &  $\mu_X^2(e^{\zeta^2} - 1)$ \\[2mm]
+%   Binomial & ${n \choose x}p^x (1-p)^{n-x}$ & $n, p$, $q = 1-p$ & $np$ & $npq$ \\[2mm]
+%   Poisson  & $\fr{\la^x e^{-\la}}{x!}$ & $\la = vt$ & $\la$ & $\la$ \\[2mm]
+%   Exponential & \\
+%   Gamma & $\begin{cases}
+%           \fr{v(vx)^{k-1}}{\Gamma(k)}e^{-vx} & x \ge 0 \\
+%           0 & x < 0
+%           \end{cases}$ & $k,v$ & $\fr{k}{v}$ & $\fr{k}{v^2}$ \\[2mm] \bottomrule
+% \end{tabular}
+
+%\eject
+\section{Joint distributions}
+For two \textbf{discrete} r.v.'s $X$ and $Y$:
+\begin{align}
+  p_{X,Y}(x_i,y_j)   &=  p_{X|Y}(x_i|y_j) p_Y(y_j)  =   p_{Y|X}(y_j|y_i)p_X(x_i) \\
+  p_X(x_i) &= \sum_{y_j}p_{X,Y}(x_i,y_j)  \\
+  p_Y(y_j) &= \sum_{x_i}p_{X,Y}(x_i,y_j)  
+\end{align}
+If $X$ and $Y$ are statistically independent:
+\begin{equation}
+  \label{eq:50a}
+   p_{X,Y}(x_i,y_j)  = p_X(x_i)p_Y(y_j)
+\end{equation}
+For two \textbf{continuous} r.v.'s $X$ and $Y$:
+\begin{align}
+  f_{X,Y}(x,y) &= f_{X|Y}(x|y)f_Y(y) = f_{Y|X}(y|x)f_X(x)\\
+     f_X(x) &= \int_{-\infty}^\infty f_{X,Y}(x,y)dy \\ 
+  f_Y(y) &=  \int_{-\infty}^\infty f_{X,Y}(x,y)dx
+\end{align}
+If $X$ and $Y$ are statistically independent:
+\begin{equation}
+  \label{eq:50}
+  f_{X,Y}(x,y) = f_X(x) f_Y(y)
+\end{equation}
+Covariance and correlation:
+\begin{align}
+  Cov(X,Y) &= E(XY) - E(X)E(Y) = \rho_{XY}\sigma_X\sigma_Y\\
+  \rho_{XY} &= \fr{Cov(X,Y)}{\sigma_X\sigma_Y}
+\end{align}
+
+\eject
+\section{Functions of random variables}
+If $Z = aX \pm bY$, where $X$ and $Y$ are normal r.v.'s:
+\begin{align}
+  E(Z) &= aE(X) \pm bE(Y) \\
+  Var(Z) &= a^2Var(X) + b^2Var(Y) \pm 2ab\,Cov(X,Y)
+\end{align}
+% Where $X_i$ are any number of statistically independent random variables, and $Z = \sum_{i=1}^n a_iX_i$, then:
+% \begin{align}
+%   E(Z) &= \sum_{i=1}^n a_iE(X_i) \\
+%   Var(Z) &=\sum_{i=1}^n a_i^2Var(X_i) 
+             %   \end{align}
+For \textbf{statistically independent} random variables:\\
+
+If $Z = \sum_{i=1}^n X_i$, where $X_i\sim \text{Poisson}(v_i)$, then:
+\begin{equation}
+  \label{eq:21}
+  v_Z= \sum_{i=1}^n v_i
+\end{equation}
+
+If $Z  = \sum_{i=1}^n a_i X_i$, where $X_i \sim \mathcal{N}(\mu_{X_i},\sigma_{X_i})$, then:
+\begin{equation}
+  \label{eq:14}
+\mu_Z = \sum_{i=1}^na_i\mu_{X_i} \quad  \sigma_Z^2 = \sum_{i=1}^n a_i^2\sigma_{X_i}^2
+\end{equation}
+
+If $Z = \prod_{i=1}^nX_i$, where $X_i \sim \text{Lognormal}(\la_{X_i},\zeta_{X_i})$, then:
+\begin{equation}
+  \label{eq:22}
+  \la_Z = \sum_{i=1}^n\la_{X_i} \quad \zeta_Z^2 = \sum_{i=1}^n\zeta_{X_i}^2
+\end{equation}
+
+\end{document}
