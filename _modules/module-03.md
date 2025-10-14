@@ -35,4 +35,4 @@ Tue, Oct 7
 Tue, Oct 9
 : **LECTURE 3F**{: .label .label-blue }[Joint Distributions](/assets/lectures/M3-Probability-Distributions/M3f-Joint-Distributions-Handout.pdf) and REVIEW
   :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-10-09T13:00:00.000_2025-10-09T14:15:00.000/classroom)
-: **ACTIVITY 3F**{: .label .label-activity}[TBD](#)
+: **ACTIVITY 3F**{: .label .label-activity}[Smartphone/Laptop Preferences](https://docs.google.com/spreadsheets/d/1aoqXYKO0NqIf_Ai5fqFwajqwh5m13R7SPaGqpsvwVhA/edit?gid=1347214385#gid=1347214385)
