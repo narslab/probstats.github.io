@@ -20,4 +20,3 @@ Thu, Oct 23
 : **LECTURE 4C**{: .label .label-blue }[Hypothesis Testing for a Proportions](/assets/lectures/M3-Probability-Distributions/M3c-Lognormal-Exponential-Distributions-Handout.pdf)
   :  [Echo360 Video](#)
 : **ACTIVITY 5C**{: .label .label-activity}[*FORTHCOMING*](#)
-
