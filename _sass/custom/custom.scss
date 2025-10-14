@@ -90,4 +90,10 @@ summary {
 
 .btn-datahub {
   @include btn-color($white, #2f14ff);
-}
+} 
+
+
+.btn-datahub {
+  @include btn-labsolution($white, #831f81);
+} 
+
