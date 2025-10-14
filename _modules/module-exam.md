@@ -12,4 +12,4 @@ Thu, Oct 9
 : **Formula Sheet**{: .label .label-orange}[PDF](/assets/midterm/formula-sheet.pdf)
 
 Tue, Oct 14
-: **MIDTERM EXAM**{: .label .label-red}[*FORTHCOMING*](#)
+: **MIDTERM EXAM**{: .label .label-red}[Available on Gradescope](https://www.gradescope.com/courses/1113538/assignments/6972597)
