@@ -20,7 +20,7 @@ Tue, Sep 9
   :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-09-09T13:00:00.000_2025-09-09T14:15:00.000/classroom)
 <!-- : **Lab**{: .label .label-purple } [Intro to Java](#) -->
 : **PROBLEM SET 2**{: .label .label-red}[Overleaf](https://www.overleaf.com/read/trwqyfddzssz#3b9273) **(Due 9/16)**
-  : [PS 1 Solutions](/assets/problem-sets/PS2-solutions.pdf)
+  : [PS 2 Solutions](/assets/problem-sets/PS2-solutions.pdf)
 : **LAB 2**{: .label .label-orange}[Data Summarization and Visualization](https://colab.research.google.com/drive/171txI3o7PO3EVesVW7PI7vSWEHr5WprT?usp=sharing) (Due 9/16);
 [**Solution**{: .text-purple}](https://colab.research.google.com/drive/1WGAjT8c-pdGT306egALbrZi53ggBcW87?authuser=1#scrollTo=bfawv_hX8G9C)
 : **Activity 2A**{: .label .label-activity}[Pizza Preference Survey](https://docs.google.com/spreadsheets/d/1BIFjvKojhE-WL8SUR8jk0Fsf4vADHASqOkeSQJqTy2s/view?gid=0#gid=0); [Prompt](https://claude.ai/public/artifacts/69bdfae7-0e99-4fa6-a3c4-0432409907cc)
