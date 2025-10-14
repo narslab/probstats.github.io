@@ -1,0 +1,326 @@
+\documentclass[12pt,twoside]{article}
+\usepackage{etex}
+
+\raggedbottom
+
+%geometry (sets margin) and other useful packages
+\usepackage{geometry}
+\geometry{top=1in, left=1in,right=1in,bottom=1in}
+ \usepackage{graphicx,booktabs,ragged2e,calc}
+ 
+\usepackage{listings}
+
+% Marginpar width
+%Marginpar width
+\newcommand{\pts}[1]{\marginpar{ \small\hspace{0pt} \textit{[#1]} } } 
+\setlength{\marginparwidth}{.5in}
+%\reversemarginpar
+%\setlength{\marginparsep}{.02in}
+
+ 
+%\usepackage{cmbright}lstinputlisting
+%\usepackage[T1]{pbsi}
+
+\renewcommand{\baselinestretch}{1.5}
+
+\usepackage{chngcntr,mathtools}
+%\counterwithin{figure}{section}
+%\numberwithin{equation}{section}
+
+%\usepackage{listings}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{colortbl}
+\usepackage{color}
+
+
+\usepackage{subcaption,hyperref,enumerate,polynom,polynomial}
+\usepackage{multirow,minitoc,fancybox,array,multicol}
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%%TIKZ
+\usepackage{tikz}
+
+\usepackage{pgfplots,pgfplotstable}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\tikzstyle arrowstyle=[black,scale=2]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\tikzstyle dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrow[arrowstyle]{latex}}}}]
+\tikzstyle rev dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrowreversed[arrowstyle]{latex};}}}]
+
+\usepackage{ctable}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{exercise}{\@startsection 
+	{section}
+	{1}
+	{-.2em}
+	{-3.5ex plus -1ex minus -.2ex}
+    	{1.3ex plus .2ex}
+    	{\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+	\large\bf\noindent{Exercise 1.\hspace{-1.5ex} }
+	}
+	}
+	%{\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+	%\begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\fancyheadoffset{30pt}
+%\fancyfootoffset{30pt}
+\fancyhead[LO,RE]{\small Prof. Oke}
+\fancyhead[RO,LE]{\small Page \thepage} 
+\fancyfoot[RO,LE]{\small E1: Midterm} 
+\fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{0.1pt} 
+\renewcommand{\footrulewidth}{0.1pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+
+\usepackage{paralist}
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\n}{\\[2mm]}
+%% GREEK LETTERS
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\sig}{\sigma}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\mr}{\mathbb{R}}
+\newcommand{\xs}{x^{*}}
+\newenvironment{solution}
+{\medskip\par\quad\quad\begin{minipage}[c]{.8\textwidth}}{\medskip\end{minipage}}
+
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+% https://tex.stackexchange.com/questions/198383/drawing-cumulative-distribution-function-for-a-discrete-variable
+\makeatletter
+\long\def\ifnodedefined#1#2#3{%
+    \@ifundefined{pgf@sh@ns@#1}{#3}{#2}%
+}
+
+\pgfplotsset{
+    discontinuous/.style={
+    scatter,
+    scatter/@pre marker code/.code={
+        \ifnodedefined{marker}{
+            \pgfpointdiff{\pgfpointanchor{marker}{center}}%
+             {\pgfpoint{0}{0}}%
+             \ifdim\pgf@y>0pt
+                \tikzset{options/.style={mark=*, fill=white}}
+                \draw [densely dashed] (marker-|0,0) -- (0,0);
+                \draw plot [mark=*] coordinates {(marker-|0,0)};
+             \else
+                \tikzset{options/.style={mark=none}}
+             \fi
+        }{
+            \tikzset{options/.style={mark=none}}        
+        }
+        \coordinate (marker) at (0,0);
+        \begin{scope}[options]
+    },
+    scatter/@post marker code/.code={\end{scope}}
+    }
+}
+
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Here's where you edit the Class, Exam, Date, etc.
+\newcommand{\class}{CEE 260/MIE 273: Probability \& Statistics in Civil Engineering}
+\newcommand{\term}{Fall 2020}
+\newcommand{\examnum}{E1: Midterm Exam}
+\newcommand{\examdate}{10/08/20}
+\newcommand{\timelimit}{24 Hours}
+
+
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\usetikzlibrary{math}
+
+% https://tex.stackexchange.com/questions/461758/asymmetric-distribution-gauss-curve
+\tikzmath{%
+  function h1(\x, \lx) { return (9*\lx + 3*((\lx)^2) + ((\lx)^3)/3 + 9); };
+  function h2(\x, \lx) { return (3*\lx - ((\lx)^3)/3 + 4); };
+  function h3(\x, \lx) { return (9*\lx - 3*((\lx)^2) + ((\lx)^3)/3 + 7); };
+  function skewnorm(\x, \l) {
+    \x = (\l < 0) ? -\x : \x;
+    \l = abs(\l);
+    \e = exp(-(\x^2)/2);
+    return (\l == 0) ? 1 / sqrt(2 * pi) * \e: (
+      (\x < -3/\l) ? 0 : (
+      (\x < -1/\l) ? \e / (8 * sqrt(2 * pi)) * h1(\x, \x*\l) : (
+      (\x <  1/\l) ? \e / (4 * sqrt(2 * pi)) * h2(\x, \x*\l) : (
+      (\x <  3/\l) ? \e / (8 * sqrt(2 * pi)) * h3(\x, \x*\l) : (
+      sqrt(2/pi) * \e)))));
+  };
+}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+% to be used: \cdf(x)(mean)(variance)
+
+\DeclareMathOperator{\CDF}{cdf}
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+    }
+}
+
+\begin{document}
+
+%\begin{flushright}
+%  \noindent \begin{tabular}{p{2.8in} r l}
+\title{\vspace{-5ex}{\sc \examnum}}
+\author{\bf \class}
+\date{October 16, 2024\\[4mm]
+   {\sc time limit:} {\bf \sc Twenty-Four Hours}
+}
+% \end{tabular}\\
+%\end{flushright}
+%
+\clearpage
+\maketitle
+\noindent\rule[1ex]{\textwidth}{.1pt}
+\subsection*{Name}
+Please print your name clearly in the box below.\\
+\begin{center}
+  \framebox(300,40){\Huge\phantom{t}} \\
+  \vspace{2ex}
+\end{center}
+
+\vspace{40ex}
+{\it Turn to the next page to read the instructions.}
+\thispagestyle{empty}
+
+
+\eject
+\subsection*{Instructions}
+This exam contains\textbf{ 22 pages} (including the front and back pages) and \textbf{10 problems, 106 points} (with 5 points extra credit). You have {\bf 24 hours} to complete it.  You may print out the PDF, complete it and upload as a
+PDF on Moodle, or \textit{neatly} answer the questions on blank pages of paper, scan and upload.
+% Check to see if any pages are missing.
+% Make sure you have written your name on the front page.
+% If for any reason you have any loose pages, put your initials on the
+% top of these pages.\\
+
+\noindent This is an \textbf{open resource examination}. You are expected to complete the exam individually. Asking
+anyone (colleague, friend, tutor, etc) questions about the exam is \textit{not allowed}. If any questions arise during the exam, direct them to me (via email).
+\\
+ 
+
+\noindent The following rules apply: 
+% \begin{minipage}[t]{3.7in}
+% \vspace{0pt}
+\begin{itemize}
+
+%\item \textbf{If you use a ``fundamental theorem'' you must indicate this} and explain
+%why the theorem may be applied.
+
+\item \textbf{Organize your work}, in a reasonably neat and coherent way.% , in
+% the space provided
+ Work scattered all over the page without a clear ordering will
+receive very little credit.
+
+\item \textbf{Show ALL your work where appropriate}.
+  The work you show will be evaluated as well as your final answer.
+  Thus, provide ample justification for each step you take.
+  Indicate when you have used a probability table or MATLAB/Python to obtain a result.
+  In the case of MATLAB/Python, briefly include the function or statement you used to arrive at your result.
+  In the long response questions, simply putting down an answer without showing your steps  will not merit full credit.
+  {\bf EXCEPTION:} For short response or ``True/False'' questions, \textit{no explanations are required}.
+  However, the more work you show, the greater your chance of receiving partial credit if your final answer is incorrect.
+
+\item If you need more space, use the blank pages at the end, and clearly indicate when and where you have done this.
+
+\item Questions are roughly in order of the lectures, so later questions may not necessarily be harder.
+  If you are stuck on a problem, it may be better to skip it and get to it later.
+
+\item Manage your time wisely.% Do not spend too much time on problems with fewer points.
+
+\end{itemize}
+
+\end{document}
