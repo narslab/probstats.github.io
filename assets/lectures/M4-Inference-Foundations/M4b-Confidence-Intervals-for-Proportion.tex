@@ -1,0 +1,740 @@
+%\documentclass[smaller,handout]{beamer}
+\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\if 0\bmode
+\documentclass[smaller]{beamer}
+\else \if 1\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+\else \if 2\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\fi
+\fi
+\fi
+
+% \documentclass[smaller,handout
+% ]{beamer}
+%\usepackage{etex}
+%\newcommand{\num}{6{} }
+
+% \usetheme[
+%   outer/progressbar=foot,
+%   outer/numbering=counter,
+%  block=fillFF
+% ]{metropolis}
+
+%\useoutertheme{metropolis}
+
+\usetheme{Madrid}
+\useoutertheme[subsection=false]{miniframes} % Alternatively: miniframes, infolines, split
+\useinnertheme{circles}
+\usecolortheme{seahorse}
+
+% \usepackage[backend=biber,style=authoryear,maxcitenames=2,maxbibnames=99,safeinputenc,url=false,
+% eprint=false]{biblatex}
+% \addbibresource{bib/references.bib}
+% \AtEveryCitekey{\iffootnote{{\tiny}\tiny}{\tiny}}
+
+%\usepackage{pgfpages}
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{hide notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+% \usepackage[sfdefault]{Fira Sans}
+
+% \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+% \setmonofont{Fira Mono}
+
+%\usepackage{fira}
+%\setsansfont{Fira}
+%\setmonofont{Fira Mono}
+% To give a presentation with the Skim reader (http://skim-app.sourceforge.net) on OSX so
+% that you see the notes on your laptop and the slides on the projector, do the following:
+% 
+% 1. Generate just the presentation (hide notes) and save to slides.pdf
+% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
+% 3. With Skim open both slides.pdf and notes.pdf
+% 4. Click on slides.pdf to bring it to front.
+% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
+%    select notes.pdf.
+% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
+% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
+%    and slides.pdf is in presentation mode on the projector.
+
+% Give a slight yellow tint to the notes page
+%\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
+
+
+%\usetheme{metropolis}
+%\usecolortheme{beaver}
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{HTML}{A40000}
+\definecolor{lightcandyapplered}{HTML}{e74c3c}
+
+%\setbeamercolor{title}{fg=darkcandyapplered}
+%\setbeamercolor{frametitle}{bg=darkcandyapplered!80!black!90!white}
+%\setbeamertemplate{frametitle}{\bf\insertframetitle}
+%\setbeamercolor{footnote mark}{fg=darkcandyapplered}
+%\setbeamercolor{footnote}{fg=darkcandyapplered!70}
+%\Raggedbottom
+%\setbeamerfont{page number in head/foot}{size=\tiny}
+%\usepackage[tracking]{microtype}
+
+
+\setbeamertemplate{frametitle}{%
+    \nointerlineskip%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex]{frametitle}
+        \hspace*{1ex}\insertframetitle%
+    \end{beamercolorbox}%
+}
+
+
+
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamercolor{caption name}{fg=darkcandyapplered}
+
+
+%\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+%\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+%\usepackage[euler-digits,small]{eulervm}
+%\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+\usepackage{graphicx,multirow,paralist,booktabs}
+
+
+%\mode<presentation> { \setbeamercovered{transparent} }
+
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\def\beamerorig@set@color{%
+  \pdfliteral{\current@color}%
+  \aftergroup\reset@color
+}
+\def\beamerorig@reset@color{\pdfliteral{\current@color}}
+\makeatother
+
+%=== GRAPHICS PATH ===========
+\graphicspath{{./m4-images/}}
+% Marginpar width
+%Marginpar width
+%\setlength{\marginparsep}{.02in}
+
+
+%% Captions
+% \usepackage{caption}
+% \captionsetup{
+%   labelsep=quad,
+%   justification=raggedright,
+%   labelfont=sc
+% }
+
+%AMS-TeX packages
+
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage{hyperref,enumerate}
+\usepackage{minitoc,array}
+
+
+%https://tex.stackexchange.com/a/31370/2269
+\usepackage{mathtools,cancel}
+
+\renewcommand{\CancelColor}{\color{red}} %change cancel color to red
+
+\makeatletter
+\let\my@cancelto\cancelto %copy over the original cancelto command
+\newcommand<>{\cancelto}[2]{\alt#3{\my@cancelto{#1}{#2}}{\mathrlap{#2}\phantom{\my@cancelto{#1}{#2}}}}
+% redefine the cancelto command, using \phantom to assure that the
+% result doesn't wiggle up and down with and without the arrow
+\makeatother
+
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%% TIKZ
+\usepackage{animate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgfgantt}
+\usepackage{tikzsymbols}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots,fillbetween}
+
+\usetikzlibrary{arrows,shapes,positioning,shapes.geometric}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows,automata}
+\usetikzlibrary{patterns,matrix}
+\usetikzlibrary{trees,mindmap,backgrounds}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+\tikzset{no shadows/.style={general shadow/.style=}}
+%
+%\usepackage{paralist}
+
+
+
+%%% FORMAT PYTHON CODE
+%\usepackage{listings}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+% Custom colors
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+ 
+
+%\usepackage{listings}
+
+% Python style for highlighting
+% \newcommand\pythonstyle{\lstset{
+% language=Python,
+% basicstyle=\footnotesize\ttm,
+% otherkeywords={self},             % Add keywords here
+% keywordstyle=\footnotesize\ttb\color{deepblue},
+% emph={MyClass,__init__},          % Custom highlighting
+% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
+% stringstyle=\color{deepgreen},
+% frame=tb,                         % Any extra options here
+    % showstringspaces=false            % 
+% }}
+
+% % Python environment
+% \lstnewenvironment{python}[1][]
+% {
+% \pythonstyle
+% \lstset{#1}
+% }
+% {}
+
+% % Python for external files
+% \newcommand\pythonexternal[2][]{{
+% \pythonstyle
+% \lstinputlisting[#1]{#2}}}
+
+% Python for inline
+% 
+% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\dg}{^{\circ}}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand{\al}{\alpha}
+\newcommand{\G}{\Gamma}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\pgfmathdeclarefunction{expocdf}{2}{%
+  \pgfmathparse{1 -exp(-#1*#2)}%
+}
+
+% \makeatletter
+% \long\def\ifnodedefined#1#2#3{%
+%     \@ifundefined{pgf@sh@ns@#1}{#3}{#2}%
+% }
+
+% \pgfplotsset{
+%     discontinuous/.style={
+%     scatter,
+%     scatter/@pre marker code/.code={
+%         \ifnodedefined{marker}{
+%             \pgfpointdiff{\pgfpointanchor{marker}{center}}%
+%              {\pgfpoint{0}{0}}%
+%              \ifdim\pgf@y>0pt
+%                 \tikzset{options/.style={mark=*, fill=white}}
+%                 \draw [densely dashed] (marker-|0,0) -- (0,0);
+%                 \draw plot [mark=*] coordinates {(marker-|0,0)};
+%              \else
+%                 \tikzset{options/.style={mark=none}}
+%              \fi
+%         }{
+%             \tikzset{options/.style={mark=none}}        
+%         }
+%         \coordinate (marker) at (0,0);
+%         \begin{scope}[options]
+%     },
+%     scatter/@post marker code/.code={\end{scope}}
+%     }
+% }
+
+% \makeatother
+
+\renewcommand{\arraystretch}{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[CEE 260/MIE 273 M4b: CIs for Proportion]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture M4b: Confidence Intervals for a Proportion}
+\date[\today]{\footnotesize \today}
+\author{{\bf Prof.\ Oke}}
+\institute[UMass Amherst]{
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[anchor=base] at (-7,0) (its) {\includegraphics[scale=.3]{UMassEngineering_vert}} ;
+  \end{tikzpicture}
+}
+
+
+    
+\begin{document}
+
+\maketitle
+
+
+
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Preamble}
+\begin{frame}
+  \frametitle{Recap: parameter estimation}
+  \pause
+
+  \begin{itemize}
+  \item A point estimator is used to find the estimate $\hat\theta$ for a given parameter $\theta$.
+
+    \pause
+
+  \item An ideal estimator is: \pause unbiased, consistent, efficient and sufficient
+
+  \item The bias of a parameter  estimate is the difference between its expected value and the true value of the parameter: \pause
+    \begin{equation}
+      \text{Bias}_{\hat\theta} = \mathbb{E}(\hat\theta) - \theta
+    \end{equation}
+
+  \end{itemize}
+  
+\end{frame}
+ 
+
+\begin{frame}
+  \frametitle{Today's objectives}
+  \pause
+
+  \begin{itemize}[<+->]
+  \item Understand confidence intervals and their importance \medskip
+  \item Compute confidence intervals for a proportion
+    \begin{itemize}[<+->]
+    \item find the critical $z^{*}$ for a corresponding confidence level
+    \item compute the standard error
+    \item compute the margin of error
+    \end{itemize}
+  \item Learn how to use the success-failure condition to determine whether CLT holds for a proportion
+  \end{itemize}
+\end{frame}
+
+\section{Confidence intervals}
+
+
+\begin{frame}
+  \frametitle{Confidence intervals}
+
+\pause
+\begin{block}{Definition}\pause
+  A confidence interval (CI) defines the range within which a population parameter $\theta$ lies with a given probability  $1-\alpha$ 
+\end{block}
+\pause
+
+ % \begin{block}{Known population variance: normal distribution used}\pause
+    \begin{equation}
+      \label{eq:1}
+      \langle \theta \rangle_{1-\alpha} \pause
+      =  \lt( \hat{\theta} + {\rd  z_{\fr\alpha2}} {\gr  \fr{\sigma}{\sqrt{n}} },\, \pause
+      \hat{\theta} + {\rd z_{\lt(1-\fr\alpha2\rt)}}{ \gr \fr{\sigma}{\sqrt{n}} }\rt) 
+    \end{equation}\pause
+    where:
+    \begin{itemize}
+    \item $\hat\theta$ is the point estimate \pause
+    \item $\gr \fr{\sigma}{\sqrt{n}}$ is the \textbf{standard error} ($SE$) \pause
+    \item $ {\rd z_{\lt(1-\fr\alpha2\rt)}} {\gr \fr{\sigma}{\sqrt{n}}} $ is the \textbf{margin of error} ($ME$)\pause
+    \item $\rd z_{\fr\alpha2}$ and $\rd  z_{\lt(1-\fr\alpha2\rt)}$ are the \textbf{critical z-scores} \pause
+      \begin{equation}
+        z_{\fr\alpha2} = - z_{\lt(1-\fr\alpha2\rt)} \equiv - z^{*}
+      \end{equation}
+      
+    \end{itemize}
+    \pause
+    Thus, we can express the CI as:
+    \begin{equation}
+      \langle \theta \rangle_{1-\alpha} = \hat\theta \pm z^{*}SE \pause = \hat\theta \pm ME
+    \end{equation}
+ 
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Confidence intervals (cont.)}
+  \pause
+
+  We define: \pause
+  \begin{itemize}[<+->]
+  \item Confidence level: $1-\alpha$\pause
+  \item Significance level: $\alpha$
+  \item Find critical $z$-score (standardized) values: $z_{\alpha/2}$ and $z_{(1-\alpha/2)}$
+  \item Convert these to same scale as original variable $X$
+  \end{itemize}
+  \pause
+  \begin{figure}
+  \begin{tikzpicture}
+    \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$z$, ylabel=$f_X(x)$,,
+      height=6cm, width=10cm,
+      xtick={-6,0,6},
+      xticklabels={$z_{\alpha/2}$,$0$,$z_{(1-\alpha/2)}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-10:10] {gauss(0,3)};
+      \addplot [gray, fill=gray!50, domain=-6:6] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=6:10] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-10:-6] {gauss(0,3)} \closedcycle;
+      \node (d) at (axis cs: 0,.05) {Area: $1-\alpha$};
+      %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 8.5,.05) {Area: $\fr\alpha2$};
+      \draw[thick,->] (c) -- (axis cs: 6.5, 0.003);
+      \node (e) at (axis cs: -8.5,.05) {Area: $\fr\alpha2$};
+      \draw[thick,->] (e) -- (axis cs: -6.5, 0.003);
+      %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+      %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Standard normal distribution of the mean}
+  \end{figure}
+\end{frame}
+
+ 
+\begin{frame}
+  \frametitle{Confidence interval of proportion}
+  Given a proportion (occurrence probability) $p$, then
+  \begin{eqnarray}
+    \mathbb{E}(\hat{P}) &=& \hat{p} \\ \pause
+    \mathbb{V}(\hat{P}) &=& \fr{\hat p( 1- \hat p)}{n} \quad \text{(according to CLT)}
+  \end{eqnarray}
+
+  \pause
+  The confidence interval is given by:
+  \begin{equation}
+    \label{eq:30}
+    \boxed{\langle p\rangle_{1-\alpha}  = \lt(
+    \hat{p} + z_{\alpha/2}\sqrt{\fr{\hat{p}(1 - \hat{p})}{n}};  \hat{p} + z_{(1 -\alpha/2)}\sqrt{\fr{\hat{p}(1 - \hat{p})}{n}}
+      \rt)}
+  \end{equation}
+  \pause
+  Thus:
+  \begin{itemize}
+  \item $SE = \sqrt{\fr{\hat{p}(1 - \hat{p})}{n}}$ \pause
+  \item $ME =  z_{(1 -\alpha/2)}\sqrt{\fr{\hat{p}(1 - \hat{p})}{n}} = z^{*}\times SE $    
+  \end{itemize}
+  \pause
+  {\rd Must check that success-failure condition holds: $np \geq 10$ and $n(1-p) \geq 10$}
+\end{frame}
+
+
+\section{Identifying confidence levels}
+\begin{frame}
+  \frametitle{Working with confidence intervals}
+  \begin{exampleblock}{Example 1: Identifying confidence levels}
+    Given a normal population distribution with known variance:
+    \begin{enumerate}[(a)]
+    \item What is the confidence level for the interval $\ol{x} \pm 2.81\sigma/\sqrt{n}$?
+    \item What is the confidence level for the interval $\ol{x} \pm 1.44\sigma/\sqrt{n}$?
+    \item What value of $z_{\alpha/2}$ results in a confidence level of 90\%?
+    \end{enumerate}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Working with confidence intervals}
+  \begin{exampleblock}{Example 1: Identifying confidence levels (cont.)}\pause
+    \begin{enumerate}[(a)] 
+    \item What is the confidence level for the interval $\ol{x} \pm 2.81\sigma/\sqrt{n}$?\pause
+      \begin{eqnarray*}
+        z_{(1-\alpha/2)} &=& +2.81 \\\pause
+        1-\alpha/2 &=& \Phi(2.81) \pause = 99.75\% \\\pause
+        \alpha/2 &=& 0.25\% \\\pause
+        \alpha &=& 0.5\%
+      \end{eqnarray*}\pause
+      The confidence level is \pause $= 1 - \alpha \pause = \boxed{99.5\%}$.
+
+      \pause
+
+        \begin{tikzpicture}[scale=.8]
+      \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$z$, ylabel=$f_X(x)$,,
+      height=3cm, width=10cm,
+      xtick={-2.81,0,2.81},
+      xticklabels={$z_{\alpha/2}$,$0$,$z_{(1-\alpha/2)}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-5:5] {gauss(0,1)};
+      \addplot [gray, fill=gray!50, domain=-2.81:2.81] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=2.81:5] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-5:-2.81] {gauss(0,1)} \closedcycle;
+      \node (d) at (axis cs: 0,.15) {Area: $0.995$};
+      %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 3.15,.1) {\og Area: $0.0025$};
+      \draw[thick,->] (c) -- (axis cs: 2.9, 0.005);
+      \node (e) at (axis cs: -3.15,.1) {\og Area: $0.0025$};
+      \draw[thick,->] (e) -- (axis cs: -2.9, 0.005);
+      %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+      %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+    \end{enumerate}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Working with confidence intervals}
+  \begin{exampleblock}{Example 1: Identifying confidence levels (cont.)}\pause
+    \begin{enumerate}[(a)]\setcounter{enumi}{1}
+    \item What is the confidence level for the interval $\ol{x} \pm 1.44\sigma/\sqrt{n}$?\pause
+      \begin{eqnarray*}
+        z_{(1-\alpha/2)} &=& +1.44\\\pause
+        1- \alpha/2 &=& \pause \Phi(1.44) \pause = 92.5\% \\\pause
+        \alpha &=& 15\% 
+      \end{eqnarray*}
+      The confidence level is \pause $= 1 - \alpha \pause = \boxed{85\%}$.
+      \pause
+
+      \begin{tikzpicture}
+      \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$z$, ylabel=$f_X(x)$,,
+      height=3cm, width=10cm,
+      xtick={-1.44,0,1.44},
+      xticklabels={$z_{\alpha/2}$,$0$,$z_{(1-\alpha/2)}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-5:5] {gauss(0,1)};
+      \addplot [gray, fill=gray!50, domain=-1.44:1.44] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=1.44:5] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-5:-1.44] {gauss(0,1)} \closedcycle;
+      \node (d) at (axis cs: 0,.15) {Area: $0.85$};
+      %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 3.15,.1) {\og Area: $0.075$};
+      \draw[thick,->] (c) -- (axis cs: 1.8, 0.03);
+      \node (e) at (axis cs: -3.15,.1) {\og Area: $0.075$};
+      \draw[thick,->] (e) -- (axis cs: -1.8, 0.03);
+      %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+      %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+    \end{enumerate}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Working with confidence intervals}
+  \begin{exampleblock}{Example 1: Identifying confidence levels  (cont.)}\pause
+    \begin{enumerate}[(a)]\setcounter{enumi}{2}
+    \item What value of $z_{\alpha/2}$ results in a confidence level of 90\%? \pause
+      \begin{eqnarray*}
+        z_{\alpha/2} &=& \Phi^{-1}(0.05) \\\pause
+                     &=& -\Phi^{-1}(0.95) \\\pause
+                     &=& -1.64 
+      \end{eqnarray*} \pause
+
+            \begin{tikzpicture}
+      \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$z$, ylabel=$f_X(x)$,,
+      height=3cm, width=10cm,
+      xtick={-1.64,0,1.64},
+      xticklabels={$z_{\alpha/2}$,$0$,$z_{(1-\alpha/2)}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-5:5] {gauss(0,1)};
+      \addplot [gray, fill=gray!50, domain=-1.64:1.64] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=1.64:5] {gauss(0,1)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-5:-1.64] {gauss(0,1)} \closedcycle;
+      \node (d) at (axis cs: 0,.15) {Area: $0.90$};
+      %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 3.15,.1) {\og Area: $0.05$};
+      \draw[thick,->] (c) -- (axis cs: 1.8, 0.03);
+      \node (e) at (axis cs: -3.15,.1) {\og Area: $0.05$};
+      \draw[thick,->] (e) -- (axis cs: -1.8, 0.03);
+      %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+      %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+  
+    \end{enumerate}
+  \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Example 2: Solar power expansion}
+  \pause A poll indicates that 88.7\% of a random sample of 1000 American adults supported solar power
+  expansion. Compute and interpret a 95\% CI for the population propotion $p$, given that $SE_{\hat p} = 0.01$
+
+  \pause
+  \begin{exampleblock}{Solution}\pause
+    The corresponding critical z-score $z^{*}$ for a 95\% confidence level is \texttt{norminv}(1 - .025) = 1.96. \pause
+    Thus, the CI is given by
+    \begin{eqnarray*}
+      \langle p \rangle_{90\%} &=& \hat{p} \pm z^{*}\times SE_{\hat p }\\\pause
+                               &=& .887 \pm 1.96 (.01) \\\pause
+                               &=& (0.8674, .9066)
+    \end{eqnarray*}
+  \end{exampleblock}
+\end{frame}
+
+ 
+\begin{frame}
+  \frametitle{Example 3: Mental health}
+  \pause
+  The General Social Survey asked the question: “For how many days during the past
+30 days was your mental health, which includes stress, depression, and problems with emotions, not good?”
+Based on responses from 1,151 US residents, the survey reported a 95\% confidence interval of 3.40 to 4.24
+days in 2010.
+\begin{enumerate}[\bf(a)]
+\item  Interpret this interval in context of the data.
+\item What does “95\% confident” mean? Explain in the context of the application.
+\item Suppose the researchers think a 99\% confidence level would be more appropriate for this interval. Will
+this new interval be smaller or wider than the 95\% confidence interval?
+\item  If a new survey were to be done with 500 Americans, do you think the standard error of the estimate
+be larger, smaller, or about the same.
+\end{enumerate}
+\end{frame}
+\section{Outlook}
+
+
+
+
+\begin{frame}
+  \frametitle{Recap}
+  \pause
+  Steps to find the CI of a proportion
+  \begin{itemize}[<+->]
+  \item Compute $n$ and $\hat p$
+  \item Check that the success-failure condition holds
+  \item Find the critical $z$-score for the confidence level $1-\alpha$
+  \item Compute the $SE = \sqrt{p(1-p)/n}$
+  \item Find the $ME$ ($z^{*}\times SE$)
+  \item Find the CI as $\hat p \pm ME$
+  \end{itemize}
+\end{frame}
+
+ 
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
