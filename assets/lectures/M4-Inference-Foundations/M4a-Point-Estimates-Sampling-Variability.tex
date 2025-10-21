@@ -1,19 +1,19 @@
-\documentclass[smaller,handout]{beamer}
+%\documentclass[smaller,handout]{beamer}
 
-% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
-% \if 0\bmode
-% \documentclass[smaller]{beamer}
-% \else \if 1\bmode
-% \immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
-% \documentclass[smaller,handout]{beamer}
-% \usepackage{handoutWithNotes}
-% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
-% \else \if 2\bmode
-% \immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
-% \documentclass[smaller,handout]{beamer}
-% \fi
-% \fi
-% \fi
+\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\if 0\bmode
+\documentclass[smaller]{beamer}
+\else \if 1\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+\else \if 2\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\fi
+\fi
+\fi
 
 
 % \documentclass[smaller,handout
