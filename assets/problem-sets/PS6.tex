@@ -108,7 +108,7 @@
 %\fancyfootoffset{30pt}
 \fancyhead[LO,RE]{\small Oke}
 \fancyhead[RO,LE]{\small Page \thepage} 
-\fancyfoot[RO,LE]{\small PS 5  } 
+\fancyfoot[RO,LE]{\small PS 6} 
 \fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
 \cfoot{} 
 \renewcommand{\headrulewidth}{0.1pt} 
@@ -222,48 +222,48 @@
 \thispagestyle{empty}
 
 
-\nin{\LARGE Problem Set 5 {\gr  }}\hfill{\bf Prof. Oke}
+\nin{\LARGE Problem Set 6 {\gr  }}\hfill{\bf Prof. Oke}
 
 \medskip\hrule\medskip
 
 \nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
-\hfill\textit{ 10.22.2024}}
+\hfill\textit{ 10.21.2025}}
 
 \bigskip
 
-\nin{\it \textbf{Due Tuesday, October 29, 2024 at 11:59 PM as PDF uploaded on Moodle.}
+\nin{\it \textbf{Due Tuesday, October 28, 2025 at 1:00 PM as PDF uploaded on Canvas.}
   If it helps and if possible, you can write your responses directly on this document and upload it instead.
     \textbf{Show as much work as possible in order to get FULL credit.}
-    There are 4 problems with a total of 15 points available.
-    \textbf{Important:} If you use Matlab/Python for any probability computations, briefly write/include the statements you
+    There are 6 problems with a total of 38 points available.
+    \textbf{Important:} If you use Python for any probabilistic or statistical computations, briefly write/include the statements you
     used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
 }\\
 
 
-\section*{Problem 1 \textit{(5 points)}}
+\section*{Problem 1 \textit{(3 points)}}
 
 Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statements. Use the boxes provided. Each response is worth 1 point.
 
 \begin{enumerate}[\bf (i)]
-\item \hfill
-  \begin{minipage}{.1\linewidth}
-    \framebox(40,40){ \gr }
-  \end{minipage}\quad
-  \begin{minipage}{.85\linewidth}
-    The mean of a Poisson-distributed random variable is equal to its variance.
-   \end{minipage}
+% \item \hfill
+%   \begin{minipage}{.1\linewidth}
+%     \framebox(40,40){ \gr }
+%   \end{minipage}\quad
+%   \begin{minipage}{.85\linewidth}
+%     The mean of a Poisson-distributed random variable is equal to its variance.
+%    \end{minipage}
   
-  \smallskip
+%   \smallskip
   
-\item \hfill
-  \begin{minipage}{.1\linewidth}
-    \framebox(40,40){\gr  }
-  \end{minipage}\quad
-  \begin{minipage}{.85\linewidth}
-    The mean of a exponentially-distributed random variable is equal to the inverse of its variance.
-   \end{minipage}
+% \item \hfill
+%   \begin{minipage}{.1\linewidth}
+%     \framebox(40,40){\gr  }
+%   \end{minipage}\quad
+%   \begin{minipage}{.85\linewidth}
+%     The mean of a exponentially-distributed random variable is equal to the inverse of its variance.
+%    \end{minipage}
 
-  \smallskip
+%   \smallskip
   
 \item \hfill
   \begin{minipage}{.1\linewidth}
@@ -326,41 +326,43 @@ Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statemen
 
  
         \begin{minipage}{.7\linewidth}
-                  \begin{tikzpicture}
-      \begin{axis}[no markers, domain=0:10, samples=100,
-      axis x line=center,
-      axis y line=none,
-      xlabel=$z$, ylabel=$f_X(x)$,,
-      height=3cm, width=10cm,
-      xtick={-1.96,0,1.96},
-      xticklabels={$-z^{*}$,$0$,$z^{*}$},
-      ymax=.15,
-      ytick=\empty,
-      x label style={anchor=west},
-      y label style={anchor=south},
-      enlargelimits=true, clip=false, axis on top
-      %grid style={line width=.1pt, draw=gray},
-      % yticklabel style={
-      %   /pgf/number format/fixed,
-      %   /pgf/number format/fixed zerofill,
-      %   /pgf/number format/precision=2
-      % },        
-      %   grid = major
-      ]
-      \addplot [blue, domain=-5:5] {gauss(0,1)};
-      \addplot [gray, fill=gray!50, domain=-1.96:1.96] {gauss(0,1)} \closedcycle;
-      \addplot [orange,fill=orange,  domain=1.96:5] {gauss(0,1)} \closedcycle;
-      \addplot [orange,fill=orange,  domain=-5:-1.96] {gauss(0,1)} \closedcycle;
-      \node (d) at (axis cs: 0,.15) {Area: $0.95$};
-      %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
-      \node (c) at (axis cs: 3.15,.1) {\og Area: $0.025$};
-      \draw[thick,->] (c) -- (axis cs: 2.2, 0.005);
-      \node (e) at (axis cs: -3.15,.1) {\og Area: $0.025$};
-      \draw[thick,->] (e) -- (axis cs: -2.2, 0.005);
-      %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
-      %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
-    \end{axis}
-  \end{tikzpicture}
+                    \begin{tikzpicture}
+              \begin{axis}[no markers, domain=0:10, samples=100,
+              axis x line=center,
+              axis y line=none,
+              xlabel=$z$, ylabel=$f_X(x)$,,
+              height=3cm, width=10cm,
+              xtick={-1.96,0,1.96},
+              xticklabels={$-z^{*}$,$0$,$z^{*}$},
+              ymax=.15,
+              ytick=\empty,
+              x label style={anchor=west},
+              y label style={anchor=south},
+              enlargelimits=true, clip=false, axis on top,
+              tick style={very thick, major tick length=7pt}
+              %grid style={line width=.1pt, draw=gray},
+              % yticklabel style={
+              %   /pgf/number format/fixed,
+              %   /pgf/number format/fixed zerofill,
+              %   /pgf/number format/precision=2
+              % },        
+              %   grid = major
+              ]
+              \addplot [blue, domain=-5:5] {gauss(0,1)};
+              \addplot [gray, fill=gray!50, domain=-1.96:1.96] {gauss(0,1)} \closedcycle;
+              \addplot [orange,fill=orange,  domain=1.96:5] {gauss(0,1)} \closedcycle;
+              \addplot [orange,fill=orange,  domain=-5:-1.96] {gauss(0,1)} \closedcycle;
+              \node (d) at (axis cs: 0,.15) {Area: $0.95$};
+              %\draw[thick, ->] (d) -- (axis cs: -.6,.05);
+              \node (c) at (axis cs: 3.15,.1) {\og Area: $0.025$};
+              \draw[thick,->] (c) -- (axis cs: 2.2, 0.005);
+              \node (e) at (axis cs: -3.15,.1) {\og Area: $0.025$};
+              \draw[thick,->] (e) -- (axis cs: -2.2, 0.005);
+              %\draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+              %\draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+            \end{axis}
+            \end{tikzpicture}
+
 
         \end{minipage}
         \begin{minipage}{.25\linewidth}
@@ -386,6 +388,7 @@ Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statemen
       xticklabels={$z_{\alpha/2}$,$0$,$z_{(1-\alpha/2)}$},
       ymax=.15,
       ytick=\empty,
+      tick style={very thick, major tick length=7pt},
       x label style={anchor=west},
       y label style={anchor=south},
       enlargelimits=true, clip=false, axis on top
@@ -428,7 +431,7 @@ Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statemen
 
 \eject
 
-\section*{Problem 3: Standard error of a proportion  \textit{(3 points)}}
+\section*{Problem 3: Standard error of a proportion  \textit{(5 points)}}
 An article reports that when each football helmet in a random sample of 37 suspension-type helmets was subjected to a
 certain impact test, 24 showed damage. Let $p$ denote the proportion of all helmets of this type that would show damage
 when tested in the prescribed manner.
@@ -438,12 +441,54 @@ when tested in the prescribed manner.
   \vspace{30ex}
  
 \item Compute the standard error of the estimate $\hat p$.\pts{2}
+  \vspace{30ex}
+
+\item Using the 68–95–99.7 (empirical) rule, estimate the interval that would contain the sample proportion
+  $\hat p$ in 95\% of all possible samples of a similar size. \pts{2}
 %  \vspace{30ex}
  \end{enumerate}
 
 \eject
 
-\section*{Problem 4: Estimating probability from a random sample \textit{(8 points)}}
+\section*{Problem 4: Point estimate and sampling variability  \textit{(12 points)}}
+(Adapted from Ex 5.3 in OS) As part of a quality control process for computer chips, an engineer at a factory
+randomly samples 212 chips during a week of production to test the current rate of chips with severe defects.
+She finds that 27 of the chips are defective. Match the labels corresponding to the rows in the table below that correctly answers  questions \textbf{(a)} through \textbf{(d)}. Then work out the questions that follow.
+
+\begin{center}
+  \small
+\begin{tabular}{c l}\toprule
+  \bf Label & \bf Answer \\\midrule
+  \bf (i)  & All computer chips produced during the week \\
+  \bf (ii) & Sample proportion of defective chips, $\hat p$ \\
+  \bf (iii)& Standard error of the sample proportion, $SE_{\hat p}$ \\
+  \bf (iv)  & Population proportion of defective chips\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[\bf (a)]
+\item What population is under consideration in the data set? \boxed{\huge\phantom{BB}}\pts{1}
+\item What parameter is being estimated? \boxed{\huge\phantom{BB}} \pts{1}
+\item What is the name of point estimate of the parameter? \boxed{\huge\phantom{BB}} \pts{1}
+\item What is the name of the statistic that measures the uncertainty of the point estimate? \pts{1} \boxed{\huge\phantom{BB}} 
+
+\item Compute the value from part \textbf{(c)} for this context. \pts{2}
+\vspace{10ex}
+
+\item Compute the value from part \textbf{(d)} for this context. \pts{2}
+\vspace{10ex}
+
+\item The historical rate of defects is 10\%. \pts{2} Should the engineer be surprised by the observed rate of defects during the current week? Explain briefly.
+\vspace{12ex}
+
+\item Suppose the true population value was found to be 10\%. \pts{2} If we use this proportion to recompute the value in part \textbf{(f)} using $p = 0.1$ instead of $\hat{p}$, does the resulting value change much? (Show your work.)
+
+\end{enumerate}
+
+\eject
+
+
+\section*{Problem 5: Estimating probability from a random sample \textit{(8 points)}}
 Among the adults in a large city, 30\% have a college degree. A simple random sample of $n=100$ adults is chosen.
 Let $p$ be the proportion of the full adult population that have a college degree. Thus, $p = 0.30$. Now, this proportion
   (of college degree holders) can also be estimated from a random sample. Let the estimate be denoted by $\hat
@@ -455,13 +500,13 @@ Let $p$ be the proportion of the full adult population that have a college degre
 
        
 \item  According \pts{3} to the Central Limit Theorem, $\hat p$ follows a normal distribution. What are the parameters $\mu$ and
-  $\sigma^{2}$ of this distribution? % 1 point for mean, 2 points for variance
+  $\sigma$ of this distribution? [1 point for mean, 2 points for variance]
 
    \vspace{40ex}
 
 
-  
-\item What is the \pts{3} probability that more than 40 of the adults in the random sample have a college degree?
+
+\item Estimate the \pts{3} probability that over 40\% of the full adult population have a college degree?
 
  
 \end{enumerate}
@@ -469,7 +514,7 @@ Let $p$ be the proportion of the full adult population that have a college degre
 \eject
 
 
-\section*{Problem 5: Confidence interval of a proportion \textit{(8 points)}}
+\section*{Problem 6: Confidence interval of a proportion \textit{(6 points)}}
 Recall the example of the solar energy poll we examined in class, with $p=0.88$ and $n=1000$.
 
   \begin{enumerate}[\bf (a)]
@@ -483,8 +528,9 @@ Recall the example of the solar energy poll we examined in class, with $p=0.88$ 
 
 
   
-\item Find the 90\% confidence interval of $\hat p$. (Express your final answer as an interval.) \pts{2}
+\item Sketch the distribution of $\hat p$ and indicate the confidence interval found in part \textbf{(b)} on the plot. \pts{2}
 
+   \vspace{60ex}
  
 \end{enumerate}
 

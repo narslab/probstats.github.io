@@ -1,19 +1,19 @@
-% \documentclass[smaller,handout]{beamer}
+\documentclass[smaller,handout]{beamer}
 
-\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
-\if 0\bmode
-\documentclass[smaller]{beamer}
-\else \if 1\bmode
-\immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
-\documentclass[smaller,handout]{beamer}
-\usepackage{handoutWithNotes}
-\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
-\else \if 2\bmode
-\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
-\documentclass[smaller,handout]{beamer}
-\fi
-\fi
-\fi
+% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+% \if 0\bmode
+% \documentclass[smaller]{beamer}
+% \else \if 1\bmode
+% \immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+% \documentclass[smaller,handout]{beamer}
+% \usepackage{handoutWithNotes}
+% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+% \else \if 2\bmode
+% \immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
+% \documentclass[smaller,handout]{beamer}
+% \fi
+% \fi
+% \fi
 
 
 % \documentclass[smaller,handout
@@ -391,9 +391,9 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
     
   \end{itemize}    
 \end{minipage}\pause\quad\quad
-\begin{minipage}[]{.45\linewidth}
+\begin{minipage}[]{.49\linewidth}
   \begin{center}
-  \only<5->{\includegraphics[width=.8\textwidth,  trim={0 1cm 0 0}, clip]{06_01}}
+  \only<5->{\includegraphics[width=\textwidth,  trim={0 1cm 0 0}, clip]{06_01}}
 \end{center}
 \end{minipage}
 \end{frame}
@@ -424,9 +424,96 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
   \frametitle{Point estimates}
   \begin{definition}
     A \textbf{point estimate} of a parameter $\theta$ (e.g.\ proportion $p$, or mean value $\mu$) is a single number that can be regarded as a sensible value for
-    $\theta$ and is obtained by computing the value of a suitable statistic from given sample data. \pause The selected
-    statistic is the \textbf{point estimator} of $\theta$.
+    $\theta$ and is obtained by computing the value of a suitable statistic (e.g.\ sample mean, sample standard deviation, etc) from given sample data. \pause The selected
+    statistic $\hat{\Theta}$ is the \textbf{point estimator} of $\theta$.
   \end{definition}
+
+
+  \pause
+
+
+  \begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.75]
+\begin{axis}[
+    width=12cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={Sample Values},
+    ylabel={Frequency},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=8, xmax=22,
+    ymin=0, ymax=25,
+    xtick={10,12,14,16,18,20},
+    ytick={0,5,10,15,20},
+    grid=major,
+    grid style={dashed,gray!30},
+    thick
+]
+
+% Create histogram bars (more realistic Gaussian shape)
+\addplot[ybar, bar width=0.4, fill=blue!30, draw=blue, opacity=0.8] coordinates {
+    (9, 1)
+    (9.5, 2)
+    (10, 3)
+    (10.5, 5)
+    (11, 8)
+    (11.5, 11)
+    (12, 15)
+    (12.5, 18)
+    (13, 21)
+    (13.5, 22)
+    (14, 23)
+    (14.5, 22)
+    (15, 21)
+    (15.5, 22)
+    (16, 20)
+    (16.5, 17)
+    (17, 13)
+    (17.5, 9)
+    (18, 6)
+    (18.5, 4)
+    (19, 2)
+    (19.5, 1)
+};
+
+% Overlay a smooth normal curve for reference
+\addplot[thick, red!60, samples=100, domain=8:22] {23*exp(-0.5*((x-15)/2)^2)};
+
+% Mark the point estimate (sample mean)
+\draw[red, thick, dashed] (axis cs:15,0) -- (axis cs:15,25);
+\addplot[red, thick, mark=*, mark size=5pt] coordinates {(15, 0)};
+
+% Label the point estimate
+\node[red, below, font=\Large] at (axis cs:15,-1.5) {$\hat{\theta}$};
+\node[red, above, font=\small] at (axis cs:15,24) {Sample Mean};
+
+% Add statistical information
+\node[above] at (axis cs:15,27) {\textbf{Sample Data Histogram}};
+\node[font=\small, align=left] at (axis cs:19,22) {
+    Sample size: $n = 200$ \\
+    Point estimate: $\hat{\theta} = 15.0$ \\
+    Sample std: $s = 2.1$
+};
+
+% Mark approximate confidence bounds (illustrative)
+\draw[gray, dotted] (axis cs:13,0) -- (axis cs:13,20);
+\draw[gray, dotted] (axis cs:17,0) -- (axis cs:17,20);
+\node[gray, font=\tiny] at (axis cs:13,-0.8) {$\hat{\theta} - s$};
+\node[gray, font=\tiny] at (axis cs:17,-0.8) {$\hat{\theta} + s$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Sample histogram with point estimate $\hat{\theta}$ showing the center of the distribution}
+\label{fig:sample_distribution_point_estimate}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Point estimates (cont.)}
+
   \pause
   \begin{block}{Notation}\pause
     \begin{itemize} 
@@ -442,10 +529,9 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
       \end{equation*}
     \end{itemize}
   \end{block}
-\end{frame}
+\pause
 
-\begin{frame}
-  \frametitle{Properties of point estimators}
+\begin{block}{Properties of point estimators}
    Desired properties of a point estimator:\pause
   \begin{itemize}[<+->]
   \item Unbiasedness
@@ -453,11 +539,14 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
   \item Efficiency
   \item Sufficiency
   \end{itemize}
+\end{block}
 \end{frame}
 
+
+
+
 \begin{frame}
-  \frametitle{Desired properties of point estimators}
-  \begin{block}{Unbiasedness}
+  \frametitle{Desired properties of point estimators: unbiasedness}
     An estimator is \textit{unbiased} if its expected value is equal to the true value of the parameter it estimates:\pause
     \begin{equation}
       \label{eq:1}
@@ -469,17 +558,140 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
       \label{eq:2}\rd
      \text{Bias}_{\hat\theta} = \pause  \mathbb{E}(\hat\theta) - \theta
     \end{equation}
-  \end{block}
+  
   \pause
 
-  \begin{block}{Consistency}\pause
-    An estimator is consistent if $\hat\theta \to \theta$ as $n\to \infty$,\pause i.e. the estimation error should decrease with increasing sample size.
-  \end{block}
+  \begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.75]
+\begin{axis}[
+    width=12cm,
+    height=7cm,
+    axis lines=center,
+    xlabel={Estimator Value},
+    ylabel={Density},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=6, xmax=22,
+    ymin=0, ymax=0.25,
+    xtick={8,10,12,14,16,18,20},
+    ytick={0,0.05,0.10,0.15,0.20},
+    grid=major,
+    grid style={dashed,gray!30},
+    thick,
+    legend pos=north east
+]
 
+% Plot sampling distribution of unbiased estimator (centered at θ)
+\addplot[green!50!black, thick, fill=green!20, opacity=0.6, domain=6:22, samples=100] 
+    {0.2*exp(-0.5*((x-12)/2.5)^2)};
+\addlegendentry{Unbiased Estimator}
+
+% Plot sampling distribution of biased estimator (shifted)
+\addplot[blue, thick, fill=blue!20, opacity=0.6, domain=6:22, samples=100] 
+    {0.2*exp(-0.5*((x-16)/2.5)^2)};
+\addlegendentry{Biased Estimator}
+
+% Mark the true parameter value θ
+\draw[red, thick, dashed] (axis cs:12,0) -- (axis cs:12,0.25);
+\addplot[red, thick, mark=*, mark size=5pt] coordinates {(12, 0)};
+\node[red, below] at (axis cs:12,-0.015) {$\theta = 12$};
+
+% Mark expected values
+\addplot[green!50!black, thick, mark=square*, mark size=3pt] coordinates {(12, 0.05)};
+\node[green!50!black, right, font=\small] at (axis cs:12.5,0.05) {$E[\hat{\theta}_1] = \theta$};
+
+\addplot[blue, thick, mark=square*, mark size=3pt] coordinates {(16, 0.05)};
+\node[blue, right, font=\small] at (axis cs:16.5,0.05) {$E[\hat{\theta}_2] = \theta + 4$};
+
+% Show bias
+\draw[orange, very thick, <->] (axis cs:12,0.12) -- (axis cs:16,0.12);
+\node[orange, above] at (axis cs:14,0.12) {Bias = 4};
+
+% Labels
+\node[above] at (axis cs:14,0.27) {\textbf{Comparison: Biased vs Unbiased Estimators}};
+\node[green!50!black, font=\small] at (axis cs:8,0.18) {Unbiased:};
+\node[green!50!black, font=\small] at (axis cs:8,0.16) {$\text{Bias} = 0$};
+\node[blue, font=\small] at (axis cs:20,0.18) {Biased:};
+\node[blue, font=\small] at (axis cs:20,0.16) {$\text{Bias} = +4$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Comparison of biased and unbiased estimators}
+\label{fig:bias_comparison}
+\end{figure}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Desired properties of point estimators}
+  \frametitle{Desired properties of point estimators: consistency}
+
+  An estimator is \textit{consistent} if $\hat\theta \to \theta$ as $n\to \infty$,\pause i.e. the estimation error should decrease with increasing sample size.
+
+  
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.8]
+\begin{axis}[
+    width=12cm,
+    height=7cm,
+    axis lines=center,
+    xlabel={Estimator Value},
+    ylabel={Density},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=8, xmax=16,
+    ymin=0, ymax=1.2,
+    xtick={10,12,14},
+    ytick={0,0.2,0.4,0.6,0.8,1.0},
+    grid=major,
+    grid style={dashed,gray!30},
+    thick,
+    legend pos=north east
+]
+
+% True parameter
+\draw[red, thick, dashed] (axis cs:12,0) -- (axis cs:12,1.2);
+\node[red, below] at (axis cs:12,-0.05) {$\theta = 12$};
+
+% Sampling distribution for n=10 (wide)
+\addplot[blue, thick, fill=blue!20, opacity=0.5, domain=8:16, samples=100] 
+    {0.4*exp(-0.5*((x-12)/1.5)^2)};
+\addlegendentry{$n = 10$}
+
+% Sampling distribution for n=50 (narrower)
+\addplot[green!50!black, thick, fill=green!50!black, opacity=0.5, domain=8:16, samples=100] 
+    {0.6*exp(-0.5*((x-12)/1)^2)};
+\addlegendentry{$n = 50$}
+
+% Sampling distribution for n=200 (very narrow)
+\addplot[purple, thick, fill=purple!20, opacity=0.5, domain=8:16, samples=100] 
+    {1.0*exp(-0.5*((x-12)/0.7)^2)};
+\addlegendentry{$n = 200$}
+
+% Show variance decreasing
+\draw[blue, thick, <->] (axis cs:10.5,0.3) -- (axis cs:13.5,0.3);
+\node[blue, above] at (axis cs:12,0.3) {Large variance};
+
+\draw[green!50!black, thick, <->] (axis cs:11,0.5) -- (axis cs:13,0.5);
+\node[green!50!black, above] at (axis cs:12,0.5) {Medium variance};
+
+\draw[purple, thick, <->] (axis cs:11.3,0.8) -- (axis cs:12.7,0.8);
+\node[purple, above] at (axis cs:12,0.8) {Small variance};
+
+% Title
+\node[above] at (axis cs:12,1.25) {\textbf{Consistency: Distributions Concentrate Around $\theta$}};
+
+\end{axis}
+\end{tikzpicture}
+\caption{As sample size increases, the sampling distribution becomes more concentrated around the true parameter}
+\label{fig:consistency_distributions}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Desired properties of point estimators (cont.)}\pause
+
+  \begin{minipage}[]{.45\linewidth}
   \begin{block}{Efficiency}\pause
     The efficiency of an estimator is defined by how small its variance is.
   \end{block}
@@ -489,32 +701,16 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
     A sufficient estimator uses all the relevant information in a given sample in its estimation.
   \end{block}
   \pause
-
-  \bigskip
-  
-  In many applications, \alert{efficiency} (low variance)  and \alert{unbiasedness} (low bias)  are the most important properties of an estimator.
-\end{frame}
-
-
-
-% \begin{frame}
-%   \frametitle{Mean squared error of an estimator}
-%   \pause
-
-%   The mean squared error (MSE) of an estimator is given by:
-
-%   \pause
-
-%   \begin{equation}
-
-\begin{frame}
-  \frametitle{Bias vs.\  variance}
-
-  \pause
-
+    In many applications, \alert{efficiency} (low variance)  and \alert{unbiasedness} (low bias)  are the most important properties of an estimator.
+\end{minipage}
+  \quad
+  \begin{minipage}[]{.45\linewidth}
+\pause  
   \begin{center}
-    \includegraphics[width=.5\textwidth]{bivar}
+    \includegraphics[width=.9\textwidth]{bivar}
   \end{center}
+  {\footnotesize Image source: \url{https://tex.stackexchange.com/a/307285/2269}}
+
 % \begin{pspicture}(3.45,3.45)
 %   \target(0.25,0)
 %   \target(2.05,0)
@@ -530,8 +726,22 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
 %   \rput(2.75,3.4){High Variance}
 % \end{pspicture}
 
-{\footnotesize Image source: \url{https://tex.stackexchange.com/a/307285/2269}}
+  \end{minipage}
+  
 \end{frame}
+
+
+
+% \begin{frame}
+%   \frametitle{Mean squared error of an estimator}
+%   \pause
+
+%   The mean squared error (MSE) of an estimator is given by:
+
+%   \pause
+
+%   \begin{equation}
+
 
 
 \section{Method of moments}
@@ -572,10 +782,10 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
   You may be wondering why the sample variance is not just the average of the sum of squared deviations from the sample mean. \pause But
    \begin{eqnarray}
       \label{eq:7}
-     s^{2} \pause =  E\lt( \fr{1}{n-1}\sum_{i=1}^n(x_i - \ol{x})^2 \rt) &=& \pause \sigma^2 \\\pause
-     \hat\sigma^{2} \pause = E\lt( \fr{1}{n}\sum_{i=1}^n(x_i - \ol{x})^2 \rt) &=& \pause \fr{n-1}{n}\sigma^2 
+     s^{2} \pause =  \mathbb{E}\lt( \fr{1}{n-1}\sum_{i=1}^n(x_i - \ol{x})^2 \rt) &=& \pause \sigma^2 \\\pause
+     \hat\sigma^{2} \pause = \mathbb{E}\lt( \fr{1}{n}\sum_{i=1}^n(x_i - \ol{x})^2 \rt) &=& \pause \fr{n-1}{n}\sigma^2 
    \end{eqnarray}
-   \pause The second estimator is biased ($-\fr{\sigma^2}{n}$) and underestimates $\sigma^2$. 
+   \pause The second estimator is biased  and underestimates $\sigma^2$ \pause by $-\fr{\sigma^2}{n}$. 
 \end{frame}
 
 \begin{frame}
@@ -627,7 +837,7 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
     \pause
     
     \begin{enumerate}[\bf (a)]
-    \item  Create a set of a large number of entries (e.g.\ 300 million) where 88\% are in support and 12\% are not.\pause
+    \item  Create a set of a large number of entries (e.g.\ 30,000) where 88\% are in support and 12\% are not.\pause
     \item Sample $n=1000$ entries without replacement \pause
     \item Plot the histogram of the sampling distribution of $\hat{p}$
     \item Compute the sample mean $x_{\hat{p}}$
@@ -643,18 +853,20 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
  \begin{frame}
   \frametitle{The Central Limit Theorem (CLT)}
   
-  \begin{theorem}%{Central Limit Theorem (CLT)}
     Let $X_1, X_2,\ldots,X_n$ be a random sample from a distribution with mean
     $\mu$ and variance $\sigma^2$. If $n$ is sufficiently large,  then the
-    sample mean $\ol{X}$ has approximately a normal distribution with
-    $\mu_{\ol{X}} = \mu$ and $\sigma_{\ol{X}}^2 = \sigma^2/n$; and the sample total
-    ($S_{n} = X_1 + X_2 + \ldots + X_n$) has approximately a normal distribution
+    sample mean $\ol{X}$ has approximately a {\bf normal distribution} with
+    \begin{eqnarray}
+      \mu_{\ol{X}} &=& \mu \\\pause
+      \sigma_{\ol{X}}^2 &=& \fr{\sigma^2}{n}
+    \end{eqnarray}
+    \pause and the sample total,
+    $S_{n} = X_1 + X_2 + \ldots + X_n$, has approximately a normal distribution
     with
     \begin{eqnarray}
       \mu_S &= n\mu \\\pause
       \sigma^2_S &= n\sigma^2
     \end{eqnarray}
-  \end{theorem}
   \pause
   Implications:
   \begin{itemize}[<+->]
@@ -707,12 +919,28 @@ Lecture M4a: Point Estimates, Sampling Variability and Central Limit Theorem}
   \begin{eqnarray*}
   \text{Sample mean proportion: }  \mu_{\hat p} &=& p \\ \pause
     \text{Sampling error/standard error of $\hat p$: }    SE_{\hat p} &=& \sqrt{\fr{p (1- p)}{n}}
+    \approx \sqrt{\fr{\hat p (1- \hat p)}{n}}
   \end{eqnarray*}
 \end{block}
 
 One rule of thumb for determining whether $n$ is large enough is to check that both $np$ and $n(1-p)$ are $\ge 10$ (also known as the success-failure condition).
 \end{frame}
 
+\begin{frame}
+  \frametitle{Success-failure condition}
+  \pause
+  In the case of a proportion $p$, the CLT holds only if: \pause
+  \begin{itemize}
+  \item The observations are independent (i.e.\ random) \pause
+  \item The sample size $n$ is \textbf{sufficiently large}
+  \end{itemize}
+  \pause
+  The second condition is typically observed via the \textbf{success-failure condition}, i.e.:\pause
+  \begin{eqnarray}
+    np &\geq& 10 \\\pause
+    n(1-p) &\geq& 10
+  \end{eqnarray}
+\end{frame}
 
 \begin{frame}
   \frametitle{CLT application: sample proportion}
@@ -739,11 +967,74 @@ One rule of thumb for determining whether $n$ is large enough is to check that b
   \begin{exampleblock}{Example 3: Solar energy expansion (CLT)}
     \begin{enumerate}[\bf (a)]
     \item First, we note that the response of each American adult in the entire population is part of a Bernoulli
-      sequence with $p=0.88$.  According to the CLT, the distribution of $\hat p$ (the mean proportion
-      based on the sample) is normal/Gaussian. We can denote this as:
+      sequence with $p=0.88$.  According to the CLT, the distribution of $\hat p$ (sample proportion) is normal/Gaussian. We can denote this as:
       \begin{equation}
         \hat p \sim \mathcal{N}\lt(p, \fr{\sigma^{2}}{n}\rt) \text{ OR } \mathcal{N}\lt(\mu_{p}, \fr{\sigma^{2}_{p}}{n}\rt)
       \end{equation}
+    \end{enumerate}
+    \pause
+  \end{exampleblock}
+  \begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.65]
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={Sample Proportion ($\hat{p}$)},
+    ylabel={Probability Density},
+    xlabel style={below right},
+    ylabel style={above left},
+    xmin=0.82, xmax=0.94,
+    ymin=0, ymax=47,
+    xtick={0.84,0.86,0.88,0.90,0.92},
+    ytick={0,15,30,45},
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=100,
+    smooth,
+    thick
+]
+
+% Main distribution curve
+\addplot[blue, very thick, domain=0.82:0.94] 
+    {1/(0.01*sqrt(2*pi)) * exp(-0.5*((x-0.88)/0.01)^2)};
+
+% Shade the central 68% region (±1 SE)
+\addplot[fill=green!30, opacity=0.6, domain=0.87:0.89] 
+    {1/(0.01*sqrt(2*pi)) * exp(-0.5*((x-0.88)/0.01)^2)} \closedcycle;
+
+% Mark key points
+\addplot[red, mark=*, mark size=4pt] coordinates {(0.88, {1/(0.01*sqrt(2*pi))})};
+\node[red, above] at (axis cs:0.88,{1/(0.01*sqrt(2*pi))+2}) {$p = 0.88$};
+
+% Standard error indicators
+\draw[blue, thick, <->] (axis cs:0.88,10) -- (axis cs:0.89,10);
+\node[blue, above] at (axis cs:0.885,10) {$SE = 0.01$};
+
+% Distribution parameters
+\node[above] at (axis cs:0.88,48) {\textbf{$\hat{p} \sim N(0.88, 0.01^2)$}};
+\node[green!50!black, font=\small] at (axis cs:0.85,25) {68\% of samples};
+\node[green!50!black, font=\small] at (axis cs:0.85,22) {within $\pm 1SE$};
+
+% Theoretical foundation
+\node[font=\tiny] at (axis cs:0.915,40) {By CLT: $\hat{p} \approx N\left(p, \sqrt{\frac{p(1-p)}{n}}\right)$};
+
+\end{axis}
+\end{tikzpicture}
+%\caption{Normal approximation to the sampling distribution of $\hat{p}$}
+%\label{fig:normal_approx_p_hat}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{CLT application: sample proportion (cont.)}
+  \pause
+
+  \begin{exampleblock}{Example 3: Solar energy expansion (CLT)}
+    \begin{enumerate}[\bf (a)]
+\setcounter{enumi}{1}
     \item $\mu_{\hat p} $ denotes the mean estimate of $p$, which is 0.88 (according to the CLT, the mean of the sample
       is the population mean if $n$ is large).\\
 
@@ -758,19 +1049,59 @@ One rule of thumb for determining whether $n$ is large enough is to check that b
 \end{frame}
 
 \begin{frame}
-  \frametitle{Success-failure condition}
-  \pause
-  In the case of a proportion $p$, the CLT holds only if: \pause
-  \begin{itemize}
-  \item The observations are independent (i.e.\ random) \pause
-  \item The sample size $n$ is \textbf{sufficiently large}
-  \end{itemize}
-  \pause
-  The second condition is typically observed via the \textbf{success-failure condition}, i.e.:\pause
-  \begin{eqnarray}
-    np &\geq& 10 \\\pause
-    n(1-p) &\geq& 10
-  \end{eqnarray}
+  \frametitle{CLT application: sample proportion (cont.)}\pause
+
+  \begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    axis lines=center,
+    xlabel={$\hat{p}$},
+    ylabel={},
+    xlabel style={below right},
+    xmin=0.82, xmax=0.94,
+    ymin=0, ymax=1.1,
+    xtick={0.83,0.85,0.87,0.88,0.89,0.91,0.93},
+    xticklabel style={font=\small},
+    ytick=\empty,
+    grid=major,
+    grid style={dashed,gray!30},
+    samples=100,
+    smooth,
+    thick
+]
+
+% Simple bell curve
+\addplot[blue, very thick, fill=blue!25, domain=0.82:0.94] 
+    {0.8*exp(-0.5*((x-0.88)/0.01)^2)};
+
+% Mark center
+\draw[red, very thick] (axis cs:0.88,0) -- (axis cs:0.88,0.9);
+\node[red, below] at (axis cs:0.88,-0.05) {\textbf{0.88}};
+
+% Confidence bounds
+\draw[orange, thick] (axis cs:0.86,0) -- (axis cs:0.86,0.7);
+\draw[orange, thick] (axis cs:0.90,0) -- (axis cs:0.90,0.7);
+
+% Labels
+\node[above] at (axis cs:0.88,0.95) {\textbf{Distribution of Sample Proportion}};
+\node[font=\small] at (axis cs:0.91,0.6) {$SE = 0.01$};
+\node[font=\small] at (axis cs:0.91,0.5) {$95\%$ CI: $[0.86, 0.90]$};
+
+% Interpretation
+\node[orange, font=\small] at (axis cs:0.86,0.75) {$p - 2SE$};
+\node[orange, font=\small] at (axis cs:0.90,0.75) {$p + 2SE$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Sample proportion distribution: most samples fall within $\pm 2SE$ of the true proportion}
+\label{fig:p_hat_interpretation}
+\end{figure}
+
+  
+
 \end{frame}
 
 \begin{frame}
@@ -786,6 +1117,7 @@ One rule of thumb for determining whether $n$ is large enough is to check that b
       batch will be charged?
     \end{enumerate}
   \end{exampleblock}
+
 \end{frame}
 
 
@@ -822,75 +1154,75 @@ One rule of thumb for determining whether $n$ is large enough is to check that b
   \end{itemize}
 \end{frame}
 
-\appendix
-\section{Introduction to simulation}
+% \appendix
+% \section{Introduction to simulation}
 
-\begin{frame}
-  \frametitle{Simulation}
+% \begin{frame}
+%   \frametitle{Simulation}
 
-  \pause
+%   \pause
 
-  Simulation is the process of representing (modeling) a hypothetical process using a compute in order to compute or
-  evaluate outcomes absent of real-life experimentation. \pause
+%   Simulation is the process of representing (modeling) a hypothetical process using a compute in order to compute or
+%   evaluate outcomes absent of real-life experimentation. \pause
 
-  \medskip
+%   \medskip
 
-  \begin{block}{Uses of simulation}
-    \pause
+%   \begin{block}{Uses of simulation}
+%     \pause
 
-    \begin{itemize}
-    \item Estimating probabilities \pause
-    \item Estimating statistical parameters for a given population, such as mean, median and variance
-    \item Finding the bias (difference between true and estimated value) of a given parameter
-    \item Synthesizing data
-    \item Conducting experiments
-    \end{itemize}
-  \end{block}
-\end{frame}
+%     \begin{itemize}
+%     \item Estimating probabilities \pause
+%     \item Estimating statistical parameters for a given population, such as mean, median and variance
+%     \item Finding the bias (difference between true and estimated value) of a given parameter
+%     \item Synthesizing data
+%     \item Conducting experiments
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Example 4: Estimating probability via simulation}
-  \pause
+% \begin{frame}
+%   \frametitle{Example 4: Estimating probability via simulation}
+%   \pause
 
-  \begin{exampleblock}{}
-    A motorist is driving at the posted maximum speed along a stretch of road. The
-    probability that the motorist approaches a red light at the first intersection (A) is 0.4. The probability
-    that the motorist encounters a red light \textit{again} at the next intersection (B) is 0.7. If the
-    motorist does not encounter a red light at the first intersection (A), then the probability the
-    motorist encounters a red light at the second intersection (B) is 0.2. If in a certain instance the motorist is observed
-    to have encountered a red light at  intersection B, what is the probability the motorist encountered
-    a red light at intersection A?
+%   \begin{exampleblock}{}
+%     A motorist is driving at the posted maximum speed along a stretch of road. The
+%     probability that the motorist approaches a red light at the first intersection (A) is 0.4. The probability
+%     that the motorist encounters a red light \textit{again} at the next intersection (B) is 0.7. If the
+%     motorist does not encounter a red light at the first intersection (A), then the probability the
+%     motorist encounters a red light at the second intersection (B) is 0.2. If in a certain instance the motorist is observed
+%     to have encountered a red light at  intersection B, what is the probability the motorist encountered
+%     a red light at intersection A?
 
-    \pause
+%     \pause
 
-    \begin{enumerate}[\bf(a)]
-    \item First use Bayes' Theorem to compute the required probability. \pause Recall:\pause
+%     \begin{enumerate}[\bf(a)]
+%     \item First use Bayes' Theorem to compute the required probability. \pause Recall:\pause
 
-      \begin{equation}
-        P(A|B) = \pause \fr{P(B|A)P(A)}{P(B)} \pause = \fr{P(B|A)P(A)}{P(B|A)P(A) + P(B|\ol{A})P(\ol{A})}
-      \end{equation}
-      \pause
-    \item Perform a simulation to estimate this probability.
-    \end{enumerate}
-\end{exampleblock}
-\end{frame}
+%       \begin{equation}
+%         P(A|B) = \pause \fr{P(B|A)P(A)}{P(B)} \pause = \fr{P(B|A)P(A)}{P(B|A)P(A) + P(B|\ol{A})P(\ol{A})}
+%       \end{equation}
+%       \pause
+%     \item Perform a simulation to estimate this probability.
+%     \end{enumerate}
+% \end{exampleblock}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Example 4: Estimating probability via simulation (cont.)}
-  \begin{exampleblock}{Solution}
-    \begin{enumerate}[\bf (a)]
-    \item From the problem, we know that  $P(A) = 0.4$, $P(B|A) = 0.7$, $P(B|\ol{A}) = 0.2$. Thus,
-      \begin{eqnarray*}
-        P(A|B) &=& \fr{P(B|A)P(A)}{P(B|A)P(A) + P(B|\ol{A})P(\ol{A})} \\
-               &=& \fr{0.7 (0.4)}{0.7 (0.4) + (0.2)( 1 - 0.4)} \\
-               &=& \fr{0.28}{0.28 + 0.12} \\
-               &=&  \boxed{0.7}
-      \end{eqnarray*}
+% \begin{frame}
+%   \frametitle{Example 4: Estimating probability via simulation (cont.)}
+%   \begin{exampleblock}{Solution}
+%     \begin{enumerate}[\bf (a)]
+%     \item From the problem, we know that  $P(A) = 0.4$, $P(B|A) = 0.7$, $P(B|\ol{A}) = 0.2$. Thus,
+%       \begin{eqnarray*}
+%         P(A|B) &=& \fr{P(B|A)P(A)}{P(B|A)P(A) + P(B|\ol{A})P(\ol{A})} \\
+%                &=& \fr{0.7 (0.4)}{0.7 (0.4) + (0.2)( 1 - 0.4)} \\
+%                &=& \fr{0.28}{0.28 + 0.12} \\
+%                &=&  \boxed{0.7}
+%       \end{eqnarray*}
 
-    \item For the simulation, see \texttt{M4\_matlab\_example4.m}
-    \end{enumerate}
-  \end{exampleblock}
-\end{frame}
+%     \item For the simulation, see \texttt{M4\_matlab\_example4.m}
+%     \end{enumerate}
+%   \end{exampleblock}
+% \end{frame}
 % \begin{frame}
 %   \frametitle{Standard error}
 %   \pause
