@@ -11,7 +11,7 @@ Tue, Oct 21
   :  [Echo360 Video](#)
 : **PROBLEM SET 6**{: .label .label-red}[PDF](/assets/problem-sets/PS6.pdf), [LaTeX](/assets/problem-sets/PS6.tex)  **(Due 10/28)** 
   : [PS 6 Solutions](#)
-: **LAB 6**{: .label .label-orange}[Construction Duration Analysis](https://colab.research.google.com/drive/10xTO42eiNHhDp4hN_BU8ZnZ6a5wYOozH?usp=sharing) **(Due 9/30)**
+: **LAB 6**{: .label .label-orange}[*FORTHCOMING*](#) **(Due 9/30)**
 
 : **ACTIVITY 4B**{: .label .label-activity}[*FORTHCOMING*](https://umamherst.instructure.com/courses/31233/external_tools/326)
 : **NOTEBOOK 4B**{: .label .label-notebook}[*FORTHCOMING*](#)  
