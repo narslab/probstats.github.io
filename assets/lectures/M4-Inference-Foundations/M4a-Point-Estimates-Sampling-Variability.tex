@@ -9,7 +9,7 @@
 \usepackage{handoutWithNotes}
 \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
 \else \if 2\bmode
-\immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
 \documentclass[smaller,handout]{beamer}
 \fi
 \fi
