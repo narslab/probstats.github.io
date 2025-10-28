@@ -1,5 +1,5 @@
 %\documentclass[smaller,handout]{beamer}
-\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
 \if 0\bmode
 \documentclass[smaller]{beamer}
 \else \if 1\bmode
@@ -524,7 +524,7 @@ Lecture M4b: Confidence Intervals for a Proportion}
   \frametitle{Working with confidence intervals}
   \begin{exampleblock}{Example 1: Identifying confidence levels (cont.)}\pause
     \begin{enumerate}[(a)] 
-    \item What is the confidence level for the interval $\ol{x} \pm 2.81\sigma/\sqrt{n}$?\pause
+    \item What is the confidence level for the interval $\hat{p} \pm 2.81\sigma/\sqrt{n}$?\pause
       \begin{eqnarray*}
         z_{(1-\alpha/2)} &=& +2.81 \\\pause
         1-\alpha/2 &=& \Phi(2.81) \pause = 99.75\% \\\pause
@@ -578,7 +578,7 @@ Lecture M4b: Confidence Intervals for a Proportion}
   \frametitle{Working with confidence intervals}
   \begin{exampleblock}{Example 1: Identifying confidence levels (cont.)}\pause
     \begin{enumerate}[(a)]\setcounter{enumi}{1}
-    \item What is the confidence level for the interval $\ol{x} \pm 1.44\sigma/\sqrt{n}$?\pause
+    \item What is the confidence level for the interval $\hat{p} \pm 1.44\sigma/\sqrt{n}$?\pause
       \begin{eqnarray*}
         z_{(1-\alpha/2)} &=& +1.44\\\pause
         1- \alpha/2 &=& \pause \Phi(1.44) \pause = 92.5\% \\\pause
