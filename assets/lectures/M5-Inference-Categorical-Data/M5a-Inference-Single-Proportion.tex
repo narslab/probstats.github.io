@@ -1,0 +1,1390 @@
+\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\if 0\bmode
+\documentclass[smaller]{beamer}
+\else \if 1\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+\else \if 2\bmode
+\immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\fi
+\fi
+\fi
+%\documentclass[smaller, handout]{beamer}
+
+% \documentclass[smaller,handout
+% ]{beamer}
+%\usepackage{etex}
+%\newcommand{\num}{6{} }
+
+% \usetheme[
+%   outer/progressbar=foot,
+%   outer/numbering=counter,
+%  block=fillFF
+% ]{metropolis}
+
+%\useoutertheme{metropolis}
+
+\usetheme{Madrid}
+\useoutertheme[subsection=false]{miniframes} % Alternatively: miniframes, infolines, split
+\useinnertheme{circles}
+\usecolortheme{seahorse}
+
+\usepackage[backend=biber,style=authoryear,maxcitenames=2,maxbibnames=99,safeinputenc,url=false,
+eprint=false]{biblatex}
+\addbibresource{bib/references.bib}
+\AtEveryCitekey{\iffootnote{{\tiny}\tiny}{\tiny}}
+\usepackage{appendixnumberbeamer}
+%\usepackage{pgfpages}
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{hide notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+% \usepackage[sfdefault]{Fira Sans}
+
+% \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+% \setmonofont{Fira Mono}
+
+%\usepackage{fira}
+%\setsansfont{Fira}
+%\setmonofont{Fira Mono}
+% To give a presentation with the Skim reader (http://skim-app.sourceforge.net) on OSX so
+% that you see the notes on your laptop and the slides on the projector, do the following:
+% 
+% 1. Generate just the presentation (hide notes) and save to slides.pdf
+% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
+% 3. With Skim open both slides.pdf and notes.pdf
+% 4. Click on slides.pdf to bring it to front.
+% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
+%    select notes.pdf.
+% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
+% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
+%    and slides.pdf is in presentation mode on the projector.
+
+% Give a slight yellow tint to the notes page
+%\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
+
+
+%\usetheme{metropolis}
+%\usecolortheme{beaver}
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{HTML}{A40000}
+\definecolor{lightcandyapplered}{HTML}{e74c3c}
+
+%\setbeamercolor{title}{fg=darkcandyapplered}
+%\setbeamercolor{frametitle}{bg=darkcandyapplered!80!black!90!white}
+%\setbeamertemplate{frametitle}{\bf\insertframetitle}
+%\setbeamercolor{footnote mark}{fg=darkcandyapplered}
+%\setbeamercolor{footnote}{fg=darkcandyapplered!70}
+%\Raggedbottom
+%\setbeamerfont{page number in head/foot}{size=\tiny}
+%\usepackage[tracking]{microtype}
+
+
+\setbeamertemplate{frametitle}{%
+    \nointerlineskip%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex]{frametitle}
+        \hspace*{1ex}\insertframetitle%
+    \end{beamercolorbox}%
+}
+
+
+
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamercolor{caption name}{fg=darkcandyapplered}
+
+
+%\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+%\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+%\usepackage[euler-digits,small]{eulervm}
+%\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+\usepackage{graphicx,multirow,paralist,booktabs}
+
+
+%\mode<presentation> { \setbeamercovered{transparent} }
+
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\def\beamerorig@set@color{%
+  \pdfliteral{\current@color}%
+  \aftergroup\reset@color
+}
+\def\beamerorig@reset@color{\pdfliteral{\current@color}}
+\makeatother
+
+%=== GRAPHICS PATH ===========
+\graphicspath{{./m5-images/}}
+% Marginpar width
+%Marginpar width
+%\setlength{\marginparsep}{.02in}
+
+
+%% Captions
+% \usepackage{caption}
+% \captionsetup{
+%   labelsep=quad,
+%   justification=raggedright,
+%   labelfont=sc
+% }
+
+%AMS-TeX packages
+
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage{hyperref,enumerate}
+\usepackage{minitoc,array}
+
+
+%https://tex.stackexchange.com/a/31370/2269
+\usepackage{mathtools,cancel}
+
+\renewcommand{\CancelColor}{\color{red}} %change cancel color to red
+
+\makeatletter
+\let\my@cancelto\cancelto %copy over the original cancelto command
+\newcommand<>{\cancelto}[2]{\alt#3{\my@cancelto{#1}{#2}}{\mathrlap{#2}\phantom{\my@cancelto{#1}{#2}}}}
+% redefine the cancelto command, using \phantom to assure that the
+% result doesn't wiggle up and down with and without the arrow
+\makeatother
+
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%% TIKZ
+\usepackage{animate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgfgantt}
+\usepackage{tikzsymbols}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots,fillbetween}
+
+\usetikzlibrary{arrows,shapes,positioning,shapes.geometric}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows,automata}
+\usetikzlibrary{patterns,matrix}
+\usetikzlibrary{trees,mindmap,backgrounds}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+\tikzset{no shadows/.style={general shadow/.style=}}
+%
+%\usepackage{paralist}
+
+
+
+%%% FORMAT PYTHON CODE
+%\usepackage{listings}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+% Custom colors
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+ 
+
+%\usepackage{listings}
+
+% Python style for highlighting
+% \newcommand\pythonstyle{\lstset{
+% language=Python,
+% basicstyle=\footnotesize\ttm,
+% otherkeywords={self},             % Add keywords here
+% keywordstyle=\footnotesize\ttb\color{deepblue},
+% emph={MyClass,__init__},          % Custom highlighting
+% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
+% stringstyle=\color{deepgreen},
+% frame=tb,                         % Any extra options here
+    % showstringspaces=false            % 
+% }}
+
+% % Python environment
+% \lstnewenvironment{python}[1][]
+% {
+% \pythonstyle
+% \lstset{#1}
+% }
+% {}
+
+% % Python for external files
+% \newcommand\pythonexternal[2][]{{
+% \pythonstyle
+% \lstinputlisting[#1]{#2}}}
+
+% Python for inline
+% 
+% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\dg}{^{\circ}}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand{\al}{\alpha}
+\newcommand{\G}{\Gamma}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\pgfmathdeclarefunction{expocdf}{2}{%
+  \pgfmathparse{1 -exp(-#1*#2)}%
+}
+
+% \makeatletter
+% \long\def\ifnodedefined#1#2#3{%
+%     \@ifundefined{pgf@sh@ns@#1}{#3}{#2}%
+% }
+
+% \pgfplotsset{
+%     discontinuous/.style={
+%     scatter,
+%     scatter/@pre marker code/.code={
+%         \ifnodedefined{marker}{
+%             \pgfpointdiff{\pgfpointanchor{marker}{center}}%
+%              {\pgfpoint{0}{0}}%
+%              \ifdim\pgf@y>0pt
+%                 \tikzset{options/.style={mark=*, fill=white}}
+%                 \draw [densely dashed] (marker-|0,0) -- (0,0);
+%                 \draw plot [mark=*] coordinates {(marker-|0,0)};
+%              \else
+%                 \tikzset{options/.style={mark=none}}
+%              \fi
+%         }{
+%             \tikzset{options/.style={mark=none}}        
+%         }
+%         \coordinate (marker) at (0,0);
+%         \begin{scope}[options]
+%     },
+%     scatter/@post marker code/.code={\end{scope}}
+%     }
+% }
+
+% \makeatother
+
+\renewcommand{\arraystretch}{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[CEE 260/MIE 273 M5a: Inference for Single Prop.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture M5a: Inference for Single Proportion}
+\date[\today]{\footnotesize \today}
+\author{{\bf Jimi Oke}}
+\institute[UMass Amherst]{
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[anchor=base] at (-7,0) (its) {\includegraphics[scale=.3]{UMassEngineering_vert}} ;
+  \end{tikzpicture}
+}
+
+
+    
+\begin{document}
+
+\maketitle
+
+
+
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+\begin{frame}
+  \frametitle{Module objectives}
+  \pause
+
+  Inference refers to various ways in which we obtain information and make decisions based on data. \pause
+  In this module, we consider: (a) \textbf{point estimates}, (b) \textbf{confidence intervals} and 
+  (c) \textbf{hypothesis tests} for
+  \begin{itemize}
+  \item Single proportions
+    \pause
+    
+  \item Difference of two proportions
+    \pause
+
+  \item Contigency tables
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Today's objectives}
+  \begin{itemize}
+  \item Test for normality \pause
+  \item Compute CIs (confidence intervals) \pause
+  \item Conduct hypothesis tests
+  \item Calculate sample size
+  \end{itemize}
+\end{frame}
+
+\section{Test for normality}
+
+\begin{frame}
+  \frametitle{Success-failure condition}\pause
+  Given a sample proportion $\hat p$ of size $n$ whose observations are independent. \pause
+  We can assume the distribution for $p$ is normal if 
+  \begin{itemize}
+  \item $np \geq 10$ and
+
+  \item $n(1-p) \geq 10 $
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 1}
+  \pause
+  A simple random sample of 826 payday loan borrowers was surveyed to better understand their
+interests around regulation and costs. 70\% of the responses supported new regulations on payday
+lenders. Is it reasonable to model $\hat{p}$ = 0.70 using a normal distribution?
+\end{frame}
+
+\section{CI for  proportion}
+\begin{frame}
+  \frametitle{CI for proportion}
+  \pause
+  The confidence interval (CI) for a proportion is given by: \pause
+  \begin{equation}
+    \hat p \pm z^{*} \times SE \equiv \hat p \pm ME
+  \end{equation}
+
+  \pause
+  where:
+  \begin{eqnarray}
+        z^{*} &=& \Phi \lt( 1  - \fr{\alpha}{2} \rt)  \quad \text{\bf critical value}\\\pause
+    SE &=& \sqrt{\fr{p(1-p)}{n}} \quad \text{\bf standard error}\\\pause
+    ME &=& z^{*} \times SE \quad \text{\bf margin of error}
+  \end{eqnarray}
+  \pause
+
+  Note that $p$ is unknown, so we use $\hat p$ in its place when computing the standard error.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Confidence interval (visualization)}
+
+  \begin{center}
+  \begin{tikzpicture}[scale=0.8]
+  \begin{axis}[
+      no markers, 
+      domain=0.60:0.80, 
+      samples=200,
+      axis x line=center,
+      axis y line=left,
+      xlabel=$\hat{p}$, 
+      ylabel=Density,
+      height=5cm, 
+      width=10cm,
+      xtick={0.647, 0.70, 0.753},
+      xticklabels={$\hat{p} - ME$, $\hat{p}$, $\hat{p} + ME$},
+      ymax=15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=false, 
+      clip=false, 
+      axis on top,
+      tick style={very thick, major tick length=7pt}
+  ]
+
+  % Main distribution curve
+  \addplot [blue, thick, domain=0.60:0.80] {gauss(0.70, 0.016)};
+
+  % Confidence interval shading
+  \addplot [blue!30, fill=blue!30, domain=0.647:0.753] {gauss(0.70, 0.016)} \closedcycle;
+
+  % Tail areas
+  \addplot [red!30, fill=red!30, domain=0.60:0.647] {gauss(0.70, 0.016)} \closedcycle;
+  \addplot [red!30, fill=red!30, domain=0.753:0.80] {gauss(0.70, 0.016)} \closedcycle;
+
+  % Vertical lines for confidence interval bounds
+  \addplot [red, thick, dashed] coordinates {(0.647, 0) (0.647, 10)};
+  \addplot [red, thick, dashed] coordinates {(0.753, 0) (0.753, 10)};
+
+  % Mean line
+  \addplot [black, thick] coordinates {(0.70, 0) (0.70, 24.9)};
+
+  % Margin of error arrows and labels
+  \draw [<->, thick, red] (axis cs: 0.647, 1) -- (axis cs: 0.70, 1);
+  \node at (axis cs: 0.6735, 1.2) {\textcolor{red}{\small ME}};
+  
+  \draw [<->, thick, red] (axis cs: 0.70, 1) -- (axis cs: 0.753, 1);
+  \node at (axis cs: 0.7265, 1.2) {\textcolor{red}{\small ME}};
+
+  % Labels
+  \node at (axis cs: 0.70, 22) {$\hat{p}$};
+  \node at (axis cs: 0.70, 12) {\textcolor{blue}{95\% CI}};
+  \node at (axis cs: 0.625, 3) {\textcolor{red}{\tiny 2.5\%}};
+  \node at (axis cs: 0.775, 3) {\textcolor{red}{\tiny 2.5\%}};
+
+  \end{axis}
+  \end{tikzpicture}
+  \end{center}
+
+  \pause
+  \begin{itemize}
+  \item The confidence interval is symmetric around $\hat{p}$
+  \item Margin of error (ME) extends equally in both directions
+  \item CI = $[\hat{p} - ME, \hat{p} + ME]$
+  \end{itemize}
+
+\end{frame}
+\begin{frame}
+  \frametitle{Example 1: Elderly drivers}
+  \pause
+ The Marist Poll published a report stating that 66\% of adults nationally think licensed
+drivers should be required to retake their road test once they reach 65 years of age. 
+It was also reported
+that interviews were conducted on 1,018 American adults.
+
+\begin{enumerate}[\bf(a)]
+  \item Verify that the success-failure condition is met. \pause
+  \item Find the standard error for the sample proportion. \pause
+  \item Find the critical value for a 95\% confidence interval. \pause
+  \item Find the margin of error for the confidence interval. \pause
+  \item Construct a 95\% confidence interval for $p$, the proportion of adults
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 1 (cont.)}
+
+  \begin{enumerate}[\bf(a)]
+    \item Success-failure condition:
+      \begin{eqnarray*}
+      np &=& 1018 \times 0.66 = 671.88 \geq 10 \quad \checkmark\\\pause
+      n(1-p) &=& 1018 \times (1-0.66) = 346.12 \geq 10 \quad \checkmark
+      \end{eqnarray*} \pause
+    \item Standard error: \pause
+    \begin{eqnarray*}
+      SE &=& \sqrt{\fr{p(1-p)}{n}} = \sqrt{\fr{0.66(1-0.66)}{1018}} = 0.0149 \pause
+    \end{eqnarray*}
+    \item Critical value for 95\% CI: \pause
+      \begin{eqnarray*}
+      z^{*} &=& \Phi\lt(1 - \fr{0.05}{2}\rt) = \Phi(0.975) = 1.96 \quad 
+      \texttt{\bl norm.cdf(0.975)} \pause
+      \end{eqnarray*} \pause
+    \item Margin of error:\pause
+      \begin{eqnarray*}   
+      ME &=& z^{*} \times SE = 1.96 \times 0.0149 = 0.0292 \approx 3\% \pause
+      \end{eqnarray*}
+    \item Confidence interval:\pause
+      \begin{eqnarray*}
+      CI &=&  [\hat p - ME, \hat p + ME] = [0.66 - 0.0292, 0.66 + 0.0292] = [0.6308, 0.6892]
+      \end{eqnarray*}
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 1 (cont.)}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+    no markers, 
+    domain=0.58:0.74, 
+    samples=200,
+    axis x line=center,
+    axis y line=left,
+    xlabel=$\hat{p}$, 
+    ylabel=Density,
+    height=5cm, 
+    width=10cm,
+    xtick={0.631, 0.66, 0.689},
+    xticklabels={$0.631$, $0.66$, $0.689$},
+    ymax=18,
+    ytick=\empty,
+    x label style={anchor=west},
+    y label style={anchor=south},
+    enlargelimits=false, 
+    clip=false, 
+    axis on top,
+    tick style={very thick, major tick length=7pt}
+]
+
+% Main distribution curve
+\addplot [blue, thick, domain=0.58:0.74] {gauss(0.66, 0.015)};
+
+% Confidence interval shading
+\addplot [blue!30, fill=blue!30, domain=0.631:0.689] {gauss(0.66, 0.015)} \closedcycle;
+
+% Tail areas
+\addplot [red!30, fill=red!30, domain=0.58:0.631] {gauss(0.66, 0.015)} \closedcycle;
+\addplot [red!30, fill=red!30, domain=0.689:0.74] {gauss(0.66, 0.015)} \closedcycle;
+
+% Vertical lines for confidence interval bounds
+\addplot [red, thick, dashed] coordinates {(0.631, 0) (0.631, 12)};
+\addplot [red, thick, dashed] coordinates {(0.689, 0) (0.689, 12)};
+
+% Mean line
+\addplot [black, thick] coordinates {(0.66, 0) (0.66, 26.6)};
+
+% Margin of error arrows and labels
+\draw [<->, thick, red] (axis cs: 0.631, -1.2) -- (axis cs: 0.66, -1.2);
+\node at (axis cs: 0.6455, -2.5) {\textcolor{red}{\footnotesize .029}};
+
+\draw [<->, thick, red] (axis cs: 0.66, -1.2) -- (axis cs: 0.689, -1.2);
+\node at (axis cs: 0.6745, -2.5) {\textcolor{red}{\footnotesize .029}};
+
+% Labels
+\node at (axis cs: 0.66, 24) {$\hat{p} = 0.66$};
+\node at (axis cs: 0.66, 14) {\textcolor{blue}{\footnotesize 95\% CI: [0.631, 0.689]}};
+\node at (axis cs: 0.605, 3) {\textcolor{red}{\tiny 2.5\%}};
+\node at (axis cs: 0.715, 3) {\textcolor{red}{\tiny 2.5\%}};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\pause
+\textbf{Conclusion:} We are 95\% confident that between 63.1\% and 68.9\% of American adults think licensed drivers should be required to retake their road test once they reach 65 years of age.
+
+\end{frame}
+
+
+
+\section{Hypothesis testing}
+
+\begin{frame}
+  \frametitle{Summary of hypothesis testing approach}\pause
+
+  \begin{enumerate}[<+->]
+  \item \textit{\gr Define} the \textbf{null} ($H_0$) and \textbf{alternative} ($H_1$) hypotheses
+  \item \textit{\gr Determine} the appropriate \textbf{test statistic} (and distribution)
+  \item \textit{\gr Estimate} the test statistic from the sample data
+  \item \textit{\gr Specify} or \textit{\gr identify} the \textbf{level of significance} ($\alpha$)
+  \item \textit{\gr Define} the \textbf{region of rejection/critical region} of the null hypothesis by choosing the \textbf{critical value}.
+  \item \textit{\gr Decide.} If the test statistic is in the critical region, reject $H_0$. If not, do not reject $H_0$ (fail to reject it)
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Distribution of the test statistic}
+  \pause
+  In this lecture, the test statistic is the \textbf{sample proportion}.\pause
+
+  We will assume the normal distribution is the success-failure condition holds.\pause
+
+  \begin{block}{}\pause
+    The sample proportion is \textbf{normally} distributed and its variance  is :
+    \begin{equation}
+      \label{eq:20}
+      \mathbb{V}(p) = \fr{p(1-p)}{n} 
+    \end{equation}
+    And thus, the standard error is:
+    \pause
+    \begin{equation}
+      SE_{\hat{p}} = \sqrt{ \fr{p_{0}(1-p_{0})}{n} }
+    \end{equation}
+    Thus, to compute the probability (area under curve) of the test statistic, \pause
+    we use the z-score:
+    \begin{equation}
+    \bl z = \fr{p - p_{0}}{SE_{p}}
+  \end{equation}
+  which is {\bl normally} distributed.
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Two-sided tests}\pause
+  {\bf Case A: both tails}\pause
+
+  \begin{itemize}
+  \item $H_0: p = p_0$
+  \item $H_1: p \ne p_0$
+  \end{itemize}
+
+    \pause
+  
+  \begin{tikzpicture}
+    \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$x$, ylabel=$f_X(x)$,,
+      height=6cm, width=10cm,
+      xtick={-6,0,6},
+      xticklabels={$z_{\frac{\alpha}{2}}$,$z$,$z_{1 - \frac{\alpha}{2}}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-10:10] {gauss(0,3)};
+      \addplot [gray, fill=gray!50, domain=-6:6] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=6:10] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-10:-6] {gauss(0,3)} \closedcycle;
+      \node (d) at (axis cs: -6,.1) {Area: $1-\alpha$};
+      \draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 8.5,.05) {Area: $\fr\alpha2$};
+      \draw[thick,->] (c) -- (axis cs: 6.5, 0.003);
+      \node (e) at (axis cs: -8.5,.05) {Area: $\fr\alpha2$};
+      \draw[thick,->] (e) -- (axis cs: -6.5, 0.003);
+      \draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+      \draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{One-sided tests}\pause
+  {\bf Case B: upper tail}\pause
+
+  \begin{itemize}
+  \item $H_0: p = p_0$
+  \item $H_1: p > p_0$
+  \end{itemize}
+
+  \pause
+  
+  \begin{tikzpicture}
+    \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$x$, ylabel=$f_X(x)$,,
+      height=6cm, width=10cm,
+      xtick={0,6},
+      xticklabels={$z$,$z_{1- \alpha/2}$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-10:10] {gauss(0,3)};
+      \addplot [gray, fill=gray!50, domain=-10:6] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=6:10] {gauss(0,3)} \closedcycle;
+      \node (d) at (axis cs: -6,.1) {Area: $1-\alpha$};
+      \draw[thick, ->] (d) -- (axis cs: -.6,.05);
+      \node (c) at (axis cs: 8.5,.05) {Area: $\alpha$};
+      \draw[thick,->] (c) -- (axis cs: 6.5, 0.003);
+      \draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{One-sided tests (cont.)}\pause
+  {\bf Case C: lower tail}\pause
+
+  \begin{itemize}
+  \item $H_0: p = p_0$
+  \item $H_1: p < p_0$
+  \end{itemize}
+
+    \pause
+  
+  \begin{tikzpicture}
+    \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$x$, ylabel=$f_X(x)$,,
+      height=6cm, width=10cm,
+      xtick={-6,0},
+      xticklabels={$z_{\alpha/2}$,$z$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-10:10] {gauss(0,3)};
+      \addplot [gray, fill=gray!50, domain=-6:10] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-10:-6] {gauss(0,3)} \closedcycle;
+      \node (d) at (axis cs: 6,.1) {Area: $1-\alpha$};
+      \draw[thick, ->] (d) -- (axis cs: .6,.05);
+      \node (c) at (axis cs: -8.5,.05) {Area: $\alpha$};
+      \draw[thick,->] (c) -- (axis cs: -6.5, 0.003);
+      \draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Example 2: Getting enough sleep (OS 5.21)}
+
+    400 students were randomly sampled from a large university, and 289 said they did not get enough sleep. Conduct a
+    hypothesis test to check whether this represents a statistically significant difference from 50\%, and use a
+    significance level of 0.01
+
+    \begin{enumerate}[Step 1.]
+    \item Parameter of interest: \pause $p$ (proportion of students not getting enough sleep) \pause
+    \item Null hypothesis: \pause $H_0: p = 289/400 = .723$. \pause
+    \item Alternative hypothesis: \pause $H_1: p \ne .723$. \pause
+    \item Formula for test statistic value: \pause $z = \fr{p - p_0}{SE_{p}}$ \pause
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 2:  Getting enough sleep  (cont.)}
+    \begin{enumerate}[Step 1.]\setcounter{enumi}{4}\pause
+    \item Calculate test statistic value: \pause
+      \begin{equation*}
+        z = \fr{.723  - .5}{\sqrt{.5(.5)/400}}  \pause = 8.92
+      \end{equation*}
+      \pause
+
+    \item Compute critical value at $\alpha = 0.01$: \pause
+      \begin{equation*}
+        z_{\alpha/2} = \Phi^{-1}(1 - \alpha/2) = \Phi^{-1}(0.995) = 2.576 \quad 
+        \texttt{\bl norm.ppf(0.995)}
+      \end{equation*}
+      \pause
+
+      \item Compare test statistic to critical value: \pause
+      \begin{equation*}
+        |z| = 8.92 > 2.576 = z_{\alpha/2}
+      \end{equation*}
+      \pause
+    \item Conclude: \pause
+
+      Using a significance level of 0.01, we  reject $H_0$ since $8.92 > 2.576$.
+      Thus, at the 1\% significance level, there is sufficient evidence to conclude that true proportion
+      differs from the target value of 0.5.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Example 2:  Getting enough sleep  (cont.)}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+    no markers, 
+    domain=-10:10, 
+    samples=200,
+    axis x line=center,
+    axis y line=left,
+    xlabel=$z$, 
+    ylabel=Density,
+    height=6cm, 
+    width=12cm,
+    xtick={-8.92, -2.576, 0, 2.576, 8.92},
+    xticklabels={$-8.92$, $-z_{\alpha/2}=-2.576$, $0$, $z_{\alpha/2}=2.576$, $z=8.92$},
+    ymax=0.45,
+    ytick=\empty,
+    x label style={anchor=west},
+    y label style={anchor=south},
+    enlargelimits=false, 
+    clip=false, 
+    axis on top,
+    tick style={very thick, major tick length=7pt},
+    xticklabel style={rotate=45, anchor=east}
+]
+
+% Main standard normal distribution curve
+\addplot [blue, thick, domain=-10:10] {gauss(0, 1)};
+
+% Critical regions (rejection regions) - both tails
+\addplot [red!40, fill=red!40, domain=-10:-2.576] {gauss(0, 1)} \closedcycle;
+\addplot [red!40, fill=red!40, domain=2.576:10] {gauss(0, 1)} \closedcycle;
+
+% Acceptance region
+\addplot [green!30, fill=green!30, domain=-2.576:2.576] {gauss(0, 1)} \closedcycle;
+
+% Vertical lines for critical values
+\addplot [red, thick, dashed] coordinates {(-2.576, 0) (-2.576, 0.13)};
+\addplot [red, thick, dashed] coordinates {(2.576, 0) (2.576, 0.13)};
+
+% Vertical line for test statistic (way off the chart but we'll show it symbolically)
+\addplot [orange, very thick] coordinates {(8.92, 0) (8.92, 0.05)};
+\addplot [orange, very thick] coordinates {(-8.92, 0) (-8.92, 0.05)};
+
+% Labels for regions
+\node at (axis cs: 0, 0.25) {\textcolor{green!70!black}{\footnotesize Accept $H_0$}};
+\node at (axis cs: -5, 0.02) {\textcolor{red}{\tiny Reject $H_0$}};
+\node at (axis cs: 5, 0.02) {\textcolor{red}{\tiny Reject $H_0$}};
+
+% Alpha levels
+\node at (axis cs: -4, 0.08) {\textcolor{red}{\tiny $\alpha/2 = 0.005$}};
+\node at (axis cs: 4, 0.08) {\textcolor{red}{\tiny $\alpha/2 = 0.005$}};
+
+% Test statistic labels
+\node at (axis cs: 8.92, 0.15) {\textcolor{orange}{\footnotesize\textbf{Test Statistic}}};
+\node at (axis cs: 8.92, 0.12) {\textcolor{orange}{\footnotesize $z = 8.92$}};
+
+% Arrow pointing to test statistic location
+\draw [->, thick, orange] (axis cs: 6, 0.3) -- (axis cs: 8.5, 0.08);
+\node at (axis cs: 5.5, 0.32) {\textcolor{orange}{\footnotesize Test statistic}};
+\node at (axis cs: 5.5, 0.29) {\textcolor{orange}{\footnotesize falls in}};
+\node at (axis cs: 5.5, 0.26) {\textcolor{orange}{\footnotesize rejection region}};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\pause
+\textbf{Decision:} Since $|z| = 8.92 > 2.576 = z_{\alpha/2}$, we \textcolor{red}{\textbf{reject}} $H_0$ at $\alpha = 0.01$ significance level.
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Example 3: Equipment quality}\pause
+
+  A car manufacturer is considering switching to a new, higher quality piece of equipment that con-
+structs vehicle door hinges. 
+They figure that they will save money in the long run if this new machine
+produces hinges that have flaws no more than 0.2\% of the time.
+A random sample of 800 hinges produced by the new machine shows that 4 are flawed.
+At the 0.05 significance level, is there enough evidence to conclude that the new machine
+produces hinges with a flaw rate greater than 0.2\%?
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 3 (cont.)}\pause
+
+This is a one-sided test \pause
+
+\pause
+\textbf{Hypotheses:}
+\begin{itemize}
+  \item $H_0: p = 0.002$
+  \item $H_a: p < 0.002$
+\end{itemize}
+
+\pause
+\textbf{Test Statistic:}
+\begin{eqnarray*}
+\hat{p} &=& \frac{4}{800} = 0.005 \\ \pause
+SE &=& \sqrt{\frac{0.002(1-0.002)}{800}} \approx 0.0016 \\\pause
+z &=& \frac{\hat{p} - 0.002}{SE} \approx 1.875
+\end{eqnarray*}
+
+\pause
+\textbf{Critical Value:} For $\alpha = 0.05$, the critical value is:
+\begin{eqnarray*}
+z_{\alpha} &=& \Phi^{-1}(1 - \alpha) = \Phi^{-1}(0.95) = 1.645 \quad 
+\texttt{\bl norm.ppf(0.95)}
+\end{eqnarray*}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Example 3 (cont.)}\pause
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+    no markers, 
+    domain=-4:4, 
+    samples=200,
+    axis x line=center,
+    axis y line=left,
+    xlabel=$z$, 
+    ylabel=Density,
+    height=5cm, 
+    width=10cm,
+    xtick={0, 1.645, 1.875},
+    xticklabels={$0$, $z_{\alpha}$, $z$},
+    ymax=0.45,
+    ytick=\empty,
+    x label style={anchor=west},
+    y label style={anchor=south},
+    enlargelimits=false, 
+    clip=false, 
+    axis on top,
+    tick style={very thick, major tick length=7pt}
+]
+
+% Main standard normal distribution curve
+\addplot [blue, thick, domain=-4:4] {gauss(0, 1)};
+
+% Critical region (right tail only - one-tailed test)
+\addplot [red!40, fill=red!40, domain=1.645:4] {gauss(0, 1)} \closedcycle;
+
+% Acceptance region
+\addplot [green!30, fill=green!30, domain=-4:1.875] {gauss(0, 1)} \closedcycle;
+
+% Vertical line for critical value
+\addplot [red, thick, dashed] coordinates {(1.645, 0) (1.645, 0.23)};
+
+% Vertical line for test statistic
+\addplot [orange, very thick] coordinates {(1.875, 0) (1.875, 0.2)};
+
+% Labels for regions
+\node at (axis cs: -1, 0.25) {\textcolor{green!70!black}{\footnotesize Fail to Reject $H_0$}};
+\node at (axis cs: 2.5, 0.08) {\textcolor{red}{\footnotesize Reject $H_0$}};
+
+% Alpha level
+\node at (axis cs: 2.2, 0.15) {\textcolor{red}{\tiny $\alpha = 0.05$}};
+
+% Test statistic label
+\node at (axis cs: 1.875, 0.25) {\textcolor{orange}{\footnotesize $z = 1.875$}};
+
+% Decision arrow and text
+\draw [->, thick, blue] (axis cs: 1.2, 0.35) -- (axis cs: 1.875, 0.25);
+\node at (axis cs: 0.8, 0.38) {\textcolor{blue}{\footnotesize Test statistic falls}};
+\node at (axis cs: 0.8, 0.35) {\textcolor{blue}{\footnotesize in acceptance region}};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\pause
+\textbf{Decision:} Since $z = 1.875 < 1.645 = z_{\alpha}$, we \textcolor{red}{\textbf{fail to reject}} $H_0$ at $\alpha = 0.05$ significance level.
+
+
+  
+
+\end{frame}
+
+\section{Using p-values}
+
+
+
+\begin{frame}
+  \frametitle{$p$-value}\pause
+      The $p$-value is the probability of obtaining a test statistic value at least as contradictory to $H_0$ as the value that actually resulted.
+    \pause
+    \alert{The smaller the $p$-value, the more contradictory are the data to $H_0$.}
+
+  \pause
+
+  \begin{block}{Usefulness of p-value}\pause
+  \begin{itemize}[<+->]
+  \item Provides more information about the strength of a test
+  \item Indicates the smallest level at which the data is significant
+  \item Can be compared with $\alpha$ irrespective of which type of test was used
+  \end{itemize}
+  \end{block}
+
+  \pause
+
+
+
+    \begin{enumerate}[Step 1.]
+  \item Formulate your hypotheses
+  \item Determine the $p$-value from the test statistic
+  \item Conclude the test based on a chosen level of significance:
+    \begin{enumerate}
+    \item $p$-value $\le \alpha \implies$ reject $H_0$ at level $\alpha$.
+    \item $p$-value $> \alpha \implies$ do not reject $H_0$ at level $\alpha$.
+    \end{enumerate}
+  \end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{$p$-value for $z$ tests}\pause
+
+  \begin{minipage}{.6\linewidth}
+  \begin{tikzpicture}[scale=.7]
+    \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$Z$, ylabel=$f_X(x)$,,
+      height=4cm, width=10cm,
+      xtick={0,6},
+      xticklabels={$0$,$z$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-10:10] {gauss(0,3)};
+      \addplot [gray, fill=gray!50, domain=-10:6] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=6:10] {gauss(0,3)} \closedcycle;
+      \node (c) at (axis cs: 8.5,.05) {Area: $p$-value};
+      \draw[thick,->] (c) -- (axis cs: 6.5, 0.003);
+      % \draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
+    \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{.35\linewidth}
+  \begin{block}{$p$-value: area in upper tail}\pause
+  \begin{equation}
+    p  = 1 - \Phi(z)\label{eq:41}
+  \end{equation}
+\end{block}
+
+\end{minipage}
+
+\pause
+
+\bigskip
+
+\begin{minipage}{.6\linewidth}
+  \begin{tikzpicture}[scale=.7]
+    \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$Z$, ylabel=$f_X(x)$,,
+      height=4cm, width=10cm,
+      xtick={-6,0},
+      xticklabels={$z$,$0$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      ]
+      \addplot [blue, domain=-10:10] {gauss(0,3)};
+      \addplot [gray, fill=gray!50, domain=-6:10] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-10:-6] {gauss(0,3)} \closedcycle;
+      %\node (d) at (axis cs: 6,.1) {Area: $1-\alpha$};
+      %\draw[thick, ->] (d) -- (axis cs: .6,.05);
+      \node (c) at (axis cs: -8.5,.05) {Area: $p$-value};
+      \draw[thick,->] (c) -- (axis cs: -6.5, 0.003);
+    \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{.35\linewidth}
+  \begin{block}{$p$-value: area in lower tail} \pause
+    \begin{equation}
+    p  = \Phi(z)\label{eq:42}
+  \end{equation}
+\end{block}
+
+  
+\end{minipage}
+
+\pause
+\bigskip
+
+\begin{minipage}{.6\linewidth}
+  \begin{tikzpicture}[scale=0.7]
+    \begin{axis}[no markers, domain=0:10, samples=100,
+      axis x line=center,
+      axis y line=none,
+      xlabel=$Z$, ylabel=$f_X(x)$,,
+      height=4cm, width=10cm,
+      xtick={-6,0,6},
+      xticklabels={$-z$,$0$,$z$},
+      ymax=.15,
+      ytick=\empty,
+      x label style={anchor=west},
+      y label style={anchor=south},
+      enlargelimits=true, clip=false, axis on top
+      %grid style={line width=.1pt, draw=gray},
+      % yticklabel style={
+      %   /pgf/number format/fixed,
+      %   /pgf/number format/fixed zerofill,
+      %   /pgf/number format/precision=2
+      % },        
+      %   grid = major
+      ]
+      \addplot [blue, domain=-10:10] {gauss(0,3)};
+      \addplot [gray, fill=gray!50, domain=-6:6] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=6:10] {gauss(0,3)} \closedcycle;
+      \addplot [orange,fill=orange,  domain=-10:-6] {gauss(0,3)} \closedcycle;
+      \node (c) at (axis cs: 8.5,.05) {Area: $0.5p$-value};
+      \draw[thick,->] (c) -- (axis cs: 6.5, 0.003);
+      \node (e) at (axis cs: -8.5,.05) {Area: $0.5p$-value};
+      \draw[thick,->] (e) -- (axis cs: -6.5, 0.003);
+    \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{.35\linewidth}
+  \begin{block}{$p$-value: sum of area in both tails} \pause
+  \begin{equation}
+    \label{eq:43}
+    p = 2 (1 - \Phi(|z|))
+  \end{equation}
+\end{block}
+
+\end{minipage}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Hypothesis testing using $p$-value approach}
+  \begin{exampleblock}{Example 4: Getting enough sleep (OS 5.21)}
+
+    400 students were randomly sampled from a large university, and 289 said they did not get enough sleep. Conduct a
+    hypothesis test to check whether this represents a statistically significant difference from 50\%, and use a
+    significance level of 0.01
+
+    \begin{enumerate}[Step 1.]
+    \item Parameter of interest: \pause $p$ (proportion of students not getting enough sleep) \pause
+    \item Null hypothesis: \pause $H_0: \hat{p} = 289/400 = .723$. \pause
+    \item Alternative hypothesis: \pause $H_1: p \ne .723$. \pause
+    \item Formula for test statistic value: \pause $z = \fr{p - p_0}{SE_{p}}$ \pause
+    \end{enumerate}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hypothesis testing using $p$-value approach}
+  \begin{exampleblock}{Example 4:  Getting enough sleep  (cont.)}
+    \begin{enumerate}[Step 1.]\setcounter{enumi}{4}\pause
+    \item Calculate test statistic value: \pause
+      \begin{equation*}
+        z = \fr{.723  - .5}{\sqrt{.5(.5)/400}}  \pause = 8.92
+      \end{equation*}
+      \pause
+
+    \item Determine $p$-value \pause (two-tailed test): \pause
+      \begin{equation*}
+        p\text{-value} = 2(1 - \Phi(8.92)) \pause = 0.0
+      \end{equation*}
+      \pause
+
+      \item  Compare $p$-value to $\alpha = 0.01$: \pause
+      \begin{equation*}
+        0.0 \le 0.01
+      \end{equation*}
+      \pause
+
+    \item Conclude: \pause
+
+      Using a significance level of 0.01, we  reject $H_0$ since $0.0<0.01$.
+    \end{enumerate}
+  \end{exampleblock}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Example 5: Equipment quality (p-value approach)}\pause
+
+  A car manufacturer is considering switching to a new, higher quality piece of equipment that con-
+structs vehicle door hinges. 
+They figure that they will save money in the long run if this new machine
+produces hinges that have flaws no more than 0.2\% of the time.
+A random sample of 800 hinges produced by the new machine shows that 4 are flawed.
+At the 0.05 significance level, is there enough evidence to conclude that the new machine
+produces hinges with a flaw rate greater than 0.2\%?
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 5 (cont.)}\pause
+
+This is a one-sided test \pause
+
+\pause
+\textbf{Hypotheses:}
+\begin{itemize}
+  \item $H_0: p = 0.002$
+  \item $H_a: p < 0.002$
+\end{itemize}
+
+\pause
+\textbf{Test Statistic:}
+\begin{eqnarray*}
+\hat{p} &=& \frac{4}{800} = 0.005 \\ \pause
+SE &=& \sqrt{\frac{0.002(1-0.002)}{800}} \approx 0.0016 \\\pause
+z &=& \frac{\hat{p} - 0.002}{SE} \approx 1.875
+\end{eqnarray*}
+
+\pause
+\textbf{p-value:} For $z = 1.875$, the $p$-value is:
+\begin{eqnarray*}
+p\text{-value} &=& 1 - \Phi(1.875) \approx 0.0304 \quad
+\texttt{\bl 1 - norm.cdf(1.875)}
+\end{eqnarray*}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Example 5 (cont.)}\pause
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+    no markers, 
+    domain=-4:4, 
+    samples=200,
+    axis x line=center,
+    axis y line=left,
+    xlabel=$z$, 
+    ylabel=Density,
+    height=5cm, 
+    width=10cm,
+    xtick={0, 1.875},
+    xticklabels={$0$, $z=1.875$},
+    ymax=0.45,
+    ytick=\empty,
+    x label style={anchor=west},
+    y label style={anchor=south},
+    enlargelimits=false, 
+    clip=false, 
+    axis on top,
+    tick style={very thick, major tick length=7pt}
+]
+
+% Main standard normal distribution curve
+\addplot [blue, thick, domain=-4:4] {gauss(0, 1)};
+
+% p-value region (right tail for one-sided test)
+\addplot [orange!40, fill=orange!40, domain=1.875:4] {gauss(0, 1)} \closedcycle;
+
+\addplot [red!40, fill=red!40, domain=1.96:4] {gauss(0, 1)} \closedcycle;
+
+% Vertical line for test statistic
+\addplot [orange, very thick] coordinates {(1.875, 0) (1.875, 0.2)};
+
+% Labels
+\node at (axis cs: 1.875, 0.35) {\textcolor{orange}{\footnotesize $z = 1.875$}};
+\node at (axis cs: 2.5, 0.08) {\textcolor{orange}{\footnotesize p-value = 0.030}};
+
+% Decision comparison box
+\node[draw, fill=white, align=center] at (axis cs: -1.5, 0.35) {
+  \textbf{Decision:} \\
+  $p\text{-value} = 0.03$ \\
+  $\alpha = 0.05$ \\
+  \textcolor{red}{$0.03 < 0.05$} \\
+  \textbf{Fail to Reject } $H_0$
+};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\pause
+\textbf{Decision:} Since the p-value $= 0.03 < \alpha = 0.05$, we \textcolor{red}{\textbf{fail to reject}} $H_0$ at the 5\% significance level.
+
+\pause
+\textbf{Conclusion:} There is insufficient evidence to conclude that the new machine produces hinges with a flaw rate greater than 0.2\%.
+
+\end{frame}
+
+\section{Outlook}
+\begin{frame}
+  \frametitle{Recap of this lecture }
+  \begin{itemize}
+  \item Definition of hypothesis testing
+    \begin{itemize}
+    \item Null hypothesis (default/expected outcome) $H_{0}$ \pause
+    \item Alternate hypothesis (what we want to test/support; research hypothesis) $H_{1}$ or $H_{A}$\pause
+    \item One-tailed or two-tailed
+    \end{itemize}
+  \item Types of errors:
+    \begin{itemize}
+    \item Type I: false positive
+    \item Type II: false negative
+    \end{itemize}
+  \item Test statistic:
+    \begin{itemize}
+    \item Sample proportion with independent observations and large enough sample size (normal distribution); \pause
+      $Z$-statistic: \pause
+
+      \begin{equation}
+     z= \fr{p - p_{0}}{\sqrt{\fr{p_{0}(1-p_{0})}{n} }}
+    \end{equation}
+    \pause
+    \end{itemize}
+
+  \item The $p$-value is the minimum probability of a Type I error.\pause
+    \begin{itemize}
+    \item Upper-tailed test: $p-\text{value} = 1- \Phi(z)$; \pause Python: \texttt{\bl norm.sf(z)} \pause
+    \item Lower-tailed test: $p-\text{value} = \Phi(z)$; \pause Python: \texttt{\bl norm.cdf(z)} \pause
+    \item Two-tailed test: $p-\text{value} = 2(1- \Phi(|z|))$;\\ \pause 
+    Python: \texttt{\bl 2 * norm.cdf(np.abs(z))} \pause
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

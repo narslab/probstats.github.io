@@ -1,0 +1,776 @@
+% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+% \if 0\bmode
+% \documentclass[smaller]{beamer}
+% \else \if 1\bmode
+% \immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+% \documentclass[smaller,handout]{beamer}
+% \usepackage{handoutWithNotes}
+% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+% \else \if 2\bmode
+% \immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+% \documentclass[smaller,handout]{beamer}
+% \fi
+% \fi
+% \fi
+\documentclass[smaller, handout]{beamer}
+
+% \documentclass[smaller,handout
+% ]{beamer}
+%\usepackage{etex}
+%\newcommand{\num}{6{} }
+
+% \usetheme[
+%   outer/progressbar=foot,
+%   outer/numbering=counter,
+%  block=fillFF
+% ]{metropolis}
+
+%\useoutertheme{metropolis}
+
+\usetheme{Madrid}
+\useoutertheme[subsection=false]{miniframes} % Alternatively: miniframes, infolines, split
+\useinnertheme{circles}
+\usecolortheme{seahorse}
+
+\usepackage[backend=biber,style=authoryear,maxcitenames=2,maxbibnames=99,safeinputenc,url=false,
+eprint=false]{biblatex}
+\addbibresource{bib/references.bib}
+\AtEveryCitekey{\iffootnote{{\tiny}\tiny}{\tiny}}
+\usepackage{appendixnumberbeamer}
+%\usepackage{pgfpages}
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{hide notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+% \usepackage[sfdefault]{Fira Sans}
+
+% \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+% \setmonofont{Fira Mono}
+
+%\usepackage{fira}
+%\setsansfont{Fira}
+%\setmonofont{Fira Mono}
+% To give a presentation with the Skim reader (http://skim-app.sourceforge.net) on OSX so
+% that you see the notes on your laptop and the slides on the projector, do the following:
+% 
+% 1. Generate just the presentation (hide notes) and save to slides.pdf
+% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
+% 3. With Skim open both slides.pdf and notes.pdf
+% 4. Click on slides.pdf to bring it to front.
+% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
+%    select notes.pdf.
+% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
+% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
+%    and slides.pdf is in presentation mode on the projector.
+
+% Give a slight yellow tint to the notes page
+%\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
+
+
+%\usetheme{metropolis}
+%\usecolortheme{beaver}
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{HTML}{A40000}
+\definecolor{lightcandyapplered}{HTML}{e74c3c}
+
+%\setbeamercolor{title}{fg=darkcandyapplered}
+%\setbeamercolor{frametitle}{bg=darkcandyapplered!80!black!90!white}
+%\setbeamertemplate{frametitle}{\bf\insertframetitle}
+%\setbeamercolor{footnote mark}{fg=darkcandyapplered}
+%\setbeamercolor{footnote}{fg=darkcandyapplered!70}
+%\Raggedbottom
+%\setbeamerfont{page number in head/foot}{size=\tiny}
+%\usepackage[tracking]{microtype}
+
+
+\setbeamertemplate{frametitle}{%
+    \nointerlineskip%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex]{frametitle}
+        \hspace*{1ex}\insertframetitle%
+    \end{beamercolorbox}%
+}
+
+
+
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamercolor{caption name}{fg=darkcandyapplered}
+
+
+%\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+%\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+%\usepackage[euler-digits,small]{eulervm}
+%\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+\usepackage{graphicx,multirow,paralist,booktabs}
+
+
+%\mode<presentation> { \setbeamercovered{transparent} }
+
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\def\beamerorig@set@color{%
+  \pdfliteral{\current@color}%
+  \aftergroup\reset@color
+}
+\def\beamerorig@reset@color{\pdfliteral{\current@color}}
+\makeatother
+
+%=== GRAPHICS PATH ===========
+\graphicspath{{./images/}}
+% Marginpar width
+%Marginpar width
+%\setlength{\marginparsep}{.02in}
+
+
+%% Captions
+% \usepackage{caption}
+% \captionsetup{
+%   labelsep=quad,
+%   justification=raggedright,
+%   labelfont=sc
+% }
+
+%AMS-TeX packages
+
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage{hyperref,enumerate}
+\usepackage{minitoc,array}
+
+
+%https://tex.stackexchange.com/a/31370/2269
+\usepackage{mathtools,cancel}
+
+\renewcommand{\CancelColor}{\color{red}} %change cancel color to red
+
+\makeatletter
+\let\my@cancelto\cancelto %copy over the original cancelto command
+\newcommand<>{\cancelto}[2]{\alt#3{\my@cancelto{#1}{#2}}{\mathrlap{#2}\phantom{\my@cancelto{#1}{#2}}}}
+% redefine the cancelto command, using \phantom to assure that the
+% result doesn't wiggle up and down with and without the arrow
+\makeatother
+
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%% TIKZ
+\usepackage{animate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgfgantt}
+\usepackage{tikzsymbols}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots,fillbetween}
+
+\usetikzlibrary{arrows,shapes,positioning,shapes.geometric}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows,automata}
+\usetikzlibrary{patterns,matrix}
+\usetikzlibrary{trees,mindmap,backgrounds}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+\tikzset{no shadows/.style={general shadow/.style=}}
+%
+%\usepackage{paralist}
+
+
+
+%%% FORMAT PYTHON CODE
+%\usepackage{listings}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+% Custom colors
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+ 
+
+%\usepackage{listings}
+
+% Python style for highlighting
+% \newcommand\pythonstyle{\lstset{
+% language=Python,
+% basicstyle=\footnotesize\ttm,
+% otherkeywords={self},             % Add keywords here
+% keywordstyle=\footnotesize\ttb\color{deepblue},
+% emph={MyClass,__init__},          % Custom highlighting
+% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
+% stringstyle=\color{deepgreen},
+% frame=tb,                         % Any extra options here
+    % showstringspaces=false            % 
+% }}
+
+% % Python environment
+% \lstnewenvironment{python}[1][]
+% {
+% \pythonstyle
+% \lstset{#1}
+% }
+% {}
+
+% % Python for external files
+% \newcommand\pythonexternal[2][]{{
+% \pythonstyle
+% \lstinputlisting[#1]{#2}}}
+
+% Python for inline
+% 
+% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\dg}{^{\circ}}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand{\al}{\alpha}
+\newcommand{\G}{\Gamma}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\pgfmathdeclarefunction{expocdf}{2}{%
+  \pgfmathparse{1 -exp(-#1*#2)}%
+}
+
+% \makeatletter
+% \long\def\ifnodedefined#1#2#3{%
+%     \@ifundefined{pgf@sh@ns@#1}{#3}{#2}%
+% }
+
+% \pgfplotsset{
+%     discontinuous/.style={
+%     scatter,
+%     scatter/@pre marker code/.code={
+%         \ifnodedefined{marker}{
+%             \pgfpointdiff{\pgfpointanchor{marker}{center}}%
+%              {\pgfpoint{0}{0}}%
+%              \ifdim\pgf@y>0pt
+%                 \tikzset{options/.style={mark=*, fill=white}}
+%                 \draw [densely dashed] (marker-|0,0) -- (0,0);
+%                 \draw plot [mark=*] coordinates {(marker-|0,0)};
+%              \else
+%                 \tikzset{options/.style={mark=none}}
+%              \fi
+%         }{
+%             \tikzset{options/.style={mark=none}}        
+%         }
+%         \coordinate (marker) at (0,0);
+%         \begin{scope}[options]
+%     },
+%     scatter/@post marker code/.code={\end{scope}}
+%     }
+% }
+
+% \makeatother
+
+\renewcommand{\arraystretch}{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[CEE 260/MIE 273 M5b: Inference for Diff.dro of Two Props.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture M5b: Inference for Difference of Two Proportions}
+\date[\today]{\footnotesize \today}
+\author{{\bf Jimi Oke}}
+\institute[UMass Amherst]{
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[anchor=base] at (-7,0) (its) {\includegraphics[scale=.3]{UMassEngineering_vert}} ;
+  \end{tikzpicture}
+}
+
+\newcommand{\hpp}{\hat{p_1} - \hat{p_2}}
+\newcommand{\pp}{p_1 - p_2}    
+\begin{document}
+
+\maketitle
+
+
+
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+ 
+
+
+\begin{frame}
+  \frametitle{Today's objectives}
+
+  \begin{itemize}
+  \item Normality test for difference of two proportions $(p_1 - p_2)$ \pause
+  \item Compute CIs for $\pp$  \pause
+  \item Conduct hypothesis tests for $\pp$
+  \item Using the pooled proportion $\hat p_{pooled}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Difference of two proportions}\pause
+	\begin{itemize}
+		\item Earlier, we considered how to perform inference for a \textit{\rd single} population proportion $p$, using sample estimates $\hat p$ (sample proportion) and $n$ (sample size)
+		\item However, there are cases whereby we want to compare proportions from \textit{\bl two groups/populations}
+		\item In such cases, we perform inference on the \textbf{difference} of two population proportions $p_1$ and $p_2$
+		\item Thus, the parameter of interest is $p_1 - p_2$, and we define the following sample statistics: \pause
+		\begin{itemize}
+			\item $\hat p_1$: sample proportion for group 1
+			\item $\hat p_2$: sample proportion for group 2
+			\item $\hpp$: difference two sample proportions
+			\item $n_1$: sample size of group 1
+			\item $n_2$: sample size of group 2
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\section{Test for normality}
+
+\begin{frame}
+  \frametitle{Normality conditions}\pause
+
+  The difference of two sample proportions $\hpp$ can be assumed to follow a normal distribution if: \pause
+
+  \begin{itemize}
+    \item The data are obtained from 2 independent random samples (or from a randomized experiment) \textbf{\rd [Independence (extended)]}
+    \item The {\bf\rd success-failure condition} holds for both groups separately, i.e. \pause
+    \begin{eqnarray}
+      n_1\hat p_1 &\ge& 10 \\
+      n_1(1-\hat p_1) &\ge& 10 \\\pause
+      n_2 \hat p_2 &\ge& 10 \\
+      n_2 (1-\hat p_2) &\ge& 10
+    \end{eqnarray}
+  \end{itemize}
+  \pause
+  If these conditions hold, then we can use the normal distribution to find appropriate critical values in order to compute CIs and perform hypothesis tests.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Standard error of $\hpp$}
+  \pause
+  In order to compute CIs and perform hypothesis tests for a difference of two proportions $p_1 - p_2$, we need to first find the standard error.
+  
+  If the normality conditions are satisfied, then the {\bf\gr standard error} of $\hpp$ is given by:
+  \pause
+  \begin{equation}\gr
+    SE_{\hpp} = \sqrt{\fr{p_1(1-p_1)}{n_1} + \fr{p_2(1-p_2)}{n_2}}
+  \end{equation}
+  \pause
+  where: 
+  \begin{itemize}
+    \item $p_1$: population proportion for group 1
+    \item $p_2$: population proportion for group 2 \pause
+    \item $n_1$: sample size of group 1 \pause
+    \item $n_2$: sample size of group 2
+  \end{itemize}
+\pause
+\begin{alertblock}{}
+	In cases where we do not know the population proportions (which is typically the case), we can \textbf{approximate} the $SE$ using the sample proportions $\hat p_1$ and $\hat p_2$. \pause Thus:
+  \begin{equation}\gr
+	SE_{\hpp} \approx \sqrt{\fr{\hat p_1(1-\hat p_1)}{n_1} + \fr{\hat p_2(1- \hat p_2)}{n_2}}
+\end{equation}
+\vspace{-3ex}
+\end{alertblock}
+\end{frame}
+
+\section{CI for $\pp$}
+\begin{frame}
+  \frametitle{CI for difference of two proportions}
+  \pause
+  The confidence interval (CI) for a difference of two proportions is given by: \pause
+  \begin{equation}
+   {\pl \langle \pp \rangle_{(1-\alpha)} } 
+   =  \underbrace{\bl \hpp}_{\bl \text{point estimate}}  \pm  \underbrace{\rd z^{*} \times SE}_{\rd \text{margin of error}}
+  \end{equation}
+
+  \pause
+  where:
+  \begin{eqnarray}
+    SE &\approx&  \sqrt{\fr{\hat p_1(1-\hat p_1)}{n_1} + \fr{\hat p_2(1- \hat p_2)}{n_2}} \\\pause
+    z^{*} &=& \Phi^{-1} \lt( 1  - \fr{\alpha}{2} \rt) \quad \text{(critical $Z$-score)}
+  \end{eqnarray}
+  \pause
+  Also:
+  \begin{itemize}
+  	\item $\Phi^{-1}$ is the inverse CDF function of the standard normal distribution
+  	\item $\gr \alpha$ is defined as the \textbf{\gr level of significance}
+  	\item $\og 1-\alpha$ is the \textbf{\og level of confidence}
+  \end{itemize}
+  
+  \begin{exampleblock}{Relationship between confidence and significance levels}
+  	For example, if 95\% is the desired confidence level, then $1-\alpha = .95$ and $\alpha = 0.05$
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 1: CPR Study}
+  \pause
+  Construct and interpret a 95\% confidence interval for the difference between two groups of patients in a cardiopulmonary resuscitation (CPR) study. \pause
+  The treatment group received a blood thinner, while the control group did not. \pause
+  Outcome variable of interest: proportion of patients who survived for at least 24 hours. \pause
+
+  \begin{center}
+    \begin{tabular}{l l l l}
+       & \bf Survived & \bf Died & \bf Total \\\midrule
+      \bf Treatment $(t)$& 14 & 26 & 40 \\
+       \bf Control $(c)$ & 11 & 39 & 50 \\\midrule
+       \bf Total & 25 & 65 & 90 \\
+      
+    \end{tabular}
+  \end{center}
+  \pause
+  Define: \pause
+  \begin{itemize}
+    \item $p_t$: survival rate in treatment group \pause
+    \item $p_c$: survival rate in control group
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 1: CPR Study (cont.)}\pause
+  First, we compute the difference of the two sample proportions: \pause
+  \begin{equation*}
+    \hat p_t - \hat p_c = \fr{14}{40} - \fr{11}{50} = \pause 0.35 - 0.22 = 0.13
+  \end{equation*}
+  \pause
+  Next, we compute the $SE$: \pause
+  \begin{eqnarray*}
+    SE &\approx& \sqrt{\fr{\hat p_t(1- \hat p_t)}{n_t} + \fr{\hat p_c(1-\hat p_c)}{n_c}} \\\pause
+      &=&  \sqrt{\fr{0.35(1-0.35)}{40} + \fr{0.22(1-0.22)}{50}} \pause = 0.095
+  \end{eqnarray*}
+  \pause
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Example 1: CPR Study (cont.)}\pause
+  Then we obtain the appropriate critical Z-score $z^*$.\\ \pause 
+  For a 95\% CI, $\alpha = 0.05$. Thus, \pause
+  \begin{eqnarray*}
+    z^* &=& \Phi^{-1}( 1 - \alpha/2) = \Phi^{-1}(1 - 0.05/2) \pause = \Phi^{-1}(0.975) \\\pause
+     &=&  \mathtt{norminv(.975)} = 1.96
+  \end{eqnarray*}
+  \pause
+	Below is the standard normal distribution showing the critical $Z$-scores corresponding to the desired confidence level of 95\%:
+\begin{center}
+	\begin{tikzpicture}[
+		declare function={gamma(\z)=
+			2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+			- (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+		declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}, scale=.9
+		]
+		\begin{axis}[no markers, domain=-5:5, samples=100,
+			axis x line=center,
+			axis y line=none,
+			xlabel=$Z$, ylabel=$f_X(x)$,
+			height=3cm, width=14cm,
+			every x tick/.style={color=black, thick},
+			xtick={-1.96, 0,1.96},
+			xticklabels={$-1.96$,0,$+1.96$},
+			ymax=.15,
+			ytick=\empty,
+			x label style={anchor=north},
+			y label style={anchor=south},
+			enlargelimits=true, clip=false, axis on top
+			]
+			\addplot [blue, domain=-5:5] {gauss(0,1)};
+			\addplot [gray, fill=gray!50, domain=-1.96:1.96] {gauss(0,1)} \closedcycle;
+			\addplot [orange,fill=orange,  domain=-5:-1.96] {gauss(0,1)} \closedcycle;
+			\addplot [orange,fill=orange,  domain=1.96:5] {gauss(0,1)} \closedcycle;
+			\node (d) at (axis cs: 0,.1) {Area $= 1- \alpha =  .95$};
+			\node (c) at (axis cs: 3.2,.08) {\og Area = $\fr\alpha2 = .025$};
+			\draw[thick,->] (c) -- (axis cs: 2, 0.03);
+			\node (c) at (axis cs: -3.2,.08) {\og Area = $\fr\alpha2 = .025$};
+			\draw[thick,->] (c) -- (axis cs: -2, 0.03);
+		\end{axis}
+	\end{tikzpicture}
+	% \caption{Hypothesis test for Problem 6.1}
+
+\end{center}  
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 1: CPR Study (cont.)}
+	\pause
+  Thus, the CI is given by: 
+
+\begin{eqnarray*}
+	\langle p_t -  p_c \rangle_{.95} &=& 0.13 \pm (1.96\times 0.095) =  0.13 \pm 0.186 \\\pause &=& (-0.056, 0.316)
+\end{eqnarray*}
+\pause
+Now, we show the corresponding sampling distribution of $p_t - p_c$  with the computed CIs (i.e.\ the standard normal distribution converted into the actual scale of the point estimate $\hpp$)
+	\begin{center}
+		\begin{tikzpicture}[
+			declare function={gamma(\z)=
+				2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+				- (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+			declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}, scale=.9
+			]
+			
+			\begin{axis}[no markers, domain=-5:5, samples=100,
+				axis x line=center,
+				axis y line=none,
+				xlabel=$(p_t - p_c)$, ylabel=$f_X(x)$,
+				height=3cm, width=14cm,
+				every x tick/.style={color=black, thick},
+				xtick={-1.96, 0,1.96},
+				xticklabels={$-0.056$, 0.13, 0.316},
+				ymax=.15,
+				ytick=\empty,
+				x label style={anchor=north},
+				y label style={anchor=south},
+				enlargelimits=true, clip=false, axis on top
+				]
+				\addplot [blue, domain=-5:5] {gauss(0,1)};
+				\addplot [gray, fill=gray!50, domain=-1.96:1.96] {gauss(0,1)} \closedcycle;
+				\addplot [orange,fill=orange,  domain=-5:-1.96] {gauss(0,1)} \closedcycle;
+				\addplot [orange,fill=orange,  domain=1.96:5] {gauss(0,1)} \closedcycle;
+				\node (d) at (axis cs: 0,.1) {Area $= 1- \alpha =  .95$};
+				\node (c) at (axis cs: 3.2,.08) {\og Area = $\fr\alpha2 = .025$};
+				\draw[thick,->] (c) -- (axis cs: 2, 0.03);
+				\node (c) at (axis cs: -3.2,.08) {\og Area = $\fr\alpha2 = .025$};
+				\draw[thick,->] (c) -- (axis cs: -2, 0.03);
+			\end{axis}
+		\end{tikzpicture}
+
+	\end{center}
+
+\end{frame}
+
+\begin{frame}
+		\frametitle{Example 1: CPR Study (cont.)}
+		\begin{exampleblock}{Interpretation}
+		Thus, we are 95\% confident (\textit{OR} 95\% of the time), the difference in survival rate between those who are treated by the blood thinner and those who are not lies between $-5.6$ and $31.6$ percentage points.
+	\end{exampleblock}	
+\end{frame}
+\section{Hypothesis testing}
+
+\begin{frame}
+	\frametitle{Hypothesis testing using critical value}
+	\begin{compactenum}
+		\item State the hypotheses $H_0$ and $H_1$
+		\item Compute the point estimate  $\hpp$
+		\item Find the standard error  $SE$
+		\item Find the test statistic $z = \fr{(\hpp) - \Delta_0}{SE}$, where $\Delta_0$ is the null value of the difference
+		\item Find the critical value(s) $z^*$
+		\item Compare the test statistic to the critical value
+		\item Clearly state the outcome from your hypothesis test  
+		\item Write a final concluding statement in response to the question  
+	\end{compactenum}
+	
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hypothesis testing using p-value}
+\begin{compactenum}
+  \item State the hypotheses  $H_0$ and $H_1$
+  \item Compute the point estimate  $\hpp$
+  \item Find the standard error  $SE$
+  \item Find the p-value  
+  \item Compare the p-value to the level of significance $\alpha$  
+  \item Clearly state the outcome from your hypothesis test  
+  \item Write a final concluding statement in response to the question  
+  \end{compactenum}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Pooled proportion}\pause
+	If the hypothesis test is to check whether $p_1 = p_2$ or that $p_1 - p_2 = 0$ (null hypothesis), then:
+	\begin{eqnarray}
+		H_0: p_1 - p_2 &=& \Delta_0 =  0 \\
+		H_1: p_1 - p_2 &\ne& 0
+	\end{eqnarray}
+	
+	In this case, we use the \textbf{pooled proportion} $\hat p_{pooled}$ to verify the success-failure condition and to estimate the standard error
+	\pause
+	\begin{eqnarray}
+		\hat p_{pooled} &=& \fr{\text{number of successes}}{\text{number of successes} + \text{number of failures}} \\[2mm]
+		&=& \fr{\text{number of successes}}{\text{total number of cases}}\\[2mm]
+		&=&
+		\fr{\hat p_1 n_1 + \hat p_2 n_2}{n_1 + n_2} 
+	\end{eqnarray}
+	\pause
+	Thus:
+	  \begin{eqnarray*}
+		SE &\approx& \sqrt{\fr{\hat p_{pooled}(1- \hat p_{pooled})}{n_1} + \fr{\hat p_{pooled}(1-\hat p_{pooled})}{n_2}} 
+	\end{eqnarray*}
+	
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 3: Mammogram study}
+  \pause
+  A study is conducted over a 30-year period with about 90,000 female participants to determine whether mammograms (X-ray procedure to test for breast cancer) are more effective than non-mammogram exams. \pause
+
+  \begin{center}
+    \begin{tabular}{lll}
+       & \multicolumn{2}{c}{Death from breast cancer?} \\\midrule
+       & Yes & No \\\midrule
+       Mammogram ($m$) & 500 & 44,425 \\
+       Control ($c$)& 505 & 44,405
+    \end{tabular}
+  \end{center}
+  \pause
+  Conduct a hypothesis test determine whether there is no significant evidence to suggest that mammograms are more effective. Use a significance level $\alpha = 0.05$
+  
+  \begin{exampleblock}{Hypotheses}
+  	Thus, the null hypothesis $H_0$ is: $p_m - p_c = 0$ (i.e.\ the null difference $\Delta_0 = 0$). \\
+  	And the alternative hypothesis $H_1$ is: $p_m - p_c \ne 0$.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 3 (cont.)}
+	
+		In this case the pooled proportion is given by
+	\pause
+	\begin{eqnarray*}
+		\hat p_{pooled} &=& \fr{\text{\# patients who died from breast cancer in the entire study}}{
+			\text{\# patients in the entire study}} \\[2mm]
+			&=& \fr{500 + 505}{500 + 44,425 + 505 + 44,405}\\[2mm]
+			&=& 0.0112
+	\end{eqnarray*}
+	Thus, the $SE$ is given by:
+		  \begin{eqnarray*}
+		SE &\approx& \sqrt{\fr{\hat p_{pooled}(1- \hat p_{pooled})}{n_m} + \fr{\hat p_{pooled}(1-\hat p_{pooled})}{n_c}} \\
+		&=& \sqrt{\fr{0.0112( 1- 0.0112)}{44,925} + \fr{0.0112(1-0.0112)}{44,910}} = 0.0007
+	\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 3 (cont.): test statistic}
+	Now we find the point estimate $\hat p_m - \hat p_c$: 
+	
+	\begin{equation}
+		\hat p_m - \hat p_c = \fr{500}{44,925} - \fr{505}{44,910} = -0.00012
+	\end{equation}
+	
+	Then, the test statistic is given by:
+	\begin{eqnarray*}
+		z &=& \fr{(\hat p_m - \hat p_c) - \Delta_0}{SE} \\
+		&=& \fr{-0.00012 - 0}{.0007} = -0.17
+	\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 3 (cont.): critical value}
+	The critical value $z^*$ in this case is given by:
+	
+	\begin{eqnarray*}
+		z^* &=& \Phi^{-1}(1 - \alpha/2) = \Phi^{-1}(1 - .025) = 1.96
+	\end{eqnarray*}
+	
+		\begin{center}
+		\begin{tikzpicture}[
+			declare function={gamma(\z)=
+				2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+				- (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+			declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}, scale=.9
+			]
+			
+			\begin{axis}[no markers, domain=-5:5, samples=100,
+				axis x line=center,
+				axis y line=none,
+				xlabel=$Z$, ylabel=$f_X(x)$,
+				height=3cm, width=14cm,
+				every x tick/.style={color=black, thick},
+				xtick={-1.96, -.17, 1.96},
+				xticklabels={$-1.96$, $-0.17$,  1.96},
+				ymax=.15,
+				ytick=\empty,
+				x label style={anchor=north},
+				y label style={anchor=south},
+				enlargelimits=true, clip=false, axis on top
+				]
+				\addplot [blue, domain=-5:5] {gauss(0,1)};
+				\addplot [gray, fill=gray!50, domain=-1.96:1.96] {gauss(0,1)} \closedcycle;
+				\addplot [orange,fill=orange,  domain=-5:-1.96] {gauss(0,1)} \closedcycle;
+				\addplot [orange,fill=orange,  domain=1.96:5] {gauss(0,1)} \closedcycle;
+				\node (d) at (axis cs: 0,.1) {Area $= 1- \alpha =  .95$};
+				\node (c) at (axis cs: 3.2,.08) {\og Area = $\fr\alpha2 = .025$};
+				\draw[thick,->] (c) -- (axis cs: 2, 0.03);
+				\node (c) at (axis cs: -3.2,.08) {\og Area = $\fr\alpha2 = .025$};
+				\draw[thick,->] (c) -- (axis cs: -2, 0.03);
+			\end{axis}
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	Since $-0.17 > -1.96$ and $-0.17 < 1.96$ (i.e. the test statistic is contained within the interval ($-1.96$, $1.96$)), then we \textbf{fail to reject} the null hypothesis $H_0$. \textbf{Thus, we conclude that there is no evidence to suggest that mammogram exams are significantly more effective than non-mammogram exams}.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 3 (cont.)}
+	Next, we will conduct the hypothesis test using p-values (to be continued)
+\end{frame}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
