@@ -1,4 +1,4 @@
-\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
 \if 0\bmode
 \documentclass[smaller]{beamer}
 \else \if 1\bmode
@@ -514,16 +514,16 @@ Lecture M4c: Hypothesis Testing and p-values}
 
     \pause
 
-    \begin{tikzpicture}[]
-      \draw (0,0) rectangle (1,1) node[pos=.5,rotate=45] {\small $p = 0.05$};
-      \draw[fill=orange] (1,0) rectangle (10,1) node[pos=.5] {Reject $H_0: p > 0.05$};
-      \node[below] at (0,0) {0};
-      \node[below] at (1,0) {100};
-      \node[below] at (10,0) {1000};
-      \draw[<->] (1.5,-0.2) -- node[below] {critical region} (9.5,-0.2);
-      \node[above] at (1.5,-1.5) {Fail to reject $H_0$};
-      \draw[->] (.5,-1) -- (.5,.25);
-    \end{tikzpicture}
+    % \begin{tikzpicture}[]
+    %   \draw (0,0) rectangle (1,1) node[pos=.5,rotate=45] {\small $p = 0.05$};
+    %   \draw[fill=orange] (1,0) rectangle (10,1) node[pos=.5] {Reject $H_0: p > 0.05$};
+    %   \node[below] at (0,0) {0};
+    %   \node[below] at (1,0) {100};
+    %   \node[below] at (10,0) {1000};
+    %   \draw[<->] (1.5,-0.2) -- node[below] {critical region} (9.5,-0.2);
+    %   \node[above] at (1.5,-1.5) {Fail to reject $H_0$};
+    %   \draw[->] (.5,-1) -- (.5,.25);
+    % \end{tikzpicture}
   \end{exampleblock}
 \end{frame}
 
