@@ -439,7 +439,7 @@ when tested in the prescribed manner.
 \begin{enumerate}[\bf (a)] 
 \item  Estimate the value of the proportion $p$. \pts{1}
 
-    \begin{solution}
+    \begin{solution}\bl 
     \begin{equation*}
       p = \fr{24}{37} \approx \boxed{0.65}
     \end{equation*}
@@ -448,7 +448,7 @@ when tested in the prescribed manner.
   \vspace{5ex}
  
 \item Compute the standard error of the estimate $\hat p$.\pts{2}
-  \begin{solution}
+  \begin{solution}\bl 
     \begin{align*}
       SE(\hat p) &= \sqrt{\fr{p(1-p)}{n}} = \sqrt{\fr{0.65(0.35)}{37}} \\
                  &=\boxed{0.078}
@@ -459,7 +459,7 @@ when tested in the prescribed manner.
 \item Using the 68–95–99.7 (empirical) rule, estimate the interval that would contain the sample proportion
   $\hat p$ in 95\% of all possible samples of a similar size. \pts{2}
 
-  \begin{solution}
+  \begin{solution}\bl 
 According to the 68–95–99.7 empirical rule, approximately 95\% of all sample proportions will lie within $\pm 2$ standard errors of the population proportion $p$.
 
 \[
@@ -503,13 +503,14 @@ She finds that 27 of the chips are defective. Match the labels corresponding to 
 \end{center}
 
 \begin{enumerate}[\bf (a)]
-\item What population is under consideration in the data set? \boxed{\huge i}\pts{1}
-\item What parameter is being estimated? \boxed{\huge iv} \pts{1}
-\item What is the name of point estimate of the parameter? \boxed{\huge ii} \pts{1}
-\item What is the name of the statistic that measures the uncertainty of the point estimate? \pts{1} \boxed{\huge iii} 
+\item What population is under consideration in the data set? \boxed{\large \bl \textbf {i}}\pts{1}
+\item What parameter is being estimated? \boxed{\large \bl \textbf {iv}} \pts{1}
+\item What is the name of point estimate of the parameter? \boxed{\large \bl \textbf {ii}} \pts{1}
+\item What is the name of the statistic that measures the uncertainty of the point estimate? \pts{1} \boxed{\large \bl \textbf {iii}} 
 
 \item Compute the value from part \textbf{(c)} for this context. \pts{2}
 \begin{solution}
+\bl
 The sample proportion is:
 \[
 \hat{p} = \frac{x}{n} = \frac{27}{212} = 0.12736 \boxed{\approx 0.127.}
@@ -521,6 +522,8 @@ Thus, about 12.7\% of the sampled chips were defective.
 
 \item Compute the value from part \textbf{(d)} for this context. \pts{2}
 \begin{solution}
+\bl
+
 The standard error of $\hat{p}$ is:
 \[
 SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
@@ -535,7 +538,8 @@ SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
 \item The historical rate of defects is 10\%. \pts{2} Should the engineer be surprised by the observed rate of defects during the current week? Explain briefly.
 
 
-\begin{solution}
+\begin{solution}\bl
+
 Use the $\pm 2SE$ (about 95\%) rule around $\hat p$ to check consistency with the historical rate:
 \[
 \hat p = 0.12736,\quad SE_{\hat p}=0.0229 
@@ -551,7 +555,7 @@ The historical value $p_0=0.10$ lies within this interval. Therefore, the observ
 
 \item Suppose the true population value was found to be 10\%. \pts{2} If we use this proportion to recompute the value in part \textbf{(f)} using $p = 0.1$ instead of $\hat{p}$, does the resulting value change much? (Show your work.)
 
-\begin{solution}
+\begin{solution}\bl
 If we use the hypothesized population value $p=0.1$ in the standard error,
 \[
 SE_{\hat p}(p{=}0.1) = \sqrt{\frac{p(1-p)}{n}}
@@ -574,6 +578,7 @@ Let $p$ be the proportion of the full adult population that have a college degre
   \begin{enumerate}[\bf (a)]
   \item Show that $\hat p$ satisfies the success-failure condition. \pts{2}
          \begin{solution}
+         \bl
             The \textit{Success-Failure Condition} requires:
             \begin{align*}
                 np &\geq 10 \\
@@ -593,33 +598,29 @@ Let $p$ be the proportion of the full adult population that have a college degre
 \item  According \pts{3} to the Central Limit Theorem, $\hat p$ follows a normal distribution. What are the parameters $\mu$ and
   $\sigma$ of this distribution? [1 point for $\mu$, 2 points for $\sigma$]
   \begin{solution}
-    % \begin{align*}
-    %   \mu_{\hat p} &= \boxed{0.30} \\
-    %   \sigma^{2}_{\hat p} &= SE^{2}_{\hat p} = \fr{p(1-p)}{n}\\
-    %                &= \fr{0.3(0.7)}{100} = \boxed{0.0021}
-    % \end{align*}
+  \bl
 
-
-Given:
-\[
-p = 0.30, \quad n = 100,
-\]
-we find:
-\[
-\mu_{\hat p} = p = 0.30,
-\]
-and
-\[
-\sigma_{\hat p} = \sqrt{\frac{0.30(1 - 0.30)}{100}} 
-= \sqrt{\frac{0.21}{100}} 
-= \sqrt{0.0021}
-\approx 0.0458.
-\]
-
-\textbf{Therefore,}
-\[
-\boxed{\mu_{\hat p} = 0.30, \quad \sigma_{\hat p} \approx 0.0458.}
-\]
+        
+        Given:
+        \[
+        p = 0.30, \quad n = 100,
+        \]
+        we find:
+        \[
+        \mu_{\hat p} = p = 0.30,
+        \]
+        and
+        \[
+        \sigma_{\hat p} = \sqrt{\frac{0.30(1 - 0.30)}{100}} 
+        = \sqrt{\frac{0.21}{100}} 
+        = \sqrt{0.0021}
+        \approx 0.0458.
+        \]
+        
+        \textbf{Therefore,}
+        \[
+        \boxed{\mu_{\hat p} = 0.30, \quad \sigma_{\hat p} \approx 0.0458.}
+        \]
   \end{solution}
 
   
@@ -630,6 +631,7 @@ and
 \item Estimate the \pts{3} probability that over 40\% of the full adult population have a college degree?
 
    \begin{solution}
+   \bl 
     \begin{align*}
       P(\hat p > 0.40) &= 1 - P(\hat p \le 0.40) \\
                        &=  1 - \Phi\lt( \fr{0.40 - 0.30 }{\sqrt{0.0021}}\rt) \\
@@ -649,7 +651,7 @@ Recall the example of the solar energy poll we examined in class, with $p=0.88$ 
   \begin{enumerate}[\bf (a)]
   \item Compute the standard error $SE_{\hat p}$. \pts{2}
         \begin{solution}
-        % To compute the standard error \( SE_{\hat{p}} \), we use the formula for the standard error of a proportion:
+        \bl
         \begin{align*}
         SE_{\hat{p}} &= \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} \\
         &= \sqrt{\frac{0.88 \times (1 - 0.88)}{1000}} \\
@@ -668,6 +670,7 @@ Recall the example of the solar energy poll we examined in class, with $p=0.88$ 
        
 \item Find the 95\% confidence interval of $\hat p$. (Express your final answer as an interval.) \pts{2}
    \begin{solution}
+   \bl
     For a 95\% confidence level, the critical z-score \( z^* \) is 1.96. 
     %
     The confidence interval is given by:
@@ -687,7 +690,7 @@ Recall the example of the solar energy poll we examined in class, with $p=0.88$ 
   
 \item Sketch the distribution of $\hat p$ and indicate the confidence interval found in part \textbf{(b)} on the plot. \pts{2}
 
-\begin{solution}
+\begin{solution}\bl
 The distribution of $\hat{p}$ follows a normal distribution with mean $\mu = 0.88$ and standard error $SE_{\hat{p}} = 0.0103$. The 95\% confidence interval is $[0.8598, 0.9002]$.
 
 \begin{center}
