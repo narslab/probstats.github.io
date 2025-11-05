@@ -108,7 +108,7 @@
 %\fancyfootoffset{30pt}
 \fancyhead[LO,RE]{\small Oke}
 \fancyhead[RO,LE]{\small Page \thepage} 
-\fancyfoot[RO,LE]{\small PS 6  } 
+\fancyfoot[RO,LE]{\small PS 7  } 
 \fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
 \cfoot{} 
 \renewcommand{\headrulewidth}{0.1pt} 
@@ -227,14 +227,14 @@
 \medskip\hrule\medskip
 
 \nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
-\hfill\textit{ 10.30.2025}}
+\hfill\textit{ 11.4.2025}}
 
 \bigskip
 
-\nin{\it \textbf{Due \textbf{Tuesday}, November 4, 2025 at 11:59 PM as PDF uploaded on Moodle.}
+\nin{\it \textbf{Due \textbf{Tuesday}, November 11, 2025 at 1:00 PM as PDF uploaded on Canvas.}
   I strongly encourage you to write/type your responses directly on this document and upload it.
     \textbf{Show as much work as possible in order to get FULL credit.}
-    There are 7 problems with a total of 67 points available.
+    There are 7 problems with a total of 64 points available.
     \textbf{Important:} If you use Python for any probability computations, briefly write/include the statements you
     used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
 }\\
@@ -442,7 +442,7 @@ Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statemen
     \item State the value of $\hat p$. \pts{1}
     \vspace{2ex}
     
-    \item Find the corresponding critical $Z$-score for a 95\% confidence level. Show how you obtained your answer (wehther its via Matlab/Python or another source.)\pts{1}
+    \item Find the corresponding critical $Z$-score for a 95\% confidence level. Show how you obtained your answer (wehther its via Python or another source.)\pts{1}
     \vspace{14ex}
 
     \item Compute the margin of error. \pts{2}
@@ -462,22 +462,16 @@ Respond ``T'' ({\it True})  or  ``F'' (\textit{False}) to the following statemen
 \eject
 
 
-\section*{Problem 3 \quad {\it CI of proportion and sample size (10 points)}      }
-An article reports that when each football helmet in a random sample of 37 suspension-type helmets was subjected to a certain impact test, 24 showed damage. Let $p$ denote the proportion of all helmets of this type that would show damage when tested in the prescribed manner.
+\section*{Problem 3 \quad {\it Sample size (6 points)}}
+An article reports that when each football helmet in a random sample of 37 suspension-type helmets was subjected to a certain impact test, 24 showed damage. Let $p$ denote the proportion of all helmets of this type that would show damage when tested in the prescribed manner. What sample size $n$ would be required for the width of a 99\% CI to be 0.1 (i.e.\ $ME = 0.05$)? (Points distribution: 3 points for test statistic calculation; 2 points for correct algebra in finding $n$; 1 point for correct final answer (to nearest whole number).) \pts{6}
 
-\begin{enumerate}[\bf (a)]
-
-\item  Calculate a 99\% CI (confidence interval) for $p$. \pts{6}
-\vspace{60ex}
-
-\item What sample size would be required for the width of a 99\% CI to be  0.1? \pts{4}
-\end{enumerate}
 
 \eject
 
-\section*{Problem 4\quad {\it Hypothesis testing (5 points)}}
-In the following hypothesis tests, decide whether to (i) ``Reject $H_{0}$'' or (ii) ``Fail to reject $H_{0}$'' by comparing the $Z$-scores ($z$) to the critical values ($z_{\fr\alpha2}$, $z_{(1-\fr\alpha2)}$, etc.) at the boundaries of the critical regions (in orange).  Circle the correct decision in each case.
-
+\section*{Problem 4\quad {\it Hypothesis testing (4 points)}}
+In the following hypothesis tests, circle the correct decision. Critical regions are shown in orange.  
+%  in each case
+% by comparing the test statistic ($z$) to the critical values ($z_{\fr\alpha2}$, $z_{(1-\fr\alpha2)}$, etc
 \begin{enumerate}[\bf (a)]
 
     
@@ -485,7 +479,7 @@ In the following hypothesis tests, decide whether to (i) ``Reject $H_{0}$'' or (
  
     \begin{figure}[h!]
       \centering
-      \begin{tikzpicture}[
+      \begin{tikzpicture}[scale=.9,
         declare function={gamma(\z)=
           2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
           - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
@@ -518,17 +512,15 @@ In the following hypothesis tests, decide whether to (i) ``Reject $H_{0}$'' or (
       \end{tikzpicture}
       % \caption{Hypothesis test for Problem 6.1}
     \end{figure}
-
-    {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
+\vspace{-2ex}
+  \hfill  {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
     
-    \bigskip
-    \bigskip
 
-    \item  $H_{0}: p = p_{0}; H_{1}: p > p_{0}$
+    \item  $H_{0}: p = p_{0}; H_{1}: p < p_{0}$
  
     \begin{figure}[h!]
       \centering
-      \begin{tikzpicture}[
+      \begin{tikzpicture}[scale=.9,
         declare function={gamma(\z)=
           2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
           - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
@@ -560,17 +552,16 @@ In the following hypothesis tests, decide whether to (i) ``Reject $H_{0}$'' or (
         \end{axis}
       \end{tikzpicture}
     \end{figure}
+\vspace{-2ex}
 
-    {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
+  \hfill  {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
     
-    \bigskip
-    \bigskip
-
+  
 \item  $H_{0}: p = p_{0}; H_{1}: p \ne p_{0}$
  
     \begin{figure}[h!]
       \centering
-      \begin{tikzpicture}[
+      \begin{tikzpicture}[scale=.9,
         declare function={gamma(\z)=
           2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
           - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
@@ -603,18 +594,17 @@ In the following hypothesis tests, decide whether to (i) ``Reject $H_{0}$'' or (
       \end{tikzpicture}
       % \caption{Hypothesis test for Problem 6.1}
     \end{figure}
+\vspace{-2ex}
 
-    {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
+ \hfill   {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
     
-    \bigskip
-    \bigskip
 
-    \eject
+
   \item  $H_{0}:p = p_{0}; H_{1}: p \ne p_{0}$
  
     \begin{figure}[h!]
       \centering
-      \begin{tikzpicture}[
+      \begin{tikzpicture}[scale=.9,
         declare function={gamma(\z)=
           2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
           - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
@@ -647,68 +637,88 @@ In the following hypothesis tests, decide whether to (i) ``Reject $H_{0}$'' or (
       \end{tikzpicture}
       % \caption{Hypothesis test for Problem 6.1}
     \end{figure}
-    {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
+   \hfill {\bf i.} Reject $H_0$ \qquad {\bf ii.} Fail to reject $H_0$
     
-    \bigskip
-    \bigskip
+
  % \end{quote}
 \end{enumerate}
  
 
 
 
+\eject
 
 
- \section*{Problem 5 \quad {\it Two-tailed hypothesis test using critical values (10 points)}      }
+ \section*{Problem 5 \quad {\it Two-tailed hypothesis test using critical values (12 points)}      }
  400 students were randomly sampled from a large university, and 289 said they did not get enough sleep. Conduct a hypothesis test to check whether this represents a statistically significant difference from 50\%, and use a significance level of 0.05.
- In this problem, you are required to use the critical value appreoach (so no need to compute p-values). Your response will be graded on the following steps:
- \begin{compactitem}
+ In this problem, you are required to use the critical value approach (so no need to compute p-values). Your response will be graded on the following steps:
+ \begin{enumerate}[\bf (a)]
   \item State the hypotheses (there are two) \pts{2}
+    \vspace{10ex}
   \item Compute test statistic \pts{2}
-  \item Compute the critical values \pts{2}
-  \item Compare test statistic to critical values \pts{2}
+      \vspace{20ex}
+
+  \item Find or state the critical values \pts{2}
+      \vspace{15ex}
+
+  \item Compare test statistic to critical values and sketch the standard normal distribution showing the critical values and the test statistic on the $x$-axis \pts{4}
+      \vspace{25ex}
+
   \item State outcome of test and write concluding statement \pts{2}
- \end{compactitem}
+ \end{enumerate}
 
 
  \eject 
- ~
- \eject
 
  \section*{Problem 6 \quad {\it Two-tailed hypothesis test using p-value (12 points)}      }
  It is believed that nearsightedness affects about 8\% of all children. In a random sample of 194 children, 21 are nearsighted. Conduct a hypothesis test ($\alpha=.05$) for the following question: do these data provide evidence that the 8\% value is inaccurate?
  Your response will be graded on the following steps:
- \begin{compactitem}
+ \begin{enumerate}[\bf (a)]
    \item State the hypotheses (there are two) \pts{2}
-   \item Find the standard error \pts{2}
-   \item Find the test statistic \pts{2}
-   \item Find the p-value \pts{2}
-   \item Compare the appropriate values \pts{1}
-   \item Clearly state the outcome from your hypothesis test \pts{1}
-   \item Write a final concluding statement in response to the question \pts{2}
-   \end{compactitem}
+    \vspace{10ex}
 
-   \eject~
+
+   \item Compute the test statistic \pts{2}
+       \vspace{25ex}
+
+   \item Find the p-value (show the Python line of code used to compute this) \pts{2}
+       \vspace{20ex}
+
+   \item Compare the appropriate values, and also include a sketch of the distribution showing the areas/regions\pts{4}
+       \vspace{25ex}
+
+
+  \item State outcome of test and write concluding statement \pts{2}
+ \end{enumerate}
+
    \eject
 
-\section*{Problem 7 \quad {\it Difference of two proportions hypothesis testing using p-values (12 points) }      }
-A quadcopter company is considering a new supplier for rotor blades. The new supplier would be more expensive, but they claim their higher-quality blades are more reliable,  with 3\% more blades passing inspection than their competitor.
+\section*{Problem 7 \quad {\it Difference of two proportions testing using p-values (12 points) }}
+A quadcopter company is considering a new supplier for rotor blades. The new supplier would be more expensive, but they claim their higher-quality blades are more reliable,  with 3\% more blades passing inspection than their competitor ($\Delta_0 = 0.03$).
 The company's quality control engineer collects a sample of blades, examining 1000 blades from each supplier, and she finds that 899 blades pass inspection from the current supplier and 958 pass inspection from the prospective supplier.
 Using these data, set up and evaluate the hypotheses with a significance level $\alpha = .01$.
-Your response will be graded on the following steps:
-\begin{compactitem}
-  \item State the hypotheses (there are two) \pts{2}
+%Your response will be graded on the following steps:
+ \begin{enumerate}[\bf (a)]
+  \item State the hypotheses (this is a one-tailed test)\pts{2}
+      \vspace{6ex}
+
   \item Find the standard error \pts{2}
+      \vspace{15ex}
+
   \item Find the test statistic \pts{2}
+  \vspace{30ex}
+
   \item Find the p-value \pts{2}
+      \vspace{15ex}
+
   \item Compare the appropriate values \pts{1}
-  \item Clearly state the outcome from your hypothesis test \pts{1}
+       \vspace{4ex}
+
+  \item State the outcome of hypothesis test (reject/fail to reject $H_0$): \pts{1}
   \item Write a final concluding statement in response to the question \pts{2}
-  \end{compactitem}
+ \end{enumerate}
 
 
-\eject  
-~
 \end{document}
 
 %%% Local Variables:
