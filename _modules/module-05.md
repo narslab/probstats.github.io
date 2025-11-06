@@ -11,5 +11,5 @@ Thu, Oct 30
 
 
 Thu, Nov 6
-: **LECTURE 5B**{: .label .label-blue }[Difference of Two Proportions](#)
+: **LECTURE 5B**{: .label .label-blue }[Difference of Two Proportions](/assets/lectures/M5-Inference-Categorical-Data/M5b-Difference-Two-Proportions_Handout.pdf)
   :  [Echo360 Video](#)
