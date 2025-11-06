@@ -1,18 +1,18 @@
-% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
-% \if 0\bmode
-% \documentclass[smaller]{beamer}
-% \else \if 1\bmode
-% \immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
-% \documentclass[smaller,handout]{beamer}
-% \usepackage{handoutWithNotes}
-% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
-% \else \if 2\bmode
-% \immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
-% \documentclass[smaller,handout]{beamer}
-% \fi
-% \fi
-% \fi
-\documentclass[smaller, handout]{beamer}
+\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\if 0\bmode
+\documentclass[smaller]{beamer}
+\else \if 1\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+\else \if 2\bmode
+\immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\fi
+\fi
+\fi
+%\documentclass[smaller, handout]{beamer}
 
 % \documentclass[smaller,handout
 % ]{beamer}
@@ -326,8 +326,8 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 M5b: Inference for Diff.dro of Two Props.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
-Lecture M5b: Inference for Difference of Two Proportions}
+\title[CEE 260/MIE 273 M5B: Inference for Differnce of Two Props.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture 5B: Inference for Difference of Two Proportions}
 \date[\today]{\footnotesize \today}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
@@ -605,6 +605,150 @@ Now, we show the corresponding sampling distribution of $p_t - p_c$  with the co
 		Thus, we are 95\% confident (\textit{OR} 95\% of the time), the difference in survival rate between those who are treated by the blood thinner and those who are not lies between $-5.6$ and $31.6$ percentage points.
 	\end{exampleblock}	
 \end{frame}
+
+\begin{frame}
+  \frametitle{Example 2: Political Polling Study}
+  \pause
+  A polling organization surveys registered voters in two different counties to assess support for a proposed infrastructure referendum. \pause
+  Construct and interpret a 99\% confidence interval for the difference in support between the two counties. \pause
+
+  \begin{center}
+    \begin{tabular}{l l l l}
+       & \bf Support & \bf Oppose & \bf Total \\\midrule
+      \bf County A $(a)$& 312 & 288 & 600 \\
+       \bf County B $(b)$ & 275 & 325 & 600 \\\midrule
+       \bf Total & 587 & 613 & 1200 \\
+      
+    \end{tabular}
+  \end{center}
+  \pause
+  Define: \pause
+  \begin{itemize}
+    \item $p_a$: proportion supporting the referendum in County A \pause
+    \item $p_b$: proportion supporting the referendum in County B
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 2: Political Polling Study (cont.)}\pause
+  First, we compute the difference of the two sample proportions: \pause
+  \begin{equation*}
+    \hat p_a - \hat p_b = \fr{312}{600} - \fr{275}{600} = \pause 0.52 - 0.458 = 0.062
+  \end{equation*}
+  \pause
+  Next, we compute the $SE$: \pause
+  \begin{eqnarray*}
+    SE &\approx& \sqrt{\fr{\hat p_a(1- \hat p_a)}{n_a} + \fr{\hat p_b(1-\hat p_b)}{n_b}} \\\pause
+      &=&  \sqrt{\fr{0.52(1-0.52)}{600} + \fr{0.458(1-0.458)}{600}} \pause = 0.0288
+  \end{eqnarray*}
+  \pause
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 2: Political Polling Study (cont.)}\pause
+  Then we obtain the appropriate critical Z-score $z^*$.\\ \pause 
+  For a 99\% CI, $\alpha = 0.01$. Thus, \pause
+  \begin{eqnarray*}
+    z^* &=& \Phi^{-1}( 1 - \alpha/2) = \Phi^{-1}(1 - 0.01/2) \pause = \Phi^{-1}(0.995) \\\pause
+     &=&  \mathtt{norminv(.995)} = 2.576
+  \end{eqnarray*}
+  \pause
+	Below is the standard normal distribution showing the critical $Z$-scores corresponding to the desired confidence level of 99\%:
+\begin{center}
+	\begin{tikzpicture}[
+		declare function={gamma(\z)=
+			2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+			- (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+		declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}, scale=.9
+		]
+		\begin{axis}[no markers, domain=-5:5, samples=100,
+			axis x line=center,
+			axis y line=none,
+			xlabel=$Z$, ylabel=$f_X(x)$,
+			height=3cm, width=14cm,
+			every x tick/.style={color=black, thick},
+			xtick={-2.576, 0, 2.576},
+			xticklabels={$-2.576$, 0, 2.576},
+			ymax=.15,
+			ytick=\empty,
+			x label style={anchor=north},
+			y label style={anchor=south},
+			enlargelimits=true, clip=false, axis on top
+			]
+			\addplot [blue, domain=-5:5] {gauss(0,1)};
+			\addplot [gray, fill=gray!50, domain=-2.576:2.576] {gauss(0,1)} \closedcycle;
+			\addplot [orange,fill=orange,  domain=-5:-2.576] {gauss(0,1)} \closedcycle;
+			\addplot [orange,fill=orange,  domain=2.576:5] {gauss(0,1)} \closedcycle;
+			\node (d) at (axis cs: 0,.1) {Area $= 1- \alpha =  .99$};
+			\node (c) at (axis cs: 3.5,.08) {\og Area = $\fr\alpha2 = .005$};
+			\draw[thick,->] (c) -- (axis cs: 2.7, 0.015);
+			\node (c) at (axis cs: -3.5,.08) {\og Area = $\fr\alpha2 = .005$};
+			\draw[thick,->] (c) -- (axis cs: -2.7, 0.015);
+		\end{axis}
+	\end{tikzpicture}
+	
+\end{center}
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 2: Political Polling Study (cont.)}
+	\pause
+  Thus, the CI is given by: 
+
+\begin{eqnarray*}
+	\langle p_a -  p_b \rangle_{.99} &=& 0.062 \pm (2.576\times 0.0288) =  0.062 \pm 0.074 \\\pause &=& (-0.012, 0.136)
+\end{eqnarray*}
+\pause
+Now, we show the corresponding sampling distribution of $p_a - p_b$ with the computed CIs (i.e.\ the standard normal distribution converted into the actual scale of the point estimate $\hpp$)
+	\begin{center}
+		\begin{tikzpicture}[
+			declare function={gamma(\z)=
+				2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+				- (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+			declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}, scale=.9
+			]
+			
+			\begin{axis}[no markers, domain=-5:5, samples=100,
+				axis x line=center,
+				axis y line=none,
+				xlabel=$(p_a - p_b)$, ylabel=$f_X(x)$,
+				height=3cm, width=14cm,
+				every x tick/.style={color=black, thick},
+				xtick={-2.576, 0, 2.576},
+				xticklabels={$-0.012$, 0.062, 0.136},
+				ymax=.15,
+				ytick=\empty,
+				x label style={anchor=north},
+				y label style={anchor=south},
+				enlargelimits=true, clip=false, axis on top
+				]
+				\addplot [blue, domain=-5:5] {gauss(0,1)};
+				\addplot [gray, fill=gray!50, domain=-2.576:2.576] {gauss(0,1)} \closedcycle;
+				\addplot [orange,fill=orange,  domain=-5:-2.576] {gauss(0,1)} \closedcycle;
+				\addplot [orange,fill=orange,  domain=2.576:5] {gauss(0,1)} \closedcycle;
+				\node (d) at (axis cs: 0,.1) {Area $= 1- \alpha =  .99$};
+				\node (c) at (axis cs: 3.5,.08) {\og Area = $\fr\alpha2 = .005$};
+				\draw[thick,->] (c) -- (axis cs: 2.7, 0.015);
+				\node (c) at (axis cs: -3.5,.08) {\og Area = $\fr\alpha2 = .005$};
+				\draw[thick,->] (c) -- (axis cs: -2.7, 0.015);
+			\end{axis}
+		\end{tikzpicture}
+
+	\end{center}
+
+\end{frame}
+
+\begin{frame}
+		\frametitle{Example 2: Political Polling Study (cont.)}
+		\begin{exampleblock}{Interpretation}
+		We are 99\% confident that the difference in support for the infrastructure referendum between County A and County B lies between $-1.2$ and $13.6$ percentage points. \pause Since the interval contains zero, we cannot conclude at the 99\% confidence level that there is a significant difference in support between the two counties.
+	\end{exampleblock}	
+\end{frame}
+
+
 \section{Hypothesis testing}
 
 \begin{frame}
@@ -637,7 +781,7 @@ Now, we show the corresponding sampling distribution of $p_t - p_c$  with the co
 \end{frame}
 
 
-
+\section{Pooled proportion}
 \begin{frame}
 	\frametitle{Pooled proportion}\pause
 	If the hypothesis test is to check whether $p_1 = p_2$ or that $p_1 - p_2 = 0$ (null hypothesis), then:
@@ -664,24 +808,24 @@ Now, we show the corresponding sampling distribution of $p_t - p_c$  with the co
 \end{frame}
 
 \begin{frame}
-  \frametitle{Example 3: Mammogram study}
+  \frametitle{Example 3: Concrete quality control study}
   \pause
-  A study is conducted over a 30-year period with about 90,000 female participants to determine whether mammograms (X-ray procedure to test for breast cancer) are more effective than non-mammogram exams. \pause
+  A large-scale quality control study is conducted over several years with approximately 90,000 concrete samples from two different cement suppliers to determine whether Supplier A produces concrete with a different failure rate than Supplier B. \pause
 
   \begin{center}
     \begin{tabular}{lll}
-       & \multicolumn{2}{c}{Death from breast cancer?} \\\midrule
+       & \multicolumn{2}{c}{Failed quality test?} \\\midrule
        & Yes & No \\\midrule
-       Mammogram ($m$) & 500 & 44,425 \\
-       Control ($c$)& 505 & 44,405
+       Supplier A ($a$) & 500 & 44,425 \\
+       Supplier B ($b$)& 505 & 44,405
     \end{tabular}
   \end{center}
   \pause
-  Conduct a hypothesis test determine whether there is no significant evidence to suggest that mammograms are more effective. Use a significance level $\alpha = 0.05$
+  Conduct a hypothesis test to determine whether there is significant evidence to suggest that the two suppliers have different failure rates. Use a significance level $\alpha = 0.05$
   
   \begin{exampleblock}{Hypotheses}
-  	Thus, the null hypothesis $H_0$ is: $p_m - p_c = 0$ (i.e.\ the null difference $\Delta_0 = 0$). \\
-  	And the alternative hypothesis $H_1$ is: $p_m - p_c \ne 0$.
+  	Thus, the null hypothesis $H_0$ is: $p_a - p_b = 0$ (i.e.\ the null difference $\Delta_0 = 0$). \\
+  	And the alternative hypothesis $H_1$ is: $p_a - p_b \ne 0$.
   \end{exampleblock}
 \end{frame}
 
@@ -691,29 +835,29 @@ Now, we show the corresponding sampling distribution of $p_t - p_c$  with the co
 		In this case the pooled proportion is given by
 	\pause
 	\begin{eqnarray*}
-		\hat p_{pooled} &=& \fr{\text{\# patients who died from breast cancer in the entire study}}{
-			\text{\# patients in the entire study}} \\[2mm]
+		\hat p_{pooled} &=& \fr{\text{\# samples that failed quality test in the entire study}}{
+			\text{\# samples in the entire study}} \\[2mm]
 			&=& \fr{500 + 505}{500 + 44,425 + 505 + 44,405}\\[2mm]
 			&=& 0.0112
 	\end{eqnarray*}
 	Thus, the $SE$ is given by:
 		  \begin{eqnarray*}
-		SE &\approx& \sqrt{\fr{\hat p_{pooled}(1- \hat p_{pooled})}{n_m} + \fr{\hat p_{pooled}(1-\hat p_{pooled})}{n_c}} \\
+		SE &\approx& \sqrt{\fr{\hat p_{pooled}(1- \hat p_{pooled})}{n_a} + \fr{\hat p_{pooled}(1-\hat p_{pooled})}{n_b}} \\
 		&=& \sqrt{\fr{0.0112( 1- 0.0112)}{44,925} + \fr{0.0112(1-0.0112)}{44,910}} = 0.0007
 	\end{eqnarray*}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Example 3 (cont.): test statistic}
-	Now we find the point estimate $\hat p_m - \hat p_c$: 
+	Now we find the point estimate $\hat p_a - \hat p_b$: 
 	
 	\begin{equation}
-		\hat p_m - \hat p_c = \fr{500}{44,925} - \fr{505}{44,910} = -0.00012
+		\hat p_a - \hat p_b = \fr{500}{44,925} - \fr{505}{44,910} = -0.00012
 	\end{equation}
 	
 	Then, the test statistic is given by:
 	\begin{eqnarray*}
-		z &=& \fr{(\hat p_m - \hat p_c) - \Delta_0}{SE} \\
+		z &=& \fr{(\hat p_a - \hat p_b) - \Delta_0}{SE} \\
 		&=& \fr{-0.00012 - 0}{.0007} = -0.17
 	\end{eqnarray*}
 \end{frame}
@@ -762,13 +906,272 @@ Now, we show the corresponding sampling distribution of $p_t - p_c$  with the co
 		
 	\end{center}
 	
-	Since $-0.17 > -1.96$ and $-0.17 < 1.96$ (i.e. the test statistic is contained within the interval ($-1.96$, $1.96$)), then we \textbf{fail to reject} the null hypothesis $H_0$. \textbf{Thus, we conclude that there is no evidence to suggest that mammogram exams are significantly more effective than non-mammogram exams}.
+	Since $-0.17 > -1.96$ and $-0.17 < 1.96$ (i.e. the test statistic is contained within the interval ($-1.96$, $1.96$)), then we \textbf{fail to reject} the null hypothesis $H_0$. \textbf{Thus, we conclude that there is no significant evidence to suggest that the two suppliers have different failure rates for concrete quality}.
 \end{frame}
 
 \begin{frame}
 	\frametitle{Example 3 (cont.)}
 	Next, we will conduct the hypothesis test using p-values (to be continued)
 \end{frame}
+
+\begin{frame}
+  \frametitle{Example 4: Concrete quality control (p-value approach)}
+  \pause
+  Using the same data from Example 3, we now conduct the hypothesis test using the p-value approach. \pause
+
+  \begin{center}
+    \begin{tabular}{lll}
+       & \multicolumn{2}{c}{Failed quality test?} \\\midrule
+       & Yes & No \\\midrule
+       Supplier A ($a$) & 500 & 44,425 \\
+       Supplier B ($b$)& 505 & 44,405
+    \end{tabular}
+  \end{center}
+  \pause
+  
+  \begin{exampleblock}{Hypotheses}
+  	$H_0$: $p_a - p_b = 0$ (no difference in failure rates) \\
+  	$H_1$: $p_a - p_b \ne 0$ (different failure rates)\\
+  	Significance level: $\alpha = 0.05$
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 4 (cont.): Computing the test statistic}
+	\pause
+	From Example 3, we already computed: \pause
+	\begin{eqnarray*}
+		\hat p_{pooled} &=& 0.0112 \\\pause
+		SE &=& 0.0007 \\\pause
+		\hat p_a - \hat p_b &=& -0.00012 \\\pause
+		z &=& \fr{(\hat p_a - \hat p_b) - \Delta_0}{SE} = \fr{-0.00012 - 0}{0.0007} = -0.17
+	\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 4 (cont.): Computing the p-value}
+	\pause
+	For a two-tailed test with test statistic $z = -0.17$: \pause
+	\begin{eqnarray*}
+		p\text{-value} &=& 2 \times P(Z \leq -0.17) \\\pause
+		&=& 2 \times \Phi(-0.17) \\\pause
+		&=& 2 \times 0.4325 \\\pause
+		&=& 0.865
+	\end{eqnarray*}
+	\pause
+	We multiply by 2 because this is a two-tailed test (alternative hypothesis is $p_a - p_b \ne 0$).
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 4 (cont.): Visualization of p-value}
+	
+	The p-value represents the total area in both tails beyond $z = \pm 0.17$:
+	
+	\begin{center}
+		\begin{tikzpicture}[
+			declare function={gamma(\z)=
+				2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+				- (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+			declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}, scale=.9
+			]
+			
+			\begin{axis}[no markers, domain=-5:5, samples=100,
+				axis x line=center,
+				axis y line=none,
+				xlabel=$Z$, ylabel=$f_X(x)$,
+				height=3cm, width=14cm,
+				every x tick/.style={color=black, thick},
+				xtick={-0.17, 0, 0.17},
+				xticklabels={$-z$, $0$, $z$},
+				ymax=.15,
+				ytick=\empty,
+				x label style={anchor=north},
+				y label style={anchor=south},
+				enlargelimits=true, clip=false, axis on top
+				]
+				\addplot [blue, domain=-5:5] {gauss(0,1)};
+				\addplot [red, fill=red!40, domain=-5:-0.17] {gauss(0,1)} \closedcycle;
+				\addplot [red, fill=red!40, domain=0.17:5] {gauss(0,1)} \closedcycle;
+				\node (c) at (axis cs: 2.5,.08) {\rd Area = 0.4325};
+				\draw[thick,->] (c) -- (axis cs: 1, 0.05);
+				\node (c) at (axis cs: -2.5,.08) {\rd Area = 0.4325};
+				\draw[thick,->] (c) -- (axis cs: -1, 0.05);
+				\node (d) at (axis cs: 0,.12) {$p$-value = $2 \times 0.4325 = 0.865$};
+			\end{axis}
+		\end{tikzpicture}
+		
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Example 4 (cont.): Decision and conclusion}
+	\pause
+	\textbf{Decision Rule:} \pause
+	\begin{itemize}
+		\item If $p\text{-value} < \alpha$, reject $H_0$ \pause
+		\item If $p\text{-value} \geq \alpha$, fail to reject $H_0$
+	\end{itemize}
+	
+	\pause
+	\textbf{Our Decision:} \pause
+	\begin{itemize}
+		\item $p\text{-value} = 0.865$ \pause
+		\item $\alpha = 0.05$ \pause
+		\item Since $0.865 > 0.05$, we \textbf{fail to reject} $H_0$
+	\end{itemize}
+	
+	\pause
+	\begin{exampleblock}{Conclusion}
+		There is no significant evidence to suggest that the two cement suppliers have different failure rates for concrete quality. The observed difference in failure rates could easily be due to random chance.
+	\end{exampleblock}
+	
+	\pause
+	\textbf{Note:} This conclusion matches our result from Example 3 using the critical value approach!
+\end{frame}
+
+\section{Summary}
+
+\begin{frame}
+	\frametitle{Confidence Intervals for Difference of Two Proportions}
+	
+	\textbf{Point Estimate:}
+	\begin{equation*}
+		\hat{p}_1 - \hat{p}_2
+	\end{equation*}
+	
+	\pause
+	\textbf{Standard Error (for CI):}
+	\begin{equation*}
+		SE = \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}
+	\end{equation*}
+	
+	\pause
+	\textbf{Critical Value:}
+	\begin{equation*}
+		z^* = \Phi^{-1}\left(1 - \frac{\alpha}{2}\right)
+	\end{equation*}
+	\begin{itemize}
+		\item For 95\% CI: $z^* = 1.96$
+		\item For 99\% CI: $z^* = 2.576$
+	\end{itemize}
+	
+	\pause
+	\textbf{Confidence Interval:}
+	\begin{equation*}
+		(\hat{p}_1 - \hat{p}_2) \pm z^* \times SE
+	\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hypothesis Testing for Difference of Two Proportions}
+	
+	\textbf{Hypotheses:}
+	\begin{itemize}
+		\item $H_0$: $p_1 - p_2 = \Delta_0$ (usually $\Delta_0 = 0$)
+		\item $H_1$: $p_1 - p_2 \ne \Delta_0$ (two-tailed) \textit{or} $p_1 - p_2 > \Delta_0$ or $p_1 - p_2 < \Delta_0$ (one-tailed)
+	\end{itemize}
+	
+	\pause
+	\textbf{Pooled Proportion (when $\Delta_0 = 0$):}
+	\begin{equation*}
+		\hat{p}_{pooled} = \frac{x_1 + x_2}{n_1 + n_2}
+	\end{equation*}
+	
+	\pause
+	\textbf{Standard Error (for hypothesis testing):}
+	\begin{equation*}
+		SE = \sqrt{\frac{\hat{p}_{pooled}(1-\hat{p}_{pooled})}{n_1} + \frac{\hat{p}_{pooled}(1-\hat{p}_{pooled})}{n_2}}
+	\end{equation*}
+	
+	\pause
+	\textbf{Test Statistic:}
+	\begin{equation*}
+		z = \frac{(\hat{p}_1 - \hat{p}_2) - \Delta_0}{SE}
+	\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Decision Rules for Hypothesis Testing}
+	
+	\textbf{Critical Value Approach:}
+	\begin{itemize}
+		\item Two-tailed test: Reject $H_0$ if $|z| > z^*$ where $z^* = \Phi^{-1}(1-\alpha/2)$
+		\item Right-tailed test: Reject $H_0$ if $z > z^*$ where $z^* = \Phi^{-1}(1-\alpha)$
+		\item Left-tailed test: Reject $H_0$ if $z < -z^*$ where $z^* = \Phi^{-1}(1-\alpha)$
+	\end{itemize}
+	
+	\pause
+	\textbf{p-value Approach:}
+	\begin{itemize}
+		\item Two-tailed: $p\text{-value} = 2 \times P(Z \geq |z|) = 2 \times (1 - \Phi(|z|))$
+		\item Right-tailed: $p\text{-value} = P(Z \geq z) = 1 - \Phi(z)$
+		\item Left-tailed: $p\text{-value} = P(Z \leq z) = \Phi(z)$
+		\item Decision: Reject $H_0$ if $p\text{-value} < \alpha$
+	\end{itemize}
+	
+	\pause
+	\textbf{Key Difference:}
+	\begin{itemize}
+		\item For CI: Use individual sample proportions $\hat{p}_1$ and $\hat{p}_2$ in SE
+		\item For hypothesis testing (when $H_0$: $p_1 = p_2$): Use pooled proportion in SE
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Python Commands for Critical Values}
+	
+	\textbf{Import the necessary library:}
+	\begin{verbatim}
+	from scipy.stats import norm
+	\end{verbatim}
+	
+	\pause
+	\textbf{Computing Critical z-scores:}
+	\begin{itemize}
+		\item For 95\% CI (two-tailed, $\alpha = 0.05$):
+		\begin{verbatim}
+		z_star = norm.ppf(1 - 0.05/2)  # 1.96
+		\end{verbatim}
+		\pause
+		\item For 99\% CI (two-tailed, $\alpha = 0.01$):
+		\begin{verbatim}
+		z_star = norm.ppf(1 - 0.01/2)  # 2.576
+		\end{verbatim}
+		\pause
+		\item General formula: \texttt{norm.ppf(1 - alpha/2)}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Python Commands for p-values}
+	
+	\textbf{Computing p-values:}
+	\begin{itemize}
+		\item Two-tailed test (given test statistic $z$):
+		\begin{verbatim}
+		p_value = 2 * (1 - norm.cdf(abs(z)))
+		\end{verbatim}
+		\pause
+		\item Right-tailed test:
+		\begin{verbatim}
+		p_value = 1 - norm.cdf(z)
+		\end{verbatim}
+		\pause
+		\item Left-tailed test:
+		\begin{verbatim}
+		p_value = norm.cdf(z)
+		\end{verbatim}
+	\end{itemize}
+	
+	\pause
+	\textbf{Example:} For $z = -0.17$ (two-tailed):
+	\begin{verbatim}
+	p_value = 2 * (1 - norm.cdf(abs(-0.17)))
+	# Result: 0.865
+	\end{verbatim}
+\end{frame}
+
+
 \end{document}
 %%% Local Variables:
 %%% mode: latex
