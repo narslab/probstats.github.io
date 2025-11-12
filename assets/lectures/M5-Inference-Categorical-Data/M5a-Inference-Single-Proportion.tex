@@ -1,4 +1,4 @@
-\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
 \if 0\bmode
 \documentclass[smaller]{beamer}
 \else \if 1\bmode
@@ -326,9 +326,9 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 M5a: Inference for Single Prop.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
-Lecture M5a: Inference for Single Proportion}
-\date[\today]{\footnotesize \today}
+\title[CEE 260/MIE 273 5A: Inference for Single Prop.]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture 5A: Inference for Single Proportion}
+\date[October 30, 2025]{\footnotesize October 30, 2025}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
   \begin{tikzpicture}[baseline=(current bounding box.center)]
@@ -614,10 +614,10 @@ that interviews were conducted on 1,018 American adults.
   \begin{enumerate}[<+->]
   \item \textit{\gr Define} the \textbf{null} ($H_0$) and \textbf{alternative} ($H_1$) hypotheses
   \item \textit{\gr Determine} the appropriate \textbf{test statistic} (and distribution)
-  \item \textit{\gr Estimate} the test statistic from the sample data
+  \item \textit{\gr Estimate} the test statistic $z$ from the sample data
   \item \textit{\gr Specify} or \textit{\gr identify} the \textbf{level of significance} ($\alpha$)
-  \item \textit{\gr Define} the \textbf{region of rejection/critical region} of the null hypothesis by choosing the \textbf{critical value}.
-  \item \textit{\gr Decide.} If the test statistic is in the critical region, reject $H_0$. If not, do not reject $H_0$ (fail to reject it)
+  \item \textit{\gr Define} the \textbf{region of rejection/critical region} of the null hypothesis by choosing the \textbf{critical value} $z^*$
+  \item \textit{\gr Decide.} If the test statistic is in the critical region (i.e. $|z| > z^*$), reject $H_0$. If not, do not reject $H_0$ (fail to reject it)
   \end{enumerate}
 \end{frame}
 
@@ -642,7 +642,7 @@ that interviews were conducted on 1,018 American adults.
     Thus, to compute the probability (area under curve) of the test statistic, \pause
     we use the z-score:
     \begin{equation}
-    \bl z = \fr{p - p_{0}}{SE_{p}}
+    \bl z = \fr{\hat p - p_{0}}{SE_{p}}
   \end{equation}
   which is {\bl normally} distributed.
   \end{block}
@@ -664,10 +664,10 @@ that interviews were conducted on 1,018 American adults.
     \begin{axis}[no markers, domain=0:10, samples=100,
       axis x line=center,
       axis y line=none,
-      xlabel=$x$, ylabel=$f_X(x)$,,
+      xlabel=$Z$, ylabel=$f_X(x)$,,
       height=6cm, width=10cm,
       xtick={-6,0,6},
-      xticklabels={$z_{\frac{\alpha}{2}}$,$z$,$z_{1 - \frac{\alpha}{2}}$},
+      xticklabels={$z_{\frac{\alpha}{2}}$,$0$,$z_{1 - \frac{\alpha}{2}}$},
       ymax=.15,
       ytick=\empty,
       x label style={anchor=west},
@@ -696,6 +696,10 @@ that interviews were conducted on 1,018 American adults.
     \end{axis}
   \end{tikzpicture}
 
+  \pause
+  \begin{equation}
+    z^* = z_{1 - \frac{\alpha}{2}} = |z_{\frac{\alpha}{2}}|
+  \end{equation}
   
 \end{frame}
 
@@ -715,10 +719,10 @@ that interviews were conducted on 1,018 American adults.
     \begin{axis}[no markers, domain=0:10, samples=100,
       axis x line=center,
       axis y line=none,
-      xlabel=$x$, ylabel=$f_X(x)$,,
+      xlabel=$Z$, ylabel=$f_X(x)$,,
       height=6cm, width=10cm,
       xtick={0,6},
-      xticklabels={$z$,$z_{1- \alpha/2}$},
+      xticklabels={$0$,$z_{1- \alpha}$},
       ymax=.15,
       ytick=\empty,
       x label style={anchor=west},
@@ -742,7 +746,11 @@ that interviews were conducted on 1,018 American adults.
       \draw[thick, |->] (axis cs: 6,-0.025) -- (axis cs: 10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
     \end{axis}
   \end{tikzpicture}
-
+  \pause
+  \begin{equation}
+    z^* = z_{1 - \alpha}{2}  
+  \end{equation}
+  
 \end{frame}
 
 
@@ -761,10 +769,10 @@ that interviews were conducted on 1,018 American adults.
     \begin{axis}[no markers, domain=0:10, samples=100,
       axis x line=center,
       axis y line=none,
-      xlabel=$x$, ylabel=$f_X(x)$,,
+      xlabel=$Z$, ylabel=$f_X(x)$,,
       height=6cm, width=10cm,
       xtick={-6,0},
-      xticklabels={$z_{\alpha/2}$,$z$},
+      xticklabels={$z_{\alpha}$,$0$},
       ymax=.15,
       ytick=\empty,
       x label style={anchor=west},
@@ -788,7 +796,11 @@ that interviews were conducted on 1,018 American adults.
       \draw[thick, |->] (axis cs: -6,-0.025) -- (axis cs: -10,-0.025) node[below,pos=.5] {\small\og Reject $H_0$};
     \end{axis}
   \end{tikzpicture}
-
+  \pause
+  \begin{equation}
+    z^* =  |z_{\alpha}|
+  \end{equation}
+  
 \end{frame}
 
 
@@ -801,9 +813,12 @@ that interviews were conducted on 1,018 American adults.
 
     \begin{enumerate}[Step 1.]
     \item Parameter of interest: \pause $p$ (proportion of students not getting enough sleep) \pause
-    \item Null hypothesis: \pause $H_0: p = 289/400 = .723$. \pause
-    \item Alternative hypothesis: \pause $H_1: p \ne .723$. \pause
-    \item Formula for test statistic value: \pause $z = \fr{p - p_0}{SE_{p}}$ \pause
+    \item Null hypothesis: \pause $H_0: p = p_0 = .5$. \pause
+    \item Alternative hypothesis: \pause $H_1: p \ne p_0$. \pause
+    \item Formula for test statistic value: \pause $z = \fr{\hat p - p_0}{SE_{p}}$ \pause
+    \begin{equation}
+      \hat p = \fr{289}{400} = .723
+    \end{equation}
     \end{enumerate}
 \end{frame}
 
@@ -893,11 +908,11 @@ that interviews were conducted on 1,018 American adults.
 \node at (axis cs: 4, 0.08) {\textcolor{red}{\tiny $\alpha/2 = 0.005$}};
 
 % Test statistic labels
-\node at (axis cs: 8.92, 0.15) {\textcolor{orange}{\footnotesize\textbf{Test Statistic}}};
-\node at (axis cs: 8.92, 0.12) {\textcolor{orange}{\footnotesize $z = 8.92$}};
+% \node at (axis cs: 8.92, 0.15) {\textcolor{orange}{\footnotesize\textbf{Test Statistic}}};
+% \node at (axis cs: 8.92, 0.12) {\textcolor{orange}{\footnotesize $z = 8.92$}};
 
 % Arrow pointing to test statistic location
-\draw [->, thick, orange] (axis cs: 6, 0.3) -- (axis cs: 8.5, 0.08);
+\draw [->, thick, orange] (axis cs: 6, 0.2) -- (axis cs: 8.5, 0.08);
 \node at (axis cs: 5.5, 0.32) {\textcolor{orange}{\footnotesize Test statistic}};
 \node at (axis cs: 5.5, 0.29) {\textcolor{orange}{\footnotesize falls in}};
 \node at (axis cs: 5.5, 0.26) {\textcolor{orange}{\footnotesize rejection region}};
@@ -916,8 +931,7 @@ that interviews were conducted on 1,018 American adults.
 \begin{frame}
   \frametitle{Example 3: Equipment quality}\pause
 
-  A car manufacturer is considering switching to a new, higher quality piece of equipment that con-
-structs vehicle door hinges. 
+  A car manufacturer is considering switching to a new, higher quality piece of equipment that constructs vehicle door hinges. 
 They figure that they will save money in the long run if this new machine
 produces hinges that have flaws no more than 0.2\% of the time.
 A random sample of 800 hinges produced by the new machine shows that 4 are flawed.
@@ -929,13 +943,13 @@ produces hinges with a flaw rate greater than 0.2\%?
 \begin{frame}
   \frametitle{Example 3 (cont.)}\pause
 
-This is a one-sided test \pause
+This is a one-sided test (upper-tailed) \pause
 
 \pause
 \textbf{Hypotheses:}
 \begin{itemize}
   \item $H_0: p = 0.002$
-  \item $H_a: p < 0.002$
+  \item $H_a: p > 0.002$
 \end{itemize}
 
 \pause
@@ -1011,14 +1025,14 @@ z_{\alpha} &=& \Phi^{-1}(1 - \alpha) = \Phi^{-1}(0.95) = 1.645 \quad
 % Decision arrow and text
 \draw [->, thick, blue] (axis cs: 1.2, 0.35) -- (axis cs: 1.875, 0.25);
 \node at (axis cs: 0.8, 0.38) {\textcolor{blue}{\footnotesize Test statistic falls}};
-\node at (axis cs: 0.8, 0.35) {\textcolor{blue}{\footnotesize in acceptance region}};
+\node at (axis cs: 0.8, 0.35) {\textcolor{blue}{\footnotesize in rejection region}};
 
 \end{axis}
 \end{tikzpicture}
 \end{center}
 
 \pause
-\textbf{Decision:} Since $z = 1.875 < 1.645 = z_{\alpha}$, we \textcolor{red}{\textbf{fail to reject}} $H_0$ at $\alpha = 0.05$ significance level.
+\textbf{Decision:} Since $z = 1.875 > 1.645 = z_{\alpha}$, we \textcolor{red}{\textbf{reject}} $H_0$ at $\alpha = 0.05$ significance level.
 
 
   
@@ -1203,10 +1217,15 @@ z_{\alpha} &=& \Phi^{-1}(1 - \alpha) = \Phi^{-1}(0.95) = 1.645 \quad
 
     \begin{enumerate}[Step 1.]
     \item Parameter of interest: \pause $p$ (proportion of students not getting enough sleep) \pause
-    \item Null hypothesis: \pause $H_0: \hat{p} = 289/400 = .723$. \pause
-    \item Alternative hypothesis: \pause $H_1: p \ne .723$. \pause
-    \item Formula for test statistic value: \pause $z = \fr{p - p_0}{SE_{p}}$ \pause
+    \item Null hypothesis: \pause $H_0: p = p_0$. \pause
+    \item Alternative hypothesis: \pause $H_1: p \ne p_0$. \pause
+    \item Formula for test statistic value: \pause $z = \fr{\hat p - p_0}{SE_{p}}$ \pause
     \end{enumerate}
+    Notes:
+    \begin{eqnarray*}
+      p_0 &=& 0.50 \quad \text{(expected value)} \\
+      \hat p &=& \fr{289}{400} = .723 \quad \text{(observed value---from sample)}
+    \end{eqnarray*}
   \end{exampleblock}
 \end{frame}
 
@@ -1264,7 +1283,7 @@ This is a one-sided test \pause
 \textbf{Hypotheses:}
 \begin{itemize}
   \item $H_0: p = 0.002$
-  \item $H_a: p < 0.002$
+  \item $H_a: p > 0.002$
 \end{itemize}
 
 \pause
@@ -1332,7 +1351,7 @@ p\text{-value} &=& 1 - \Phi(1.875) \approx 0.0304 \quad
   $p\text{-value} = 0.03$ \\
   $\alpha = 0.05$ \\
   \textcolor{red}{$0.03 < 0.05$} \\
-  \textbf{Fail to Reject } $H_0$
+  \textbf{Reject } $H_0$
 };
 
 \end{axis}
@@ -1340,10 +1359,10 @@ p\text{-value} &=& 1 - \Phi(1.875) \approx 0.0304 \quad
 \end{center}
 
 \pause
-\textbf{Decision:} Since the p-value $= 0.03 < \alpha = 0.05$, we \textcolor{red}{\textbf{fail to reject}} $H_0$ at the 5\% significance level.
+\textbf{Decision:} Since the p-value $= 0.03 < \alpha = 0.05$, we \textcolor{red}{\textbf{reject}} $H_0$ at the 5\% significance level.
 
 \pause
-\textbf{Conclusion:} There is insufficient evidence to conclude that the new machine produces hinges with a flaw rate greater than 0.2\%.
+\textbf{Conclusion:} There is sufficient evidence to conclude that the new machine produces hinges with a flaw rate greater than 0.2\%.
 
 \end{frame}
 
@@ -1368,16 +1387,16 @@ p\text{-value} &=& 1 - \Phi(1.875) \approx 0.0304 \quad
       $Z$-statistic: \pause
 
       \begin{equation}
-     z= \fr{p - p_{0}}{\sqrt{\fr{p_{0}(1-p_{0})}{n} }}
+     z= \fr{\hat p - p_{0}}{\sqrt{\fr{p_{0}(1-p_{0})}{n} }}
     \end{equation}
     \pause
     \end{itemize}
 
   \item The $p$-value is the minimum probability of a Type I error.\pause
     \begin{itemize}
-    \item Upper-tailed test: $p-\text{value} = 1- \Phi(z)$; \pause Python: \texttt{\bl norm.sf(z)} \pause
-    \item Lower-tailed test: $p-\text{value} = \Phi(z)$; \pause Python: \texttt{\bl norm.cdf(z)} \pause
-    \item Two-tailed test: $p-\text{value} = 2(1- \Phi(|z|))$;\\ \pause 
+    \item Upper-tailed test: p-value$ = 1- \Phi(z)$; \pause Python: \texttt{\bl norm.sf(z)} \pause
+    \item Lower-tailed test: p-value $= \Phi(z)$; \pause Python: \texttt{\bl norm.cdf(z)} \pause
+    \item Two-tailed test: p-value $ = 2(1- \Phi(|z|))$;\\ \pause 
     Python: \texttt{\bl 2 * norm.cdf(np.abs(z))} \pause
     \end{itemize}
   \end{itemize}

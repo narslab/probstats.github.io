@@ -1,4 +1,4 @@
-\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
 \if 0\bmode
 \documentclass[smaller]{beamer}
 \else \if 1\bmode
@@ -508,7 +508,7 @@ Lecture 5B: Inference for Difference of Two Proportions}
   For a 95\% CI, $\alpha = 0.05$. Thus, \pause
   \begin{eqnarray*}
     z^* &=& \Phi^{-1}( 1 - \alpha/2) = \Phi^{-1}(1 - 0.05/2) \pause = \Phi^{-1}(0.975) \\\pause
-     &=&  \mathtt{norminv(.975)} = 1.96
+     &=&  \mathtt{norm.ppf(.975)} = 1.96
   \end{eqnarray*}
   \pause
 	Below is the standard normal distribution showing the critical $Z$-scores corresponding to the desired confidence level of 95\%:
@@ -651,7 +651,7 @@ Now, we show the corresponding sampling distribution of $p_t - p_c$  with the co
   For a 99\% CI, $\alpha = 0.01$. Thus, \pause
   \begin{eqnarray*}
     z^* &=& \Phi^{-1}( 1 - \alpha/2) = \Phi^{-1}(1 - 0.01/2) \pause = \Phi^{-1}(0.995) \\\pause
-     &=&  \mathtt{norminv(.995)} = 2.576
+     &=&  \mathtt{norm.ppf(.995)} = 2.576
   \end{eqnarray*}
   \pause
 	Below is the standard normal distribution showing the critical $Z$-scores corresponding to the desired confidence level of 99\%:
@@ -981,8 +981,8 @@ Now, we show the corresponding sampling distribution of $p_a - p_b$ with the com
 				xlabel=$Z$, ylabel=$f_X(x)$,
 				height=3cm, width=14cm,
 				every x tick/.style={color=black, thick},
-				xtick={-0.17, 0, 0.17},
-				xticklabels={$-z$, $0$, $z$},
+				xtick={-0.17, 0.17},
+				xticklabels={$-z$, $z$},
 				ymax=.15,
 				ytick=\empty,
 				x label style={anchor=north},
