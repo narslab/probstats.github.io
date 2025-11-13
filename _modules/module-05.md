@@ -13,3 +13,7 @@ Thu, Oct 30
 Thu, Nov 6
 : **LECTURE 5B**{: .label .label-blue }[Difference of Two Proportions](/assets/lectures/M5-Inference-Categorical-Data/M5b-Difference-Two-Proportions_Handout.pdf)
   :  [Echo360 Video](#)
+
+Thu, Nov 13
+: **LECTURE 5C**{: .label .label-blue }[Goodness of Fit Testing](/assets/lectures/M5-Inference-Categorical-Data/M5c-Goodness-of-Fit-Testing_Handout.pdf)
+  :  [Echo360 Video](#)
