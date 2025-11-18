@@ -1,0 +1,834 @@
+% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+% \if 0\bmode
+% \documentclass[smaller]{beamer}
+% \else \if 1\bmode
+% \immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+% \documentclass[smaller,handout]{beamer}
+% \usepackage{handoutWithNotes}
+% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+% \else \if 2\bmode
+% \immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+% \documentclass[smaller,handout]{beamer}
+% \fi
+% \fi
+% \fi
+\documentclass[smaller]{beamer}
+
+
+% \documentclass[smaller,handout
+% ]{beamer}
+%\usepackage{etex}
+%\newcommand{\num}{6{} }
+
+% \usetheme[
+%   outer/progressbar=foot,
+%   outer/numbering=counter,
+%  block=fillFF
+% ]{metropolis}
+
+%\useoutertheme{metropolis}
+
+\usetheme{Madrid}
+\useoutertheme[subsection=false]{miniframes} % Alternatively: miniframes, infolines, split
+\useinnertheme{circles}
+\usecolortheme{seahorse}
+
+\usepackage[backend=biber,style=authoryear,maxcitenames=2,maxbibnames=99,safeinputenc,url=false,
+eprint=false]{biblatex}
+\addbibresource{bib/references.bib}
+\AtEveryCitekey{\iffootnote{{\tiny}\tiny}{\tiny}}
+\usepackage{appendixnumberbeamer}
+%\usepackage{pgfpages}
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{hide notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+% \usepackage[sfdefault]{Fira Sans}
+
+% \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+% \setmonofont{Fira Mono}
+
+%\usepackage{fira}
+%\setsansfont{Fira}
+%\setmonofont{Fira Mono}
+% To give a presentation with the Skim reader (http://skim-app.sourceforge.net) on OSX so
+% that you see the notes on your laptop and the slides on the projector, do the following:
+% 
+% 1. Generate just the presentation (hide notes) and save to slides.pdf
+% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
+% 3. With Skim open both slides.pdf and notes.pdf
+% 4. Click on slides.pdf to bring it to front.
+% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
+%    select notes.pdf.
+% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
+% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
+%    and slides.pdf is in presentation mode on the projector.
+
+% Give a slight yellow tint to the notes page
+%\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
+
+
+%\usetheme{metropolis}
+%\usecolortheme{beaver}
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{HTML}{A40000}
+\definecolor{lightcandyapplered}{HTML}{e74c3c}
+
+%\setbeamercolor{title}{fg=darkcandyapplered}
+%\setbeamercolor{frametitle}{bg=darkcandyapplered!80!black!90!white}
+%\setbeamertemplate{frametitle}{\bf\insertframetitle}
+%\setbeamercolor{footnote mark}{fg=darkcandyapplered}
+%\setbeamercolor{footnote}{fg=darkcandyapplered!70}
+%\Raggedbottom
+%\setbeamerfont{page number in head/foot}{size=\tiny}
+%\usepackage[tracking]{microtype}
+
+
+\setbeamertemplate{frametitle}{%
+    \nointerlineskip%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex]{frametitle}
+        \hspace*{1ex}\insertframetitle%
+    \end{beamercolorbox}%
+}
+
+
+
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamercolor{caption name}{fg=darkcandyapplered}
+
+
+%\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+%\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+%\usepackage[euler-digits,small]{eulervm}
+%\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+\usepackage{graphicx,multirow,paralist,booktabs}
+
+
+%\mode<presentation> { \setbeamercovered{transparent} }
+
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\def\beamerorig@set@color{%
+  \pdfliteral{\current@color}%
+  \aftergroup\reset@color
+}
+\def\beamerorig@reset@color{\pdfliteral{\current@color}}
+\makeatother
+
+%=== GRAPHICS PATH ===========
+\graphicspath{{./images/}}
+% Marginpar width
+%Marginpar width
+%\setlength{\marginparsep}{.02in}
+
+
+%% Captions
+% \usepackage{caption}
+% \captionsetup{
+%   labelsep=quad,
+%   justification=raggedright,
+%   labelfont=sc
+% }
+
+%AMS-TeX packages
+
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage{hyperref,enumerate}
+\usepackage{minitoc,array}
+
+
+%https://tex.stackexchange.com/a/31370/2269
+\usepackage{mathtools,cancel}
+
+\renewcommand{\CancelColor}{\color{red}} %change cancel color to red
+
+\makeatletter
+\let\my@cancelto\cancelto %copy over the original cancelto command
+\newcommand<>{\cancelto}[2]{\alt#3{\my@cancelto{#1}{#2}}{\mathrlap{#2}\phantom{\my@cancelto{#1}{#2}}}}
+% redefine the cancelto command, using \phantom to assure that the
+% result doesn't wiggle up and down with and without the arrow
+\makeatother
+
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%% TIKZ
+\usepackage{animate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgfgantt}
+\usepackage{tikzsymbols}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots,fillbetween}
+
+\usetikzlibrary{arrows,shapes,positioning,shapes.geometric}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows,automata}
+\usetikzlibrary{patterns,matrix}
+\usetikzlibrary{trees,mindmap,backgrounds}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+\tikzset{no shadows/.style={general shadow/.style=}}
+%
+%\usepackage{paralist}
+
+
+
+%%% FORMAT PYTHON CODE
+%\usepackage{listings}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+% Custom colors
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+ 
+
+%\usepackage{listings}
+
+% Python style for highlighting
+% \newcommand\pythonstyle{\lstset{
+% language=Python,
+% basicstyle=\footnotesize\ttm,
+% otherkeywords={self},             % Add keywords here
+% keywordstyle=\footnotesize\ttb\color{deepblue},
+% emph={MyClass,__init__},          % Custom highlighting
+% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
+% stringstyle=\color{deepgreen},
+% frame=tb,                         % Any extra options here
+    % showstringspaces=false            %  Inference for Difference of Two Proportions
+% }}
+
+% % Python environment
+% \lstnewenvironment{python}[1][]
+% {
+% \pythonstyle
+% \lstset{#1}
+% }
+% {}
+
+% % Python for external files
+% \newcommand\pythonexternal[2][]{{
+% \pythonstyle
+% \lstinputlisting[#1]{#2}}}
+
+% Python for inline
+% 
+% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\dg}{^{\circ}}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand{\al}{\alpha}
+\newcommand{\G}{\Gamma}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\pgfmathdeclarefunction{expocdf}{2}{%
+  \pgfmathparse{1 -exp(-#1*#2)}%
+}
+
+% \makeatletter
+% \long\def\ifnodedefined#1#2#3{%
+%     \@ifundefined{pgf@sh@ns@#1}{#3}{#2}%
+% }
+
+% \pgfplotsset{
+%     discontinuous/.style={
+%     scatter,
+%     scatter/@pre marker code/.code={
+%         \ifnodedefined{marker}{
+%             \pgfpointdiff{\pgfpointanchor{marker}{center}}%
+%              {\pgfpoint{0}{0}}%
+%              \ifdim\pgf@y>0pt
+%                 \tikzset{options/.style={mark=*, fill=white}}
+%                 \draw [densely dashed] (marker-|0,0) -- (0,0);
+%                 \draw plot [mark=*] coordinates {(marker-|0,0)};
+%              \else
+%                 \tikzset{options/.style={mark=none}}
+%              \fi
+%         }{
+%             \tikzset{options/.style={mark=none}}        
+%         }
+%         \coordinate (marker) at (0,0);
+%         \begin{scope}[options]
+%     },
+%     scatter/@post marker code/.code={\end{scope}}
+%     }
+% }
+
+% \makeatother
+
+\renewcommand{\arraystretch}{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[CEE 260/MIE 273 M6b: Inference for Two Samples]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture M6b: Inference for Two Samples}
+\date[\today]{\footnotesize \today}
+\author{{\bf Jimi Oke}}
+\institute[UMass Amherst]{
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[anchor=base] at (-7,0) (its) {\includegraphics[scale=.3]{UMassEngineering_vert}} ;
+  \end{tikzpicture}
+}
+
+\newcommand{\hpp}{\hat{p_1} - \hat{p_2}}
+\newcommand{\pp}{p_1 - p_2}    
+\begin{document}
+
+\maketitle
+
+
+
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+ 
+
+
+\section{CI for difference of two means}
+
+\begin{frame}
+  \frametitle{Confidence intervals for difference of two means}
+  \pause
+  
+  The CI for a difference of two means (with unknown variance) is given by:\pause
+  \begin{equation}
+    \langle \mu_1 - \mu_2\rangle_{1-\alpha} = \lt( \ol{x} -\ol{y} \pm t^* \times SE_{diff}\rt)
+    \end{equation}
+
+  \pause
+  where:
+  \begin{itemize}
+  	\item The critical $t$-value is
+  	\begin{equation}
+  		t^* = F_T^{-1}(1 - \alpha/2, \nu)  
+  	\end{equation}
+  	\pause given by \texttt{tinv(1 - alpha/2, nu)} in Matlab
+  	\pause
+  	\item The standard error of the difference of the two means is
+  	\begin{equation}
+  		SE_{diff} \approx \sqrt{\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}} 
+  		% \sqrt{\fr{\sigma_1^2}{n_1} + \fr{\sigma_2^2}{n_2}}
+  	\end{equation}
+  	\pause where $s_1^2$ and $s_2^2$ are the respective sample variances
+  \end{itemize}
+ 
+ \begin{alertblock}{Notes}\pause
+ 	\begin{itemize}
+ 		\item If the population variances $\sigma_1^2$ and $\sigma_2^2$ are known, then you can use the $z$-score instead\pause
+ 		\item  You can easily derive the formulas for the upper/lower confidence bounds.
+ 	\end{itemize}
+ \end{alertblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Computing $\nu$ for difference of two means}\pause
+	To find the critical $t$-value, we need to compute the degrees of freedom (df) parameter $\nu$. \pause
+	
+	For a single sample, $\nu = n-1$. However, when dealing with \textbf{two samples}, 
+	$\nu$ given by: \pause
+	
+	\begin{equation}
+		\label{eq:3}
+		\nu = \fr{\lt(\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}\rt)^2}{\fr{\lt(s_1^2/n_1\rt)^2}{n_1 -1} + \fr{\lt(s_2^2/n_2\rt)^2}{n_2 -1}}
+	\end{equation}
+	\pause
+	This is a complicated formula.
+	\pause
+	
+	\begin{alertblock}{df shortcut}
+		\pause
+		A simpler way to estimate $\nu$ is to use the formula:\pause
+		\begin{equation}
+			\nu \approx \min(n_1 -1, n_2 -1)
+		\end{equation}
+		\pause (i.e. the smaller of the two)
+	\end{alertblock}
+\end{frame}
+ 
+\begin{frame}
+  \frametitle{Example 1: Permeability of textile fabrics}
+  \begin{minipage}{.6\textwidth}
+  	The void volume within a textile fabric affects comfort, flammability and insulation properties.
+  	Permeability of a fabric refers to the accessibility of void space to the flow of a gas or liquid.
+  	Consider the following permeability (cm$^3$/cm$^2$/sec) summary data on two different types of plain-weave fabric
+  \end{minipage}
+    \begin{minipage}{.3\textwidth}
+    		\centering
+    		\includegraphics[width=0.7\linewidth]{cotton-layer}
+    		
+    	{\tiny Microscopic images of cotton fiber arrangements. Source: \url{https://journals.sagepub.com/doi/full/10.1177/15589250211024225}}
+    \end{minipage}
+
+    \bigskip
+    \pause
+    
+    \begin{tabular}{l r r r}\toprule
+      \bf Fabric type & \bf Sample size &\bf Sample mean & \bf Sample SD \\ \midrule
+      Cotton & 10 & 51.71 & 0.79 \\
+      Triacetate & 10 & 136.14 & 3.59 \\ \bottomrule
+    \end{tabular}
+
+    \bigskip
+    \pause
+    Assuming that the permeability distributions for both types of fabric are normal, calculate a CI for the
+    difference between true average permeability for the cotton fabric and that for the triacetate fabric using a 95\% confidence level.
+ \end{frame}
+
+
+\begin{frame}
+  \frametitle{Example 1: Permeability of textile fabrics (cont)}
+  \pause
+
+  \begin{exampleblock}{Solution}\pause
+    First we compute the degrees of freedom: \pause
+    \begin{eqnarray*}
+      \nu &=& \fr{\lt(\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}\rt)^2}{\fr{\lt(s_1^2/n_1\rt)^2}{n_1 -1} + \fr{\lt(s_2^2/n_2\rt)^2}{n_2 -1}}\\\pause
+          &=& \fr{\lt( \fr{0.6241}{10} + \fr{12.8881}{10}\rt)^2}{\fr{(0.6241/10)^2}{9} + \fr{(12.8881/10)^2}{9}}  \pause
+     = \fr{1.8258}{0.1850} = \pause 9.87
+    \end{eqnarray*}
+    \pause We round down to nearest integer. Thus, we use: $\nu = 9$.
+  \end{exampleblock}
+  \pause
+\begin{alertblock}{Quick back-of-the-hand calculation for $\bm{\nu}$} \pause
+ 	A shortcut for finding $\nu$ is
+ 	\begin{equation}
+ 		\nu \approx \min(n_1 -1, n_2-1)\label{eq:10}
+ 	\end{equation} \pause
+ 	%That is, we choose the smaller d.o.f. of the two samples.{} \pause
+ 	In this case, we can see that since $n_1 = n_2$, we ended up with $\nu = 10 - 1 = 9$.
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Example 1: Permeability of textile fabrics (cont)}
+  \pause
+
+  \begin{exampleblock}{Solution}\pause
+    Next, we compute the critical $T$-value, given that $1-\alpha = 0.95 \implies \alpha/2 = 0.025$:
+    \pause
+
+    \begin{equation*}
+      -t^* = t_{(\alpha/2, \nu)} = t_{0.025,9} = -2.262 \quad {\rd \mathtt{tinv(.025, 9)}}
+    \end{equation*}
+
+    \pause
+
+    The margin of error is therefore: \pause
+    \begin{eqnarray*}
+      t^*\times SE =  t_{(1-\alpha/2)}\sqrt{\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}} &=& 2.262\sqrt{\fr{0.6241}{10} + \fr{12.8881}{10}} \\\pause
+                                     ME                          &=&  2.63
+    \end{eqnarray*}
+
+  \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Example 1: Permeability of textile fabrics (cont)}
+  \pause
+
+  \begin{exampleblock}{Solution}\pause
+    The CI in this case is given by \pause
+      \begin{equation}
+    \langle \mu_1 - \mu_2\rangle_{1-\alpha} = \lt( \ol{x}_1 -\ol{x}_2 + t_{\alpha/2}\sqrt{\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}},
+    \ol{x}_1 -\ol{x}_2 + {\bl t_{(1-\alpha/2)}\sqrt{\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}}}
+    \rt)
+    \end{equation}
+
+    \pause
+    But we can rewrite it conveniently as:\pause
+    \begin{equation}
+      \label{eq:8}
+      \langle \mu_1 - \mu_2\rangle_{1-\alpha} =  \ol{x}_1 -\ol{x}_2   \pm {\bl ME}
+    \end{equation}
+    where {\bl $ME$} is the {\bl margin of error}. \pause
+
+    Thus,  the 95\% CI is:
+    \pause
+    \begin{eqnarray*}
+      \langle \mu_1 - \mu_2\rangle_{.95} &=& \pause 51.71 - 136.14  \pm 2.63 \\\pause
+                                         &=&  -84.43 \pm 2.63 \pause = \boxed{\bm{(-87.06, -81.80)}}
+    \end{eqnarray*}    
+  \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Example 1: Permeability of textile fabrics (cont)}
+  \pause
+
+  \begin{exampleblock}{Solution}\pause
+    \textbf{Interpretation:} \\ \pause
+
+    With a high degree of confidence, we can say that true average permeability for triacetate fabric specimens
+    exceeds that for cotton specimens by between 81.80 and 87.06 cm$^3$/cm$^2$/sec.
+  \end{exampleblock}
+  \pause
+
+ 
+ 
+\end{frame}
+
+
+
+\section{Hyp.\ Tests for difference of two means}
+\begin{frame}
+	\frametitle{Comparing two populations: difference of two means}\pause
+	\begin{exampleblock}{Example cases}\pause
+		\begin{itemize}[<+->]
+			\item Is there any significant difference between the performances in the 2018 NY marathon and that of 2019?
+			\item Is the hardness of heat-treated steel similar to that of cold-rolled steel?
+			\item How can an engineer test if the proportion of defective batteries in a production batch is similar to that of another batch?
+		\end{itemize}
+	\end{exampleblock}
+	
+	\pause
+	
+	\begin{block}{Key assumptions}\pause
+		\begin{itemize}[<+->]
+			\item Normality: $X_1$ is a random normal sample; $X_2$ is a random normal sample
+			\item Independence: $X_1$ and $X_2$ are independent of each other
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Testing normal populations with known variances}
+	\pause
+	\textbf{Null hypothesis}: \pause $H_0: \mu_1 - \mu_2 = \Delta_0$.\\
+	\pause
+	
+	Often $\Delta_0$ is often 0, in which case, $H_0: \mu_1 = \mu_2$.\\
+	
+	\medskip
+	
+	\textbf{Test statistic}:
+	\begin{equation}
+		\label{eq:1}
+		z = \fr{\ol{x_1} - \ol{x_2} - \Delta_0}{\sqrt{\fr{\sigma_1^2}{n_1} + \fr{\sigma^2_2}{n_2}}}
+	\end{equation}
+	\pause
+	where $\ol x_1$, $\ol x_2$ are the sample means, $\sigma_1^2$ $\sigma_2^2$ are the respective population variances, and $n_1$, $n_2$, the respective sample sizes.
+	
+
+	
+	\bigskip
+	
+	\begin{tabular}{l l }\toprule
+		\bf Alternative Hypothesis      & \bf \og Rejection Region for level $\bm\alpha$ test \\ \midrule
+		$H_1: \mu_1 - \mu_2 > \Delta_0$ & \og $z \ge z_{1-\alpha}$ (upper-tailed) \\ \midrule
+		$H_1: \mu_1 - \mu_2 < \Delta_0$ & \og $z \le z_\alpha$ (lower-tailed) \\ \midrule
+		$H_1: \mu_1 - \mu_2 \ne \Delta_0$ & \og $z \le z_{\alpha/2}$ or $z \ge z_{(1-\alpha/2)}$  (both tails) \\ \bottomrule
+	\end{tabular}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Difference between two population means}
+	
+	\begin{exampleblock}{Example 1: Cold-rolled vs.\ galvanized steel}\pause
+		Analysis of a random sample consisting of $n_1=20$ specimens of cold-rolled steel to determine yield strengths resulted in a sample average strength of
+		$\ol{x} = 29.8$ ksi.
+		
+		\bigskip
+		\pause
+		
+		A second random sample of $n_2=25$ two-sided galvanized steel specimens gave a sample average strength of $\ol{y} = 34.7$ ksi.
+		
+		\bigskip
+		\pause
+		
+		Assuming that the two yield-strength distributions are normal with $\sigma_1 = 4.0$ and $\sigma_2 = 5.0$,
+		do the data indicate that the corresonding true average yield strengths $\mu_1$ and $\mu_2$ are different?
+		
+		\pause
+		\bigskip
+		Carry out a test at significance level $\alpha = 0.01$.
+		
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Difference between two population means}
+	\begin{exampleblock}{Example 1: Cold-rolled vs.\ galvanized steel}\pause
+		
+		\begin{enumerate}[\bf Step 1.]
+			\item Parameter of interest:  $\mu_1 - \mu_2$ (difference between the true average strengths) 
+			
+			\item Null hypothesis:  \pause $H_0: \mu_1 - \mu_2 = { \rd \Delta_0 = 0}$ \pause
+			
+			\item Alternative hypothesis:  \pause $H_1: \mu_1 - \mu_2 \ne 0$ \pause
+			
+			\item Formula for test statistic value:  \pause
+			\begin{equation*}
+				z = \fr{\ol{x} - \ol{y} - ({\rd 0})}{\sqrt{\fr{\sigma_1^2}{n_1} + \fr{\sigma^2_2}{n_2}}}
+			\end{equation*}
+			
+		\end{enumerate}
+		
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Difference between two population means}
+	\begin{exampleblock}{Example 1: Cold-rolled vs.\ galvanized steel (cont.)}
+		\begin{enumerate}[\bf Step 1.]\setcounter{enumi}{4}
+			\item Calculate test statistic value:\pause
+			\begin{eqnarray*}
+				z &=& \fr{29.8 - 34.7}{\sqrt{\fr{16.0}{20} + \fr{25.0}{25}}} = \pause \fr{-4.90}{1.34}=\pause -3.66
+			\end{eqnarray*}
+			\pause
+			
+			\item Find the critical values  (two-tailed test): \pause
+			\begin{eqnarray*}
+				\alpha/2 &=& 0.01/2 = 0.005 \\\pause
+				z^* = z_{(1-\alpha/2)} &=& z_{0.995} = \pause 2.58 \quad (\mathtt{norminv(0.995)}) \\\pause
+				z_{\alpha/2} &=& z_{0.005} = \pause -2.58 				
+			\end{eqnarray*}
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Difference between two population means}
+	\begin{exampleblock}{Example 1: Cold-rolled vs.\ galvanized steel (cont.)}
+		\begin{enumerate}[\bf Step 1.]\setcounter{enumi}{6}
+			\item Conclude:\\ \pause 
+			Since $-3.66 < -2.58$, $z$ falls in the lower tail of the rejection region.{} \pause
+			$H_0$ is therefore rejected in favor of the conclusion that $\mu_1\ne\mu_2$. \\ \pause
+			
+			\bigskip
+			
+			Furthermore, the $p$-value is $2(1 - \Phi(3.66)) \approx 2(1-1) = 0$. \pause
+			
+			\medskip
+			
+			So, $H_0$ should be rejected at any reasonable significance level.
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+
+\section{Paired data}
+
+\begin{frame}
+	\frametitle{Paired data}\pause
+	Paired data arise when two different observations are made on the \textbf{same set} of $n$ individuals in a sample.\\ \pause
+	
+	\begin{exampleblock}{Examples of paired data}
+		\begin{itemize}[<+->]
+			\item Prices from two different vendors on a set of undergraduate textbooks
+			\item Monthly average proportion of absent students in a school \textit{before} and \textit{after} an intervention to boost attendance by serving free meals. 
+			\item Zinc concentration in six bodies of water collected at the \textit{surface} and at the \textit{bottom}.
+		\end{itemize}
+	\end{exampleblock}
+	\pause
+	
+	\begin{block}{Assumptions}\pause
+		\begin{itemize}[<+->]
+			\item $n$ independently selected pairs of observations: $E(X_i) = \mu_1, E(Y_i) = \mu_2$.
+			\item Differences betweeen pairs $D_i = X_i - Y_i$ are normally distributed with mean $\mu_D$ and variance $\sigma_{D}^2$ \pause
+			\begin{itemize}
+				\item  If $n$ is small, conduct $t$-test
+				\item If $n$ is large, conduct $z$-test
+			\end{itemize}
+			
+		\end{itemize}
+		
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Paired $\bm{t}$-test}
+	\pause
+	
+		\textbf{Null hypothesis}: \pause $H_0: \mu_D = \mu_0$.\\
+	\pause
+	
+	
+	\textbf{Test statistic}:
+	\begin{equation}
+		\label{eq:1}
+		t = \fr{\ol{d} - \mu_0}{s_D/\sqrt{n}}
+	\end{equation}
+	\pause
+	
+	where $\ol{d}$ is the sample difference, $\mu_0$ is the null difference and $s_D$ is the sample standard deviation
+
+	
+	\bigskip
+	
+	\begin{tabular}{l l }\toprule
+		\bf Alternative Hypothesis      & \bf \og Rejection Region for level $\bm\alpha$ test \\ \midrule
+		$H_1: \mu_D > \mu_0$         & \og  $t \ge t_{\alpha,n-1}$ (upper-tailed) \\ \midrule
+		$H_1: \mu_D  < \mu_0$        & \og $t \le t_{\alpha,n-1}$ (lower-tailed) \\ \midrule
+		$H_1: \mu_D \ne \mu_0$       & \og $t \le t_{\alpha/2,n-1}$ or $t \ge t_{(1-\alpha/2),n-1}$  (both tails) \\ \bottomrule
+	\end{tabular}
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Paired $t$-test example}
+	\begin{exampleblock}{Example 2: Intervention for ergonomic improvements}
+	\begin{minipage}{.6\textwidth}
+		Musculoskeletal neck-and-shoulder disorders are all too common among office staff who perform repetitive tasks using
+		visual display units.  A study was conducted to determine whether more varied work conditions would have any impact
+		on arm movement.\footnote{ ``Upper-Arm Elevation During Office Work'' (\textit{Ergonomics}, 1996: 1221-1230)} \pause
+		
+		\bigskip
+		
+		The accompanying data was obtained from a sample of $n=16$ subjects.
+		Each observation is the amount of time, expressed as a proportion of total time observed,
+		during which arm elevation was 30$^\circ$. The two measurements from each subject were obtained 18 months apart.
+	\end{minipage}		
+		\begin{minipage}{.35\textwidth}
+				\begin{center}
+			\includegraphics[height=.6\textheight]{arm-elevation}
+		\end{center}
+		{\tiny Illustration of upper-arm elevation. Source: {\tiny \url{https://www.sciencedirect.com/science/article/pii/S0003687018300590}}}
+		\end{minipage}
+	\end{exampleblock}
+\end{frame}
+
+ 
+
+\begin{frame}
+	\frametitle{Paired $t$-test in practice}
+	\begin{exampleblock}{Example 2: Intervention for ergonomic improvements (cont.)}\pause
+			During this period, work conditions were changed, and subjects were allowed to engage in a wider variety of work tasks.
+		Do the data suggest that true average time during which elevation is below $30^\circ$ differs after the change from what it was before the change? \pause Let $\mu_D$ denote the true average difference between elevation time before the change in work conditions and time after the change.
+		\begin{enumerate}[\bf Step 1.]\pause
+			
+			\item $H_0: \mu_D = 0$ \pause (i.e.\ there is no difference between true average time before the change and true average time after the change) \pause
+			
+			\item $H_1: \mu_D \ne 0$ \pause
+			
+			\item Compute the parameters: \pause
+			\begin{eqnarray*}
+				n &=& 16 \\ \pause
+				\sum d_i &=& 108 \\\pause
+				\sum d_i^2 &=& 1746 \\\pause
+				\ol{d} &=& 6.75 \\\pause
+				s_D &=& 8.234
+			\end{eqnarray*}
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Paired $t$-test in practice}
+	\begin{exampleblock}{Example 2: Intervention for ergonomic improvements (cont.)}
+		\begin{enumerate}[\bf Step 1.]\setcounter{enumi}{4}\pause
+			\item Compute the $T$-statistic: \pause
+			\begin{eqnarray*}
+				t & =& \fr{\ol{d} - 0}{s_D/\sqrt{n} } \\\pause
+				&=& \fr{6.75}{8.234/\sqrt{16}} \pause = 3.28 \approx 3.3
+			\end{eqnarray*}
+			\pause
+			
+			\item Find the $p$-value: \pause
+			\begin{eqnarray*}
+				p\text{-value} &=& 2\cdot(1 - F_T(3.3,15)) \quad {\rd(\mathtt{2*tcdf(3.3, 15, "upper")})} \\\pause
+				&=&  2(0.0024) \pause \approx 0.005
+			\end{eqnarray*}
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Paired $t$-test in practice}
+	\begin{exampleblock}{Example 2: Intervention for ergonomic improvements (cont.)}
+		\begin{enumerate}[\bf Step 1.]\setcounter{enumi}{6}\pause
+			\item Conclude: \\\pause
+			
+			Since $0.005 < 0.01$, the null hypothesis can be rejected at either significance level 0.05 or 0.01.\pause
+			Thus, this test indicates that the true average time after the change is different from that before the change.
+		\end{enumerate}          
+	\end{exampleblock}
+\end{frame}
+
+
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
