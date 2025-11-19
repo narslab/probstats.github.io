@@ -1,0 +1,777 @@
+\documentclass[11pt,twoside]{article}
+\usepackage{etex}
+
+\raggedbottom
+
+%geometry (sets margin) and other useful packages
+\usepackage{geometry}
+\geometry{top=1in, left=1in,right=1in,bottom=1in}
+ \usepackage{graphicx,booktabs,calc}
+ 
+\usepackage{listings}
+
+
+% Marginpar width
+%Marginpar width
+\newcommand{\pts}[1]{\marginpar{ \small\hspace{0pt} \textit{[#1]} } } 
+\setlength{\marginparwidth}{.5in}
+%\reversemarginpar
+%\setlength{\marginparsep}{.02in}
+
+ 
+%\usepackage{cmbright}lstinputlisting
+%\usepackage[T1]{pbsi}
+
+
+\usepackage{chngcntr,mathtools}
+%\counterwithin{figure}{section}
+%\numberwithin{equation}{section}
+
+%\usepackage{listings}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{colortbl}
+\usepackage{color}
+
+
+\usepackage{subfigure,hyperref,enumerate,polynom,polynomial}
+\usepackage{multirow,minitoc,fancybox,array,multicol}
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%%TIKZ
+\usepackage{tikz}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\tikzstyle arrowstyle=[black,scale=2]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\tikzstyle dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrow[arrowstyle]{latex}}}}]
+\tikzstyle rev dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrowreversed[arrowstyle]{latex};}}}]
+
+\usepackage{ctable}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{exercise}{\@startsection 
+	{section}
+	{1}
+	{-.2em}
+	{-3.5ex plus -1ex minus -.2ex}
+    	{1.3ex plus .2ex}
+    	{\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+	\large\bf\noindent{Exercise 1.\hspace{-1.5ex} }
+	}
+	}
+	%{\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+	%\begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\fancyheadoffset{30pt}
+%\fancyfootoffset{30pt}
+\fancyhead[LO,RE]{\small Oke}
+\fancyhead[RO,LE]{\small Page \thepage} 
+\fancyfoot[RO,LE]{\small PS 7} 
+\fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{0.1pt} 
+\renewcommand{\footrulewidth}{0.1pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+
+\usepackage{paralist}
+\usepackage{float}
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\n}{\\[2mm]}
+%% GREEK LETTERS
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\sig}{\sigma}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\mr}{\mathbb{R}}
+\newcommand{\xs}{x^{*}}
+\newenvironment{solution}
+{\medskip\par\quad\quad\begin{minipage}[c]{.8\textwidth}\gr}{\medskip\end{minipage}}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\usetikzlibrary{math}
+
+% https://tex.stackexchange.com/questions/461758/asymmetric-distribution-gauss-curve
+\tikzmath{%
+  function h1(\x, \lx) { return (9*\lx + 3*((\lx)^2) + ((\lx)^3)/3 + 9); };
+  function h2(\x, \lx) { return (3*\lx - ((\lx)^3)/3 + 4); };
+  function h3(\x, \lx) { return (9*\lx - 3*((\lx)^2) + ((\lx)^3)/3 + 7); };
+  function skewnorm(\x, \l) {
+    \x = (\l < 0) ? -\x : \x;
+    \l = abs(\l);
+    \e = exp(-(\x^2)/2);
+    return (\l == 0) ? 1 / sqrt(2 * pi) * \e: (
+      (\x < -3/\l) ? 0 : (
+      (\x < -1/\l) ? \e / (8 * sqrt(2 * pi)) * h1(\x, \x*\l) : (
+      (\x <  1/\l) ? \e / (4 * sqrt(2 * pi)) * h2(\x, \x*\l) : (
+      (\x <  3/\l) ? \e / (8 * sqrt(2 * pi)) * h3(\x, \x*\l) : (
+      sqrt(2/pi) * \e)))));
+  };
+}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+% to be used: \cdf(x)(mean)(variance)
+
+\DeclareMathOperator{\CDF}{cdf}
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\lstset{language=C++,
+                basicstyle=\tiny\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{gray}\ttfamily,
+                morecomment=[l][\color{gray}]{\#}
+}
+
+
+\thispagestyle{empty}
+
+
+\nin{\LARGE Problem Set 7  }\hfill{\bf Prof. Oke}
+
+\medskip\hrule\medskip
+
+\nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
+\hfill\textit{ 11.21.2024}}
+
+\bigskip
+
+\nin{\it \textbf{Due Thursday, December 5, 2024 at 11:59 PM as PDF uploaded on Moodle.}
+%  If it helps and if possible, you can write your responses directly on this document and upload it instead.
+    \textbf{Show as much work as possible in order to get FULL credit.}
+    There are 6 problems with a total of 60 points available.
+    \textbf{Important:} If you use MATLAB for any probability computations, briefly write/include the statements you
+    used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
+}
+
+
+
+\section*{Problem 1 \quad {\it  Upper confidence bound (3 points)}      }%
+\begin{minipage}{.6\textwidth}
+The charge-to-tap time (min) for a carbon steel in one type of open hearth furnace was determined for each heat\footnote{A ``heat'' describes each batch in an open-hearth process for steel production.
+  Read this article for more information: \url{https://en.wikipedia.org/wiki/Open_hearth_furnace}} in a sample of size 46,
+resulting in a sample mean time of 382.1 and a population standard deviation of 31.5.
+Calculate a 95\% upper confidence bound for true average charge-to-tap time.
+
+{\small \it (RIGHT:) An open hearth furnace being tapped at a Swedish steel mill. Source: \url{https://en.wikipedia.org/wiki/File:Tappning_av_martinugn.jpg}}
+\end{minipage}\quad\quad
+\begin{minipage}{.35\textwidth}
+    \includegraphics[width=.7\textwidth]{tapping.jpg}
+\end{minipage}
+
+\vfill
+
+% \begin{quote}
+%   \gr
+%   The sample size is $n=46$. The population SD is $s = 31.5$. The population SD is known, so we use the $z$-statistic.\\
+  
+%   The upper confidence bound is therefore given by:
+%   \begin{align*}
+%     \ol{x} + z_{(1 - \alpha)}\fr{s}{\sqrt{n}} &= 382.1 + \Phi^{-1}(0.95)\fr{31.5}{\sqrt{46}}\\
+%     \intertext{The expression $\Phi^{-1}(0.95)$ denotes the test statistic ($Z$-value) for a 95\% probability}
+%     \text{Thus, }            \ol{x} + z_{(1 - \alpha)}\fr{s}{\sqrt{n}}                   &= 382.1 + 1.6449(4.6444) \\
+%                                               &= 389.7
+%   \end{align*}
+%   The upper confidence bound for the true average charge-to-tap time 389.7 min.
+% \end{quote}
+\vspace{55ex}
+
+\eject
+
+\section*{Problem 2 \quad {\it Confidence Intervals and Sample Size (7 points)}      }
+
+\begin{minipage}{.5\textwidth}
+The article ``Evaluating Tunnel Kiln Performance'' ({\it Amer.\ Ceramic Soc.\ Bull.}, Aug 1997: 59--63) gave the following summary information for fracture
+strengths (MPa) of $n=169$ ceramic bars fired in a particular kiln: $\ol{x} = 89.10, s = 3.73$.\\
+
+\noindent {\small\it  (RIGHT:) A tunnel kiln. Source:  \url{https://blog.therseruk.com/hubfs/Tunnel%20Kiln%20for%20Refractories%20in%20UK%2017-2.jpg}}
+\end{minipage}\quad \quad
+\begin{minipage}{.4\textwidth}
+	\begin{figure}[H]
+		\includegraphics[width=.9\textwidth]{tunnel-kiln.jpg}
+
+	\end{figure}
+
+\end{minipage}
+
+\begin{enumerate}[\bf (a)]
+\item Calculate a [two-sided] confidence interval for true average \pts{4} fracture strength using a confidence level of 95\%.
+  Does it appear that true average fracture strength has been precisely estimated?
+  \vspace{40ex}
+  % \begin{quote}
+  %   \gr 
+  %   We list the parameters:
+  %   \begin{align*}
+  %    \text{Sample size: }  n &= 169 \\
+  %     \text{Sample mean: } \ol{x} &= 89.10 \\
+  %     \text{Sample SD: } s &= 3.73 \\
+  %     \text{Confidence level: } 1 - \alpha &= 0.95 \\
+  %     \implies \fr\alpha2 &= 0.025
+  %   \end{align*}
+  %   The confidence interval (CI) is given by:
+  %   \begin{equation}
+  %     \label{eq:1}
+  %     \langle \mu\rangle_{1-\alpha} = \lt( \ol{x} + t_{\fr\alpha2} \fr{s}{\sqrt{n}};\, \ol{x} + t_{\lt(1-\fr\alpha2\rt)}\fr{s}{\sqrt{n}}\rt)
+  %   \end{equation}
+  %   Thus:
+  %   \begin{align*}
+  %     t_{\fr\alpha2} &= F_T^{-1}(0.025,168) = -1.9742 \\
+  %     \text{It follows that: } t_{\lt(1-\fr\alpha2\rt)} &= +1.9742 \\
+  %     \text{The standard error is: } \fr{s}{\sqrt{n}} &= \fr{3.73}{\sqrt{169}}  = 0.2869\\
+  %     \text{Therefore: } \ol{x} + t_{\fr\alpha2} \fr{s}{\sqrt{n}} &= 89.10 - 1.9742(0.2869) = 88.53 \\
+  %     \ol{x} + t_{\lt(1-\fr\alpha2\rt)}\fr{s}{\sqrt{n}} &= 89.10 + 1.9742(0.2869) = 89.67
+  %   \end{align*}
+  %   The confidence interval is $\boxed{\bm{(88.53,89.67)}.}$\\
+
+  %   Yes, the true fracture strength has been precisely estimated with 95\% confidence.
+  % \end{quote}
+  
+\item Suppose the \pts{3} investigators had believed a priori that the population standard deviation was about 4 MPa.
+  Based on this supposition, how large a sample would have been required to estimate $\mu$ to within 0.5 MPa with 95\% confidence?
+  \vspace{50ex}
+  % \begin{quote}
+  %   \gr
+  %   Recall the formula for sample size:
+  %   \begin{equation}
+  %   \label{eq:20}
+  %   n = \lt(  z_{(1 - \alpha/2)} \fr{\sigma}{w}\rt)^2
+  % \end{equation}
+  % In this case, the half-width is 0.5 MPa (as the statement ``to within 0.5 MPa'' means the mean should be within $\pm 0.5$).\\
+  
+  % $z_{(1 - \alpha/2)} = \Phi^{-1}(0.975) = 1.96$. Thus,
+  % \begin{align*}
+  %   n &= \lt( 1.96\times  \fr{4}{0.5} \rt)^2 = 245.9
+  % \end{align*}
+  % Since $n$ must be an integer, a sample size of $\boxed{\bm{246}}$ is required. \\
+
+  % (You can also quickly check that $\pm z_{\alpha/2}\fr{\sigma}{\sqrt{n}} = \pm 1.96(4/\sqrt{246}) \approx \pm 0.5$ as required.)
+  % \end{quote}
+\end{enumerate}
+
+\eject
+\section*{Problem 3 \quad {\it  Confidence intervals (5 points)}      }
+A 95\% confidence interval for a population mean, $\mu$, is given as $(18.985,
+21.015)$. This confidence interval is based on a simple random sample of 36 observations.
+Assume that all conditions necessary for inference are satisfied. Using the $t$-distribution, calculate the
+\begin{enumerate}[(a)]
+
+  \item Margin of error \pts{1}
+  \vspace{15ex}
+\item Sample mean \pts{1}
+\vspace{15ex}
+  % \begin{quote}\gr
+  %   The sample mean $\ol x$ is centered in the confidence interval, since the interval is given by:
+  %   \begin{equation*}
+  %     \langle \mu \rangle_{1-\alpha} = \ol x \pm ME = \lt( \ol x - ME , \ol x + ME \rt)
+  %   \end{equation*}
+  %   where $ME$ is the margin of error.
+
+  %   So, we simply find $\mu$ as the midpoint of the CI, thus:
+  %   \begin{align*}
+  %     \ol x &= 18.985 + \fr{21.015 - 18.985}{2} \\
+  %         &= 18.985 + 1.015 \\
+  %         &= \boxed{20.0}
+  %   \end{align*}
+  % \end{quote}
+   
+\item Sample standard deviation \pts{3}
+\vspace{40ex}
+  % \begin{quote}\gr
+  %   The margin of error ($ME$) is one half of the confidence interval, and we know it is given by:
+  %   \begin{equation*}
+  %     ME = t_{\{(1-\alpha/2), \nu\}}\fr{s}{\sqrt{n}}
+  %   \end{equation*}
+  %   where $\alpha/2 = (1-0.95)/2 = 0.025$ and $\nu = n-1 = 36 -1 = 35$. 
+
+  %   From our work in part (a), we recognize that $ME = 1.015$ (the half-width of the confidence interval). Plugging in these values, we obtain:
+  %   \begin{align*}
+  %     1.015 &= t_{0.975, 35}\fr{s}{\sqrt{36}} \\
+  %     1.015 &= F_T^{-1}(0.975,35) \fr{s}{6} \\
+  %     1.015(6) &= 2.0301s \\
+  %     \implies s &= \fr{1.015 \times 6}{2.0301} \approx \boxed{3.00}
+  %   \end{align*}
+  % \end{quote}
+\end{enumerate}
+\eject
+
+\section*{Problem 4\quad {\it Hypothesis testing (4 points)}}
+In the following hypothesis tests, decide whether to ``Reject $H_{0}$'' or ``Fail to reject $H_{0}$'' by comparing the $Z$ or $T$ scores ($z$ or $t$, respectively) to the critical values. (Critical regions in orange.)  
+\begin{enumerate}[(a)]
+\item  $H_{0}:\mu = \mu_{0}; H_{1}: \mu > \mu_{0}$
+ 
+    % \gr $t_{(1 - \alpha)} = 3.733 \implies  1 - \alpha = F_T(3.733,\nu = 15) = 0.999$.\\
+    % The confidence level is therefore $\boxed{99.9\%.}$
+
+    \begin{figure}[h!]
+      \centering
+      \begin{tikzpicture}[
+        declare function={gamma(\z)=
+          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+          - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+        declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}
+        ]
+        \begin{axis}[no markers, domain=-5:5, samples=100,
+          axis x line=center,
+          axis y line=none,
+          xlabel=$T$, ylabel=$f_X(x)$,
+          every x tick/.style={color=black, thick},          
+          height=3cm, width=15cm,
+          xtick={0,2.249, 3},
+          xticklabels={0,$t_{(1-\alpha)}$, $t$},
+          ymax=.15,
+          ytick=\empty,
+          x label style={anchor=west},
+          y label style={anchor=south},
+          enlargelimits=true, clip=false, axis on top
+          % grid style={line width=.1pt, draw=gray},
+          % yticklabel style={
+          % /pgf/number format/fixed,
+          % /pgf/number format/fixed zerofill,
+          % /pgf/number format/precision=2
+          % },        
+          %   grid = major
+          ]
+          \addplot [blue, domain=-5:5] {student(x,15)};
+          \addplot [gray, fill=gray!50, domain=-5:2.249] {student(x,15)} \closedcycle;
+          \addplot [orange,fill=orange,  domain=2.249:5] {student(x,15)} \closedcycle;
+          % \addplot [orange,fill=orange,  domain=1.697:5] {student(x,8)} \closedcycle;
+         % \node (d) at (axis cs: 0,.1) {Area: .999};
+         % \node (c) at (axis cs: 3.5,.08) {\og Area: .001};
+         % \draw[thick,->] (c) -- (axis cs: 3.5, 0.01);
+          % \node (c) at (axis cs: -3.2,.08) {\og Area: .05};
+          % \draw[thick,->] (c) -- (axis cs: -2, 0.03);
+        \end{axis}
+      \end{tikzpicture}
+      % \caption{Hypothesis test for Problem 6.1}
+      \label{fig:6.1}
+    \end{figure}
+ % \end{quote}
+
+
+ 
+    
+\item  $H_{0}:\mu = \mu_{0}; H_{1}: \mu < \mu_{0}$
+    %  \begin{quote} 
+    % \gr $t_{\alpha} = -2.5 \implies  1 - \alpha = F_T(-2.5, \nu = 24) = 0.9902$.\\
+    % The confidence level is therefore $\boxed{99\%.}$
+
+    \begin{figure}[h!]
+      \centering
+      \begin{tikzpicture}[
+        declare function={gamma(\z)=
+          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+          - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+        declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}
+        ]
+        \begin{axis}[no markers, domain=-5:5, samples=100,
+          axis x line=center,
+          axis y line=none,
+          xlabel=$T$, ylabel=$f_X(x)$,
+          height=3cm, width=15cm,
+          xtick={-2.5, -2.2, 0},
+          xticklabels={$t_{\alpha}$,$t$, 0},
+          every x tick/.style={color=black, thick},         
+          ymax=.15,
+          ytick=\empty,
+          x label style={anchor=west},
+          y label style={anchor=south},
+          enlargelimits=true, clip=false, axis on top
+          % grid style={line width=.1pt, draw=gray},
+          % yticklabel style={
+          % /pgf/number format/fixed,
+          % /pgf/number format/fixed zerofill,
+          % /pgf/number format/precision=2
+          % },        
+          %   grid = major
+          ]
+          \addplot [blue, domain=-5:5] {student(x,24)};
+          \addplot [gray, fill=gray!50, domain=-2.5:5] {student(x,24)} \closedcycle;
+          \addplot [orange,fill=orange,  domain=-5:-2.5] {student(x,24)} \closedcycle;
+          %\addplot [orange,fill=orange,  domain=1.697:5] {student(x,8)} \closedcycle;
+          %\node (d) at (axis cs: 0,.1) {Area: .99};
+       %   \node (c) at (axis cs: -3.2,.08) {\og Area: .01};
+          %\draw[thick,->] (c) -- (axis cs: -2.7, 0.005);
+          % \node (c) at (axis cs: -3.2,.08) {\og Area: .05};
+          % \draw[thick,->] (c) -- (axis cs: -2, 0.03);
+        \end{axis}
+      \end{tikzpicture}
+      % \caption{Hypothesis test for Problem 6.1}
+      \label{fig:6.1}
+    \end{figure}
+ % \end{quote}
+
+    %\eject
+    
+ 
+     
+\item  $H_{0}:\mu = \mu_{0}; H_{1}: \mu \ne \mu_{0}$
+ 
+    \begin{figure}[h!]
+      \centering
+      \begin{tikzpicture}[
+        declare function={gamma(\z)=
+          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+          - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+        declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}
+        ]
+        \begin{axis}[no markers, domain=-5:5, samples=100,
+          axis x line=center,
+          axis y line=none,
+          xlabel=$T$, ylabel=$f_X(x)$,
+          height=3cm, width=14cm,
+          every x tick/.style={color=black, thick},
+          xtick={-1.96,-0.5, 0,1.96},
+          xticklabels={$t_{\fr\alpha2}$,$t$,0,$t_{(1-\fr\alpha2)}$},
+          ymax=.15,
+          %ytick=\empty,
+          x label style={anchor=west},
+          y label style={anchor=south},
+          enlargelimits=true, clip=false, axis on top
+          ]
+          \addplot [blue, domain=-5:5] {student(x,20)};
+          \addplot [gray, fill=gray!50, domain=-1.96:1.96] {student(x,20)} \closedcycle;
+          \addplot [orange,fill=orange,  domain=-5:-1.96] {student(x,20)} \closedcycle;
+          \addplot [orange,fill=orange,  domain=1.96:5] {student(x,20)} \closedcycle;
+          %\node (d) at (axis cs: 0,.1) {Area: .90};
+          %\node (c) at (axis cs: 3.2,.08) {\og Area: .05};
+          %\draw[thick,->] (c) -- (axis cs: 2, 0.03);
+          %\node (c) at (axis cs: -3.2,.08) {\og Area: .05};
+          %\draw[thick,->] (c) -- (axis cs: -2, 0.03);
+        \end{axis}
+      \end{tikzpicture}
+      % \caption{Hypothesis test for Problem 6.1}
+      \label{fig:6.1}
+    \end{figure}
+
+
+   
+    
+  \item  $H_{0}:\mu = \mu_{0}; H_{1}: \mu \ne \mu_{0}$
+ 
+    \begin{figure}[h!]
+      \centering
+      \begin{tikzpicture}[
+        declare function={gamma(\z)=
+          2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)
+          - (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;},
+        declare function={student(\x,\n)= gamma((\n+1)/2.)/(sqrt(\n*pi) *gamma(\n/2.)) *((1+(\x*\x)/\n)^(-(\n+1)/2.));}
+        ]
+        \begin{axis}[no markers, domain=-5:5, samples=100,
+          axis x line=center,
+          axis y line=none,
+          xlabel=$Z$, ylabel=$f_X(x)$,
+          height=3cm, width=14cm,
+          every x tick/.style={color=black, thick},
+          xtick={-1.645, 0,1.645, 3},
+          xticklabels={$z_{\fr\alpha2}$,0,$z_{(1-\fr\alpha2)}$, $z$},
+          ymax=.15,
+          ytick=\empty,
+          x label style={anchor=west},
+          y label style={anchor=south},
+          enlargelimits=true, clip=false, axis on top
+          ]
+          \addplot [blue, domain=-5:5] {gauss(0,1)};
+          \addplot [gray, fill=gray!50, domain=-1.645:1.645] {gauss(0,1)} \closedcycle;
+          \addplot [orange,fill=orange,  domain=-5:-1.645] {gauss(0,1)} \closedcycle;
+          \addplot [orange,fill=orange,  domain=1.645:5] {gauss(0,1)} \closedcycle;
+          %\node (d) at (axis cs: 0,.1) {Area: .90};
+          %\node (c) at (axis cs: 3.2,.08) {\og Area: .05};
+          %\draw[thick,->] (c) -- (axis cs: 2, 0.03);
+          %\node (c) at (axis cs: -3.2,.08) {\og Area: .05};
+          %\draw[thick,->] (c) -- (axis cs: -2, 0.03);
+        \end{axis}
+      \end{tikzpicture}
+      % \caption{Hypothesis test for Problem 6.1}
+      \label{fig:6.1}
+    \end{figure}
+    
+ % \end{quote}
+\end{enumerate}
+ 
+
+
+\eject
+
+
+ \section*{Problem 5 \quad {\it Identifying significance levels with $Z$-score (6 points)}      }
+Let the test statistic $Z$ have a standard normal distribution when $H_0$ is true.
+Find the significance level for each of the following situations (show your work and/or calculator/Matlab/Python functions):
+
+\begin{enumerate}[\bf (a)]
+\item $H_1: \mu > \mu_0$, critical region: $z \ge 1.88$.
+  \vspace{36ex}
+
+\item $H_1: \mu < \mu_0$, critical region: $z \le -2.75$.
+  \vspace{36ex}
+
+\item $H_1: \mu \ne \mu_0$, critical region: $z \ge 2.88$ or $z \le -2.88$.
+ \vspace{36ex}
+
+\end{enumerate}
+
+\eject
+\section*{Problem 6 \quad {\it Identifying significance levels with $T$-score (6 points) }      }
+Let the test statistic $T$ have a $t$ distribution when $H_0$ is true.
+Find the significance level for each of the following situations:
+\begin{enumerate}[\bf (a)]
+\item $H_1: \mu > \mu_0$, d.o.f. $=15$, rejection region: $t \ge 3.733$.
+\vspace{36ex}
+
+\item $H_1: \mu < \mu_0$, d.o.f. $=24$, rejection region: $t \le -2.500$.
+\vspace{36ex}
+
+\item $H_1: \mu \ne \mu_0$, d.o.f. $=31$, rejection region: $t \ge 1.697$ or $t \le -1.697$.
+\vspace{36ex}
+
+\end{enumerate}
+
+
+\eject
+
+\section*{Problem 7 \quad {\it Two-tailed hypothesis test (6 points)}      }
+The melting point of each of 16 samples of a certain brand of hydrogenated vegetable oil was determined, resulting in $\ol{x} = 94.32$.
+Assume that the distribution of melting point is normal with $\sigma = 1.20$.
+Test $H_0: \mu = 95$ versus $H_1: \mu \ne 95$ using a two-tailed level 0.01 test.
+\begin{quote}
+  \it NOTE: to receive full credit, make sure you show the following:
+  \begin{compactitem}
+  \item How you compute the test statistic and critical value(s) OR $p$-value \pts{3}
+  \item Explicitly compare test statistic to the critical value (or p-value to $\alpha$) \pts{1}
+  \item State the outcome of the hypothesis test and write a concluding statement \pts{2}
+  \end{compactitem}
+\end{quote}
+% \begin{quote}
+%   \gr
+%   \begin{align*}
+%     H_0: \mu &= 95 \\
+%     H_1: \mu &\ne 95 \\
+%     \text{Test statistic: } z &= \fr{\ol{x} - \mu_0}{SE}  = \fr{\ol{x} - \mu_0}{\sigma/\sqrt{n}} \\
+%              &= \fr{94.32 - 95}{1.2/\sqrt{16}} = -2.2667 \\
+%     \text{Critical value: } z_{\alpha/2} &= \Phi^{-1}(0.01/2) = - 2.5758 \\
+%     \implies z_{( 1 - \alpha/2)} &=  2.5758 
+%   \end{align*}
+%   Since $z_{\alpha/2} < z < z_{(1 - \alpha/2)}$ (i.e. $z$ lies in the region of non-rejection), we \textbf{fail to reject the null hypothesis}.
+% \end{quote}
+\vspace{40ex}
+
+\eject
+\section*{Problem 8 \quad {\it p-values (7 points)}      }
+\begin{enumerate}[\bf (a)]
+\item Pairs of $p$-values and significance levels $\alpha$ are given.
+For each pair, state whether the observed $p$-value would lead to rejection of $H_0$ at the given significance level:
+\begin{enumerate}[ \bf (i)]
+\item $p$-value = 0.084; $\alpha = 0.05$ \pts{1}
+  \vspace{10ex}
+  
+\item  $p$-value $= 3.2 \times 10^{-5}$; $\alpha = 0.001$  \pts{1}
+  \vspace{10ex}
+  
+\item $p$-value = 0.039; $\alpha = 0.01$  \pts{1}
+  \vspace{10ex}
+  
+\end{enumerate}
+
+
+
+\item Let $\mu$  denote the mean reaction time to a certain stimulus. For a large-sample test of $H_0: \mu = 5$, 
+  versus $H_1: \mu > 5$, find the $p$-value associated with the following test statistic values
+  \begin{enumerate}[\bf (i)]
+  \item $z = 1.42$ \pts{2}
+    \vspace{30ex}
+    
+    \item $z = -0.11$ \pts{2}
+  \end{enumerate}
+
+  % \begin{quote}
+  %   \gr
+  %   \begin{enumerate}[(i)]
+  %   \item Given $z = 1.42$, \pts{1} then the $p$-value is $1 - \Phi(1.42) = \boxed{\bm{0.0778}}$.
+  %   \item Given $z = -0.11$,  \pts{1} then the $p$-value is $1 - \Phi(-0.11) = \boxed{\bm{0.5438}}$.
+  %   \end{enumerate}
+  % \end{quote}
+    \vspace{25ex}
+\end{enumerate}
+
+\section*{Problem 9 \quad {\it One-tailed hypothesis test (8 points)}      }
+The times of first sprinkler activation for a series of tests with fire prevention sprinkler systems using an aqueous film-forming foam were (in sec):
+\[27, 41, 22, 27, 23, 35, 30, 33, 24, 27, 28, 22, 24\] The system has been designed so that true average activation time
+is at most 25 sec under such conditions.  Test the relevant hypotheses at significance level 0.05 using the $p$-value
+approach to determine if the data strongly contradict the validity of this design specification.
+\begin{quote}
+{\it NOTE: To get full credit for this problem, make sure you do the following:
+  \begin{compactitem}
+  \item State the hypotheses (there are two) \pts{1}
+  \item Find the sample mean and standard deviation \pts{2}
+  \item Find the test statistic (hint: $T$-score) \pts{1}
+  \item Find the p-value \pts{1}
+  \item Compare the appropriate values \pts{1}
+  \item Clearly state the outcome from your hypothesis test \pts{1}
+  \item Write a final concluding statement in response to the question \pts{1}
+  \end{compactitem}
+  }
+\end{quote}
+% \begin{quote}
+%   \gr
+%   We note or compute the parameters as follows:
+%   \begin{align*}
+%     \mu_0 &= 25 \\
+%     H_0 : \mu &= 25 \\
+%     H_1 : \mu &> 25 \\
+%     \alpha &= 0.05\\
+%     \ol{x} &= 27.9 \quad \text{(from MATLAB)}\\
+%     s &= 5.62 \quad \text{(from MATLAB)}
+%   \end{align*}
+%   This is an upper-tailed test. We find the test statistic:
+%   \begin{align*}
+%     t &= \fr{\ol{x} - \mu_0}{s/\sqrt{n}} = \fr{27.9 - 25}{5.62/\sqrt{13}} \\
+%       &= 1.8605
+%   \end{align*}
+%   The $p$-value is therefore:
+%   \begin{equation*}
+%     p = 1 - F_T(1.8605, 12) = 1 - 0.9563 =0.0437
+%   \end{equation*}
+%   Since the $p$-value $=0.0437$ is less than the significance level $\alpha = 0.0$, we \textbf{reject the null hypothesis}.
+%   This implies that the data contradicts the validity of this design specification.
+%   However, we would not describe this as a ``strong'' contradiction, since the $p$-value is less than a percentage point smaller than $\alpha$.
+% \end{quote}
+%\end{enumerate}
+
+\eject
+
+\section*{Problem 10\quad {\it Difference of two means; known variances (8 points) }      }
+\begin{minipage}{.65\textwidth}
+An article published in 1983 compared various types of batteries.
+The average lifetimes of Duracell Alkaline AA batteries and Eveready Energizer Alkaline AA batteries were given as 4.1 hours and 4.5 hours, respectively.
+Suppose these are the population average lifetimes. 
+{\small \it (RIGHT:) Eveready and Duracell batteries. Source: \url{https://mybroadband.co.za/news/gadgets/413368-duracell-and-eveready-tested-with-surprising-results.html}}
+\end{minipage}\qquad
+\begin{minipage}{.3\textwidth}
+	\includegraphics[width=\textwidth]{Eveready-vs-Duracell.jpg}
+\end{minipage}
+\begin{enumerate}[\bf (a)]
+\item Let $\ol{x}$ be the sample average lifetime of 100 Duracell baterries \pts{1} and $\ol{y}$ be the sample average lifetime of 100 Eveready batteries.
+  What is the mean value of $\ol{x} - \ol{y}$ (i.e.\ where is the distribution of $\ol{x} - \ol{y}$ centered)?
+
+  \vspace{10ex}
+\item Suppose the population standard \pts{3} deviations of lifetime are 1.8 hours for Duracell batteries and 2.0 hours for Eveready batteries.
+  With the sample sizes given in part (a), what is the \textbf{standard error} of the statistic $\ol{x} - \ol{y}$
+  \vspace{30ex}
+  
+\item Compute and \textbf{interpret} the 99\% CI of the difference in lifetime between Duracell and Eveready batteries, $\ol x - \ol y$. \pts{4}
+
+ \vspace{50ex}
+\end{enumerate}
+ 
+\eject 
+~
+% What is the \pts{2} probability that more than 40 of the adults in the random sample have a college degree?
+
+%   \begin{solution}
+%     \begin{align*}
+%       P(\hat p > 0.40) &= 1 - P(\hat p \le 0.40) \\
+%                        &=  1 - \Phi\lt( \fr{0.40 - 0.30 }{\sqrt{0.0021}}\rt) \\
+%                        &=\boxed{0.0145}      
+%     \end{align*}
+%   \end{solution}
+   
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
