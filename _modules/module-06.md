@@ -3,6 +3,6 @@ title: Module 6 Inference for Numerical Data
 ---
 
 Tue, Nov 18
-: **LECTURE 6A**{: .label .label-blue }[Goodness of Fit Testing](/assets/lectures/M6-Inference-Numerical-Data/M6a-Inference-One-Sample-Means-Handout.pdf)
+: **LECTURE 6A**{: .label .label-blue }[Inference for One Sample Means](/assets/lectures/M6-Inference-Numerical-Data/M6a-Inference-One-Sample-Means-Handout.pdf)
   :  [Echo360 Video](https://echo360.org/lesson/G_cfa36933-c0df-42df-a2b7-d31e4be7f9a2_47c3b0d1-758e-4090-99ce-7fc3cdd96573_2025-11-18T13:00:00.000_2025-11-18T14:15:00.000/classroom)
 : **PROBLEM SET 8**{: .label .label-red}[PDF](/assets/problem-sets/PS8.pdf), [LaTeX](/assets/problem-sets/PS8.tex)  **(Due 11/26)** 
