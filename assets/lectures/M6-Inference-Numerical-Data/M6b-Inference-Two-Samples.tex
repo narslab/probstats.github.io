@@ -1,24 +1,25 @@
-% \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
-% \if 0\bmode
-% \documentclass[smaller]{beamer}
-% \else \if 1\bmode
-% \immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
-% \documentclass[smaller,handout]{beamer}
-% \usepackage{handoutWithNotes}
-% \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
-% \else \if 2\bmode
-% \immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
-% \documentclass[smaller,handout]{beamer}
-% \fi
-% \fi
-% \fi
+\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\if 0\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Presentation\space\jobname}
 \documentclass[smaller]{beamer}
+\else \if 1\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+\else \if 2\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\fi
+\fi
+\fi
+%\documentclass[smaller]{beamer}
 
 
 % \documentclass[smaller,handout
 % ]{beamer}
 %\usepackage{etex}
-%\newcommand{\num}{6{} }
+%\newcommand{ dfm}{6{} }
 
 % \usetheme[
 %   outer/progressbar=foot,
@@ -119,7 +120,7 @@ eprint=false]{biblatex}
 \makeatother
 
 %=== GRAPHICS PATH ===========
-\graphicspath{{./images/}}
+\graphicspath{{./m6-images/}}
 % Marginpar width
 %Marginpar width
 %\setlength{\marginparsep}{.02in}
@@ -327,8 +328,8 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 M6b: Inference for Two Samples]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
-Lecture M6b: Inference for Two Samples}
+\title[CEE 260/MIE 273 M6B: Inference for Two Samples]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture 6B: Inference for Two Samples}
 \date[\today]{\footnotesize \today}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
@@ -370,9 +371,9 @@ Lecture M6b: Inference for Two Samples}
   \begin{itemize}
   	\item The critical $t$-value is
   	\begin{equation}
-  		t^* = F_T^{-1}(1 - \alpha/2, \nu)  
+  		t^* = F_T^{-1}(1 - \alpha/2,  df)  
   	\end{equation}
-  	\pause given by \texttt{tinv(1 - alpha/2, nu)} in Matlab
+  	\pause given by \texttt{\bl t.ppf(1 - alpha/2, df)} in Python
   	\pause
   	\item The standard error of the difference of the two means is
   	\begin{equation}
@@ -391,15 +392,15 @@ Lecture M6b: Inference for Two Samples}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Computing $\nu$ for difference of two means}\pause
-	To find the critical $t$-value, we need to compute the degrees of freedom (df) parameter $\nu$. \pause
+	\frametitle{Computing $ df$ for difference of two means}\pause
+	To find the critical $t$-value, we need to compute the degrees of freedom (df) parameter $ df$. \pause
 	
-	For a single sample, $\nu = n-1$. However, when dealing with \textbf{two samples}, 
-	$\nu$ given by: \pause
+	For a single sample, $ df = n-1$. However, when dealing with \textbf{two samples}, 
+	$ df$ given by: \pause
 	
 	\begin{equation}
 		\label{eq:3}
-		\nu = \fr{\lt(\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}\rt)^2}{\fr{\lt(s_1^2/n_1\rt)^2}{n_1 -1} + \fr{\lt(s_2^2/n_2\rt)^2}{n_2 -1}}
+		 df = \fr{\lt(\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}\rt)^2}{\fr{\lt(s_1^2/n_1\rt)^2}{n_1 -1} + \fr{\lt(s_2^2/n_2\rt)^2}{n_2 -1}}
 	\end{equation}
 	\pause
 	This is a complicated formula.
@@ -407,9 +408,9 @@ Lecture M6b: Inference for Two Samples}
 	
 	\begin{alertblock}{df shortcut}
 		\pause
-		A simpler way to estimate $\nu$ is to use the formula:\pause
+		A simpler way to estimate $ df$ is to use the formula:\pause
 		\begin{equation}
-			\nu \approx \min(n_1 -1, n_2 -1)
+			 df \approx \min(n_1 -1, n_2 -1)
 		\end{equation}
 		\pause (i.e. the smaller of the two)
 	\end{alertblock}
@@ -452,20 +453,20 @@ Lecture M6b: Inference for Two Samples}
   \begin{exampleblock}{Solution}\pause
     First we compute the degrees of freedom: \pause
     \begin{eqnarray*}
-      \nu &=& \fr{\lt(\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}\rt)^2}{\fr{\lt(s_1^2/n_1\rt)^2}{n_1 -1} + \fr{\lt(s_2^2/n_2\rt)^2}{n_2 -1}}\\\pause
+       df &=& \fr{\lt(\fr{s_1^2}{n_1} + \fr{s_2^2}{n_2}\rt)^2}{\fr{\lt(s_1^2/n_1\rt)^2}{n_1 -1} + \fr{\lt(s_2^2/n_2\rt)^2}{n_2 -1}}\\\pause
           &=& \fr{\lt( \fr{0.6241}{10} + \fr{12.8881}{10}\rt)^2}{\fr{(0.6241/10)^2}{9} + \fr{(12.8881/10)^2}{9}}  \pause
      = \fr{1.8258}{0.1850} = \pause 9.87
     \end{eqnarray*}
-    \pause We round down to nearest integer. Thus, we use: $\nu = 9$.
+    \pause We round down to nearest integer. Thus, we use: $ df = 9$.
   \end{exampleblock}
   \pause
-\begin{alertblock}{Quick back-of-the-hand calculation for $\bm{\nu}$} \pause
- 	A shortcut for finding $\nu$ is
+\begin{alertblock}{Quick back-of-the-hand calculation for $\bm{ df}$} \pause
+ 	A shortcut for finding $ df$ is
  	\begin{equation}
- 		\nu \approx \min(n_1 -1, n_2-1)\label{eq:10}
+ 		 df \approx \min(n_1 -1, n_2-1)\label{eq:10}
  	\end{equation} \pause
  	%That is, we choose the smaller d.o.f. of the two samples.{} \pause
- 	In this case, we can see that since $n_1 = n_2$, we ended up with $\nu = 10 - 1 = 9$.
+ 	In this case, we can see that since $n_1 = n_2$, we ended up with $ df = 10 - 1 = 9$.
   \end{alertblock}
 \end{frame}
 
@@ -479,7 +480,7 @@ Lecture M6b: Inference for Two Samples}
     \pause
 
     \begin{equation*}
-      -t^* = t_{(\alpha/2, \nu)} = t_{0.025,9} = -2.262 \quad {\rd \mathtt{tinv(.025, 9)}}
+      -t^* = t_{(\alpha/2,  df)} = t_{0.025,9} = -2.262 \quad {\rd \mathtt{t.ppf(.025, 9)}}
     \end{equation*}
 
     \pause
@@ -529,7 +530,7 @@ Lecture M6b: Inference for Two Samples}
 \begin{frame}
   \frametitle{Example 1: Permeability of textile fabrics (cont)}
   \pause
-
+\vfill
   \begin{exampleblock}{Solution}\pause
     \textbf{Interpretation:} \\ \pause
 
@@ -654,7 +655,7 @@ Lecture M6b: Inference for Two Samples}
 			\item Find the critical values  (two-tailed test): \pause
 			\begin{eqnarray*}
 				\alpha/2 &=& 0.01/2 = 0.005 \\\pause
-				z^* = z_{(1-\alpha/2)} &=& z_{0.995} = \pause 2.58 \quad (\mathtt{norminv(0.995)}) \\\pause
+				z^* = z_{(1-\alpha/2)} &=& z_{0.995} = \pause 2.58 \quad (\mathtt{\bl norm.ppf(0.995)}) \\\pause
 				z_{\alpha/2} &=& z_{0.005} = \pause -2.58 				
 			\end{eqnarray*}
 		\end{enumerate}
@@ -663,6 +664,7 @@ Lecture M6b: Inference for Two Samples}
 
 \begin{frame}
 	\frametitle{Difference between two population means}
+	\vfill
 	\begin{exampleblock}{Example 1: Cold-rolled vs.\ galvanized steel (cont.)}
 		\begin{enumerate}[\bf Step 1.]\setcounter{enumi}{6}
 			\item Conclude:\\ \pause 
@@ -698,7 +700,7 @@ Lecture M6b: Inference for Two Samples}
 	
 	\begin{block}{Assumptions}\pause
 		\begin{itemize}[<+->]
-			\item $n$ independently selected pairs of observations: $E(X_i) = \mu_1, E(Y_i) = \mu_2$.
+			\item $n$ independently selected pairs of observations: $\mathbb{E}(X_i) = \mu_1, \mathbb{E}(Y_i) = \mu_2$.
 			\item Differences betweeen pairs $D_i = X_i - Y_i$ are normally distributed with mean $\mu_D$ and variance $\sigma_{D}^2$ \pause
 			\begin{itemize}
 				\item  If $n$ is small, conduct $t$-test
@@ -804,7 +806,7 @@ Lecture M6b: Inference for Two Samples}
 			
 			\item Find the $p$-value: \pause
 			\begin{eqnarray*}
-				p\text{-value} &=& 2\cdot(1 - F_T(3.3,15)) \quad {\rd(\mathtt{2*tcdf(3.3, 15, "upper")})} \\\pause
+				p\text{-value} &=& 2\cdot(1 - F_T(3.3,15)) \quad {\bl(\mathtt{2*t.sf(3.3, 15)})} \\\pause
 				&=&  2(0.0024) \pause \approx 0.005
 			\end{eqnarray*}
 		\end{enumerate}
@@ -813,6 +815,9 @@ Lecture M6b: Inference for Two Samples}
 
 \begin{frame}
 	\frametitle{Paired $t$-test in practice}
+
+
+\vfill
 	\begin{exampleblock}{Example 2: Intervention for ergonomic improvements (cont.)}
 		\begin{enumerate}[\bf Step 1.]\setcounter{enumi}{6}\pause
 			\item Conclude: \\\pause
@@ -823,7 +828,115 @@ Lecture M6b: Inference for Two Samples}
 	\end{exampleblock}
 \end{frame}
 
+\section{Outlook}
 
+\begin{frame}
+	\frametitle{Summary}
+\pause
+	\begin{itemize}[<+->]
+		\item Confidence intervals and hypothesis tests can be used to compare two population means.
+		\item When population variances are unknown, we use the $t$-distribution with degrees of freedom computed using a complicated formula or a simple shortcut.
+		\item Paired data arise when two different observations are made on the same set of individuals in a sample.
+		\item The paired $t$-test is used to test hypotheses about the mean difference between paired observations.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Key equations}
+	\pause
+	\begin{itemize}[<+->]
+		\item CI for difference of two means (unknown variances):
+		\begin{equation*}
+			\langle \mu_1 - \mu_2\rangle_{1-\alpha} = \left( \ol{x} -\ol{y} \pm t^* \times SE_{diff}\right)
+		\end{equation*}
+		where $SE_{diff} = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
+		\pause
+		\begin{itemize}
+			\item If variances are known, use $z$-score instead of $t$-score; and $\sigma$ instead of $s$.
+		\end{itemize}
+		\item Degrees of freedom:
+		\begin{equation*}
+			df = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{(s_1^2/n_1)^2}{n_1 -1} + \frac{(s_2^2/n_2)^2}{n_2 -1}} \quad \text{or} \quad df \approx \min(n_1 -1, n_2 -1)
+		\end{equation*}
+		
+		\item Two-sample z-test (known variances):
+		\begin{equation*}
+			z = \frac{\ol{x_1} - \ol{x_2} - \Delta_0}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma^2_2}{n_2}}}
+		\end{equation*}
+
+	\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Key equations (cont.)}
+
+		\begin{itemize}
+		\item 	Paired data arise when two different observations are made on the \textbf{same set} of $n$ individuals in a sample. \pause
+		\item Paired data differences $D_i = X_i - Y_i$ are normally distributed with mean $\mu_D$ and variance $\sigma_{D}^2$.
+		\item Paired t-test:
+		\begin{equation*}
+			t = \frac{\ol{d} - \mu_0}{s_D/\sqrt{n}}
+		\end{equation*}
+		where $\ol{d} = \ol{x_1} - \ol{x_2}$ is the sample mean difference and $s_D$ is the sample standard deviation of differences
+	
+	\end{itemize}
+	
+		
+	
+	\end{frame}
+% 	\frametitle{Visualization of the $t$-test (Example 2)}
+% 	\pause
+	
+% 	\begin{center}
+% 		\begin{tikzpicture}
+% 			\begin{axis}[
+% 				width=0.85\textwidth,
+% 				height=0.5\textheight,
+% 				domain=0:3.5,
+% 				samples=100,
+% 				axis lines=middle,
+% 				xlabel={$t$},
+% 				ylabel={},
+% 				ytick=\empty,
+% 				xtick={0, 2.947, 3.3},
+% 				xticklabels={$0$, $t^*_{0.995}$, $3.3$},
+% 				xticklabel style={font=\small},
+% 				enlargelimits=false,
+% 				clip=false,
+% 				axis on top,
+% 				grid=none,
+% 				ymin=0,
+% 				ymax=0.45,
+% 				]
+				
+% 				% t-distribution with df=15
+% 				\addplot [very thick, red, name path=tdist] 
+% 					{gamma(8)/((sqrt(15*pi))*gamma(7.5))*((1+(x^2)/15)^(-8))};
+				
+% 				% Right tail shaded area (alpha/2 = 0.005)
+% 				\path[name path=axis] (axis cs:2.947,0) -- (axis cs:4,0);
+% 				\addplot[red] fill between[of=tdist and axis, soft clip={domain=2.947:4}];
+				
+% 				% Add vertical line at observed t-statistic
+% 				\draw[thick, blue, dashed] (axis cs:3.3,0) -- (axis cs:3.3,0.35);
+				
+% 				% Add labels
+% 				\node[red, font=\small] at (axis cs:3.4,0.15) {$\alpha/2 = 0.005$};
+% 				\node[blue, font=\small, above] at (axis cs:3.3,0.36) {$t = 3.3$};
+% 				\node[font=\small] at (axis cs:0,0.38) {$t$-distribution ($df = 15$)};
+				
+% 			\end{axis}
+% 		\end{tikzpicture}
+% 	\end{center}
+	
+% 	\pause
+	
+% 	\begin{alertblock}{Interpretation}\pause
+% 		Since the observed test statistic $t = 3.3$ falls in the rejection region (beyond $t^* = 2.947$),
+% 		we reject $H_0$ at the $\alpha = 0.01$ significance level. The p-value $\approx 0.005$ represents the area in both tails beyond $|t| = 3.3$.
+% 	\end{alertblock}
+% \end{frame}
 
 
 
