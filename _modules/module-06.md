@@ -11,3 +11,6 @@ Thu, Nov 20
 : **LECTURE 6B**{: .label .label-blue }[Inference for Two Samples](/assets/lectures/M6-Inference-Numerical-Data/M6b-Inference-Two-Samples-Handout.pdf)
   :  [Echo360 Video](#)
 : **ACTIVITY 6B**{: .label .label-activity}[iPhone vs Android Screentime](https://claude.ai/public/artifacts/a7d4e26a-1ca3-4948-a886-9262b64ad78f)
+: **LAB 8**{: .label .label-orange}[CIs and Hypothesis Testing for a Sample Mean](https://colab.research.google.com/drive/1Qp2umJMuqpxa7t8RMnhkZN4Kvwa93XqJ?authuser=1#scrollTo=F1zgHNjwYP8C) **(Due 12/2)**
+
+
