@@ -13,4 +13,6 @@ Thu, Nov 20
 : **ACTIVITY 6B**{: .label .label-activity}[iPhone vs Android Screentime](https://claude.ai/public/artifacts/a7d4e26a-1ca3-4948-a886-9262b64ad78f)
 : **LAB 8**{: .label .label-orange}[CIs and Hypothesis Testing for a Sample Mean](https://colab.research.google.com/drive/1Qp2umJMuqpxa7t8RMnhkZN4Kvwa93XqJ?authuser=1#scrollTo=F1zgHNjwYP8C) **(Due 12/2)**
 
-
+Tue, Nov 25
+: **LECTURE 6C**{: .label .label-blue }[ANOVA](/assets/lectures/M6-Inference-Numerical-Data/M6c-ANOVA-Handout.pdf)
+  :  [Echo360 Video](#)

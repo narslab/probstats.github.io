@@ -1,5 +1,6 @@
- \def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+ \def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
  \if 0\bmode
+  \immediate\write18{pdflatex -jobname=\jobname-Presentation\space\jobname}
  \documentclass[smaller]{beamer}
  \else \if 1\bmode
  \immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
@@ -7,12 +8,12 @@
  \usepackage{handoutWithNotes}
  \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
  \else \if 2\bmode
- \immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+ \immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
  \documentclass[smaller,handout]{beamer}
  \fi
  \fi
  \fi
-% \documentclass[smaller, handout]{beamer}
+%\documentclass[smaller, handout]{beamer}
 
 
 % \documentclass[smaller,handout
@@ -22,7 +23,7 @@
 
 % \usetheme[
 %   outer/progressbar=foot,
-%   outer/numbering=counter,
+%   outer/numbering=counter,	
 %  block=fillFF
 % ]{metropolis}
 
@@ -119,7 +120,7 @@ eprint=false]{biblatex}
 \makeatother
 
 %=== GRAPHICS PATH ===========
-\graphicspath{{./images/}}
+\graphicspath{{./m6-images/}}
 % Marginpar width
 %Marginpar width
 %\setlength{\marginparsep}{.02in}
@@ -327,8 +328,8 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 M6c: ANOVA]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
-Lecture M6c: Analysis of Variance (ANOVA)}
+\title[CEE 260/MIE 273 6C: ANOVA]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture 6C: Analysis of Variance (ANOVA)}
 \date[\today]{\footnotesize \today}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
@@ -376,7 +377,7 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 		\end{equation}
 		\pause
 		\begin{itemize}
-			\item The $F$-distribution has 2 parameters: $\nu_1$ and $\nu_2$. \pause
+			\item The $F$-distribution has 2 parameters: $df_1$ and $df_2$. \pause
 			\item  Coined in 1934 by George W.\ Snedecor in honor of Sir Ronald A.\ Fisher \pause who developed the ANOVA method, among other achievements.
 		\end{itemize}
 	\end{minipage}\quad
@@ -407,9 +408,9 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 				legend cell align=left
 				]
 				
-				\addplot [very thick,blue] {fdst(x,1,1)}; \addlegendentry{$\nu_1=1,\hphantom{00} \nu_2=1$}
-				\addplot [very thick,orange] {fdst(x,50,50)}; \addlegendentry{$\nu_1=50,\hphantom{0} \nu_2=50$}
-				\addplot [very thick,purple] {fdst(x,5,2)}; \addlegendentry{$\nu_1=5,\hphantom{00} \nu_2=2$}
+				\addplot [very thick,blue] {fdst(x,1,1)}; \addlegendentry{$df_1=1,\hphantom{00} df_2=1$}
+				\addplot [very thick,orange] {fdst(x,50,50)}; \addlegendentry{$df_1=50,\hphantom{0} df_2=50$}
+				\addplot [very thick,purple] {fdst(x,5,2)}; \addlegendentry{$df_1=5,\hphantom{00} df_2=2$}
 				
 			\end{axis}
 		\end{tikzpicture}    
@@ -496,8 +497,8 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 		\end{equation*}
 		\item[Compare]
 		\begin{enumerate}[(a)]
-			\item Find critical value $F_{1-\alpha, \nu_1,\nu_2}$.\\ \pause
-			If $f \le F_{1-\alpha, \nu_1,\nu_2}$, \textbf{fail to reject $\bm{H_0}$}  \pause \textit{OR} \\\pause
+			\item Find critical value $F_{(1-\alpha, df_1, df_2)}$.\\ \pause
+			If $f \le F_{(1-\alpha, df_1, df_2)}$, \textbf{fail to reject $\bm{H_0}$}  \pause \textit{OR} \\\pause
 			\item Find $p$-value. \\ \pause
 			If $\alpha \le  p$-value, \textbf{fail to reject $\bm{H_0}$}
 		\end{enumerate}
@@ -695,11 +696,11 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 			\item $H_0: \mu_1 = \mu_2 = \cdots = \mu_k$ \pause
 			\item $\bl MSE$ is an unbiased estimate of $\sigma^2$ whether or not $H_0$ is true  \pause
 			\item $\rd MSG$ is an unbiased estimate of $\sigma^2$ ONLY when $H_0$ is true \pause 
-			\item When $H_0$ is not true, $\mathbb{E}({\rd MSG}) > \mathbb{E}({\bl MSE}) = \sigma^2 \implies f > 1$ \pause
-			\item When $H_0$ is true, $f$ follows the $F$-distribution with: \pause 
+			\item When $H_0$ is not acceptable, $\mathbb{E}({\rd MSG}) > \mathbb{E}({\bl MSE}) = \sigma^2 \implies f > 1$ \pause
+			\item When $H_0$ is acceptable, $f$ follows the $F$-distribution with: \pause 
 			\begin{eqnarray}
-				 \nu_1 &=& k-1 \\ \pause 
-				 \nu_2 &=& n-k
+				 df_1 &=& k-1 \\ \pause 
+				 df_2 &=& n-k
 			\end{eqnarray}
 		\end{itemize}
 	\end{block}
@@ -721,12 +722,93 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 		\end{equation*}
 		\item[Compare]
 		\begin{enumerate}[(a)]
-			\item Find critical value $F_{1-\alpha, \nu_1,\nu_2}$\footnote{Use \texttt{\rd finv(1 - alpha, nu1, nu2)} in MATLAB} (also called $f^*$).\\ \pause
-			If $f \le F_{1-\alpha, \nu_1,\nu_2}$, \textbf{fail to reject $\bm{H_0}$}  \pause \textit{OR} \\\pause
+			\item Find critical value $F_{(1-\alpha, df_1, df_2)}$\footnote{Use \texttt{\rd f.ppf(1 - alpha, df1, df2)} in Python} (also called $f^*$).\\ \pause
+			If $f \le F_{(1-\alpha, df_1, df_2)}$, \textbf{\bl fail to reject $\bm{H_0}$}  \pause 
+			
+			If $f > F_{(1-\alpha, df_1, df_2)}$, \textbf{\rd  reject $\bm{H_0}$} 
+			\textit{OR} 
+			\\\pause
 			\item Find $p$-value. \\ \pause
-			If $\alpha \le  p$-value, \textbf{fail to reject $\bm{H_0}$}
+			If $p$-value $ \ge \alpha$  , \textbf{fail to reject $\bm{H_0}$} \pause
+
+			If $p$-value $ < \alpha$, \textbf{reject $\bm{H_0}$}
 		\end{enumerate}
 	\end{description}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ANOVA F-test visualization}\pause
+
+	\begin{center}
+		\begin{tikzpicture}[
+			declare function={
+				gamma(\z)=2.506628274631*sqrt(1/\z)+ 0.20888568*(1/\z)^(1.5)+ 0.00870357*(1/\z)^(2.5)- (174.2106599*(1/\z)^(3.5))/25920- (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z;
+			},
+			declare function={
+				beta(\x,\y)=gamma(\x)*gamma(\y)/gamma(\x+\y);
+			},
+			declare function={
+				fdst(\x,\a,\b) = 1 / beta(\a/2, \b/2) * (\a/\b)^(\a/2) * \x^(\a/2-1) * (1 + \a/\b*\x)^(-(\a + \b)/2);
+			}
+			]
+			
+			\begin{axis}[
+				height=6cm, 
+				width=12cm,
+				axis x line=center,
+				xlabel={$F$},
+				x label style={anchor=west},
+				y label style={anchor=south},
+				axis lines=left,
+				xtick={0, 3.16},
+				xticklabels={$0$, $F_{(1-\alpha, df_1, df_2)}$},
+				axis on top,
+				enlargelimits=upper,
+				samples=150,
+				xmin=0, ymin=0,
+				xmax=6,
+				domain=0.001:6,
+				legend cell align=left,
+				major tick length=6,
+				major tick style={very thick}
+				]
+				
+				% F-distribution curve
+				\addplot [very thick, darkcandyapplered, name path=fdist] {fdst(x,3,18)};
+				
+				% Rejection region (shaded in red/orange)
+				\addplot [fill=darkcandyapplered!40, draw=none, domain=3.16:6, name path=rejection] {fdst(x,3,18)} \closedcycle;
+				
+				% Acceptance region (shaded in green)
+				\addplot [fill=green!20, draw=none, domain=0:3.16] {fdst(x,3,18)} \closedcycle;
+				
+				% Critical value line
+				\draw[thick, darkcandyapplered, dashed] (axis cs:3.16,0) -- (axis cs:3.16,0.45);
+				
+				% Labels
+				\node[green!50!black, font=\small] at (axis cs:1.2,0.17) {\textbf{Acceptance Region}};
+				\node[green!50!black, font=\small] at (axis cs:1.2,0.12) {Fail to reject $H_0$};
+				
+				\node[darkcandyapplered, font=\small] at (axis cs:4.3,0.15) {\textbf{Rejection Region}};
+				\node[darkcandyapplered, font=\small] at (axis cs:4.3,0.11) {$\alpha = 0.05$};
+				\node[darkcandyapplered, font=\small] at (axis cs:4.3,0.06) {Reject $H_0$};
+				
+				\node[font=\footnotesize] at (axis cs:3,0.56) {$F$-distribution};
+				\node[font=\footnotesize] at (axis cs:3,0.48) {$(df_1 = k-1, df_2 = n-k)$};
+				
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	
+	\pause
+	
+	\begin{alertblock}{Decision Rule}\pause
+		\begin{itemize}
+			\item If $f \le F_{(1-\alpha, df_1, df_2)}$: {\gr Fail to reject $H_0$} (means are equal)\pause
+			\item If $f > F_{(1-\alpha, df_1, df_2)}$: {\rd Reject $H_0$} (at least one mean differs)
+		\end{itemize}
+	\end{alertblock}
+
 \end{frame}
 
 
@@ -780,7 +862,7 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 			\end{eqnarray*}
 			\pause
 			
-			\item Second, we find the $p$-value\footnote{In MATLAB, use: \texttt{\rd 1 - fcdf(12.56, 2, 19)} OR \texttt{\rd fcdf(12.56, 2, 19, 'upper')}}: \pause
+			\item Second, we find the $p$-value\footnote{In MATLAB, use: \texttt{\rd 1 - f.cdf(12.56, 2, 19)} OR \texttt{\rd f.sf(12.56, 2, 19)}}: \pause
 			\begin{eqnarray*}
 				p\text{-value} &=& 1 - F(12.56,2, 19) = 0.0003
 			\end{eqnarray*}
@@ -803,7 +885,7 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 		The following values on distortion are measured:
 		
 		\begin{tabular}{l l l }\toprule
-			\bf Coating & \bf Observations & \bf Sample Sizes \\\midrule
+			\textbf{Coating} & \textbf{Observations} & \textbf{Sample Sizes} \\\midrule
 			A & 10, 15, 8, 12, 15 & 5 \\
 			B & 14, 18, 21, 15 & 4 \\
 			C & 17, 16, 14, 15, 17, 15, 18 &7\\
@@ -833,7 +915,7 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 
 \begin{frame}
 	\frametitle{One-way ANOVA in practice}\pause
-	\begin{exampleblock}{Example 4: Recording tape quality (cont.)}\pause
+	\begin{exampleblock}{Example 2: Recording tape quality (cont.)}\pause
 		\begin{enumerate}[Step 1.] \setcounter{enumi}{1}
 			\item Compute the sums:
 			\begin{eqnarray*}
@@ -875,19 +957,19 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 		\begin{enumerate}[Step 1.] \setcounter{enumi}{3}
 			\item Find critical value:
 			\begin{equation*}
-				F_{0.95, 3, 18} = F^{-1}(0.95, 3, 18) = \rd{3.1599} \quad \text{(from MATLAB)}
+				F_{0.95, 3, 18} = F^{-1}(0.95, 3, 18) = \rd{3.1599} \quad \text{(from Python)}
 			\end{equation*}
 			\pause
 			
 			Notes: 
 			\begin{itemize}
-				\item Use \texttt{\rd finv(0.95, 3, 18)} to find the critical value. \pause
-			 \item The $F$ curve is NOT symmetric. So, \texttt{-finv(0.05, 3, 18)} will NOT give the same answer. \pause
+				\item Use \texttt{\rd f.ppf(0.95, 3, 18)} to find the critical value. \pause
+			 \item The $F$ curve is NOT symmetric. So, \texttt{-f.ppf(0.05, 3, 18)} will NOT give the same answer. \pause
 			 \item However, the $F$-curve has the property  \pause
 			 \begin{equation}
-			 	F_{\alpha,\nu_1,\nu_2} = \fr{1}{F_{1-\alpha, \nu_2, \nu_1}}
+			 	F_{(\alpha,df_1,df_2)} = \fr{1}{F_{(1-\alpha, df_2, df_1)}}
 			 \end{equation}\pause
-			 \item So, in this case, \texttt{\rd finv(0.05, 18, 3)} will give the same answer as \texttt{\rd finv(0.95, 3, 18)}.
+			 \item So, in this case, \texttt{\rd f.ppf(0.05, 18, 3)} will give the same answer as \texttt{\rd f.ppf(0.95, 3, 18)}.
 			\end{itemize}
 		\end{enumerate}
 	\end{exampleblock}
@@ -919,7 +1001,7 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 				\begin{axis}[
 					height=6cm, width=12cm,
 					axis x line=center,
-					xlabel=$f$,
+					xlabel=$F$,
 					x label style={anchor=west},
 					y label style={anchor=south},
 					axis lines=left,
@@ -935,41 +1017,120 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 					major tick style={very thick}
 					]
 					
-					\addplot [very thick,blue] {fdst(x,3,18)};% \addlegendentry{$\nu_1=1,\hphantom{00} \nu_2=1$}
-					\addplot [fill=orange, domain= 3.1599:5] {fdst(x,3,18)} \closedcycle;% \addlegendentry{$\nu_1=50,\hphantom{0} \nu_2=50$}
-					% \addplot [very thick,purple] {fdst(x,5,2)}; \addlegendentry{$\nu_1=5,\hphantom{00} \nu_2=2$}
+					\addplot [very thick,blue] {fdst(x,3,18)};% \addlegendentry{$df_1=1,\hphantom{00} df_2=1$}
+					\addplot [fill=orange, domain= 3.1599:5] {fdst(x,3,18)} \closedcycle;% \addlegendentry{$df_1=50,\hphantom{0} df_2=50$}
+					% \addplot [very thick,purple] {fdst(x,5,2)}; \addlegendentry{$df_1=5,\hphantom{00} df_2=2$}
 					
 				\end{axis}
 			\end{tikzpicture}    
 			
 			\pause
 			
-			Thus, $f$ lies in the critical region, and we \textbf{reject the null hypothesis} that the mean distortions from the four coatings are equal.
+			Thus, $f$ lies in the critical region, and we \textbf{\og reject the null hypothesis} that the mean distortions from the four coatings are equal.
 			
 		\end{enumerate}
 	\end{exampleblock}
 \end{frame}
 
 
-\section{MATLAB}
+\section{Python}
 \begin{frame}
-	\frametitle{ANOVA in MATLAB}\pause
+	\frametitle{ANOVA in MATLAB/Python}\pause
 	\begin{itemize}
 		\item The computations in ANOVA are tedious and prone to human error.
-		\item Usually ANOVA is conducted using software platforms such as MATLAB
+		\item Usually ANOVA is conducted using software platforms such as MATLAB or Python.
 	\end{itemize}
 	
 	\pause
 	
 	\begin{exampleblock}{Example 3: Investigating fuel efficiency of cars manufactured in different countries}
-		The \texttt{carbig} dataset in MATLAB contains variables\footnote{For more on visualizing some of these variables, visit \url{https://www.mathworks.com/help/stats/examples/visualizing-multivariate-data.html}} for $~400$ cars from the 70s and 80s.
+		The \texttt{carbig} dataset in MATLAB contains variables\footnote{For more on visualizing some of these variables, visit \url{https://www.mathworks.com/help/stats/examples/visualizing-multivariate-data.html}} for ~$400$ cars from the 70s and 80s.
 		The \texttt{carsmall} dataset is a subset of \texttt{carbig} (years '70, '76 and '82).\\
 		
 		We want to check if the true average fuel efficiency (MPG) of vehicles from
-		different countries (based on the \texttt{carsmall} subset) are equal.
+		different countries (USA/Europe/Japan) are equal.
 	\end{exampleblock}
 \end{frame}
 
+\begin{frame}
+	\frametitle{ANOVA in MATLAB (cont.)}
+	\begin{exampleblock}{Example 3:  Investigating fuel efficiency of cars manufactured in different countries (cont.)}
+		\pause
+		\begin{enumerate}[Step 1.]
+			\item Examine the contents of the \texttt{6C-anova-cars.ipynb} script. Run the script.\pause
+			
+			\item Figure 1 is a boxplot of the MPG across the different origins.  What can you say about the variance \textit{within} each of the countries/regions, and \textit{among} them?
+			
+			\includegraphics[width=.4\textwidth]{example3_boxplot_python}
+
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{ANOVA in MATLAB (cont.)}
+	\begin{exampleblock}{Example 3:  Investigating fuel efficiency of cars manufactured in different countries (cont.)}
+		\pause
+		\begin{enumerate}[Step 1.]\setcounter{enumi}{2}
+			\item The function \texttt{\bl scipy.stats.f\_oneway} generates  the ANOVA 
+			results (though not formatted as nicely as in MATLAB---see Appendix). More detail is provided by
+			\texttt{\bl statsmodels.stats.oneway.anova\_oneway}.
+
+			\item What is the p-value for this test? \pause Based on this, do we \textbf{reject/fail to reject} the null hypothesis at any reasonable significance level?
+		\pause
+		\item In Figure 3, we have a notched boxplot, which denotes the confidence interval of the median.
+		 What are your observations?
+			
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Multiple comparisons in ANOVA}\pause
+	\begin{itemize}\pause
+		\item If after performing a one-way ANOVA, we reject the null hypothesis, naturally we might want to find out which populations significantly differ from each other
+		\item Various methods have been developed for multiple pairwise comparisons (out of scope of this lecture):
+		\begin{itemize}
+			\item One option: perform pairwise $t$-tests between group means using the Bonferroni correction for $\alpha$ %\footnote{Refer to this week's reading on Chapter 7 for more on this}
+			\item Use Tukey's range test, which performs a significance test based on the studentized range distribution
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Multiple comparisons in ANOVA (cont.)}\pause
+	\begin{exampleblock}{Example 3:  Investigating fuel efficiency of cars (cont.)}
+		\pause
+		\begin{enumerate}[Step 1.]\setcounter{enumi}{4}
+			\item Use the \texttt{\bl pairwise\_tukeyhsd} function from \texttt{\bl statsmodels.stats.multicomp} to perform multiple comparisons.  
+			
+			\pause
+			
+			\includegraphics[width=.6\textwidth]{tukey_python.png}
+			
+			\pause
+			
+			Which regions have significantly different average fuel efficiency?
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+\section{Outlook}
+\begin{frame}
+	\frametitle{Summary}
+	\begin{itemize}
+		\item The analysis of variance (ANOVA) test is used to determine whether the population means across multiple samples are equal
+		\item It uses the test statistic ($f=MSG/MSE$) which is $F$-distributed
+		\item Reading: Section 7.5 (Open Intro Statistics) \pause
+		\item If interested, read Section 7.4 on ``power'' analysis (but we will consider this out of scope for the course)
+	\end{itemize}
+\end{frame}
+
+\appendix
+\section{Appendix}
 \begin{frame}
 	\frametitle{ANOVA in MATLAB (cont.)}
 	\begin{exampleblock}{Example 3:  Investigating fuel efficiency of cars manufactured in different countries (cont.)}
@@ -1048,16 +1209,6 @@ Lecture M6c: Analysis of Variance (ANOVA)}
 	\end{exampleblock}
 \end{frame}
 
-\section{Outlook}
-\begin{frame}
-	\frametitle{Summary}
-	\begin{itemize}
-		\item The analysis of variance (ANOVA) test is used to determine whether the population means across multiple samples are equal
-		\item It uses the test statistic ($f=MSG/MSE$) which is $F$-distributed
-		\item Reading: Section 7.5 (Open Intro Statistics) \pause
-		\item If interested, read Section 7.4 on ``power'' analysis (but we will consider this out of scope for the course)
-	\end{itemize}
-\end{frame}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
