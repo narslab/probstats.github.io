@@ -1,0 +1,693 @@
+\documentclass[11pt,twoside]{article}
+\usepackage{etex}
+
+\raggedbottom
+
+%geometry (sets margin) and other useful packages
+\usepackage{geometry}
+\geometry{top=1in, left=1in,right=1in,bottom=1in}
+ \usepackage{graphicx,booktabs,calc}
+ 
+\usepackage{listings}
+\usepackage{float}
+
+
+% Marginpar width
+%Marginpar width
+\newcommand{\pts}[1]{\marginpar{ \small\hspace{0pt} \textit{[#1]} } } 
+\setlength{\marginparwidth}{.5in}
+%\reversemarginpar
+%\setlength{\marginparsep}{.02in}
+
+ 
+%\usepackage{cmbright}lstinputlisting
+%\usepackage[T1]{pbsi}
+
+
+\usepackage{chngcntr,mathtools}
+\counterwithin{figure}{section}
+\numberwithin{equation}{section}
+
+%\usepackage{listings}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{colortbl}
+\usepackage{color}
+
+
+\usepackage{subfig,hyperref,enumerate,polynom,polynomial}
+\usepackage{multirow,minitoc,fancybox,array,multicol}
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%%TIKZ
+\usepackage{tikz}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\tikzstyle arrowstyle=[black,scale=2]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\tikzstyle dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrow[arrowstyle]{latex}}}}]
+\tikzstyle rev dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrowreversed[arrowstyle]{latex};}}}]
+
+\usepackage{ctable}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{exercise}{\@startsection 
+	{section}
+	{1}
+	{-.2em}
+	{-3.5ex plus -1ex minus -.2ex}
+    	{1.3ex plus .2ex}
+    	{\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+	\large\bf\noindent{Exercise 1.\hspace{-1.5ex} }
+	}
+	}
+	%{\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+	%\begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\fancyheadoffset{30pt}
+%\fancyfootoffset{30pt}
+\fancyhead[LO,RE]{\small Oke}
+\fancyhead[RO,LE]{\small Page \thepage} 
+\fancyfoot[RO,LE]{\small PS 8} 
+\fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{0.1pt} 
+\renewcommand{\footrulewidth}{0.1pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+
+\usepackage{paralist}
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\n}{\\[2mm]}
+%% GREEK LETTERS
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\sig}{\sigma}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\mr}{\mathbb{R}}
+\newcommand{\xs}{x^{*}}
+\newenvironment{solution}
+{\medskip\par\quad\quad\begin{minipage}[c]{.8\textwidth}\gr}{\medskip\end{minipage}}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\usetikzlibrary{math}
+
+% https://tex.stackexchange.com/questions/461758/asymmetric-distribution-gauss-curve
+\tikzmath{%
+  function h1(\x, \lx) { return (9*\lx + 3*((\lx)^2) + ((\lx)^3)/3 + 9); };
+  function h2(\x, \lx) { return (3*\lx - ((\lx)^3)/3 + 4); };
+  function h3(\x, \lx) { return (9*\lx - 3*((\lx)^2) + ((\lx)^3)/3 + 7); };
+  function skewnorm(\x, \l) {
+    \x = (\l < 0) ? -\x : \x;
+    \l = abs(\l);
+    \e = exp(-(\x^2)/2);
+    return (\l == 0) ? 1 / sqrt(2 * pi) * \e: (
+      (\x < -3/\l) ? 0 : (
+      (\x < -1/\l) ? \e / (8 * sqrt(2 * pi)) * h1(\x, \x*\l) : (
+      (\x <  1/\l) ? \e / (4 * sqrt(2 * pi)) * h2(\x, \x*\l) : (
+      (\x <  3/\l) ? \e / (8 * sqrt(2 * pi)) * h3(\x, \x*\l) : (
+      sqrt(2/pi) * \e)))));
+  };
+}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+% to be used: \cdf(x)(mean)(variance)
+
+\DeclareMathOperator{\CDF}{cdf}
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Define custom colors
+\definecolor{headerblue}{RGB}{44,62,80}
+\definecolor{accentred}{RGB}{231,76,60}
+\definecolor{infoboxblue}{RGB}{232,244,248}
+\definecolor{warningyellow}{RGB}{255,243,205}
+\definecolor{lightgray}{RGB}{248,249,250}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Sound Attenuation Study}
+\fancyhead[R]{\small Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=infoboxblue,
+    colframe=blue!50!black,
+    boxrule=2pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=warningyellow,
+    colframe=orange!80!black,
+    boxrule=2pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{procedurebox}{
+    colback=lightgray,
+    colframe=gray!50!black,
+    boxrule=1pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{calculationbox}{
+    colback=gray!10,
+    colframe=black,
+    boxrule=1pt,
+    arc=2mm,
+    left=10pt,
+    right=10pt,
+    top=5pt,
+    bottom=5pt,
+    fontupper=\ttfamily
+}
+
+
+\begin{document}
+
+\lstset{language=C++,
+                basicstyle=\tiny\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{gray}\ttfamily,
+                morecomment=[l][\color{gray}]{\#}
+}
+
+
+\thispagestyle{empty}
+
+
+\nin{\LARGE Problem Set 8 {\gr }}\hfill{\bf Prof. Oke}
+
+\medskip\hrule\medskip
+
+\nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
+\hfill\textit{ 11.19.2025}}
+
+\bigskip
+
+\nin{\it {Due Friday, November 26, 2025 at 11:59 PM as PDF uploaded on Canvas.}
+  %If it helps and if possible, you can write your responses directly on this document and upload it instead.
+    \textbf{Show as much work as possible in order to get FULL credit.}
+    There are 10 problems with a total of 63 points available.
+ %   \textbf{Important:} If you use MATLAB for any probability computations, briefly write/include the statements you
+   % used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
+}
+
+\eject
+
+
+% \documentclass[11pt,letterpaper]{article}
+% \usepackage[margin=1in]{geometry}
+% \usepackage{graphicx}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{array}
+% \usepackage{booktabs}
+% \usepackage{xcolor}
+% \usepackage{tikz}
+% \usetikzlibrary{shapes,arrows,positioning}
+
+ 
+% Title page
+% \begin{center}
+%     {\Huge \textbf{Sound Attenuation Study}}\\[0.3cm]
+%     {\Large Linear Regression Project --- Noise Control Engineering}\\[0.5cm]
+%     \rule{\textwidth}{3pt}\\[0.3cm]
+%     {\large \textbf{Group Members:} \underline{\hspace{8cm}}}\\[0.2cm]
+%     {\large \textbf{Date:} \underline{\hspace{3cm}}}
+% \end{center}
+
+\section{Project Overview}
+
+\textbf{Objective:} Investigate the relationship between barrier material properties and sound attenuation, then apply linear regression analysis to model this relationship.
+
+\textbf{Engineering Context:} Sound attenuation is critical in environmental engineering (highway noise barriers), civil engineering (building acoustics), and mechanical engineering (equipment noise reduction). Understanding how materials block sound allows engineers to design effective noise control solutions.
+
+\begin{infobox}
+\textbf{What You'll Learn:}
+\begin{itemize}[leftmargin=*]
+    \item How different materials attenuate sound
+    \item The relationship between material thickness/density and sound reduction
+    \item Linear regression modeling of experimental data
+    \item Real-world applications in noise control engineering
+\end{itemize}
+\end{infobox}
+
+\section{Background: Sound and Decibels}
+
+\textbf{Sound Level (dB):} Logarithmic scale measuring sound pressure. Every 10 dB increase represents a doubling in perceived loudness.
+
+\textbf{Sound Attenuation:} The reduction in sound intensity as it passes through a material or barrier.
+
+\textbf{Key Principle --- Mass Law:} Sound transmission loss increases with material mass per unit area. Heavier, denser materials generally block more sound.
+
+\begin{calculationbox}
+Sound Reduction (dB) = Baseline Level (dB) - Measured Level (dB)
+
+Example: 85 dB baseline - 70 dB with material = 15 dB reduction
+\end{calculationbox}
+
+\section{Materials \& Equipment}
+
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Provided by Instructor:}
+\begin{itemize}[leftmargin=*]
+    \item Cardboard test box
+    \item Bluetooth speaker
+    \item Various barrier materials
+    \item Tape and clips
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Bring Your Own:}
+\begin{itemize}[leftmargin=*]
+    \item Smartphone with decibel meter app
+    \item Ruler or calipers
+    \item Calculator
+    \item Laptop for data analysis
+\end{itemize}
+\end{minipage}
+
+\begin{warningbox}
+\textbf{Important:} Download a free decibel meter app BEFORE lab:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{iOS:} ``Decibel X'' or ``NIOSH Sound Level Meter''
+    \item \textbf{Android:} ``Sound Meter'' or ``Decibel X''
+\end{itemize}
+\end{warningbox}
+
+\section{Experimental Setup}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm]
+    % Box
+    \draw[thick] (0,0) rectangle (3,2);
+    \node at (1.5,1.7) {\textbf{CARDBOARD BOX}};
+    \node at (1.5,1) {Speaker};
+    \node at (1.5,0.5) {\small Playing 1000 Hz};
+    
+    % Material barrier
+    \draw[very thick, red] (3.5,0) -- (3.5,2);
+    \draw[very thick, red] (3.7,0) -- (3.7,2);
+    \node[below] at (3.6,-0.3) {\small Material Barrier};
+    
+    % Phone/Mic
+    \node at (5.5,1) {Phone/Mic};
+    \draw[->, thick] (3.7,1) -- (5,1);
+    \node[above] at (4.3,1.1) {\tiny 15 cm};
+\end{tikzpicture}
+\end{center}
+
+\begin{procedurebox}
+\textbf{Setup Steps:}
+\begin{enumerate}[leftmargin=*]
+    \item Place speaker inside cardboard box, centered
+    \item Install test material over opening (secure all edges with tape)
+    \item Position phone microphone 15 cm from material surface
+    \item Start tone generator app (1000 Hz, constant volume)
+    \item Calibrate: wait 10 seconds for sound stabilization
+\end{enumerate}
+\end{procedurebox}
+
+\section{Experimental Procedure}
+
+\subsection*{Part 1: Baseline Measurement}
+\begin{enumerate}[leftmargin=*]
+    \item With NO material installed (open box), measure sound level
+    \item Take 3 measurements, record all values
+    \item Calculate average --- this is your \textbf{baseline}
+    \item DO NOT change speaker volume for rest of experiment!
+\end{enumerate}
+
+\subsection*{Part 2: Material Testing}
+\begin{enumerate}[leftmargin=*]
+    \item Select first test material and measure its thickness with ruler/calipers
+    \item Install material, ensuring edges are sealed with tape
+    \item Wait 5 seconds for sound to stabilize
+    \item Take 3 sound level measurements
+    \item Calculate average and sound reduction
+    \item Remove material and repeat for next sample
+    \item Test ALL materials in your assigned set
+\end{enumerate}
+
+\begin{warningbox}
+\textbf{Critical Controls:}
+\begin{itemize}[leftmargin=*]
+    \item Keep microphone at same distance (15 cm) for ALL tests
+    \item Keep phone orientation consistent
+    \item Seal material edges completely (no air gaps!)
+    \item Don't change speaker volume between tests
+    \item Test in quiet environment (minimize background noise)
+\end{itemize}
+\end{warningbox}
+
+\clearpage
+
+\section{Data Collection Sheet}
+
+\textbf{Test Conditions:}\\
+Baseline Sound Level (no material): \underline{\hspace{2cm}} dB\\
+Test Frequency: 1000 Hz\\
+Microphone Distance: 15 cm\\
+Background Noise Level: \underline{\hspace{2cm}} dB
+
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{|p{2.2cm}|c|c|c|c|c|c|c|}
+\hline
+\textbf{Material} & \textbf{Thickness (mm)} & \textbf{Mass/Area (g/cm²)*} & \textbf{Trial 1 (dB)} & \textbf{Trial 2 (dB)} & \textbf{Trial 3 (dB)} & \textbf{Average (dB)} & \textbf{Sound Reduction (dB)} \\
+\hline
+\rowcolor{red!20}
+\textbf{Baseline (No Material)} & 0 & 0 & & & & & 0 \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+& & & & & & & \\
+\hline
+\end{tabular}
+\end{table}
+
+\small \textit{*Mass per area can be calculated if you weigh a known area of material, or estimated from material density tables}
+
+\section{Data Analysis Requirements}
+
+\subsection*{1. Create Scatter Plot}
+Plot \textbf{Material Thickness (mm)} on x-axis vs. \textbf{Sound Reduction (dB)} on y-axis
+\begin{itemize}[leftmargin=*]
+    \item Include all data points from your experiment
+    \item Label axes clearly with units
+    \item Add descriptive title
+\end{itemize}
+
+\subsection*{2. Linear Regression Analysis}
+Calculate the least-squares regression line: $y = mx + b$
+
+Where:
+\begin{itemize}[leftmargin=*]
+    \item $y$ = Sound Reduction (dB)
+    \item $x$ = Material Thickness (mm)
+    \item $m$ = slope (dB reduction per mm)
+    \item $b$ = y-intercept (baseline)
+\end{itemize}
+
+\begin{calculationbox}
+Report the following:
+• Regression equation: y = \_\_\_\_\_ x + \_\_\_\_\_
+• Slope (m): \_\_\_\_\_ dB/mm
+• Y-intercept (b): \_\_\_\_\_ dB
+• Correlation coefficient (r): \_\_\_\_\_
+• Coefficient of determination (R²): \_\_\_\_\_
+\end{calculationbox}
+
+\subsection*{3. Plot Regression Line}
+Add your regression line to the scatter plot created in step 1
+
+\subsection*{4. Residual Analysis}
+Create a residual plot (residuals vs. predicted values) to check if linear model is appropriate
+
+
+
+
+
+\section{Discussion Questions}
+
+\subsection*{Statistical Analysis (Answer with complete sentences)}
+
+\textbf{1.} Interpret the slope of your regression line. What does it tell you about the relationship between thickness and sound reduction?
+
+\vspace{2cm}
+
+\textbf{2.} What is your $R^2$ value? What percentage of the variation in sound reduction is explained by material thickness?
+
+\vspace{2cm}
+
+\textbf{3.} Based on your residual plot, is a linear model appropriate for this data? Explain why or why not.
+
+\vspace{2cm}
+
+\textbf{4.} Use your regression equation to predict the sound reduction for a 10 mm thick barrier. Is this an interpolation or extrapolation?
+
+\vspace{2cm}
+
+\subsection*{Material Performance}
+
+\textbf{5.} Which material provided the best sound reduction per unit thickness? Calculate dB reduction per mm for each material.
+
+\vspace{2cm}
+
+\textbf{6.} Did denser materials perform better than lighter materials of the same thickness? Support your answer with data.
+
+\vspace{2cm}
+
+\subsection*{Engineering Applications}
+
+\textbf{7.} A residential building is exposed to 75 dB of highway noise. Building codes require interior noise levels below 45 dB. Using your best-performing material, what thickness would be required? Show your calculation.
+
+\vspace{2.5cm}
+
+\textbf{8.} Research typical costs for your tested materials (\$/sq ft). Which material provides the best sound reduction per dollar?
+
+\vspace{2cm}
+
+\textbf{9.} In real buildings, walls often consist of multiple layers with air gaps (e.g., drywall + air gap + insulation + drywall). Why might this design perform better than a single thick layer? (Research ``decoupling'' and ``resonance'')
+
+\vspace{2.5cm}
+
+\textbf{10.} Low-frequency sounds (bass, truck engines) are much harder to block than high-frequency sounds. How might this affect your material recommendations for highway noise barriers vs. HVAC noise control?
+
+\vspace{2.5cm}
+
+\section{Sources of Error}
+
+Identify at least THREE sources of experimental error in your study and explain how each could affect your results:
+
+\textbf{Error 1:}
+
+\vspace{2cm}
+
+\textbf{Error 2:}
+
+\vspace{2cm}
+
+\textbf{Error 3:}
+
+\vspace{2cm}
+
+\section{Engineering Design Recommendation}
+
+\begin{infobox}
+\textbf{Design Scenario:} You are designing a noise barrier for a new highway expansion project. The barrier must reduce traffic noise from 80 dB to 60 dB at nearby homes. Based on your experimental findings, propose a barrier design that considers:
+\begin{itemize}[leftmargin=*]
+    \item Material selection (type and thickness)
+    \item Estimated cost per linear foot of barrier
+    \item Structural considerations (weight, wind resistance)
+    \item Maintenance requirements
+    \item Aesthetics and community acceptance
+\end{itemize}
+\end{infobox}
+
+\textbf{Your Recommendation:}
+
+\vspace{3cm}
+
+\textbf{Justification (use data from your experiment):}
+
+\vspace{3cm}
+
+\section{Report Requirements}
+
+\textbf{Due Date:} \underline{\hspace{4cm}}
+
+\textbf{Deliverables:}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Completed data sheet} with all measurements
+    \item \textbf{Scatter plot} with regression line
+    \item \textbf{Residual plot}
+    \item \textbf{Regression analysis} (equation, $R^2$, interpretation)
+    \item \textbf{Answers to all discussion questions}
+    \item \textbf{Engineering design recommendation}
+    \item \textbf{Sources of error analysis}
+\end{enumerate}
+
+\begin{warningbox}
+\textbf{Grading Criteria:}
+\begin{itemize}[leftmargin=*]
+    \item Data collection completeness and accuracy (20\%)
+    \item Statistical analysis correctness (25\%)
+    \item Quality of graphs and visualizations (15\%)
+    \item Depth of discussion and engineering application (25\%)
+    \item Design recommendation and justification (15\%)
+\end{itemize}
+\end{warningbox}
+
+\section{Additional Resources}
+
+\textbf{Recommended Reading:}
+\begin{itemize}[leftmargin=*]
+    \item STC (Sound Transmission Class) ratings and building codes
+    \item Mass Law for sound transmission: $TL \approx 20 \log(f \times m) - 42$
+    \item OSHA noise exposure standards for workplace safety
+    \item Highway noise barrier design guidelines (FHWA)
+\end{itemize}
+
+\textbf{Software for Analysis:}
+\begin{itemize}[leftmargin=*]
+    \item Excel, Google Sheets (built-in regression functions)
+    \item Python (scipy.stats, matplotlib)
+    \item R (lm function)
+    \item Any statistical software package
+\end{itemize}
+
+\vfill
+
+\begin{center}
+\rule{\textwidth}{0.4pt}\\
+\textit{Sound Attenuation Study | Linear Regression Project | Statistics for Engineers}\\
+\textit{Remember: Engineering is about making informed decisions based on data!}
+\end{center}
+
+\end{document}
+
+
+
+
+ 
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

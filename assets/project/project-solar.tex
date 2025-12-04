@@ -1,0 +1,871 @@
+\documentclass[11pt,twoside]{article}
+\usepackage{etex}
+
+\raggedbottom
+
+%geometry (sets margin) and other useful packages
+\usepackage{geometry}
+\geometry{top=1in, left=1in,right=1in,bottom=1in}
+ \usepackage{graphicx,booktabs,calc}
+ 
+\usepackage{listings}
+\usepackage{float}
+
+
+% Marginpar width
+%Marginpar width
+\newcommand{\pts}[1]{\marginpar{ \small\hspace{0pt} \textit{[#1]} } } 
+\setlength{\marginparwidth}{.5in}
+%\reversemarginpar
+%\setlength{\marginparsep}{.02in}
+
+ 
+%\usepackage{cmbright}lstinputlisting
+%\usepackage[T1]{pbsi}
+
+
+\usepackage{chngcntr,mathtools}
+\counterwithin{figure}{section}
+\numberwithin{equation}{section}
+
+%\usepackage{listings}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{colortbl}
+\usepackage{color}
+
+
+\usepackage{subfig,hyperref,enumerate,polynom,polynomial}
+\usepackage{multirow,minitoc,fancybox,array,multicol}
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%%TIKZ
+\usepackage{tikz}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\tikzstyle arrowstyle=[black,scale=2]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\tikzstyle dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrow[arrowstyle]{latex}}}}]
+\tikzstyle rev dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrowreversed[arrowstyle]{latex};}}}]
+
+\usepackage{ctable}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{exercise}{\@startsection 
+	{section}
+	{1}
+	{-.2em}
+	{-3.5ex plus -1ex minus -.2ex}
+    	{1.3ex plus .2ex}
+    	{\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+	\large\bf\noindent{Exercise 1.\hspace{-1.5ex} }
+	}
+	}
+	%{\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+	%\begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\fancyheadoffset{30pt}
+%\fancyfootoffset{30pt}
+\fancyhead[LO,RE]{\small Oke}
+\fancyhead[RO,LE]{\small Page \thepage} 
+\fancyfoot[RO,LE]{\small PS 8} 
+\fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{0.1pt} 
+\renewcommand{\footrulewidth}{0.1pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+
+\usepackage{paralist}
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\n}{\\[2mm]}
+%% GREEK LETTERS
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\sig}{\sigma}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\mr}{\mathbb{R}}
+\newcommand{\xs}{x^{*}}
+\newenvironment{solution}
+{\medskip\par\quad\quad\begin{minipage}[c]{.8\textwidth}\gr}{\medskip\end{minipage}}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\usetikzlibrary{math}
+
+% https://tex.stackexchange.com/questions/461758/asymmetric-distribution-gauss-curve
+\tikzmath{%
+  function h1(\x, \lx) { return (9*\lx + 3*((\lx)^2) + ((\lx)^3)/3 + 9); };
+  function h2(\x, \lx) { return (3*\lx - ((\lx)^3)/3 + 4); };
+  function h3(\x, \lx) { return (9*\lx - 3*((\lx)^2) + ((\lx)^3)/3 + 7); };
+  function skewnorm(\x, \l) {
+    \x = (\l < 0) ? -\x : \x;
+    \l = abs(\l);
+    \e = exp(-(\x^2)/2);
+    return (\l == 0) ? 1 / sqrt(2 * pi) * \e: (
+      (\x < -3/\l) ? 0 : (
+      (\x < -1/\l) ? \e / (8 * sqrt(2 * pi)) * h1(\x, \x*\l) : (
+      (\x <  1/\l) ? \e / (4 * sqrt(2 * pi)) * h2(\x, \x*\l) : (
+      (\x <  3/\l) ? \e / (8 * sqrt(2 * pi)) * h3(\x, \x*\l) : (
+      sqrt(2/pi) * \e)))));
+  };
+}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+% to be used: \cdf(x)(mean)(variance)
+
+\DeclareMathOperator{\CDF}{cdf}
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% Define custom colors
+
+\definecolor{headerblue}{RGB}{44,62,80}
+\definecolor{accentorange}{RGB}{243,156,18}
+\definecolor{infoboxblue}{RGB}{232,244,248}
+\definecolor{warningyellow}{RGB}{255,243,205}
+\definecolor{successgreen}{RGB}{212,237,218}
+\definecolor{lightgray}{RGB}{248,249,250}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Sound Attenuation Study}
+\fancyhead[R]{\small Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=infoboxblue,
+    colframe=blue!50!black,
+    boxrule=2pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=warningyellow,
+    colframe=orange!80!black,
+    boxrule=2pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{procedurebox}{
+    colback=lightgray,
+    colframe=gray!50!black,
+    boxrule=1pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{calculationbox}{
+    colback=gray!10,
+    colframe=black,
+    boxrule=1pt,
+    arc=2mm,
+    left=10pt,
+    right=10pt,
+    top=5pt,
+    bottom=5pt,
+    fontupper=\ttfamily
+}
+% Custom boxes
+\newtcolorbox{infobox}{
+    colback=infoboxblue,
+    colframe=blue!50!black,
+    boxrule=2pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{warningbox}{
+    colback=warningyellow,
+    colframe=orange!80!black,
+    boxrule=2pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{successbox}{
+    colback=successgreen,
+    colframe=green!60!black,
+    boxrule=2pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{procedurebox}{
+    colback=lightgray,
+    colframe=gray!50!black,
+    boxrule=1pt,
+    arc=3mm,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+}
+
+\newtcolorbox{calculationbox}{
+    colback=gray!10,
+    colframe=black,
+    boxrule=1pt,
+    arc=2mm,
+    left=10pt,
+    right=10pt,
+    top=5pt,
+    bottom=5pt,
+    fontupper=\ttfamily\small
+}
+
+
+\begin{document}
+
+\lstset{language=C++,
+                basicstyle=\tiny\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{gray}\ttfamily,
+                morecomment=[l][\color{gray}]{\#}
+}
+
+
+\thispagestyle{empty}
+
+
+\nin{\LARGE Problem Set 8 {\gr }}\hfill{\bf Prof. Oke}
+
+\medskip\hrule\medskip
+
+\nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
+\hfill\textit{ 11.19.2025}}
+
+\bigskip
+
+\nin{\it {Due Friday, November 26, 2025 at 11:59 PM as PDF uploaded on Canvas.}
+  %If it helps and if possible, you can write your responses directly on this document and upload it instead.
+    \textbf{Show as much work as possible in order to get FULL credit.}
+    There are 10 problems with a total of 63 points available.
+ %   \textbf{Important:} If you use MATLAB for any probability computations, briefly write/include the statements you
+   % used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
+}
+
+\eject
+
+
+% \documentclass[11pt,letterpaper]{article}
+% \usepackage[margin=1in]{geometry}
+% \usepackage{graphicx}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{array}
+% \usepackage{booktabs}
+% \usepackage{xcolor}
+% \usepackage{tikz}
+% \usetikzlibrary{shapes,arrows,positioning}
+
+ 
+% Title page
+% \begin{center}
+%     {\Huge \textbf{Sound Attenuation Study}}\\[0.3cm]
+%     {\Large Linear Regression Project --- Noise Control Engineering}\\[0.5cm]
+%     \rule{\textwidth}{3pt}\\[0.3cm]
+%     {\large \textbf{Group Members:} \underline{\hspace{8cm}}}\\[0.2cm]
+%     {\large \textbf{Date:} \underline{\hspace{3cm}}}
+% \end{center}
+
+
+% \documentclass[11pt,letterpaper]{article}
+% \usepackage[margin=1in]{geometry}
+% \usepackage{graphicx}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{array}
+% \usepackage{booktabs}
+% \usepackage{xcolor}
+% \usepackage{tikz}
+% \usetikzlibrary{shapes,arrows,positioning,calc}
+% \usepackage[most]{tcolorbox}
+% \usepackage{enumitem}
+% \usepackage{fancyhdr}
+
+% % Define custom colors
+% \definecolor{headerblue}{RGB}{44,62,80}
+% \definecolor{accentorange}{RGB}{243,156,18}
+% \definecolor{infoboxblue}{RGB}{232,244,248}
+% \definecolor{warningyellow}{RGB}{255,243,205}
+% \definecolor{successgreen}{RGB}{212,237,218}
+% \definecolor{lightgray}{RGB}{248,249,250}
+
+% % Header and footer
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[L]{\small Solar Panel Angle Optimization}
+% \fancyhead[R]{\small Page \thepage}
+% \renewcommand{\headrulewidth}{0.4pt}
+
+
+ 
+% Title page
+\begin{center}
+    {\Huge \textbf{Solar Panel Angle Optimization Study}}\\[0.3cm]
+    {\Large Linear Regression Project --- Renewable Energy Engineering}\\[0.5cm]
+    \rule{\textwidth}{3pt}\\[0.3cm]
+    {\large \textbf{Group Members:} \underline{\hspace{8cm}}}\\[0.2cm]
+    {\large \textbf{Date:} \underline{\hspace{3cm}}}
+\end{center}
+
+\section{Project Overview}
+
+\textbf{Objective:} Determine the optimal tilt angle for solar panel installation by measuring power output at different angles, then use linear regression to model the relationship between angle and energy production.
+
+\textbf{Engineering Context:} Solar panel angle optimization is crucial for maximizing energy yield in photovoltaic installations. Civil engineers design mounting structures, environmental engineers assess renewable energy systems, and mechanical engineers develop tracking mechanisms. A poorly angled panel can lose 25--40\% of potential energy production.
+
+\begin{infobox}
+\textbf{What You'll Learn:}
+\begin{itemize}[leftmargin=*]
+    \item How solar panel angle affects power generation
+    \item The relationship between tilt angle and energy output
+    \item Linear regression modeling of trigonometric relationships
+    \item Cost-benefit analysis for solar installations
+    \item Design considerations for fixed vs. adjustable mounting systems
+\end{itemize}
+\end{infobox}
+
+\section{Background: Solar Energy and Angles}
+
+\subsection*{Key Concepts}
+
+\textbf{Tilt Angle ($\theta$):} The angle between the solar panel surface and the horizontal plane (0° = flat, 90° = vertical)
+
+\textbf{Insolation:} The amount of solar radiation received per unit area. Maximum when the panel is perpendicular to the sun's rays.
+
+\textbf{Optimal Angle Rule of Thumb:} For fixed installations, optimal tilt angle $\approx$ latitude of location
+\begin{itemize}[leftmargin=*]
+    \item Amherst, MA latitude: 42.4°N
+    \item Expected optimal angle: $\sim$40--45° for year-round performance
+    \item Varies seasonally: steeper in winter, shallower in summer
+\end{itemize}
+
+\begin{calculationbox}
+Power Output ∝ cos(θ - θ\_optimal)
+
+Where:
+• θ = panel tilt angle from horizontal
+• θ\_optimal = angle that maximizes output for current sun position
+• Output decreases as you move away from optimal angle
+\end{calculationbox}
+
+\subsection*{Why Does Angle Matter?}
+
+Solar panels generate maximum power when sunlight hits them at 90° (perpendicular). As the angle deviates from perpendicular, the effective area receiving direct sunlight decreases, following a cosine relationship.
+
+\section{Materials \& Equipment}
+
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Provided by Instructor:}
+\begin{itemize}[leftmargin=*]
+    \item Small solar panel or solar calculator
+    \item Multimeter (voltage measurement)
+    \item Adjustable mounting stand
+    \item Consistent light source (lamp or outdoor sun)
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Bring Your Own:}
+\begin{itemize}[leftmargin=*]
+    \item Protractor or angle-measuring app
+    \item Smartphone light meter app (optional)
+    \item Ruler/measuring tape
+    \item Laptop for data analysis
+\end{itemize}
+\end{minipage}
+
+\vspace{0.3cm}
+
+\begin{successbox}
+\textbf{Location Information:} You are conducting this experiment at approximately 42.4°N latitude (Amherst, MA). This will be important for comparing your experimental results to theoretical predictions!
+\end{successbox}
+
+\section{Experimental Setup}
+
+\begin{center}
+\textbf{Panel Angle Measurement Convention}\\[0.3cm]
+\begin{tikzpicture}[scale=1.2]
+    % Ground line
+    \draw[very thick] (0,0) -- (6,0);
+    \node[below] at (3,-0.3) {Horizontal (0°)};
+    
+    % Solar panel
+    \draw[blue, very thick] (2,0) -- (4,2);
+    \node[blue] at (3.5,1.5) {Solar Panel};
+    
+    % Angle arc
+    \draw[red, thick] (2.5,0) arc (0:45:0.5);
+    \node[red] at (2.8,0.3) {$\theta$};
+    
+    % Sun
+    \draw[orange, fill=yellow!80] (5,3) circle (0.3);
+    \node at (5,3) {\Large ☀};
+    
+    % Sun rays
+    \draw[orange, thick, dashed] (4.7,2.7) -- (3.5,1.5);
+    \draw[orange, thick, dashed] (5,2.7) -- (3.7,1.6);
+\end{tikzpicture}
+\end{center}
+
+\begin{procedurebox}
+\textbf{Setup Instructions:}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{For Indoor Testing:} Position lamp 1 meter directly above the panel location (measure carefully!)
+    \item \textbf{For Outdoor Testing:} Work between 11am--1pm when sun angle is most consistent; face panel toward the sun
+    \item Create adjustable mount using cardboard, books, or provided stand
+    \item Use protractor to measure angle accurately ($\pm$2° precision)
+    \item Connect multimeter to solar panel leads (set to DC voltage)
+    \item Keep all setup parameters constant except tilt angle
+\end{enumerate}
+\end{procedurebox}
+
+\begin{warningbox}
+\textbf{⚠ Critical Controls:}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Indoor:} Do NOT move lamp or change bulb brightness
+    \item \textbf{Outdoor:} Complete all measurements within 30 minutes
+    \item \textbf{Both:} Keep panel orientation (compass direction) constant
+    \item \textbf{Both:} Ensure no shadows fall on the panel during any measurement
+    \item \textbf{Both:} Allow 30 seconds for voltage to stabilize before recording
+\end{itemize}
+\end{warningbox}
+
+\section{Experimental Procedure}
+
+\subsection*{Calibration Phase}
+\begin{enumerate}[leftmargin=*]
+    \item Set up your light source and measurement area
+    \item Position panel at 45° as a test
+    \item Verify multimeter is reading voltage correctly (should see 0.5--6V depending on panel)
+    \item Practice adjusting angle and verifying with protractor
+\end{enumerate}
+
+\subsection*{Data Collection Phase}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Test the following angles:} 0°, 15°, 30°, 45°, 60°, 75°, 90°
+    \item For each angle:
+        \begin{itemize}
+            \item Carefully adjust panel to target angle
+            \item Verify angle with protractor
+            \item Wait 30 seconds for voltage stabilization
+            \item Record voltage reading (to nearest 0.01V)
+            \item Take 3 measurements per angle
+        \end{itemize}
+    \item \textbf{Optional:} Test additional angles near your predicted optimal angle (e.g., 35°, 40°, 50°, 55°) for better resolution
+    \item \textbf{If time permits:} Measure light intensity at each angle using phone app
+\end{enumerate}
+
+\begin{infobox}
+\textbf{Pro Tip:} Calculate power output if your panel specifications are available:\\
+Power (mW) = Voltage (V) $\times$ Current (mA)\\
+Otherwise, voltage alone is sufficient as a proxy for power output.
+\end{infobox}
+
+\clearpage
+
+\section{Data Collection Sheet}
+
+\textbf{Test Conditions:}\\
+Testing Location: $\square$ Indoor (lamp) \quad $\square$ Outdoor (sun)\\
+Date: \underline{\hspace{2cm}} \quad Start Time: \underline{\hspace{1.5cm}} \quad End Time: \underline{\hspace{1.5cm}}\\
+Weather (outdoor): \underline{\hspace{3cm}} \quad Temperature: \underline{\hspace{1.5cm}}°F\\
+Light Source Distance (indoor): \underline{\hspace{2cm}} cm\\
+Panel Orientation (compass): \underline{\hspace{3cm}} (e.g., facing South)
+
+\vspace{0.5cm}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\textbf{Angle} & \textbf{Trial 1} & \textbf{Trial 2} & \textbf{Trial 3} & \textbf{Average} & \textbf{Light} & \textbf{cos(angle)} \\
+\textbf{(deg)} & \textbf{Voltage (V)} & \textbf{Voltage (V)} & \textbf{Voltage (V)} & \textbf{Voltage (V)} & \textbf{Intensity (lux)*} & \\
+\hline
+0 & & & & & & 1.000 \\
+\hline
+15 & & & & & & 0.966 \\
+\hline
+30 & & & & & & 0.866 \\
+\hline
+\rowcolor{green!20}
+45 & & & & & & 0.707 \\
+\hline
+60 & & & & & & 0.500 \\
+\hline
+75 & & & & & & 0.259 \\
+\hline
+90 & & & & & & 0.000 \\
+\hline
+& & & & & & \\
+\hline
+& & & & & & \\
+\hline
+& & & & & & \\
+\hline
+\end{tabular}
+\end{table}
+
+\small \textit{*Optional: Use light meter app to measure received light intensity}
+
+\vspace{0.3cm}
+
+\begin{calculationbox}
+Observed Maximum Output:
+• Angle with highest voltage: \_\_\_\_\_ degrees
+• Maximum voltage measured: \_\_\_\_\_ V
+• Theoretical optimal angle (≈ latitude): 42.4°
+• Difference from theoretical: \_\_\_\_\_ degrees
+\end{calculationbox}
+
+\section{Data Analysis Requirements}
+
+\subsection*{Analysis A: Standard Linear Regression (Required)}
+
+\textbf{Focus on ``linear region''} of your data (angles from 20° to 60°)
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Create scatter plot:} Angle (x-axis) vs. Average Voltage (y-axis)
+    \item \textbf{Perform linear regression} on the selected angle range
+    \item \textbf{Report:}
+        \begin{itemize}
+            \item Regression equation: $V = m \cdot \theta + b$
+            \item Slope ($m$): \underline{\hspace{2cm}} V/degree
+            \item Y-intercept ($b$): \underline{\hspace{2cm}} V
+            \item $R^2$ value: \underline{\hspace{2cm}}
+        \end{itemize}
+    \item \textbf{Add regression line} to your scatter plot
+    \item \textbf{Create residual plot} to assess model fit
+\end{enumerate}
+
+\subsection*{Analysis B: Advanced Cosine Model (Optional/Bonus)}
+
+The true relationship is: $V = V_{\text{max}} \cdot \cos(\theta - \theta_{\text{optimal}})$
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Create scatter plot:} $\cos(\text{angle})$ on x-axis vs. Average Voltage on y-axis
+    \item \textbf{Perform linear regression} on this transformed data
+    \item \textbf{Compare:} Which model (angle vs. cosine) has better $R^2$?
+\end{enumerate}
+
+\begin{infobox}
+\textbf{Note:} While the physical relationship is cosine-based, we're practicing linear regression by focusing on a portion of the curve. In real engineering, you'd use the appropriate model for the phenomenon, but linear approximations are useful for specific operating ranges!
+\end{infobox}
+
+\clearpage
+
+\section{Discussion Questions}
+
+\subsection*{Part 1: Statistical Analysis}
+
+\textbf{1.} What angle produced the maximum power output in your experiment? How close is this to the theoretical optimal angle ($\approx$ 42.4° for Amherst)?
+
+\vspace{2cm}
+
+\textbf{2.} Interpret the slope of your linear regression. What does it tell you about how voltage changes with angle in your tested range?
+
+\vspace{2cm}
+
+\textbf{3.} What is your $R^2$ value for the linear model? Is the linear approximation appropriate for your selected angle range? Support with evidence from your residual plot.
+
+\vspace{2cm}
+
+\textbf{4.} If you completed Analysis B (cosine model), which model had a better $R^2$? Why does this make physical sense?
+
+\vspace{2cm}
+
+\subsection*{Part 2: Experimental Design}
+
+\textbf{5.} Calculate the percent difference between your optimal angle and the theoretical optimal (latitude):
+\[\text{\% difference} = \frac{|\text{experimental} - \text{theoretical}|}{\text{theoretical}} \times 100\%\]
+
+\vspace{2cm}
+
+\textbf{6.} What were the three most significant sources of error in your experiment? How did you minimize them?
+
+\vspace{2.5cm}
+
+\textbf{7.} Your panel produced maximum output at angle $\theta_{\text{opt}}$. Calculate the power loss at $\theta_{\text{opt}} \pm 10°$:
+\[\text{\% loss} = \frac{V_{\text{max}} - V_{\text{at angle}}}{V_{\text{max}}} \times 100\%\]
+This tells you how forgiving the optimal angle is!
+
+\vspace{2cm}
+
+\subsection*{Part 3: Engineering Applications}
+
+\textbf{8.} You're designing a solar installation on a residential roof in Amherst, MA. The roof is sloped at 25°. Based on your data, what percentage of potential energy production is lost compared to optimal angle? Would you recommend a mounting system to adjust the angle, or is 25° acceptable?
+
+\vspace{2.5cm}
+
+\textbf{9.} Research the typical energy gain from single-axis tracking systems (which adjust angle throughout the day) vs. fixed installations. If tracking adds \$800 to a \$4,000 system cost and increases annual energy by 25\%, calculate the payback period assuming \$0.15/kWh electricity rate and 5 kWh/day base production.
+
+\vspace{2.5cm}
+
+\textbf{10.} The optimal angle changes with seasons:
+\begin{itemize}[leftmargin=*]
+    \item Summer (high sun): Optimal angle $\approx$ latitude $-$ 15°
+    \item Winter (low sun): Optimal angle $\approx$ latitude $+$ 15°
+\end{itemize}
+If you could adjust your panel twice per year, what angles would you choose? Would the energy gain justify the labor cost?
+
+\vspace{2.5cm}
+
+\textbf{11.} Flat roofs (0° panels) are common in commercial buildings despite being far from optimal. Research and explain THREE reasons why building owners might choose flat installation despite the efficiency loss.
+
+\vspace{2.5cm}
+
+\textbf{12.} Snow accumulation is a major concern in Massachusetts. How does panel angle affect:
+\begin{itemize}[leftmargin=*]
+    \item[(a)] Snow shedding (self-cleaning)
+    \item[(b)] Wind load on mounting structures
+\end{itemize}
+Make a recommendation for angle considering both energy production AND structural/maintenance factors.
+
+\vspace{2.5cm}
+
+\clearpage
+
+\section{Engineering Design Project}
+
+\begin{infobox}
+\textbf{Design Scenario:} You are an engineering consultant hired by UMass Amherst to design a 50 kW solar array for a new campus building. You must recommend:
+\begin{itemize}[leftmargin=*]
+    \item Fixed tilt angle OR adjustable system (seasonal or tracking)
+    \item Mounting structure specifications
+    \item Expected annual energy production
+    \item Cost estimate and payback period
+    \item Structural considerations (wind, snow, roof load)
+\end{itemize}
+\end{infobox}
+
+\subsection*{Your Design Proposal}
+
+\textbf{Recommended System Type:} $\square$ Fixed \quad $\square$ Seasonal Adjust \quad $\square$ Single-Axis Track \quad $\square$ Dual-Axis Track
+
+\vspace{0.3cm}
+
+\textbf{Recommended Angle(s):}
+
+\vspace{2cm}
+
+\textbf{Justification (cite your experimental data):}
+
+\vspace{3cm}
+
+\textbf{Energy Production Estimate:}
+\begin{itemize}[leftmargin=*]
+    \item Daily production: \underline{\hspace{2cm}} kWh/day
+    \item Annual production: \underline{\hspace{2cm}} kWh/year
+    \item Energy loss vs. optimal tracking: \underline{\hspace{2cm}} \%
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Cost-Benefit Analysis:}
+
+\vspace{3cm}
+
+\textbf{Structural/Maintenance Considerations:}
+
+\vspace{3cm}
+
+\textbf{Final Recommendation Summary:}
+
+\vspace{3cm}
+
+\section{Report Requirements}
+
+\textbf{Due Date:} \underline{\hspace{4cm}}
+
+\vspace{0.3cm}
+
+\textbf{Deliverables:}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Completed data sheet} with all measurements and calculations
+    \item \textbf{Scatter plot} (Angle vs. Voltage) with regression line
+    \item \textbf{Residual plot} for model validation
+    \item \textbf{Optional:} Second scatter plot for cosine model (bonus points)
+    \item \textbf{Regression analysis summary} (equations, $R^2$, interpretations)
+    \item \textbf{Answers to all 12 discussion questions}
+    \item \textbf{Engineering design proposal} with justification
+    \item \textbf{Sources of error discussion}
+\end{enumerate}
+
+\begin{warningbox}
+\textbf{Grading Criteria:}
+\begin{itemize}[leftmargin=*]
+    \item Data collection quality and completeness (20\%)
+    \item Statistical analysis correctness (25\%)
+    \item Quality of graphs and visualizations (15\%)
+    \item Discussion questions depth and accuracy (20\%)
+    \item Engineering design proposal quality (15\%)
+    \item Professional presentation (5\%)
+\end{itemize}
+\end{warningbox}
+
+\section{Additional Resources}
+
+\subsection*{Recommended Research Topics:}
+\begin{itemize}[leftmargin=*]
+    \item NREL (National Renewable Energy Laboratory) PVWatts Calculator
+    \item Solar path diagrams and sun angle calculations
+    \item International Building Code (IBC) wind and snow loads
+    \item Massachusetts solar incentive programs (SMART, SREC)
+    \item Bifacial solar panels (capture reflected light from ground)
+    \item Agrivoltaics (combining agriculture with solar installations)
+\end{itemize}
+
+\subsection*{Software for Analysis:}
+\begin{itemize}[leftmargin=*]
+    \item Excel/Google Sheets (LINEST function for regression)
+    \item Python (numpy, scipy, matplotlib)
+    \item R (lm function)
+    \item PVsyst or SAM (System Advisor Model) for real solar design
+\end{itemize}
+
+\subsection*{Useful Equations:}
+\begin{calculationbox}
+Optimal fixed angle ≈ Latitude (annual average)
+Summer optimal ≈ Latitude - 15°
+Winter optimal ≈ Latitude + 15°
+
+Energy production ∝ cos(θ\_panel - θ\_sun)
+
+Payback period = Initial cost / Annual savings
+\end{calculationbox}
+
+\vfill
+
+\begin{center}
+\rule{\textwidth}{0.4pt}\\
+\textit{Solar Panel Angle Optimization Study | Linear Regression Project | Statistics for Engineers}\\
+\textit{Sustainable energy starts with smart engineering design!}
+\end{center}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

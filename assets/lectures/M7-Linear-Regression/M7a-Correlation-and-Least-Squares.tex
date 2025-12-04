@@ -1,0 +1,1115 @@
+\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\if 0\bmode
+\documentclass[smaller]{beamer}
+\else \if 1\bmode
+\immediate\write18{pdflatex -jobname=\jobname-Notes-Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\usepackage{handoutWithNotes}
+\pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
+\else \if 2\bmode
+\immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+\documentclass[smaller,handout]{beamer}
+\fi
+\fi
+\fi
+
+
+
+% \documentclass[smaller,handout
+% ]{beamer}
+%\usepackage{etex}
+%\newcommand{\num}{6{} }
+
+% \usetheme[
+%   outer/progressbar=foot,
+%   outer/numbering=counter,
+%  block=fillFF
+% ]{metropolis}
+
+%\useoutertheme{metropolis}
+
+\usetheme{Madrid}
+\useoutertheme[subsection=false]{miniframes} % Alternatively: miniframes, infolines, split
+\useinnertheme{circles}  
+
+\usepackage[backend=biber,style=authoryear,maxcitenames=2,maxbibnames=99,safeinputenc,url=false,
+eprint=false]{biblatex}
+\addbibresource{bib/references.bib}
+\AtEveryCitekey{\iffootnote{{\tiny}\tiny}{\tiny}}
+\usepackage{appendixnumberbeamer}
+%\usepackage{pgfpages}
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{hide notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+% \usepackage[sfdefault]{Fira Sans}
+
+% \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
+% \setmonofont{Fira Mono}
+
+%\usepackage{fira}
+%\setsansfont{Fira}
+%\setmonofont{Fira Mono}
+% To give a presentation with the Skim reader (http://skim-app.sourceforge.net) on OSX so
+% that you see the notes on your laptop and the slides on the projector, do the following:
+% 
+% 1. Generate just the presentation (hide notes) and save to slides.pdf
+% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
+% 3. With Skim open both slides.pdf and notes.pdf
+% 4. Click on slides.pdf to bring it to front.
+% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
+%    select notes.pdf.
+% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
+% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
+%    and slides.pdf is in presentation mode on the projector.
+
+% Give a slight yellow tint to the notes page
+%\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
+
+
+%\usetheme{metropolis}
+%\usecolortheme{beaver}
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{HTML}{A40000}
+\definecolor{lightcandyapplered}{HTML}{e74c3c}
+
+%\setbeamercolor{title}{fg=darkcandyapplered}
+%\setbeamercolor{frametitle}{bg=darkcandyapplered!80!black!90!white}
+%\setbeamertemplate{frametitle}{\bf\insertframetitle}
+%\setbeamercolor{footnote mark}{fg=darkcandyapplered}
+%\setbeamercolor{footnote}{fg=darkcandyapplered!70}
+%\Raggedbottom
+%\setbeamerfont{page number in head/foot}{size=\tiny}
+%\usepackage[tracking]{microtype}
+
+
+\setbeamertemplate{frametitle}{%
+    \nointerlineskip%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.0ex,dp=0.6ex]{frametitle}
+        \hspace*{1ex}\insertframetitle%
+    \end{beamercolorbox}%
+}
+
+
+
+\setbeamerfont{caption}{size=\footnotesize}
+\setbeamercolor{caption name}{fg=darkcandyapplered}
+
+
+%\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+%\linespread{1.025}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+%\usepackage[euler-digits,small]{eulervm}
+%\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+\usepackage{graphicx,multirow,paralist,booktabs}
+
+
+%\mode<presentation> { \setbeamercovered{transparent} }
+
+\setbeamertemplate{navigation symbols}{}
+\makeatletter
+\def\beamerorig@set@color{%
+  \pdfliteral{\current@color}%
+  \aftergroup\reset@color
+}
+\def\beamerorig@reset@color{\pdfliteral{\current@color}}
+\makeatother
+
+%=== GRAPHICS PATH ===========
+\graphicspath{{./m7-images/}}
+% Marginpar width
+%Marginpar width
+%\setlength{\marginparsep}{.02in}
+
+
+%% Captions
+% \usepackage{caption}
+% \captionsetup{
+%   labelsep=quad,
+%   justification=raggedright,
+%   labelfont=sc
+% }
+
+%AMS-TeX packages
+
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage{hyperref,enumerate}
+\usepackage{minitoc,array}
+
+
+%https://tex.stackexchange.com/a/31370/2269
+\usepackage{mathtools,cancel}
+
+\renewcommand{\CancelColor}{\color{red}} %change cancel color to red
+
+\makeatletter
+\let\my@cancelto\cancelto %copy over the original cancelto command
+\newcommand<>{\cancelto}[2]{\alt#3{\my@cancelto{#1}{#2}}{\mathrlap{#2}\phantom{\my@cancelto{#1}{#2}}}}
+% redefine the cancelto command, using \phantom to assure that the
+% result doesn't wiggle up and down with and without the arrow
+\makeatother
+
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%% TIKZ
+\usepackage{animate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgfgantt}
+\usepackage{tikzsymbols}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots,fillbetween}
+
+\usetikzlibrary{arrows,shapes,positioning,shapes.geometric}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows,automata}
+\usetikzlibrary{patterns,matrix}
+\usetikzlibrary{trees,mindmap,backgrounds}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+\tikzset{no shadows/.style={general shadow/.style=}}
+%
+%\usepackage{paralist}
+
+
+
+%%% FORMAT PYTHON CODE
+%\usepackage{listings}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
+
+% Custom colors
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+ 
+
+%\usepackage{listings}
+
+% Python style for highlighting
+% \newcommand\pythonstyle{\lstset{
+% language=Python,
+% basicstyle=\footnotesize\ttm,
+% otherkeywords={self},             % Add keywords here
+% keywordstyle=\footnotesize\ttb\color{deepblue},
+% emph={MyClass,__init__},          % Custom highlighting
+% emphstyle=\footnotesize\ttb\color{deepred},    % Custom highlighting style
+% stringstyle=\color{deepgreen},
+% frame=tb,                         % Any extra options here
+    % showstringspaces=false            % 
+% }}
+
+% % Python environment
+% \lstnewenvironment{python}[1][]
+% {
+% \pythonstyle
+% \lstset{#1}
+% }
+% {}
+
+% % Python for external files
+% \newcommand\pythonexternal[2][]{{
+% \pythonstyle
+% \lstinputlisting[#1]{#2}}}
+
+% Python for inline
+% 
+% \newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\dg}{^{\circ}}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand{\al}{\alpha}
+\newcommand{\G}{\Gamma}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\pgfmathdeclarefunction{expocdf}{2}{%
+  \pgfmathparse{1 -exp(-#1*#2)}%
+}
+
+
+% https://tex.stackexchange.com/questions/446468/labels-with-arrows-for-an-equation
+% https://tex.stackexchange.com/a/402466/121799
+\newcommand{\tikzmark}[3][]{
+\ifmmode
+\tikz[remember picture,baseline=(#2.base)] \node [inner sep=0pt,#1](#2) {$#3$};
+\else
+\tikz[remember picture,baseline=(#2.base)] \node [inner sep=0pt,#1](#2) {#3};
+\fi
+}
+
+
+% \makeatletter
+% \long\def\ifnodedefined#1#2#3{%
+%     \@ifundefined{pgf@sh@ns@#1}{#3}{#2}%
+% }
+
+% \pgfplotsset{
+%     discontinuous/.style={
+%     scatter,
+%     scatter/@pre marker code/.code={
+%         \ifnodedefined{marker}{
+%             \pgfpointdiff{\pgfpointanchor{marker}{center}}%
+%              {\pgfpoint{0}{0}}%
+%              \ifdim\pgf@y>0pt
+%                 \tikzset{options/.style={mark=*, fill=white}}
+%                 \draw [densely dashed] (marker-|0,0) -- (0,0);
+%                 \draw plot [mark=*] coordinates {(marker-|0,0)};
+%              \else
+%                 \tikzset{options/.style={mark=none}}
+%              \fi
+%         }{
+%             \tikzset{options/.style={mark=none}}        
+%         }
+%         \coordinate (marker) at (0,0);
+%         \begin{scope}[options]
+%     },
+%     scatter/@post marker code/.code={\end{scope}}
+%     }
+% }
+
+% \makeatother
+
+\renewcommand{\arraystretch}{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[CEE 260/MIE 273 M7a: Correlation \& Variance]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture M7a: Correlation and Variance Analyses in Linear Regression}
+\date[\today]{\footnotesize \today}
+\author{{\bf Jimi Oke}}
+\institute[UMass Amherst]{
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[anchor=base] at (-7,0) (its) {\includegraphics[scale=.3]{UMassEngineering_vert}} ;
+  \end{tikzpicture}
+}
+
+
+    
+\begin{document}
+
+\maketitle
+
+
+
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+\begin{frame}
+  \frametitle{Today's objectives}
+  \pause
+
+  \begin{itemize}
+  \item Learn how to compute and interpret the correlation coefficient
+
+    
+  \item  Understand and apply linear regression
+
+
+  \item Analyze regression fitness metrics (in particular, $R^{2}$)
+  \end{itemize}
+
+ \end{frame}
+
+
+% \begin{frame}
+%   \frametitle{Overview of remainder of semester}
+%   \pause
+
+%   \textbf{Lectures}\pause
+%   \begin{itemize}
+%   \item November 12: L6a: Correlation and Least Squares Estimation
+%   \item November 17: L6b: Multiple Regression
+%   \item November 19: Final Review
+%   \end{itemize}
+%   \pause
+
+%   \medskip
+
+%   \textbf{Assignments}\pause
+%   \begin{itemize}
+%   \item\textbf{ Problem Set 9:} Assigned Nov.\ 12; Due Nov.\ 21 \pause
+%   \item \textbf{Matlab Homework 3:} Assigned Nov. 11; Due Nov.\ 29\pause
+%   \item \textbf{Quiz 5e:} Assigned Nov.\ 10; Due Nov.\ 12 (by 1pm) \pause
+%   \item \textbf{Quiz 6a:} Assigned Nov.\ 12; Due.\ 17 (by 1pm)
+%   \end{itemize}
+
+%   \textbf{Final Exam}\pause
+%   \begin{itemize}
+%   \item Open resource; will cover material from Week 1, but more emphasis on topics covered after midterm
+%   \item Will be available for download Friday morning; due 24 hrs after opening (up until Sunday). 
+%   \item Let me know if you have any conflicts
+%   \end{itemize}
+% \end{frame}
+
+
+ 
+
+
+ \section{Introduction}
+ \begin{frame}
+  \frametitle{Historical note: regression analysis}\pause
+
+  \begin{minipage}[]{.65\linewidth}
+    The term \textbf{regression analysis} was introduced in the 1880s by British statistician, Francis Galton,
+    in his investigation on the relationship between father's height $x$ and son's height $y$. \\ \pause
+
+    The trend he observed is called the \textbf{regression effect}
+
+    {\tiny Image source: \url{https://www.britannica.com/biography/Francis-Galton}}
+  \end{minipage}\quad \pause
+  \begin{minipage}[]{.3\linewidth}
+    \includegraphics[width=.9\textwidth]{galton}
+
+  \end{minipage}
+
+  \pause
+
+  \begin{itemize}[<+->]
+  \item First, he collected paired data $(x_i, y_i)$
+  \item He used the principle of least squares to estimate the regression line
+  \item The goal was to predict son's height from father's height
+  \item From his results, he found that the height of the son was always \textit{pulled back} (``regressed'') toward the mean
+    \begin{itemize}
+    \item E.g.\ the height of the son of an taller-than-average father was greater than average but not by as much as his father's
+    \item And the height of the son a shorter-than-average father was lower but not by as much as his father's 
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Regression analysis}\pause
+
+  Regression analysis is used to investigate the relationship between two or more variables.
+
+  \pause
+
+  \begin{exampleblock}{Examples of variables with nondeterministic relationships}\pause
+    \begin{itemize}
+    \item $x$ = age of a child; $y$ = size of child's vocabulary
+    \item $x$ = size of an engine; $y$ = fuel efficiency for a car equipped with engine
+    \item $x$ = applied tensile force; $y$ deformation of a metal strip
+    \end{itemize}   
+  \end{exampleblock}
+
+  \pause
+
+  In this module, we will cover the following key topics:
+  \begin{itemize}
+  \item Correlation and variance analyses
+  \item Simple Linear Regression and Least Squares Estimation
+  \item Inference for Linear Regression
+  \end{itemize}
+\end{frame}
+
+
+
+
+ \section{Correlation analysis}
+
+ 
+\begin{frame}
+  \frametitle{Covariance}
+  Recall that the \textbf{variance} of a random variable \ $X$ is given by: \pause
+  
+  \begin{equation}
+    \label{eq:52}
+    \mathbb{V}(X) = \mathbb{E}[(X-\mu_X)^2 ] = \mathbb{E}(X^2) - \mathbb{E}(X)^2
+  \end{equation}
+  \pause
+  
+  Then given two r.v.'s $X$ and $Y$, the {\bf \gr covariance} measures the strength of the \textbf{linear} relationship between them.
+  \pause
+  
+  \begin{block}{Covariance}\pause
+    \begin{equation}
+      \label{eq:50}
+      \text{Cov}(X,Y) = \mathbb{E}[(X-\mu_X)(Y-\mu_Y)] = \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)
+    \end{equation}
+    \pause
+
+    This can also be rewritten as: \pause
+      \begin{equation}
+    \label{eq:21}
+    \text{Cov} (X,Y) =
+    \begin{cases}
+      \sum_x \sum_y (x - \mu_x)(y-\mu_y)f(x,y) & (X,Y) \text{ \og discrete} \\[2mm]
+      \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} (x - \mu_x)(y-\mu_x)f(x,y)dx dy & (X,Y) \text{ \og continuous}
+    \end{cases}
+  \end{equation}
+  \end{block}
+
+
+    
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Correlation}\pause
+
+  \pause
+
+  \begin{block}{Correlation coefficient}
+    This is the normalized covariance
+    \begin{equation}
+    \label{eq:51}
+    \rho = \fr{\text{Cov}(X,Y)}{\sigma_X\sigma_Y}
+  \end{equation}
+  \end{block}
+
+  \pause
+
+  Thus, the correlation coefficient ranges from $-1$ (perfectly linear negative relationship)  to $+1$ (perfectly linear positive relationship).
+
+
+  \begin{center}
+    \includegraphics[width=.45\textwidth]{identify_relationships_lin_neg_strong.pdf}
+    \includegraphics[width=.45\textwidth]{identify_relationships_lin_pos_strong.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sample correlation coefficient} \pause
+
+  For a set of $n$ pairs of observations, the \textbf{sample correlation coefficient} is given by: \pause
+  \begin{equation}
+    \label{eq:17}
+    \hat\rho = \fr{S_{xy}}{\sqrt{S_{xx}}\sqrt{S_{yy}}}
+  \end{equation}
+  \pause
+  where
+  \begin{align}
+    S_{xy} &= \sum (x_i - \ol x) (y_i - \ol y) \\
+    S_{xx} &= \sum (x_i - \ol x)^2  \\
+    S_{yy} &=  \sum (y_i - \ol y)^2  
+  \end{align}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Properties of the sample correlation coefficient $\bm{\hat\rho}$}\pause
+  \begin{enumerate}[<+->]
+    \item Value does not depend on which of the two variables is labeled $x$ or $y$
+    \item Independent of the units in which $x$ and $y$ are measured
+    \item $-1 \le \hat\rho \le 1$
+    \item $\hat\rho = 1$ if and only if all data pairs lie on a straight line with positive slope and $\hat\rho = -1$ iff\footnote{``iff'' $\equiv$ ``if and only if''.} all pairs lie on a straight line with negative slope
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{ Correlation coefficient estimate }\pause
+
+  Recall the definition of the correlation coefficient of random variables $X$ and $Y$: \pause
+
+  \begin{equation}
+    \label{eq:20}
+    \rho  = \fr{\text{Cov}(X,Y)}{\sigma_x \cdot \sigma_y} \pause = \fr{\fr1n\sum_{i=1}^{n}(x_{i} - \mathbb{E}(X))(y_{i} - \mathbb{E}(Y))}{\sigma_x \cdot \sigma_y}
+  \end{equation}
+  \pause
+  
+  Thus, given a \textbf{sample} of paired observations $X$ and $Y$, the estimate $\hat\rho$ is: \pause
+
+  \begin{equation}
+    \label{eq:22}
+    \hat\rho = \fr{S_{xy}}{\sqrt{S_{xx}}\sqrt{S_{yy}}} \pause = \fr{\rd \sum  (x_i - \ol x) (y_i - \ol y)}{\sqrt{\bl \sum (x_i - \ol x)^2}\sqrt{\sum (y_i - \ol y)^2 }}
+  \end{equation}
+
+  \pause
+
+  Note that: \pause
+
+  \begin{equation}
+    \label{eq:24}
+    {\rd \sum  (x_i - \ol x) (y_i - \ol y)} \pause = \sum x_iy_i - \fr1n \sum x_i \sum y_i
+  \end{equation}
+  \pause
+  Also:
+
+  \pause
+
+  \begin{equation}
+    \label{eq:23}
+    {\bl \sum (x_i - \ol x)^2 } \pause = \sum x_i^2 - \fr1n\lt(\sum x_i\rt)^2
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sample correlation coefficient}
+  \pause
+
+  Thus, we obtain the equation for the sample correlation coefficient: \pause
+  \begin{eqnarray*}
+    \hat{\rho} &=& \fr{\sum x_iy_i - \fr1n \sum x_i \sum y_i}{\sqrt{\sum x_i^2 - \fr1n\lt(\sum x_i\rt)^2}\sqrt{\sum y_i^2 - \fr1n\lt(\sum y_i\rt)^2}} \\\pause
+ &=& \fr{\sum x_iy_i - n \ol x \, \ol y}{\sqrt{\sum x_i^2 - n {\ol x}^2}\sqrt{\sum y_i^2 - n {\ol y}^2}} 
+  \end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computing the correlation coefficient from summary data}\pause
+
+  \begin{exampleblock}{Example 1: Pollutant concentrations}\pause
+    Based on data from the sample concentrations of two pollutants, we are given that \pause 
+    \begin{eqnarray*}
+ 	 	n &=& 16\\ 
+ 	 	\sum x_i &=& 1.656\\ \pause
+		\sum y_i &=& 170.6\\ \pause 
+		\sum x_i^2 &=& 0.196912\\ \pause 
+		\sum x_i y_i &=& 20.0397 \\\pause  
+		\sum y_i^2 &=& 2253.56
+    \end{eqnarray*}
+    \pause
+   Find the sample
+    correlation coefficient. 
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Computing the correlation coefficient from summary data}\pause
+	
+	\begin{exampleblock}{Example 1: Pollutant concentrations (cont.)}\pause
+
+
+		\begin{eqnarray*}
+			\hat\rho &=& \pause \fr{\sum x_iy_i - \fr1n \sum x_i \sum y_i}{\sqrt{\sum x_i^2 - \fr1n\lt(\sum x_i\rt)^2}\sqrt{\sum y_i^2 - \fr1n\lt(\sum y_i\rt)^2}} \\\pause
+			&=& \fr{20.0397  - \fr{1}{16}(1.656)(170.6)}{\sqrt{0.196912 - \fr{1}{16}(1.656)^2} \sqrt{20.0397 - \fr{1}{16}(170.6)^2}   } \\\pause
+			&=&  \boxed{ 0.716}
+		\end{eqnarray*} 
+	\end{exampleblock}
+\end{frame}
+
+\section{Linear regression}
+
+\begin{frame}
+  \frametitle{Simple linear regression model}
+  \pause
+
+  For any fixed value of the independent variable $x$, the dependent variable $y$ is related to $x$ via the \textbf{model equation}:\pause
+
+  \begin{equation}
+    \label{eq:50}
+    \tikzmark[blue]{T}{y = \beta_0 + \beta_1x} + \tikzmark[red]{R}{\bm{\epsilon}}
+  \end{equation}
+  \pause
+
+
+
+    \begin{tikzpicture}[overlay, remember picture,node distance =1.5cm,
+    every node/.append style={text width=3cm,align=center},
+    shorten >=3pt]
+    \node[draw, rectangle, blue] (Tdescr) [below left=of T]{true regression line};
+    \draw[blue,->] (Tdescr) to [in=-90,out=90] (T.south);
+    \node[draw, rectangle, red] (Rdescr) [below right =of R]{random error term};
+    \draw[red,->] (Rdescr) to [in=-90,out=90] (R.south);
+  \end{tikzpicture}
+
+  
+  \pause
+
+  \vspace{5ex}
+  where $\bm\epsilon$ is a normally distributed random variable:
+
+  \pause    
+  %\vspace{20ex}
+  \begin{equation}
+    \label{eq:51}
+    \bm\epsilon \sim \mathcal{N}(0, \sigma^2)
+  \end{equation}
+
+  \pause
+
+  $\beta_0$ (intercept) and $\beta_1$ (slope) are the \textbf{regression coefficients}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Error term}
+  Given $n$ independent observations $(x_1,y_1) ... (x_n, y_n)$, \pause
+  the random error term $\bm\epsilon$ allows $(x_i,y_i)$ to fall:\pause
+  \begin{itemize}[<+->]
+  \item above the line: \pause $\epsilon > 0$
+  \item below the line: \pause  $\epsilon < 0$
+  \item on the line: \pause $\epsilon = 0$
+  \end{itemize}
+
+  \pause
+
+\begin{center}
+  \includegraphics[width=.45\textwidth]{regression-plot-gif-converted-to}
+  
+  \vspace{-2ex}
+  
+  {\tiny Image source: \url{https://sigmazone.com/labrea_scatter_plots/}}
+\end{center}
+
+The observed errors in model predictions are known as \textbf{residuals}.
+\end{frame}
+ 
+
+\begin{frame}
+	\frametitle{Alternative notation}\pause
+	Define
+	\begin{align*}
+		\mu_{Y\cdot x} &= \mathbb{E}(Y|X=x) \pause = \text{expected (or mean) value of $Y$ when $X = x$} \\\pause
+		\sigma^2_{Y\cdot x} &= \mathbb{V}(Y|X = x) \pause = \text{variance of $Y$ when $X = x$} 
+	\end{align*}
+	
+	\pause
+	
+	Thus, $\mu_{Y\cdot x}$ is the mean of all $y$ values for which $X = x$ \pause and
+	$\sigma^2_{Y\cdot x} $ describes the variability of $y$ values when $X = x$. \pause
+	
+	\begin{exampleblock}{Example: Age and vocabulary size of children}\pause
+		Let:\pause
+		\begin{align*}
+			x &= \text{age of a child} \\\pause
+			y &= \text{vocabulary size}
+		\end{align*}
+		\pause
+		Then $\mu_{Y\cdot 5}$ is the average vocabulary size for all 5-year-old children in the population.\pause
+		
+		And $\sigma^2_{Y\cdot 5}$ indicates the amount of variability in vocabulary size for 5-year-olds. 
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Further discussions on regression equation}\pause
+	We see that:\pause
+	\begin{align*}
+		\mu_{Y\cdot x} &= \pause \mathbb{E}(\beta_0 + \beta_1 x + \bm\epsilon) = \pause \beta_0 + \beta_1 x + {\og \mathbb{E}(\bm\epsilon)} = \pause \beta_0 + \beta_1 x  + {\og  0} \\\pause
+		\sigma_{Y\cdot x}^2 &=  \pause \mathbb{V}(\beta_0 + \beta_1 x + \bm\epsilon) =  \pause \mathbb{V}(\beta_0 + \beta_1 x) + {\gr \mathbb{V}(\bm\epsilon)} = \pause 0 + {\gr  \sigma^2}
+	\end{align*}
+	
+	Implications:\pause
+	\begin{itemize}[<+->]
+		\item The \textit{mean} value of $Y$ is a linear function of $x$
+		\item The true regression line $y = \beta_0 + \beta_1 x$ is the \textit{line of mean values}
+		\item Slope $\beta_1$ is the expected change in $Y$ for a unit increase in $x$
+		\item The amount of variability in $Y$ values is the same for each value of $x$ \pause (\textbf{homogeneity of variance})
+	\end{itemize}
+\end{frame}
+
+% \begin{frame}
+	%   \frametitle{Analyzing a regression equation}
+	%   \begin{exampleblock}{Example 2: Stress and time-to-failure}
+		
+		%   \end{exampleblock}
+	% \end{frame}
+
+\begin{frame}
+	\frametitle{Analyzing a regression equation}
+	\begin{exampleblock}{Example 2: Flow rate}\pause
+		The flow rate $y$ (m$^3$/min) in a device used for air quality measurement depends on the pressure drop $x$ (in.\ of water) across the device's filter.
+		Suppose that for $x$ values between 5 and 20, the variables are related by the regression model:\pause
+		\begin{equation*}
+			y = -0.12 + 0.095x
+		\end{equation*}
+		\pause
+		and $\sigma = 0.025$.     \pause    Answer the following questions:
+		\begin{enumerate}[(a)]
+			\item What is the expected change in flow rate associated with a 1-inch increase in pressure drop? \pause
+			\item What is the mean change in flow rate when the pressure drop decreases by 5 in?\pause
+			\item What is the expected flow rate for a pressure drop of 10 in? \pause
+			\item For a pressure drop of 10 in., what is the probability that the observed flow rate will exceed 0.835?
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Analyzing a regression equation}
+	\begin{exampleblock}{Example 2: Flow rate (cont.)}\pause
+		From the model equation: \pause $\beta_0 = -0.12$ and \pause $\beta_1 = 0.095$
+		\begin{enumerate}[(a)]\pause
+			\item The \textbf{expected change} in flow rate associated with a 1-inch increase in pressure drop is the slope: \pause $0.095$ m$^3$/min. \pause
+			
+			\item The \textbf{mean change} in flow rate when the pressure drop decreases by 5 in.\ is given by:\pause
+			\begin{equation*}
+				0.095(-5) = -0.475 \text{ m$^3$/min}
+			\end{equation*}
+			\pause
+			
+			\item The expected flow rate for a pressure drop of 10 in.\ is given by:\pause
+			\begin{equation*}
+				y = -0.12 + 0.095(10) \pause = -0.12 + 0.95 \pause = 0.83
+			\end{equation*}
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Analyzing a regression equation}
+	\begin{exampleblock}{Example 2: Flow rate (cont.)}\pause
+		\begin{enumerate}[(a)]\setcounter{enumi}{3}\pause
+			\item For $x = 10$, $Y$ has a mean value \pause $\mu_{Y\cdot 10} = \mathbb{E}(Y|X=10) = 0.83$ \pause (from part (c)).\pause
+			
+			Thus:
+			\begin{eqnarray*}
+				P(Y> 0.835 | X = 10) &=& 1 - P(Y \le 0.835 | X = 10 ) \\\pause
+				&=& 1 - \nmfr{y}{\mu}{\sigma} \\\pause
+				&=&  1 - \nmfr{0.835}{0.83}{0.025} \\\pause
+				&=& 1 - \Phi(0.2) \\\pause
+				&=& 1  - 0.5793 \\\pause
+				&=& \boxed{0.4207}
+			\end{eqnarray*}
+		\end{enumerate}
+	\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Principle of least squares}\pause
+
+  The \textit{true} values of $\beta_0$, $\beta_1$ and $\sigma^2$ are almost never known. \pause
+
+  But we can estimate the parameters from sample data \pause  based on the principle of least squares. \pause
+
+  \begin{block}{Principle of least squares}\pause
+    Given the sum of squared deviations between the sample observations and a candidate regression line as:\pause
+    \begin{equation}
+      \label{eq:55}
+      \Delta^2 = \sum_n [y_i - (\beta_0 + \beta_1 x_i)]^2
+    \end{equation}
+    Then  minimizing $\Delta^2$ yields the estimates of the regression coefficients:\pause
+    \begin{eqnarray}
+      \hat\beta_0 &=& \ol y - \hat\beta_1 \ol x \\\pause
+      \hat\beta_1 &=& \fr{\sum_n (x_i -\ol x) (y_i -\ol y)}{\sum_n (x_i - \ol x)^2}
+    \end{eqnarray}
+  \end{block}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Least squares regression in MATLAB}
+  \begin{exampleblock}{Example 3: Relationship between population and number of accidents}\pause
+
+  Using the \texttt{accidents} dataset in MATLAB, perform a least-squares regression of accidents in a state \textit{on} the population of the state\footnote{See the file \texttt{ex3\_l19\_least\_squares\_regression.m}}:
+
+    \texttt{ load accidents} \\
+    \texttt{ x = hwydata(:,14);} (Population of state) \\
+    \texttt{ y = hwydata(:,4);} (Accidents per state)
+
+    \begin{enumerate}[(a)]
+    \item What are the slope and intercept estimates, $\hat\beta_0$ and $\hat\beta_1$?
+    \item How can you evaluate the strength of the relationship?
+    \end{enumerate}
+    \end{exampleblock}
+  \end{frame}
+
+
+  
+\section{Variance analysis}
+\begin{frame}
+  \frametitle{Fitted values and residuals}\pause
+
+  Given the estimated regression equation:\pause
+  \begin{equation}
+    \label{eq:1}
+    \hat y = \hat \beta_0 + \hat\beta_1 x
+  \end{equation}
+
+  The \textbf{fitted} (or predicted) \textbf{values} $\hat y_i$ are obtained by substituting $x_i$ into the regression equation.\pause
+
+  The \textbf{residuals} are the vertical deviations $y_i - \hat y_i$ from the estimated line. \pause
+
+  \bigskip
+  
+  \begin{block}{Summary}\pause
+    
+    \begin{itemize}[<+->]
+    \item Data (Observed) = Fit (Expected) + Residual
+    \item \textbf{R}esidual = \textbf{O}bserved $-$ \textbf{E}xpected
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Residuals illustrated}\pause
+  The figure below shows linear models and corersponding residual plots.
+
+  \pause
+  
+  \includegraphics[width=\textwidth]{residuals}
+
+  What patterns do you observe?
+  
+\end{frame}
+\begin{frame}
+  \frametitle{Error sum of squares}\pause
+
+  In simple linear regression, the \textbf{error sum of squares} (or \textbf{residual sum of squares}) is given by: \pause
+
+  \begin{equation}
+    \label{eq:2}
+    SSE  = \sum (y_i - \hat y_i)^2
+  \end{equation}
+  
+  Since we assume that the residuals are normally distributed with a constant variance $\sigma^2$ \pause (a property known as \textbf{homoskedasticity}) \pause
+
+  we can estimate $\sigma^2$ as: \pause
+
+  \begin{equation}
+    \label{eq:3}
+    \hat \sigma^2 = \fr{SSE}{n - 2} = \fr{\sum (y_i - \hat y_i)^2}{n - 2}
+  \end{equation}
+
+  \pause
+
+  The degrees of freedom $df = n - 2$ because 2 parameters must first be estimated before computing $\hat\sigma^2$: $\beta_0$ and $\beta_1$
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Total sum of squares}\pause
+
+  The error sum of squares ($SSE$) measures how much variation in $y$ is \textit{unexplained} by the estimated model.\\ \pause
+
+  The total amount of variation in the observed $y$ values, however, is measured by the \pause  \textbf{total sum of squares}: \pause
+
+  \begin{equation}
+    \label{eq:4}
+    SST = \sum (y_i  - \ol{y})^2
+  \end{equation}
+
+  \pause
+
+  \begin{alertblock}{Notes}\pause
+    
+    \begin{itemize}[<+->]
+    \item The $SSE$ is the sum of squared deviations about the least squares line
+    \item The $SST$ is the sum of squared deviations about the horizontal line at height $\ol y$
+    \item $SSE \le SST$
+    \item The ratio $SSE/SST$ is the proportion of total variation unexplained by the simple linear regression model
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Goodness of linear fit: coefficient of determination}\pause
+
+  \begin{exampleblock}{Question}\pause
+    If $SSE/SST$ is the proportion of variance unexplained by the regression model, what is the proportion of variance \textit{explained} by the model?
+
+    \pause
+
+    Answer: $\gr \boxed{ 1 - SSE/SST}$
+  \end{exampleblock}
+  \pause
+  
+  \bigskip
+  
+  To evaluate how well an estimated regression line fits the given data,  we use the measure $R^2$, \pause called the \textbf{coefficient of determination}.
+
+  \begin{equation}
+    \label{eq:5}
+    R^2 = 1 - \fr{SSE}{SST}
+  \end{equation}
+
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Coefficient of determination $R^2$}\pause
+
+  If we define the \textbf{regression sum of squares} ($SSR$) as:
+  \begin{equation}
+    \label{eq:6}
+    SSR = SST  - SSE
+  \end{equation}
+
+  \pause
+
+  then we can rewrite $R^2$ as: \pause
+
+  \begin{equation}
+    \label{eq:7}
+    R^2 = \fr{SSR}{SST}
+  \end{equation}
+
+  \pause
+
+    \begin{alertblock}{Notes}\pause
+    \begin{itemize}[<+->]
+    \item $R^2$ is a number between 0 and 1: \pause $ 0 \le R^2 \le 1$
+    \item $R^2 = 1$ indicates a perfect linear fit (all variance in data is explained by linear model)
+    \item As $R^2$ decreases \pause $\to$ a weaker linear fit
+    \item $\hat\rho^2$ approximates $R^2$ for large $n$
+    \end{itemize}
+  \end{alertblock}
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Summary of variance measures}\pause
+  \vspace{-3ex}
+  \begin{eqnarray}
+    \text{\bf Error sum of squares} \quad
+    SSE &=& \sum (y_i  - \hat y_i)^2 \\
+    	&=& \sum y_i^2 - \hat\beta_0\sum y_i - \hat\beta_1\sum x_i y_i \\ \pause
+    \text{\bf Total sum of squares} \quad
+    SST &=& \sum (y_i  - \ol{y})^2 = \sum y_i^2 - \fr1n\lt(\sum y_i\rt)^2 \\\pause
+    \text{\bf Estimated variance} \quad
+    \hat\sigma^2 &=&  \fr{SSE}{n - 2} = \fr{\sum (y_i - \hat y_i)^2}{n - 2} = s^2 \\ \pause
+        \text{\bf Regression sum of squares} \quad
+    SSR &=& SST - SSE \\ \pause
+    \text{\bf Coefficient of determination} \quad 
+    R^2 &=& 1 - \fr{SSE}{SST} = \fr{SSR}{SST}
+  \end{eqnarray}
+
+  \begin{alertblock}{Note}
+    The variance estimate $\hat\sigma^2$ is also defined as the \textit{conditional variance},  $\mathbb{V}(Y|X =x)$
+  \end{alertblock}
+\end{frame}
+
+
+
+
+%
+%\appendix
+%
+%\begin{frame}
+%  \frametitle{The Q-Q plot}\pause
+%
+%  The quantile-quantile plot is an approach for visually verifying the fitness of a model.
+%
+%  \begin{exampleblock}{MATLAB demonstration}\pause
+%    \begin{quote}\small
+%        load carbig
+%
+%        figure(1)
+%        
+%        qqplot(MPG)
+%
+%        figure(2)
+%
+%        hist(MPG)
+%
+%        load gas
+%
+%        figure(3)
+%
+%        qqplot(price1)
+%
+%        figure(4)
+%
+%        hist(price1,20)
+%    \end{quote}
+%    
+%  \end{exampleblock}
+%
+%  \pause
+%
+%  See the file \texttt{qqplot\_example.m}
+%\end{frame}
+
+
+ % \begin{frame}
+%   \frametitle{Standard error}
+%   \pause
+  
+%   Standard deviation of sample mean (\textbf{\bl known} population variance):
+
+%   \pause
+%   \begin{equation}
+%     \label{eq:21}
+%     \boxed{\sigma_{\ol{x}} = \fr{\sigma}{\sqrt{n}}}
+%   \end{equation}
+%   \pause
+
+%   Standard deviation of sample mean (\textbf{\og unknown} population variance):
+%   \pause
+  
+%   \begin{equation}
+%     \label{eq:se}
+%     \boxed{\sigma_{\ol{x}} = \fr{s}{\sqrt{n}}}
+%   \end{equation}
+%   \pause
+%   Equation \eqref{eq:se} is also called the \textbf{\og standard error} of the mean \pause (SE)
+% \end{frame}
+ 
+
+%\begin{frame}[allowframebreaks]
+%   \frametitle{References}
+%   \AtNextBibliography{\scriptsize}
+%   \setbeamertemplate{bibliography item}[text]
+%   \printbibliography[heading=none]
+  
+% \end{frame}
+
+%\printbibliography
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
