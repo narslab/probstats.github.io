@@ -1,4 +1,4 @@
-\def\bmode{0} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
+\def\bmode{2} % Mode 0 for presentation, mode 1 for a handout with notes, mode 2 for handout without notes
 \if 0\bmode
 \documentclass[smaller]{beamer}
 \else \if 1\bmode
@@ -7,7 +7,7 @@
 \usepackage{handoutWithNotes}
 \pgfpagesuselayout{2 on 1 with notes}[letterpaper, landscape, border shrink=4mm]
 \else \if 2\bmode
-\immediate\write18{pdflatex -jobname=\jobname_Handout\space\jobname}
+\immediate\write18{pdflatex -jobname=\jobname-Handout\space\jobname}
 \documentclass[smaller,handout]{beamer}
 \fi
 \fi
@@ -34,7 +34,7 @@
 
 \usepackage[backend=biber,style=authoryear,maxcitenames=2,maxbibnames=99,safeinputenc,url=false,
 eprint=false]{biblatex}
-\addbibresource{bib/references.bib}
+\addbibresource{bib/references.bib}seaborn
 \AtEveryCitekey{\iffootnote{{\tiny}\tiny}{\tiny}}
 \usepackage{appendixnumberbeamer}
 %\usepackage{pgfpages}
@@ -338,8 +338,8 @@ eprint=false]{biblatex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[CEE 260/MIE 273 M7a: Correlation \& Variance]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
-Lecture M7a: Correlation and Variance Analyses in Linear Regression}
+\title[CEE 260/MIE 273 M7a: Correlation and Least Squares]{{\normalsize CEE 260/MIE 273: Probability and Statistics in Civil Engineering} \\
+Lecture M7a: Correlation and Least Squares Estimation}
 \date[\today]{\footnotesize \today}
 \author{{\bf Jimi Oke}}
 \institute[UMass Amherst]{
