@@ -36,6 +36,7 @@
 \usepackage[mathscr]{eucal}
 \usepackage{colortbl}
 \usepackage{color}
+\usepackage{paralist}
 
 
 \usepackage{subfig,hyperref,enumerate,polynom,polynomial}
@@ -109,7 +110,7 @@
 %\fancyfootoffset{30pt}
 \fancyhead[LO,RE]{\small Oke}
 \fancyhead[RO,LE]{\small Page \thepage} 
-\fancyfoot[RO,LE]{\small PS 8} 
+\fancyfoot[RO,LE]{\small Final Project: Sound} 
 \fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
 \cfoot{} 
 \renewcommand{\headrulewidth}{0.1pt} 
@@ -289,24 +290,23 @@
 \thispagestyle{empty}
 
 
-\nin{\LARGE Problem Set 8 {\gr }}\hfill{\bf Prof. Oke}
+\nin{\LARGE Final Project (Option B): Sound Attenuation {\gr }}\hfill{\bf Prof. Oke}
 
 \medskip\hrule\medskip
 
 \nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
-\hfill\textit{ 11.19.2025}}
+\hfill\textit{ 12.6.2025}}
 
-\bigskip
+\tableofcontents
 
-\nin{\it {Due Friday, November 26, 2025 at 11:59 PM as PDF uploaded on Canvas.}
-  %If it helps and if possible, you can write your responses directly on this document and upload it instead.
-    \textbf{Show as much work as possible in order to get FULL credit.}
-    There are 10 problems with a total of 63 points available.
- %   \textbf{Important:} If you use MATLAB for any probability computations, briefly write/include the statements you
-   % used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
-}
+% \nin{\it {Due Friday, November 26, 2025 at 11:59 PM as PDF uploaded on Canvas.}
+%   %If it helps and if possible, you can write your responses directly on this document and upload it instead.
+%     \textbf{Show as much work as possible in order to get FULL credit.}
+%     There are 10 problems with a total of 63 points available.
+%  %   \textbf{Important:} If you use MATLAB for any probability computations, briefly write/include the statements you
+%    % used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
+% }
 
-\eject
 
 
 % \documentclass[11pt,letterpaper]{article}
@@ -338,131 +338,139 @@
 
 \begin{infobox}
 \textbf{What You'll Learn:}
-\begin{itemize}[leftmargin=*]
-    \item How different materials attenuate sound
+\begin{compactitem}
     \item The relationship between material thickness/density and sound reduction
     \item Linear regression modeling of experimental data
     \item Real-world applications in noise control engineering
-\end{itemize}
+\end{compactitem}
 \end{infobox}
 
 \section{Background: Sound and Decibels}
 
-\textbf{Sound Level (dB):} Logarithmic scale measuring sound pressure. Every 10 dB increase represents a doubling in perceived loudness.
+\begin{itemize}
+    \item \textbf{Sound Level (dB):} Logarithmic scale measuring sound pressure. Every 10 dB increase represents a doubling in perceived loudness.
 
-\textbf{Sound Attenuation:} The reduction in sound intensity as it passes through a material or barrier.
+    \item \textbf{Sound Attenuation:} The reduction in sound intensity as it passes through a material or barrier.
 
-\textbf{Key Principle --- Mass Law:} Sound transmission loss increases with material mass per unit area. Heavier, denser materials generally block more sound.
+\item \textbf{Key Principle --- Mass Law:} Sound transmission loss increases with material mass per unit area. Heavier, denser materials generally block more sound.
+\end{itemize}
 
-\begin{calculationbox}
-Sound Reduction (dB) = Baseline Level (dB) - Measured Level (dB)
 
-Example: 85 dB baseline - 70 dB with material = 15 dB reduction
-\end{calculationbox}
+% \begin{calculationbox}
+% Sound Reduction (dB) = Baseline Level (dB) - Measured Level (dB)
+
+% Example: 85 dB baseline - 70 dB with material = 15 dB reduction
+% \end{calculationbox}
 
 \section{Materials \& Equipment}
 
 \begin{minipage}[t]{0.48\textwidth}
 \textbf{Provided by Instructor:}
-\begin{itemize}[leftmargin=*]
+\begin{compactitem}
     \item Cardboard test box
     \item Bluetooth speaker
-    \item Various barrier materials
-    \item Tape and clips
-\end{itemize}
+    \item Acoustic foam
+    \item Scissors and tape
+\end{compactitem}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.48\textwidth}
 \textbf{Bring Your Own:}
-\begin{itemize}[leftmargin=*]
+\begin{compactitem}
     \item Smartphone with decibel meter app
     \item Ruler or calipers
     \item Calculator
     \item Laptop for data analysis
-\end{itemize}
+\end{compactitem}
 \end{minipage}
 
 \begin{warningbox}
 \textbf{Important:} Download a free decibel meter app BEFORE lab:
-\begin{itemize}[leftmargin=*]
+\begin{compactitem}
     \item \textbf{iOS:} ``Decibel X'' or ``NIOSH Sound Level Meter''
     \item \textbf{Android:} ``Sound Meter'' or ``Decibel X''
-\end{itemize}
+\end{compactitem}
 \end{warningbox}
 
 \section{Experimental Setup}
 
 \begin{center}
-\begin{tikzpicture}[node distance=2cm]
+\begin{tikzpicture}[scale=1.5, node distance=2cm]
     % Box
-    \draw[thick] (0,0) rectangle (3,2);
-    \node at (1.5,1.7) {\textbf{CARDBOARD BOX}};
-    \node at (1.5,1) {Speaker};
-    \node at (1.5,0.5) {\small Playing 1000 Hz};
+    \draw[thick] (0,0) rectangle (3.5,2);
+    \node at (1.75,1.7) {\textbf{CARDBOARD BOX}};
+    \node at (1.75,1) {Speaker};
+    \node at (1.75,0.5) {\small Playing 1000 Hz};
     
     % Material barrier
-    \draw[very thick, red] (3.5,0) -- (3.5,2);
-    \draw[very thick, red] (3.7,0) -- (3.7,2);
-    \node[below] at (3.6,-0.3) {\small Material Barrier};
+    \draw[very thick, red] (3.5,0.5) -- (3.5,1.5);
+    \draw[very thick, red] (3.6,0.5) -- (3.6,1.5);
+        \draw[red,<-, thin] (3.6,.45) -- (3.9,-.2);
+    \node[below] at (3.9,-0.3) {\small \rd Material Barrier};
     
     % Phone/Mic
-    \node at (5.5,1) {Phone/Mic};
+    \node at (5.7,1)  {Phone/Mic};
     \draw[->, thick] (3.7,1) -- (5,1);
-    \node[above] at (4.3,1.1) {\tiny 15 cm};
+    \node[above] at (4.3,1.1) {\small 15 cm};
 \end{tikzpicture}
 \end{center}
 
 \begin{procedurebox}
 \textbf{Setup Steps:}
-\begin{enumerate}[leftmargin=*]
-    \item Place speaker inside cardboard box, centered
+\begin{compactenum}
+    \item Place and center speaker inside cardboard box
+    \item Create an opening in the box for material testing (approx. 10 cm x 10 cm)
+    \item Set speaker volume to a constant level (do NOT change later)
+    \item Launch tone generator app on phone (set to 1000 Hz)
+    %\item Open decibel meter app and set to A-weighting
     \item Install test material over opening (secure all edges with tape)
-    \item Position phone microphone 15 cm from material surface
+    \item Position phone microphone 20 cm from material surface
     \item Start tone generator app (1000 Hz, constant volume)
     \item Calibrate: wait 10 seconds for sound stabilization
-\end{enumerate}
+\end{compactenum}
 \end{procedurebox}
 
 \section{Experimental Procedure}
 
 \subsection*{Part 1: Baseline Measurement}
-\begin{enumerate}[leftmargin=*]
+\begin{compactenum}
     \item With NO material installed (open box), measure sound level
     \item Take 3 measurements, record all values
     \item Calculate average --- this is your \textbf{baseline}
     \item DO NOT change speaker volume for rest of experiment!
-\end{enumerate}
+\end{compactenum}
 
-\subsection*{Part 2: Material Testing}
-\begin{enumerate}[leftmargin=*]
-    \item Select first test material and measure its thickness with ruler/calipers
+\subsection*{Part 2: Distance Testing}
+\begin{compactenum}
+    \item Select test material and measure its thickness with ruler/calipers
     \item Install material, ensuring edges are sealed with tape
     \item Wait 5 seconds for sound to stabilize
     \item Take 3 sound level measurements
     \item Calculate average and sound reduction
-    \item Remove material and repeat for next sample
-    \item Test ALL materials in your assigned set
-\end{enumerate}
+    \item Layer on next panel to double thickness of material and repeat for next sample
+    \item Aim to measure sound levels for \textbf{at least 10} sample data points (thickness levels)
+\end{compactenum}
 
 \begin{warningbox}
 \textbf{Critical Controls:}
-\begin{itemize}[leftmargin=*]
-    \item Keep microphone at same distance (15 cm) for ALL tests
+\begin{compactitem}
+    \item Keep microphone at same distance   for ALL tests
     \item Keep phone orientation consistent
     \item Seal material edges completely (no air gaps!)
     \item Don't change speaker volume between tests
     \item Test in quiet environment (minimize background noise)
-\end{itemize}
+\end{compactitem}
 \end{warningbox}
 
-\clearpage
 
-\section{Data Collection Sheet}
+\section{Data Collection}
+Use the template available on the \href{https://docs.google.com/spreadsheets/d/1v_AuZLL7xPizKB1QIhx2BRpH5loNMLHzRHk1l8I8LLE/edit?usp=sharing}{Google Drive} to aid this effort.
+Also record your test conditions.
 
-\textbf{Test Conditions:}\\
+\noindent \textbf{Test Conditions:}\\
 Baseline Sound Level (no material): \underline{\hspace{2cm}} dB\\
 Test Frequency: 1000 Hz\\
-Microphone Distance: 15 cm\\
+Microphone Distance: \underline{\hspace{2cm}} cm\\
 Background Noise Level: \underline{\hspace{2cm}} dB
 
 \vspace{0.5cm}
@@ -470,72 +478,70 @@ Background Noise Level: \underline{\hspace{2cm}} dB
 \begin{table}[h]
 \centering
 \small
-\begin{tabular}{|p{2.2cm}|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{Material} & \textbf{Thickness (mm)} & \textbf{Mass/Area (g/cm²)*} & \textbf{Trial 1 (dB)} & \textbf{Trial 2 (dB)} & \textbf{Trial 3 (dB)} & \textbf{Average (dB)} & \textbf{Sound Reduction (dB)} \\
+\textbf{Thickness (mm)} & \textbf{Trial 1 (dB)} & \textbf{Trial 2 (dB)} & \textbf{Trial 3 (dB)} & \textbf{Average (dB)}  \\
 \hline
 \rowcolor{red!20}
-\textbf{Baseline (No Material)} & 0 & 0 & & & & & 0 \\
+ 0  & & & &  \\
 \hline
-& & & & & & & \\
+ & & & &  \\
 \hline
-& & & & & & & \\
+& & & & \\
 \hline
-& & & & & & & \\
+ & & & & \\
 \hline
-& & & & & & & \\
+ & & & &  \\
 \hline
-& & & & & & & \\
+ & & & &  \\
 \hline
-& & & & & & & \\
+ & & & &  \\
 \hline
-& & & & & & & \\
+& & & & \\
 \hline
-& & & & & & & \\
+ & & & & \\
 \hline
-& & & & & & & \\
-\hline
-& & & & & & & \\
+& & & & \\
 \hline
 \end{tabular}
 \end{table}
 
-\small \textit{*Mass per area can be calculated if you weigh a known area of material, or estimated from material density tables}
 
-\section{Data Analysis Requirements}
 
-\subsection*{1. Create Scatter Plot}
+\section{Regression Analysis Requirements}
+For this section, use the Project \href{https://colab.research.google.com/drive/1u06GGZK90tSMIZ65RrdzoJGhp-Bt4xEn?usp=sharing}{Python template}.
+
+\subsection{Create Scatter Plot}
 Plot \textbf{Material Thickness (mm)} on x-axis vs. \textbf{Sound Reduction (dB)} on y-axis
-\begin{itemize}[leftmargin=*]
+\begin{compactitem}
     \item Include all data points from your experiment
     \item Label axes clearly with units
     \item Add descriptive title
-\end{itemize}
+\end{compactitem}
 
-\subsection*{2. Linear Regression Analysis}
-Calculate the least-squares regression line: $y = mx + b$
 
-Where:
-\begin{itemize}[leftmargin=*]
+\subsection{Linear Regression Analysis}
+Calculate the least-squares regression line: $y = \beta_0 + \beta_1 x $ where:
+\begin{compactitem}
     \item $y$ = Sound Reduction (dB)
     \item $x$ = Material Thickness (mm)
-    \item $m$ = slope (dB reduction per mm)
-    \item $b$ = y-intercept (baseline)
-\end{itemize}
+      \item $\beta_0$ = y-intercept (baseline)  
+    \item $\beta_1$ = slope (dB reduction per mm)
+\end{compactitem}
 
 \begin{calculationbox}
 Report the following:
-• Regression equation: y = \_\_\_\_\_ x + \_\_\_\_\_
-• Slope (m): \_\_\_\_\_ dB/mm
-• Y-intercept (b): \_\_\_\_\_ dB
+• Regression equation: y =  \_\_\_\_\_ + \_\_\_\_\_ x 
+• Slope: \_\_\_\_\_ dB/mm
+• Y-intercept: \_\_\_\_\_ dB
 • Correlation coefficient (r): \_\_\_\_\_
 • Coefficient of determination (R²): \_\_\_\_\_
 \end{calculationbox}
 
-\subsection*{3. Plot Regression Line}
+\subsection{Plot Regression Line}
 Add your regression line to the scatter plot created in step 1
 
-\subsection*{4. Residual Analysis}
+\subsection{Residual Analysis}
 Create a residual plot (residuals vs. predicted values) to check if linear model is appropriate
 
 
@@ -544,148 +550,108 @@ Create a residual plot (residuals vs. predicted values) to check if linear model
 
 \section{Discussion Questions}
 
-\subsection*{Statistical Analysis (Answer with complete sentences)}
+\subsection*{Part A: Statistical Analysis {\it (Answer all questions: Q1--Q5)}}
 
-\textbf{1.} Interpret the slope of your regression line. What does it tell you about the relationship between thickness and sound reduction?
+\begin{enumerate}
+\item Interpret the slope of your regression line. What does it tell you about the relationship between thickness and sound reduction?
 
-\vspace{2cm}
+\item What is your $R^2$ value? What percentage of the variation in sound reduction is explained by material thickness?
 
-\textbf{2.} What is your $R^2$ value? What percentage of the variation in sound reduction is explained by material thickness?
+\item What are the p-values for your slope and intercept? Are they statistically significant at the 0.05 level? Explain what this means in the context of your experiment.
 
-\vspace{2cm}
+\item Based on your residual plot, is a linear model appropriate for this data? Explain why or why not.
 
-\textbf{3.} Based on your residual plot, is a linear model appropriate for this data? Explain why or why not.
+\item Use your regression equation to predict the sound reduction for a 10 mm thick barrier. Is this an interpolation or extrapolation?
 
-\vspace{2cm}
-
-\textbf{4.} Use your regression equation to predict the sound reduction for a 10 mm thick barrier. Is this an interpolation or extrapolation?
-
-\vspace{2cm}
-
-\subsection*{Material Performance}
-
-\textbf{5.} Which material provided the best sound reduction per unit thickness? Calculate dB reduction per mm for each material.
-
-\vspace{2cm}
-
-\textbf{6.} Did denser materials perform better than lighter materials of the same thickness? Support your answer with data.
-
-\vspace{2cm}
-
-\subsection*{Engineering Applications}
-
-\textbf{7.} A residential building is exposed to 75 dB of highway noise. Building codes require interior noise levels below 45 dB. Using your best-performing material, what thickness would be required? Show your calculation.
-
-\vspace{2.5cm}
-
-\textbf{8.} Research typical costs for your tested materials (\$/sq ft). Which material provides the best sound reduction per dollar?
-
-\vspace{2cm}
-
-\textbf{9.} In real buildings, walls often consist of multiple layers with air gaps (e.g., drywall + air gap + insulation + drywall). Why might this design perform better than a single thick layer? (Research ``decoupling'' and ``resonance'')
-
-\vspace{2.5cm}
-
-\textbf{10.} Low-frequency sounds (bass, truck engines) are much harder to block than high-frequency sounds. How might this affect your material recommendations for highway noise barriers vs. HVAC noise control?
-
-\vspace{2.5cm}
-
-\section{Sources of Error}
-
-Identify at least THREE sources of experimental error in your study and explain how each could affect your results:
-
-\textbf{Error 1:}
-
-\vspace{2cm}
-
-\textbf{Error 2:}
-
-\vspace{2cm}
-
-\textbf{Error 3:}
-
-\vspace{2cm}
-
-\section{Engineering Design Recommendation}
-
-\begin{infobox}
-\textbf{Design Scenario:} You are designing a noise barrier for a new highway expansion project. The barrier must reduce traffic noise from 80 dB to 60 dB at nearby homes. Based on your experimental findings, propose a barrier design that considers:
-\begin{itemize}[leftmargin=*]
-    \item Material selection (type and thickness)
-    \item Estimated cost per linear foot of barrier
-    \item Structural considerations (weight, wind resistance)
-    \item Maintenance requirements
-    \item Aesthetics and community acceptance
-\end{itemize}
-\end{infobox}
-
-\textbf{Your Recommendation:}
-
-\vspace{3cm}
-
-\textbf{Justification (use data from your experiment):}
-
-\vspace{3cm}
-
-\section{Report Requirements}
-
-\textbf{Due Date:} \underline{\hspace{4cm}}
-
-\textbf{Deliverables:}
-\begin{enumerate}[leftmargin=*]
-    \item \textbf{Completed data sheet} with all measurements
-    \item \textbf{Scatter plot} with regression line
-    \item \textbf{Residual plot}
-    \item \textbf{Regression analysis} (equation, $R^2$, interpretation)
-    \item \textbf{Answers to all discussion questions}
-    \item \textbf{Engineering design recommendation}
-    \item \textbf{Sources of error analysis}
 \end{enumerate}
 
+\subsection*{Part B: Experimental Design {\it (Answer Q6)}}
+ \begin{enumerate}[resume]
+
+\item What were the three most significant sources of error in your experiment? Explain how each could have affected your results and how you minimized them?
+\end{enumerate}
+
+\subsection*{Part C: Engineering Applications {\it (Answer all questions: Q7 AND either Q8 OR Q9)}}
+\begin{enumerate}[resume]
+
+\item An office is exposed to 75 dB of outdoor noise. Building codes require interior noise levels 
+below 50 dB. What thickness of acoustic panels/foam would be required? Show your calculation.
+
+
+% \textbf{8.} Research typical costs for your tested materials (\$/sq ft). Which material provides the best sound reduction per dollar?
+
+% \vspace{2cm}
+
+\item In real buildings, walls often consist of multiple layers with air gaps (e.g., drywall + air gap + insulation + drywall). Why might this design perform better than a single thick layer? (Research ``decoupling'' and ``resonance'')
+
+
+\item Low-frequency sounds (bass, truck engines) are much harder to block than high-frequency sounds. 
+How might this affect your material recommendations for highway noise barriers vs. HVAC noise control?
+
+\end{enumerate}
+
+\subsection*{Part D: Extra Credit}
+\textbf{Option 1:} Pad the box with acoustic foam on all sides (except material opening) to reduce reflections. Repeat measurements for one material of your choice. Does this change your results? Explain why or why not.\\
+\textbf{Option 2:} Try a different frequency (e.g., 500 Hz or 2000 Hz). How does frequency affect sound reduction? Discuss implications for real-world noise control.
+
+\section{Submission Requirements}
+
+
+\subsection{Deliverables}
+\begin{enumerate}
+    \item Submit a PDF report including:
+\begin{enumerate}
+    \item \textbf{Data Collection (Section 6)} with all measurements
+    \item \textbf{Regression Analysis Requirements (Section 7)}
+    \item \textbf{Answers to Discussion Questions (Section 8)}
+\end{enumerate}
+\item Submit a notebook file (e.g., .ipynb) with your regression analysis code
+\item Submit your presentation slides as a PDF
+\end{enumerate}
+
+
+\subsection{Grading Criteria}
+
 \begin{warningbox}
-\textbf{Grading Criteria:}
 \begin{itemize}[leftmargin=*]
-    \item Data collection completeness and accuracy (20\%)
-    \item Statistical analysis correctness (25\%)
-    \item Quality of graphs and visualizations (15\%)
-    \item Depth of discussion and engineering application (25\%)
-    \item Design recommendation and justification (15\%)
+    \item Data collection quality and completeness (20\%)
+    \item Regression analysis completeness and correctness (25\%)
+    \item Discussion response depth and accuracy (20\%)
+    \item Professional presentation (aim for approx 6 slides; 4 minutes): (20\%)
+    \begin{itemize}
+        \item Organization: Introduction, Data, Methods, Results+Discussion, Conclusion (10\%)
+        \item Quality of graphs and visualizations (5\%)
+        \item Clarity of delivery (5\%)
+    \end{itemize}
+    \item Code quality and documentation (15\%)
+    \item Extra Credit (10\% bonus)
 \end{itemize}
 \end{warningbox}
+
 
 \section{Additional Resources}
 
 \textbf{Recommended Reading:}
-\begin{itemize}[leftmargin=*]
+\begin{compactitem}
     \item STC (Sound Transmission Class) ratings and building codes
     \item Mass Law for sound transmission: $TL \approx 20 \log(f \times m) - 42$
     \item OSHA noise exposure standards for workplace safety
     \item Highway noise barrier design guidelines (FHWA)
-\end{itemize}
+\end{compactitem}
 
-\textbf{Software for Analysis:}
-\begin{itemize}[leftmargin=*]
-    \item Excel, Google Sheets (built-in regression functions)
-    \item Python (scipy.stats, matplotlib)
-    \item R (lm function)
-    \item Any statistical software package
-\end{itemize}
+\noindent \textbf{Software for Analysis:}
+\begin{compactitem}
+    \item Excel, Google Sheets 
+    \item Python, Google Colab
+\end{compactitem}
 
-\vfill
 
-\begin{center}
-\rule{\textwidth}{0.4pt}\\
-\textit{Sound Attenuation Study | Linear Regression Project | Statistics for Engineers}\\
-\textit{Remember: Engineering is about making informed decisions based on data!}
-\end{center}
+
 
 \end{document}
 
 
 
-
- 
-\end{document}
 
 %%% Local Variables:
 %%% mode: latex
