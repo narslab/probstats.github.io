@@ -1,0 +1,513 @@
+\documentclass[11pt,twoside]{article}
+\usepackage{etex}
+
+\raggedbottom
+
+%geometry (sets margin) and other useful packages
+\usepackage{geometry}
+\geometry{top=1in, left=1in,right=1in,bottom=1in}
+ \usepackage{graphicx,booktabs,calc}
+ 
+\usepackage{listings}
+
+
+% Marginpar width
+%Marginpar width
+\newcommand{\pts}[1]{\marginpar{ \small\hspace{0pt} \textit{[#1]} } } 
+\setlength{\marginparwidth}{.5in}
+%\reversemarginpar
+%\setlength{\marginparsep}{.02in}
+
+ 
+%\usepackage{cmbright}lstinputlisting
+%\usepackage[T1]{pbsi}
+
+
+\usepackage{chngcntr,mathtools}
+\counterwithin{figure}{section}
+\numberwithin{equation}{section}
+
+%\usepackage{listings}
+
+%AMS-TeX packages
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{colortbl}
+\usepackage{color}
+
+
+\usepackage{subfig,hyperref,enumerate,polynom,polynomial}
+\usepackage{multirow,minitoc,fancybox,array,multicol}
+
+\definecolor{slblue}{rgb}{0,.3,.62}
+\hypersetup{
+    colorlinks,%
+    citecolor=blue,%
+    filecolor=blue,%
+    linkcolor=blue,
+    urlcolor=slblue
+}
+
+%%%TIKZ
+\usepackage{tikz}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{decorations.text}
+% For Sagnac Picture
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\tikzstyle arrowstyle=[black,scale=2]
+\tikzstyle directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrow[arrowstyle]{stealth}}}}]
+\tikzstyle reverse directed=[postaction={decorate,decoration={markings,
+    mark=at position .65 with {\arrowreversed[arrowstyle]{stealth};}}}]
+\tikzstyle dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrow[arrowstyle]{latex}}}}]
+\tikzstyle rev dir=[postaction={decorate,decoration={markings,
+    mark=at position .98 with {\arrowreversed[arrowstyle]{latex};}}}]
+
+\usepackage{ctable}
+
+%
+%Redefining sections as problems
+%
+\makeatletter
+\newenvironment{exercise}{\@startsection 
+	{section}
+	{1}
+	{-.2em}
+	{-3.5ex plus -1ex minus -.2ex}
+    	{1.3ex plus .2ex}
+    	{\pagebreak[3]%forces pagebreak when space is small; use \eject for better results
+	\large\bf\noindent{Exercise 1.\hspace{-1.5ex} }
+	}
+	}
+	%{\vspace{1ex}\begin{center} \rule{0.3\linewidth}{.3pt}\end{center}}
+	%\begin{center}\large\bf \ldots\ldots\ldots\end{center}}
+\makeatother
+
+%
+%Fancy-header package to modify header/page numbering 
+%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\addtolength{\headwidth}{\marginparsep} %these change header-rule width
+%\addtolength{\headwidth}{\marginparwidth}
+%\fancyheadoffset{30pt}
+%\fancyfootoffset{30pt}
+\fancyhead[LO,RE]{\small Oke}
+\fancyhead[RO,LE]{\small Page \thepage} 
+\fancyfoot[RO,LE]{\small PS 8} 
+\fancyfoot[LO,RE]{\small \scshape CEE 260/MIE 273} 
+\cfoot{} 
+\renewcommand{\headrulewidth}{0.1pt} 
+\renewcommand{\footrulewidth}{0.1pt}
+%\setlength\voffset{-0.25in}
+%\setlength\textheight{648pt}
+
+
+\usepackage{paralist}
+
+\newcommand{\osn}{\oldstylenums}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\pt}{\phantom}
+\newcommand{\tf}{\therefore}
+\newcommand{\?}{\stackrel{?}{=}}
+\newcommand{\fr}{\frac}
+\newcommand{\dfr}{\dfrac}
+\newcommand{\ul}{\underline}
+\newcommand{\tn}{\tabularnewline}
+\newcommand{\nl}{\newline}
+\newcommand\relph[1]{\mathrel{\phantom{#1}}}
+\newcommand{\cm}{\checkmark}
+\newcommand{\ol}{\overline}
+\newcommand{\rd}{\color{red}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\pl}{\color{purple}}
+\newcommand{\og}{\color{orange!90!black}}
+\newcommand{\gr}{\color{green!40!black}}
+\newcommand{\nin}{\noindent}
+\newcommand{\la}{\lambda}
+\renewcommand{\th}{\theta}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,thick,inner sep=1pt] (char) {\small #1};}}
+
+\newcommand{\bc}{\begin{compactenum}[\quad--]}
+\newcommand{\ec}{\end{compactenum}}
+
+\newcommand{\n}{\\[2mm]}
+%% GREEK LETTERS
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\eps}{\epsilon}
+\newcommand{\sig}{\sigma}
+
+\newcommand{\p}{\partial}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dpd}[2]{\dfrac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\mr}{\mathbb{R}}
+\newcommand{\xs}{x^{*}}
+\newenvironment{solution}
+{\medskip\par\quad\quad\begin{minipage}[c]{.8\textwidth}\gr}{\medskip\end{minipage}}
+
+
+\pgfmathdeclarefunction{poiss}{1}{%
+  \pgfmathparse{(#1^x)*exp(-#1)/(x!)}%
+  }
+
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\pgfmathdeclarefunction{expo}{2}{%
+  \pgfmathparse{#1*exp(-#1*#2)}%
+}
+
+\usetikzlibrary{math}
+
+% https://tex.stackexchange.com/questions/461758/asymmetric-distribution-gauss-curve
+\tikzmath{%
+  function h1(\x, \lx) { return (9*\lx + 3*((\lx)^2) + ((\lx)^3)/3 + 9); };
+  function h2(\x, \lx) { return (3*\lx - ((\lx)^3)/3 + 4); };
+  function h3(\x, \lx) { return (9*\lx - 3*((\lx)^2) + ((\lx)^3)/3 + 7); };
+  function skewnorm(\x, \l) {
+    \x = (\l < 0) ? -\x : \x;
+    \l = abs(\l);
+    \e = exp(-(\x^2)/2);
+    return (\l == 0) ? 1 / sqrt(2 * pi) * \e: (
+      (\x < -3/\l) ? 0 : (
+      (\x < -1/\l) ? \e / (8 * sqrt(2 * pi)) * h1(\x, \x*\l) : (
+      (\x <  1/\l) ? \e / (4 * sqrt(2 * pi)) * h2(\x, \x*\l) : (
+      (\x <  3/\l) ? \e / (8 * sqrt(2 * pi)) * h3(\x, \x*\l) : (
+      sqrt(2/pi) * \e)))));
+  };
+}
+
+\def\cdf(#1)(#2)(#3){0.5*(1+(erf((#1-#2)/(#3*sqrt(2)))))}%
+% to be used: \cdf(x)(mean)(variance)
+
+\DeclareMathOperator{\CDF}{cdf}
+\tikzset{
+    declare function={
+        normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*(\x-\m)/\s));
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nmfr}[3]{\Phi\left(\frac{{#1} - {#2}}{#3}\right)}
+
+
+\begin{document}
+
+\lstset{language=C++,
+                basicstyle=\tiny\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{gray}\ttfamily,
+                morecomment=[l][\color{gray}]{\#}
+}
+
+
+\thispagestyle{empty}
+
+
+\nin{\LARGE Problem Set 8 {\gr }}\hfill{\bf Prof. Oke}
+
+\medskip\hrule\medskip
+
+\nin {\small CEE 260/MIE 273: Probability \& Statistics in Civil Engineering
+\hfill\textit{ 12.06.2024}}
+
+\bigskip
+
+\nin{\it {Due Friday, December 13, 2024 at 11:59 PM as PDF uploaded on Canvas.}
+  %If it helps and if possible, you can write your responses directly on this document and upload it instead.
+    \textbf{Show as much work as possible in order to get FULL credit.}
+    There are 8 problems with a total of 55 points available.
+ %   \textbf{Important:} If you use MATLAB for any probability computations, briefly write/include the statements you
+   % used to arrive at your answers. If instead you use probability tables, note this in the respective solution, as well.
+}
+
+ 
+
+
+
+
+ 
+
+
+\section*{Problem 1 \quad {\it Chi-square hypothesis test conclusions (9 points)}      }
+What conclusions would be appropriate for an upper-tailed chi-square test in each of the following situations (where $\chi^2$ is the test statistic)? (In each case, show explicitly how you compute and compare the critical value $\chi^2_{1-\alpha, \nu}$. Then circle the correct option ({\bf i.}) or ({\bf ii.}).)
+
+\begin{enumerate}[\bf (a)]
+	\item $\alpha = 0.01$, $\nu = 3$, $\chi^2 = 8.54$ \pts{3}
+	\vspace{20ex}
+	\begin{enumerate}[\bf i.]
+		\item Fail to reject $H_0$
+		\item Reject $H_0$
+	\end{enumerate}
+	\item $\alpha = 0.10$, $\nu = 2$, $\chi^2 = 4.36$ \pts{3}
+		\vspace{20ex}
+	\begin{enumerate}[\bf i.]
+		\item Fail to reject $H_0$
+		\item Reject $H_0$
+	\end{enumerate}
+	\item $\alpha = 0.01$, $k = 6$, $\chi^2 = 10.20$ \pts{3}
+		\vspace{20ex}
+	\begin{enumerate}[\bf i.]
+		\item Fail to reject $H_0$
+		\item Reject $H_0$
+	\end{enumerate}
+\end{enumerate}
+
+
+\section*{Problem 2\quad {\it $p$-value of chi-square statistic (6 points)}      }
+Calculate the $p$-value for an upper-tailed chi-square test in each of the following situations (show the Matlab/Python/calculator function you use in each case):
+\begin{enumerate}[\bf (a)]
+	\item $\chi^2 = 13.0$, $\nu = 6$\pts{2}
+	\vspace{30ex}
+	\item  $\chi^2 = 18.0$, $\nu = 9$\pts{2}
+	\vspace{30ex}
+	\item $\chi^2 = 5.0$, $k =4$\pts{2}
+	\vspace{30ex}
+\end{enumerate}
+
+\eject
+\section*{Problem 3 \quad {\it ANOVA (8 points)}      }
+The China Health and Nutrition Survey aims to examine the effects of the health,
+nutrition, and family planning policies and programs implemented by national and
+local governments\footnote{UNC Carolina Population Center,
+	\url{https://www.cpc.unc.edu/projects/china}}. It, for example, collects
+information on number of hours  parents spend taking care of their
+children under age 6.  Provided below is
+the partial ANOVA output for comparing average hours across educational attainment
+categories.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{l r r r r r}\hline
+		& d.o.f. & $SS$ & $MS$ & $f$ & $P(>F)$ \\ \hline
+		Education & 4 & 4142.09 & 1035.52 & ?  & ?  \\
+		Residuals & 794 & 653047.83 & 822.48 & &  \\\hline
+	\end{tabular}
+\end{table}
+\begin{enumerate}[(a)]
+	\item Write the hypotheses for testing for a difference between the average number of hours spent on child
+	care across educational attainment levels. \pts{2}
+	\vspace{20ex}
+	\item Compute the test statistic. \pts{2}
+		\vspace{20ex}
+	\item Compute the $p$-value. \pts{2}
+		\vspace{20ex}
+	\item What is the conclusion of the hypothesis test and why? \pts{2}
+		\vspace{20ex}
+\end{enumerate}
+
+\section*{Problem 4 \quad {\it Identifying relationships (12 points)}      }
+For each of the six plots, identify the strength of the \textbf{relationship} (whether linear or not) (e.g.\
+weak, moderate, or strong) in the data \textbf{and} whether fitting a linear model would be reasonable.
+\begin{figure}[h!]
+  \centering
+    \subfloat{
+    
+        \includegraphics[width=.3\textwidth]{identify_relationships_u}
+  }
+  \subfloat{
+    \includegraphics[width=.3\textwidth]{identify_relationships_lin_pos_strong}
+  }
+  \subfloat{
+    \includegraphics[width=.3\textwidth]{identify_relationships_lin_pos_weak}
+  }
+
+
+  \subfloat{
+    \includegraphics[width=.3\textwidth]{identify_relationships_n}
+  }
+  \subfloat{
+    \includegraphics[width=.3\textwidth]{identify_relationships_lin_neg_strong}
+  }
+  \subfloat{
+    \includegraphics[width=.3\textwidth]{identify_relationships_none}
+  }
+
+\end{figure}
+   \begin{enumerate}[\bf (a)]
+   \item
+     \bigskip
+\bigskip
+   \item
+     \bigskip
+\bigskip
+        \item
+     \bigskip
+\bigskip
+        \item
+     \bigskip
+\bigskip
+
+        \item
+     \bigskip
+     \bigskip
+     
+   \item
+     \bigskip
+\bigskip
+  \end{enumerate}
+ % \begin{enumerate}[(a)]
+% \item Write the hypotheses for testing for a difference between the average number of hours spent on child
+%   care across educational attainment levels.
+% \item Compute the test statistic.
+% \item Compute the $p$-value.
+% \item What is the conclusion of the hypothesis test?
+% \end{enumerate}
+
+\eject
+
+\section*{Problem 5 \quad {\it Understanding correlation: True/False (4 points)}}
+Determine if the following statements are absolutely true or false. Briefly explain your reasoning.
+
+\begin{enumerate}[\bf (a)]
+\item  A correlation coefficient of $-0.90$ indicates a stronger linear relationship than a correlation of 0.5.
+  \vspace{15ex}
+  
+\item  Correlation is a measure of the relationship (linear or otherwise) between any two variables.
+ 
+\vspace{15ex}
+%  \item In a paired analysis we first take the difference of each pair of observations, and then we do inference
+%  on these differences.
+%\vspace{15ex}  
+%\item Two data sets of different sizes cannot be analyzed as paired data.
+%
+%\vspace{15ex}
+\end{enumerate}
+
+
+\eject
+\section*{Problem 6 \quad {\it Working with a regression equation (7 points)}}
+Suppose that in a certain chemical process the reaction time $y$ (hr) is related to the temperature ($^\circ$F) in the chamber in which
+the reaction takes place according to the simple linear regression model with equation:
+\begin{equation*}
+  y = 5.00 - 0.01x
+\end{equation*}
+and $\sigma = 0.075$.
+\begin{enumerate}[\bf (a)]
+\item What is the expected change in reaction time for a 1$^\circ$F increase in temperature? \pts{1}
+  \vspace{15ex}
+  
+\item What is the expected reaction time when the temperature is 250$^\circ$F? \pts{2}
+\vspace{25ex}
+
+\item Suppose five observations are made independently \pts{4}
+  on reaction time, each one for a temperature of 250$^\circ$F, what is the probability that all five times are between 2.4 and 2.6 hr?
+ 
+\end{enumerate}
+
+\eject
+\section*{Problem 7 \quad {\it Interpreting least-squares linear regression output in MATLAB  (9 points)}}
+
+The table below shows MATLAB output from fitting the least squares regression line to the number of fatal accidents in
+each U.S. state to the population of the state.\footnote{I would strongly encourage you run the script
+  \texttt{least\_squares\_regression.m} in the M6a folder on Moodle to gain further perspective. More will be said on
+  inference in linear regression during M6b.}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{c l l l l}
+    &  \bf Estimate & \bf SE & \bf tStat & \bf pValue \\\midrule \\
+    \bf (Intercept) & 142.71 & 64.88  & 2.200  & 0.0326 \\
+    \bf x1 & 0.00013 & 7.8854 & 15.933 & 5.1357 $\times 10^{-21}$ \\ 
+  \end{tabular}
+  \caption{Output from least-squares regression of accidents on population in MATLAB}
+  \label{tab:p5}
+\end{table}
+\noindent Let $y$ be the number of accidents in a state and $x$ its population. The ``Estimate'' column of the table shows the values of the regression coefficients.
+
+\begin{enumerate}[\bf (a)]
+\item   Write the regression equation in the form: $y = \hat\beta_0 + \hat\beta_1 x$ \pts{2}
+  \vspace{15ex}
+  
+\end{enumerate}
+
+\noindent  The ``SE'' column shows the standard errors of the points estimates, $\hat\beta_0$ and $\hat\beta_1$, respectively. The ``tStat'' column indicates the respective test statistics ($T$-scores). The ``pValue'' column shows the $p$-values of the test statistics. The hypotheses for $\beta_0$ (first row of table) are:
+ \begin{align*}
+   H_0: \beta_0 &= 0 \quad \text{(The true intercept is zero)} \\
+   H_1 : \beta_0 &\ne 0 \quad \text{(The true intercept is not zero)}
+ \end{align*}
+ 
+ \begin{enumerate}[\bf (a)]\setcounter{enumi}{1}
+ \item Based on the $p$-value \pts{2} of the intercept, determine whether the intercept is significant (i.e.\ non-zero) at $\alpha = 0.05$. Would your conclusion change if $\alpha = 0.01$?
+
+   \vfill
+ \end{enumerate}
+ \eject
+ 
+The hypotheses for $\beta_1$ (second row of table) are:
+ \begin{align*}
+   H_0: \beta_1 &= 0 \quad \text{(The true slope is zero)} \\
+   H_1 : \beta_1 &\ne 0 \quad \text{(The true slope is not zero)}
+ \end{align*}
+ \begin{enumerate}[(a)]\setcounter{enumi}{2}
+ \item Based on the size of the $p$-value for $\hat\beta_1$, \pts{2} what is the conclusion of the hypothesis test for $\beta_1$? Explain your answer briefly.
+   \vspace{25ex}
+   
+ \item Would you \pts{1} agree that the size of of the $p$-value is a strong indication of the linear relationship between $x$ and $y$?
+   \vspace{15ex}
+   
+ \item If the \pts{2}  population of a state were 10,000,000, what would be the expected number of accidents?
+   
+ \end{enumerate}
+
+ \eject
+\section*{Problem 8\quad {\it Regression and ANOVA (8 points)}      }
+The following script was run in MATLAB to regress the number of accidents on the population of a state.
+\begin{verbatim}
+load accidents
+x = hwydata(:,14); %Population of states
+y = hwydata(:,4);  %Accidents per state
+mdl = fitlm(x,y);
+mdl.anova('summary')
+\end{verbatim}
+Below is the output of running the ANOVA method on the model estimate:
+\begin{verbatim}
+                  SumSq       DF      MeanSq        F         pValue  
+                __________    __    __________    ______    __________
+
+    Total       3.5776e+07    50    7.1553e+05                        
+    Model       2.9988e+07     1    2.9988e+07    253.86    5.1357e-21
+    Residual    5.7883e+06    49    1.1813e+05                        
+\end{verbatim}
+\begin{enumerate}[(a)]
+\item What are the values of $SSE$, $SSR$ and $SST$? \pts{3}
+  \vspace{20ex}
+  
+\item Use the above output to compute the coefficient of determination $R^2$. \pts{2}
+\vspace{20ex}
+  
+\item How many observations are in the data sample? \pts{1}
+\vspace{7ex}
+  
+\item The null hypothesis of the ANOVA test for a \pts{2} linear regression statest that the true slope is equal to zero: $H_0: \beta_1 = 0$. Given the $p$-value in the above output, do you reject or fail to reject the null hypothesis? Briefly explain the reason behind your answer.
+
+  
+\end{enumerate}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
